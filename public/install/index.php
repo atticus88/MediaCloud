@@ -61,6 +61,17 @@
     </div>
     <div class="container" style="margin-top:70px;">
     	<h2>Install Page</h2>
+
+    	<ol>
+    		<li>Clone</li>
+    		<li>Composer install (<a href="http://getcomposer.org">Composer</a>)</li>
+    		<li>Database Setup</li>
+    		<li>Path Assets</li>
+    		<li>Beanstalkd (Linux Only)</li>
+    		<li>ldap / localAuth / CAS / Saml</li>
+    	</ol>
+
+
 	</div>
 	</body>
 	 <script src="/assets/js/bootstrap.min.js"></script>
