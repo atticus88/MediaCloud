@@ -47,8 +47,7 @@ class AppRefreshCommand extends Command {
 			// Now install it again
 			$this->call('app:install');
 
-			// And seed it
-			$this->call('app:seed');
+			
 		}
 	}
 

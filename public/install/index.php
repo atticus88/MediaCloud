@@ -117,16 +117,23 @@ mv composer.phar /usr/local/bin/composer</pre>
 							</a>
 						</h4>
 					</div>
-					<div id="collapse-database" class="panel-collapse collapse">
+					<div id="collapse-database" class="panel-collapse collapse in">
 						<div class="panel-body">
 
-							<div class="form-group">
-								<label for="dbName">Database Name</label>
-								<input type="email" class="form-control" id="dbName" placeholder="Database Name">
+
+
+							<div class="col-lg-3 form-group">
+									<label for="dbName">Database Name</label>
+									<input type="email" class="form-control" id="dbName" placeholder="Database Name">
 							</div>
-							<div class="form-group">
-								<label for="dbUserName">Database Username</label>
-								<input type="text" class="form-control" id="dbUserName" placeholder="Username">
+							<div class="col-lg-3 form-group">
+									<label for="dbUserName">Database Username</label>
+									<input type="text" class="form-control" id="dbUserName" placeholder="Username">
+							</div>
+
+							<div class="col-lg-3 form-group">
+									<label for="dbPassword">Database Username</label>
+									<input type="password" class="form-control" id="dbPassword" placeholder="Database Password">
 							</div>
 
 						</div>
