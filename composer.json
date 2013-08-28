@@ -1,5 +1,6 @@
 {
-	"name": "laravel/laravel",
+	"name": "atticus88/mediacloud",
+	"license": "MIT",
 	"description": "The Laravel Framework.",
 	"keywords": ["framework", "laravel"],
 	"require": {

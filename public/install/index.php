@@ -1,7 +1,22 @@
 <?php 
-
 // post call 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+	if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+		/* special ajax here */
+		echo "ajax ";
+	}else{
+		
+		echo "not ajax ";
+	}
+
+   var_dump($_POST);
+	die();
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+	echo "GET";
+}
 
 ?>
 
@@ -61,7 +76,7 @@
 	</div>
 	<div class="container" style="margin-top:70px;">
 		
-		<form role="form">
+		<form role="form" action="" method="POST">
 
 
 			
@@ -98,10 +113,16 @@
 					</div>
 					<div id="collapse-composer" class="panel-collapse collapse">
 						<div class="panel-body">
-							To Install composer open the terminal, type:
+							
+							<h3>Windows</h3>
+							install  <a href="https://getcomposer.org/Composer-Setup.exe">Composer-Setup.exe</a>
 
-<pre>curl -sS https://getcomposer.org/installer | php
+							<h3>Mac/Linux</h3>
+							<p>To Install composer open the terminal, type:</p>
+
+<pre>curl -sS https://getcomposer.org/installer | php 
 mv composer.phar /usr/local/bin/composer</pre>
+
 
 						</div>
 					</div>
@@ -117,24 +138,60 @@ mv composer.phar /usr/local/bin/composer</pre>
 							</a>
 						</h4>
 					</div>
-					<div id="collapse-database" class="panel-collapse collapse in">
+					<div id="collapse-database" class="panel-collapse collapse">
 						<div class="panel-body">
+							
+							
+							 <label class="control-label">Select Database Type</label>
+
+							<div class="form-inline">
+								<label >
+									<input type="radio" id="radio-db-type" name="radio-db-type" value="mysql" checked>
+									mysql
+								</label>
+							 
+								<label>
+									<input type="radio" id="radio-db-type" name="radio-db-type" value="sqlite">
+									sqlite
+								</label>
+							 
+								<label>
+									<input type="radio" id="radio-db-type" name="radio-db-type" value="pgsql">
+									pgsql
+								</label>
+							 
+								<label>
+									<input type="radio" id="radio-db-type" name="radio-db-type" value="sqlsrv">
+									sqlsrv
+								</label>
+							</div>
+							
+							
 
 
 
+
+							<h3>Database</h3>
 							<div class="col-lg-3 form-group">
-									<label for="dbName">Database Name</label>
-									<input type="email" class="form-control" id="dbName" placeholder="Database Name">
+									<label for="dbName">Name</label>
+									<input type="text" class="form-control" id="dbName" name="dbName" placeholder="Name">
 							</div>
 							<div class="col-lg-3 form-group">
-									<label for="dbUserName">Database Username</label>
-									<input type="text" class="form-control" id="dbUserName" placeholder="Username">
+									<label for="dbUserName">Username</label>
+									<input type="text" class="form-control" id="dbUserName" name="dbUserName" placeholder="Username">
 							</div>
 
 							<div class="col-lg-3 form-group">
-									<label for="dbPassword">Database Username</label>
-									<input type="password" class="form-control" id="dbPassword" placeholder="Database Password">
+									<label for="dbPassword">Password</label>
+									<input type="password" class="form-control" id="dbPassword" name="dbPassword" placeholder="Password">
 							</div>
+
+							<div class="col-lg-3 form-group">
+									<label for="dbPrefix">Table Prefix</label>
+									<input type="text" class="form-control" id="dbPrefix" name="dbPrefix" placeholder="Prefix: mc_">
+							</div>
+
+							
 
 						</div>
 					</div>
