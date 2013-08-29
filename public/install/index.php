@@ -89,9 +89,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4 class="panel-title">
-							<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse-db">
+							<div class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse-db">
 								<i class="btn btn-success btn-lrg"><span class="glyphicon glyphicon-ok"></span></i> <strong>Clone MediaCloud Repo</strong>
-							</a>
+							</div>
 						</h4>
 					</div>
 					<div id="collapse-db" class="panel-collapse collapse">
@@ -106,14 +106,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4 class="panel-title">
-							<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse-composer">
-								<i class="btn btn-success btn-lrg"><span class="glyphicon glyphicon-ok"></span></i> 	<strong>Composer install</strong> (<a href="http://getcomposer.org">Composer</a>)
-							</a>
+							<div class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse-composer">
+								<i class="btn btn-success btn-lrg"><span class="glyphicon glyphicon-ok"></span></i> 	<strong>Composer install</strong> 
+							</div>
 						</h4>
 					</div>
 					<div id="collapse-composer" class="panel-collapse collapse">
 						<div class="panel-body">
-							
+							<a href="http://getcomposer.org">Composer</a>
 							<h3>Windows</h3>
 							install  <a href="https://getcomposer.org/Composer-Setup.exe">Composer-Setup.exe</a>
 
@@ -133,9 +133,9 @@ mv composer.phar /usr/local/bin/composer</pre>
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4 class="panel-title">
-							<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse-database">
+							<div class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse-database">
 								<i class="btn btn-danger btn-lrg"><span class="glyphicon glyphicon-remove"></span></i> <strong>Database Setup</strong>
-							</a>
+							</div>
 						</h4>
 					</div>
 					<div id="collapse-database" class="panel-collapse collapse">
@@ -202,9 +202,9 @@ mv composer.phar /usr/local/bin/composer</pre>
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4 class="panel-title">
-							<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse-asset-path">
+							<div class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse-asset-path">
 								<i class="btn btn-danger btn-lrg"><span class="glyphicon glyphicon-remove"></span></i> <strong>Asset Path</strong>
-							</a>
+							</div>
 						</h4>
 					</div>
 					<div id="collapse-asset-path" class="panel-collapse collapse">
@@ -220,9 +220,9 @@ mv composer.phar /usr/local/bin/composer</pre>
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4 class="panel-title">
-							<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse-beanstalkd">
+							<div class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse-beanstalkd">
 								<i class="btn btn-danger btn-lrg"><span class="glyphicon glyphicon-remove"></span></i> <strong>Beanstalkd</strong>
-							</a>
+							</div>
 						</h4>
 					</div>
 					<div id="collapse-beanstalkd" class="panel-collapse collapse">
@@ -237,9 +237,9 @@ mv composer.phar /usr/local/bin/composer</pre>
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4 class="panel-title">
-							<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse-auth-source">
+							<div class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse-auth-source">
 								<i class="btn btn-danger btn-lrg"><span class="glyphicon glyphicon-remove"></span></i> <strong>Authenticaiton Source</strong>
-							</a>
+							</div>
 						</h4>
 					</div>
 					<div id="collapse-auth-source" class="panel-collapse collapse">
