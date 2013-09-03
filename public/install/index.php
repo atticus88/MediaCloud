@@ -107,7 +107,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 					<div class="panel-heading">
 						<h4 class="panel-title">
 							<div class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse-composer">
-								<i class="btn btn-success btn-lrg"><span class="glyphicon glyphicon-ok"></span></i> 	<strong>Composer install</strong> 
+								<?php 
+									exec('which composer', $output, $result);
+									if ($result == 0) {
+										echo '<i class="btn btn-success btn-lrg"><span class="glyphicon glyphicon-ok"></span></i>     <strong>Composer install</strong>';
+									} else {	
+										echo '<i class="btn btn-danger btn-lrg"><span class="glyphicon glyphicon-remove"></span></i>     <strong>Composer install</strong>';
+									}
+								?>
 							</div>
 						</h4>
 					</div>
