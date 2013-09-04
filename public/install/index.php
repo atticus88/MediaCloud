@@ -108,8 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 						<h4 class="panel-title">
 							<div class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse-composer">
 								<?php 
-									exec('which composer', $output, $result);
-									if ($result == 0) {
+									if (preg_match('/composer/i',$_SERVER["PATH"])) {
 										echo '<i class="btn btn-success btn-lrg"><span class="glyphicon glyphicon-ok"></span></i>     <strong>Composer install</strong>';
 									} else {	
 										echo '<i class="btn btn-danger btn-lrg"><span class="glyphicon glyphicon-remove"></span></i>     <strong>Composer install</strong>';
@@ -120,11 +119,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 					</div>
 					<div id="collapse-composer" class="panel-collapse collapse">
 						<div class="panel-body">
-							<a href="http://getcomposer.org">Composer</a>
-							<h3>Windows</h3>
+							<h3>What is composer?</h3>
+							<a href="http://getcomposer.org">getcomposer.org</a>
+							<h3>Windows Install</h3>
 							install  <a href="https://getcomposer.org/Composer-Setup.exe">Composer-Setup.exe</a>
 
-							<h3>Mac/Linux</h3>
+							<h3>Mac/Linux Install</h3>
 							<p>To Install composer open the terminal, type:</p>
 
 <pre>curl -sS https://getcomposer.org/installer | php 
