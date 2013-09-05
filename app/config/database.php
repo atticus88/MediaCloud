@@ -55,7 +55,7 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'laravel-basic',
+			'database'  => 'mediacloud',
 			'username'  => 'root',
 			'password'  => '',
 			'charset'   => 'utf8',

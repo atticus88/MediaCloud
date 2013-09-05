@@ -32,11 +32,19 @@ App::after(function($request, $response)
 | integrates HTTP Basic authentication for quick, simple checking.
 |
 */
+Route::filter('auth.admin', function()
+{
+    if ( ! Sentry::check())
+    {
+        return Redirect::route('admin.login');
+    }
+});
 
 Route::filter('auth', function()
 {
 	if (Auth::guest()) return Redirect::guest('login');
 });
+
 
 
 Route::filter('auth.basic', function()
