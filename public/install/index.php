@@ -108,11 +108,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 						<h4 class="panel-title">
 							<div class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse-composer">
 								<?php 
-									if (preg_match('/composer/i',$_SERVER["PATH"])) {
+									$installed = false;
+									if(strtolower(php_uname("s")) == 'linux') {		
+										exec('which composer', $output, $result);
+										if ($result == 0) {
+											$installed = true;
+										}
+									} else {
+										if (preg_match('/composer/i',$_SERVER["PATH"])) {
+											$installed = true;
+										}
+									}
+									if($installed) {
 										echo '<i class="btn btn-success btn-lrg"><span class="glyphicon glyphicon-ok"></span></i>     <strong>Composer install</strong>';
 									} else {	
 										echo '<i class="btn btn-danger btn-lrg"><span class="glyphicon glyphicon-remove"></span></i>     <strong>Composer install</strong>';
-									}
+									}	
 								?>
 							</div>
 						</h4>
