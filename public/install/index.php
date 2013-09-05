@@ -251,7 +251,50 @@ mv composer.phar /usr/local/bin/composer</pre>
 					</div>
 					<div id="collapse-auth-source" class="panel-collapse collapse">
 						<div class="panel-body">
-							Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 
+							 <div class="form-inline">
+                                                                <label >
+                                                                        <input type="radio" id="radio-db-type" name="radio-db-type" value="CAS" checked>
+                                                                        CAS
+                                                                </label>
+
+                                                                <label>
+                                                                        <input type="radio" id="radio-db-type" name="radio-db-type" value="LDAP">
+                                                                        LDAP
+                                                                </label>
+
+                                                                <label>
+                                                                        <input type="radio" id="radio-db-type" name="radio-db-type" value="Database">
+                                                                        Database
+                                                                </label>
+
+                                                                <label>
+                                                                        <input type="radio" id="radio-db-type" name="radio-db-type" value="Shibboleth">
+                                                                        Shibboleth
+                                                                </label>
+                                                        </div>
+
+							<div id="cas-conf" class="col-md-5">
+								<label>CAS Login URL</label>
+								<input class="form-control" type="text" placeholder="https://cas.domain.edu/login" />
+								<label>CAS Logout URL</label>
+								<input class="form-control" type="text" placeholder="https://cas.domain.edu/logout" />
+							</div>
+							<!-- need javascript to load conf divs based on which is selected -->
+							<br />
+							<br />
+							<br />
+							<br />
+							<br />
+							<br />
+							<br />
+							<div id="ldap-conf" class="col-md-5">
+								<label>LDAP Host</label>
+								<input class="form-control" type="text" placeholder="ldap://ad.domain.edu:389" />
+								<label>Base DN</label>
+								<input class="form-control" type="text" placeholder="DC=ad,DC=domain,DC=edu" />
+
+							</div>
+
 						</div>
 					</div>
 				</div>
