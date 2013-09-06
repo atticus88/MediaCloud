@@ -15,7 +15,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-	echo "GET";
 }
 
 ?>
@@ -77,13 +76,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 	<div class="container" style="margin-top:70px;">
 		
 		<form role="form" action="" method="POST">
-
-
-			
-			
-			
-
-
 			<div class="panel-group" id="accordion">
 				<!-- Clone -->
 				<div class="panel panel-default">
@@ -120,9 +112,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 										}
 									}
 									if($installed) {
-										echo '<i class="btn btn-success btn-lrg"><span class="glyphicon glyphicon-ok"></span></i>     <strong>Composer install</strong>';
+										echo '<i class="btn btn-success btn-lrg"><span class="glyphicon glyphicon-ok"></span></i> <strong>Composer install</strong>';
 									} else {	
-										echo '<i class="btn btn-danger btn-lrg"><span class="glyphicon glyphicon-remove"></span></i>     <strong>Composer install</strong>';
+										echo '<i class="btn btn-danger btn-lrg"><span class="glyphicon glyphicon-remove"></span></i> <strong>Composer install</strong>';
 									}	
 								?>
 							</div>
@@ -147,6 +139,84 @@ mv composer.phar /usr/local/bin/composer</pre>
 				</div>
 				<!-- /Composer -->
 
+				<!-- Queue -->
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<div class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse-queue">
+								<i class="btn btn-danger btn-lrg"><span class="glyphicon glyphicon-remove"></span></i> <strong>Queue</strong>
+							</div>
+						</h4>
+					</div>
+					<div id="collapse-queue" class="panel-collapse collapse">
+						<div class="panel-body">
+							
+							<?php 
+							$installed = false;
+							if(strtolower(php_uname("s")) == 'linux') {		
+								exec('which beanstalkd', $output, $result);
+								if ($result == 0) {
+									$installed = true;
+								}
+							} 
+							// else {
+							// 	if (preg_match('/beanstalkd/i',$_SERVER["PATH"])) {
+							// 		$installed = true;
+							// 	}
+							// }
+							if($installed) {
+								echo '<strong>Install beanstalkd</strong>';
+							} else {	
+								echo '<strong>Not Install beanstalkd</strong>';
+							}	
+							?>
+
+						</div>
+					</div>
+				</div>
+				<!-- /Queue -->
+
+
+				<!-- supervisord -->
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<div class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse-supervisord">
+								<i class="btn btn-danger btn-lrg"><span class="glyphicon glyphicon-remove"></span></i> <strong>Supervisord</strong>
+							</div>
+						</h4>
+					</div>
+					<div id="collapse-supervisord" class="panel-collapse collapse">
+						<div class="panel-body">
+							<p>This will need to be install if its linux</p>
+							<p>It helps with keeping beanstalkd going if a service gets locked up</p>
+
+							<br />
+							<br />
+
+							<h3>What is Supervisord?</h3>
+							<a href="http://supervisord.org/">supervisord.org/</a>
+							
+							<?php
+							$installed = false;
+							if(strtolower(php_uname("s")) == 'linux') {		
+								exec('which supervisord', $output, $result);
+								if ($result == 0) {
+									$installed = true;
+								}
+							}
+							if($installed) {
+								echo '<strong>Supervisord install</strong>';
+							} else {	
+								echo '<strong>Supervisord is not install</strong>';
+							}	
+							?>
+
+						</div>
+					</div>
+				</div>
+				<!-- /supervisord -->
+
 				<!-- Database -->
 				<div class="panel panel-default">
 					<div class="panel-heading">
@@ -160,27 +230,23 @@ mv composer.phar /usr/local/bin/composer</pre>
 						<div class="panel-body">
 							
 							
-							 <label class="control-label">Select Database Type</label>
+							<label class="control-label">Select Database Type</label>
 
 							<div class="form-inline">
 								<label >
-									<input type="radio" id="radio-db-type" name="radio-db-type" value="mysql" checked>
-									mysql
+									<input type="radio" id="dbType" name="dbType" value="mysql"> mysql
 								</label>
-							 
+
 								<label>
-									<input type="radio" id="radio-db-type" name="radio-db-type" value="sqlite">
-									sqlite
+									<input type="radio" id="dbType" name="dbType" value="sqlite"> sqlite
 								</label>
-							 
+
 								<label>
-									<input type="radio" id="radio-db-type" name="radio-db-type" value="pgsql">
-									pgsql
+									<input type="radio" id="dbType" name="dbType" value="pgsql"> pgsql
 								</label>
-							 
+
 								<label>
-									<input type="radio" id="radio-db-type" name="radio-db-type" value="sqlsrv">
-									sqlsrv
+									<input type="radio" id="dbType" name="dbType" value="sqlsrv"> sqlsrv
 								</label>
 							</div>
 							
@@ -188,25 +254,35 @@ mv composer.phar /usr/local/bin/composer</pre>
 
 
 
-
-							<h3>Database</h3>
-							<div class="col-lg-3 form-group">
-									<label for="dbName">Name</label>
-									<input type="text" class="form-control" id="dbName" name="dbName" placeholder="Name">
-							</div>
-							<div class="col-lg-3 form-group">
-									<label for="dbUserName">Username</label>
-									<input type="text" class="form-control" id="dbUserName" name="dbUserName" placeholder="Username">
+							
+							<div class="row">
+							<h3>Database Info</h3>
+								<i class="btn btn-default"><span class="glyphicon glyphicon-check"></span></i> <strong>Test Settings</strong>
 							</div>
 
-							<div class="col-lg-3 form-group">
-									<label for="dbPassword">Password</label>
-									<input type="password" class="form-control" id="dbPassword" name="dbPassword" placeholder="Password">
+							
+
+							<div class="col-lg-2 form-group">
+								<label for="dbName">Name</label>
+								<input type="text" class="form-control" id="dbName" name="dbName" placeholder="Name">
+							</div>
+							<div class="col-lg-2 form-group">
+								<label for="dbDomain">Domain</label>
+								<input type="text" class="form-control" id="dbDomain" name="dbDomain" placeholder="localhost">
+							</div>
+							<div class="col-lg-2 form-group">
+								<label for="dbUserName">Username</label>
+								<input type="text" class="form-control" id="dbUserName" name="dbUserName" placeholder="Username">
 							</div>
 
-							<div class="col-lg-3 form-group">
-									<label for="dbPrefix">Table Prefix</label>
-									<input type="text" class="form-control" id="dbPrefix" name="dbPrefix" placeholder="Prefix: mc_">
+							<div class="col-lg-2 form-group">
+								<label for="dbPassword">Password</label>
+								<input type="password" class="form-control" id="dbPassword" name="dbPassword" placeholder="Password">
+							</div>
+
+							<div class="col-lg-2 form-group">
+								<label for="dbPrefix">Table Prefix</label>
+								<input type="text" class="form-control" id="dbPrefix" name="dbPrefix" placeholder="Prefix: mc_">
 							</div>
 
 							
@@ -227,89 +303,64 @@ mv composer.phar /usr/local/bin/composer</pre>
 					</div>
 					<div id="collapse-asset-path" class="panel-collapse collapse">
 						<div class="panel-body">
-							Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 
+							<p>Where do you want to store your assets?</p>
+
+							<label for="assetPath">Asset Path</label>
+							<input type="text" class="form-control" id="assetPath" name="assetPath" placeholder="[Project Root]/public/assets">
 						</div>
 					</div>
 				</div>
 				<!-- /Asset Path -->
 
 
-				<!-- Beanstalkd -->
+				<!-- Auth Service -->
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4 class="panel-title">
-							<div class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse-beanstalkd">
-								<i class="btn btn-danger btn-lrg"><span class="glyphicon glyphicon-remove"></span></i> <strong>Beanstalkd</strong>
+							<div class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse-auth-service">
+								<i class="btn btn-danger btn-lrg"><span class="glyphicon glyphicon-remove"></span></i> <strong>Authentication Service</strong>
 							</div>
 						</h4>
 					</div>
-					<div id="collapse-beanstalkd" class="panel-collapse collapse">
+					<div id="collapse-auth-service" class="panel-collapse collapse">
 						<div class="panel-body">
-							Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 
-						</div>
-					</div>
-				</div>
-				<!-- /Beanstalkd -->
+							<div class="form-inline ">
+								<label>
+									<input type="radio" id="authType" name="authType" value="CAS"> CAS
+								</label>
 
-				<!-- Auth Source -->
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h4 class="panel-title">
-							<div class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse-auth-source">
-								<i class="btn btn-danger btn-lrg"><span class="glyphicon glyphicon-remove"></span></i> <strong>Authenticaiton Source</strong>
+								<label>
+									<input type="radio" id="authType" name="authType" value="LDAP"> LDAP
+								</label>
+
+								<label>
+									<input type="radio" id="authType" name="authType" value="Database"> Database
+								</label>
+
+								<label>
+									<input type="radio" id="authType" name="authType" value="Shibboleth"> Shibboleth
+								</label>
 							</div>
-						</h4>
-					</div>
-					<div id="collapse-auth-source" class="panel-collapse collapse">
-						<div class="panel-body">
-							 <div class="form-inline">
-                                                                <label >
-                                                                        <input type="radio" id="radio-db-type" name="radio-db-type" value="CAS" checked>
-                                                                        CAS
-                                                                </label>
 
-                                                                <label>
-                                                                        <input type="radio" id="radio-db-type" name="radio-db-type" value="LDAP">
-                                                                        LDAP
-                                                                </label>
-
-                                                                <label>
-                                                                        <input type="radio" id="radio-db-type" name="radio-db-type" value="Database">
-                                                                        Database
-                                                                </label>
-
-                                                                <label>
-                                                                        <input type="radio" id="radio-db-type" name="radio-db-type" value="Shibboleth">
-                                                                        Shibboleth
-                                                                </label>
-                                                        </div>
-
-							<div id="cas-conf" class="col-md-5">
-								<label>CAS Login URL</label>
-								<input class="form-control" type="text" placeholder="https://cas.domain.edu/login" />
-								<label>CAS Logout URL</label>
-								<input class="form-control" type="text" placeholder="https://cas.domain.edu/logout" />
+							<div id="cas-auth-conf" class="col-md-5 hide">
+								<label for="authCASLoginUrl">CAS Login URL</label>
+								<input class="form-control" type="text"  id="authCASLoginUrl" name="authCASLoginUrl"  placeholder="https://cas.domain.edu/login" />
+								<label for="authCASLogoutUrl">CAS Logout URL</label>
+								<input class="form-control" type="text" id="authCASLogoutUrl" name="authCASLogoutUrl"  placeholder="https://cas.domain.edu/logout" />
 							</div>
-							<!-- need javascript to load conf divs based on which is selected -->
-							<br />
-							<br />
-							<br />
-							<br />
-							<br />
-							<br />
-							<br />
-							<div id="ldap-conf" class="col-md-5">
-								<label>LDAP Host</label>
-								<input class="form-control" type="text" placeholder="ldap://ad.domain.edu:389" />
+							
+
+							<div id="ldap-auth-conf" class="col-md-5 hide">
+								<label for="authLDAPHost">LDAP Host</label>
+								<input class="form-control" type="text" id="authLDAPHost" name="authLDAPHost"  placeholder="ldap://ad.domain.edu:389" />
 								<label>Base DN</label>
-								<input class="form-control" type="text" placeholder="DC=ad,DC=domain,DC=edu" />
-
+								<input class="form-control" type="text" id="authBaseDN" name="authBaseDN" placeholder="DC=ad,DC=domain,DC=edu" />
 							</div>
 
 						</div>
 					</div>
 				</div>
-				<!-- /Auth Source -->
+				<!-- /Auth Service -->
 
 <br>
 				<button type="submit" class="btn btn-default">Submit</button>
@@ -320,25 +371,30 @@ mv composer.phar /usr/local/bin/composer</pre>
 			
 
 		</div>
-
-
-
-
-
-
-    	<!--<ul>
-    		<li><button class="btn btn-success btn-lrg"><span class="glyphicon glyphicon-ok"></span></button> Clone</li>
-    		<li>Composer install (<a href="http://getcomposer.org">Composer</a>)</li>
-    		<li>Database Setup</li>
-    		<li>Path Assets</li>
-    		<li>Beanstalkd (Linux Only)</li>
-    		<li>ldap / localAuth / CAS / Saml</li>
-    	</ul>-->
-
-
-    </div>
+	</div>
 </body>
 <script src="/assets/js/bootstrap.min.js"></script>
+<script>
+	$(document).ready(function(){ 
+		
+		// Authentication Service
+		$("input[name$='authType']").click(function() {
+			var val = $(this).val().toLowerCase();
+			var elm = $("#"+val + "-auth-conf")[0]
+			$("[id*='-auth-conf']").addClass("hide");
+			$(elm).removeClass("hide");
+		}); 
+
+
+		// Authentication Service
+		$("input[name$='authType']").click(function() {
+			var val = $(this).val().toLowerCase();
+			var elm = $("#"+val + "-auth-conf")[0]
+			$("[id*='-auth-conf']").addClass("hide");
+			$(elm).removeClass("hide");
+		}); 
+	});
+</script>
 </html>
 
 <!--  -->
