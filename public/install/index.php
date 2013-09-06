@@ -377,14 +377,6 @@ mv composer.phar /usr/local/bin/composer</pre>
 <script>
 	$(document).ready(function(){ 
 		
-		// Authentication Service
-		$("input[name$='authType']").click(function() {
-			var val = $(this).val().toLowerCase();
-			var elm = $("#"+val + "-auth-conf")[0]
-			$("[id*='-auth-conf']").addClass("hide");
-			$(elm).removeClass("hide");
-		}); 
-
 
 		// Authentication Service
 		$("input[name$='authType']").click(function() {
