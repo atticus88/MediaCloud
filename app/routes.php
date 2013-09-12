@@ -13,5 +13,16 @@
 
 Route::get('/', function()
 {
-	return View::make('hello');
+	if(file_exists('/tmp/config.json')) { 
+		return View::make('hello');
+	} else {
+		return Redirect::route('install');
+	//echo URL::route('install');
+	}
 });
+
+Route::get('/install', array( 'as' => 'install', function() {
+	return User::all();
+	echo "Install Me!";
+}));
+
