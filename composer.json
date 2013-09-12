@@ -4,8 +4,14 @@
 	"keywords": ["framework", "laravel"],
 	"require": {
 		"laravel/framework": "4.0.*",
+		"cartalyst/sentry": "2.0.*@dev",
+		"edvinaskrucas/notification": "1.*",
 		"way/generators": "dev-master"
 		
+	},
+	"require-dev": {
+		"mockery/mockery": "dev-master",
+		"phpunit/phpunit": "3.7.*@dev"
 	},
 	"autoload": {
 		"classmap": [
