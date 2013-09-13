@@ -38,32 +38,17 @@
 
 		<button id="open-wizard" class="btn btn-primary"> Start Install</button>
 		<div class="wizard" id="wizard-demo">
-			<h1>Create Server</h1>
+			<h1>Install Media Cloud</h1>
 
 			<div class="wizard-card" data-onValidated="setServerName" data-cardname="name">
 				<h3>Welcome to MediaCloud</h3>
 
 				<div class="wizard-input-section">
 					<p>
-						To begin, please enter the IP of your server or the
-						fully-qualified name.
+						Welcome to MediaCloud this wizard will guide you through the installation and configuration.
 					</p>
-					<div class="control-group">
-						<input id="new-server-fqdn" type="text" placeholder="FQDN or IP" />
-					</div>
 				</div>
 
-				<div class="wizard-input-section">
-					<p>
-						Optionally, give this server a label.  This will appear
-						in the server navigation.
-					</p>
-
-					<div class="control-group">
-						<input id ="new-server-name" type="text"
-							placeholder="Server name (optional)" />
-					</div>
-				</div>
 			</div>
 
 
@@ -88,7 +73,38 @@
 					<p>
 						Which database would you like to use.
 					</p>
-
+					<div class="control-group">
+						<select name='database'>
+							<option>MySQL</option>
+							<option>SQLite3</option>
+							<option>MSSQL Server</option>
+							<option>Postgres</option>
+						</select>
+						<div class="row">
+							<div class="span3">
+								<label><strong>Host</strong></label>
+								<input type="text" name="host" placeholder="localhost" />
+							</div>
+							<div class="span1">
+								<label><strong>Port</strong></label>
+								<input style="width:45px;" type="text" name="port" placeholder="1234" />
+							</div>
+							<div class="span1">
+								<label><strong>Database</strong></label>
+								<input style="width:125px;" type="text" name="database" placeholder="media" />
+							</div>
+						</div>
+						<div class="row">
+							<div class="span3">
+								<label><strong>Username</strong></label>	
+								<input type="text" name="user" placeholder="root" />
+							</div>
+							<div class="span2">
+								<label><strong>Password</strong></label>
+								<input type="password" name="password" placeholder="password" />
+							</div>
+						</div>	
+					</div>
 				</div>
 			</div>
 
@@ -97,11 +113,18 @@
 				<h3>Queue System</h3>
 				<div class="wizard-input-section">
 					<p>
-						Please choose the services you'd like Panopta to
-						monitor.  Any service you select will be given a default
-						check frequency of 1 minute.
+						Please choose the services you'd like to use for job queueing system. 
 					</p>
-					
+					 <div class="control-group">
+                                                <select name='queue'>
+                                                        <option>Resque</option>
+                                                        <option>Beanstalkd</option>
+                                                        <option>IronIO</option>
+                                                </select>
+					</div>
+					<p>
+						Resque requires a Redis Database... (description of each/additional dependancies)
+					</p>
 
 				</div>
 			</div>
@@ -122,10 +145,9 @@
 				<h3>Capture Agent Setup</h3>
 
 				<div class="wizard-input-section">
-					<p>The <a target="_blank" href="http://www.panopta.com/support/knowledgebase/support-questions/how-do-i-install-the-panopta-monitoring-agent/">Panopta Agent</a> allows
-						you to monitor local resources (disk usage, cpu usage, etc).
-						If you would like to set that up now, please download
-						and follow the <a target="_blank" href="http://www.panopta.com/support/knowledgebase/support-questions/how-do-i-install-the-panopta-monitoring-agent/">install instructions.</a>
+					<p>
+						The capture agent allows users to capture video of classrooms and have it automatically uploaded and transcoded as well as creating a live stream of the content. If you would like to set up some capture agents download the following... (instructions)
+						
 					</p>
 
 
@@ -143,18 +165,6 @@
 
 				</div>
 
-
-				<div class="wizard-input-section">
-					<p>You will be given a server key after you install the Agent
-						on <strong class="create-server-name"></strong>.
-						If you know your server key now, please enter it
-						below.</p>
-
-					<div class="control-group">
-						<input type="text" class="create-server-agent-key"
-							placeholder="Server key (optional)" />
-					</div>
-				</div>
 			</div>
 
 
