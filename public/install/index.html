@@ -138,6 +138,26 @@
 						Please choose a service you'd like to use to authenticate users
 						LDAP, Local Database, CAS, Shibboleth.
 					</p>
+				 	<div class="control-group">
+                                                <select name='auth'>
+                                                        <option>CAS</option>
+                                                        <option>LDAP</option>
+                                                        <option>SAML</option>
+                                                        <option>Database</option>
+                                                </select>
+                                        </div> 
+					<div class="control-group">
+						<div class="row">
+							<div class="span3">
+								<label><strong>Login URL</strong></label>
+								<input type="text" name="auth-login-url" placeholder="https://cas.&lt;host&gt;.edu/login" />
+							</div>
+							<div class="span2">
+								<label><strong>Logout URL</strong></label>
+								<input type="text" name="auth-logout-url" placeholder="https://cas.&lt;host&gt;.edu/logout" />
+							</div>
+						</div>
+					</div> 
 				</div>
 			</div>
 			<div class="wizard-card" data-onload="" data-cardname="location">
