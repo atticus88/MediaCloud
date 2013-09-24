@@ -291,13 +291,21 @@ $(function() {
 			"hostname": $("#new-server-fqdn").val()
 		};
 
-		setTimeout(function() {
-			wizard.trigger("success");
-			wizard.hideButtons();
-			wizard._submitting = false;
-			wizard.showSubmitCard("success");
-			wizard.updateProgressBar(0);
-		}, 2000);
+		 $.post('/install/install.php', function(data) {
+                        wizard.trigger("success");
+                        wizard.hideButtons();
+                        wizard._submitting = false;
+                        wizard.showSubmitCard("success");
+                        wizard.updateProgressBar(0);
+                });
+
+		//setTimeout(function() {
+		//	wizard.trigger("success");
+		//	wizard.hideButtons();
+		//	wizard._submitting = false;
+		//	wizard.showSubmitCard("success");
+		//	wizard.updateProgressBar(0);
+		//}, 2000);
 	});
 
 	wizard.on("reset", function(wizard) {
