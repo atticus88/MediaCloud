@@ -1,6 +1,9 @@
 <?php
 
-$config = '/tmp/database.php';
+var_dump($_POST);
+die();
+
+$config = base_path() . 'tmp/database.php';
 
 $content = <<<CONFIG
 <?php

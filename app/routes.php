@@ -12,8 +12,9 @@
 */
 
 Route::get('/', function()
-{
-	if(file_exists('/tmp/config.json')) { 
+{	
+
+	if(file_exists(base_path() . '/tmp/config.json')) { 
 		return View::make('hello');
 	} else {
 		return Redirect::route('install');
@@ -22,7 +23,6 @@ Route::get('/', function()
 });
 
 Route::get('/install', array( 'as' => 'install', function() {
-	return User::all();
 	echo "Install Me!";
 }));
 
