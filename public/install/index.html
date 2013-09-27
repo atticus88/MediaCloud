@@ -97,7 +97,7 @@
 							</div>
 							<div class="span1">
 								<label><strong>Database</strong></label>
-								<input style="width:125px;" type="text" name="database" placeholder="media" />
+								<input style="width:125px;" type="text" name="database" placeholder="media" value="mediacloud" />
 							</div>
 						</div>
 						<div class="row">
@@ -303,6 +303,8 @@ $(function() {
 				wizard.submitSuccess();
 				wizard.hideButtons();
 				wizard.updateProgressBar(0);
+
+				window.location = location.protocol + '//' + window.location.hostname + '/app/install';
 			},
 			error: function() {
 				wizard.submitFailure();

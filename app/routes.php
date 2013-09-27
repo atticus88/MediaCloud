@@ -12,9 +12,11 @@
 */
 
 Route::get('/', function()
-{	
+{
 
-	if(file_exists(base_path() . '/tmp/config.json')) { 
+
+
+	if(file_exists(base_path() . '/tmp/config.json')) {
 		return View::make('hello');
 	} else {
 		return Redirect::route('install');
@@ -26,3 +28,8 @@ Route::get('/install', array( 'as' => 'install', function() {
 	echo "Install Me!";
 }));
 
+//Run Laravel Commands after Setup
+Route::get('/app/install', array( 'as' => 'app/install', function() {
+	echo '<pre>';
+	Artisan::call('app:install');
+}));

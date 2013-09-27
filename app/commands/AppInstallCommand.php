@@ -43,8 +43,9 @@ class AppInstallCommand extends Command {
 		$this->call('migrate', array('--package' => 'cartalyst/sentry'));
 
 		// App migraions
-		$this->call('migrate --seed');
-		
+		$this->call('migrate');
+		$this->call('db:seed');
+
 
 		echo 'Done.'.PHP_EOL;
 	}
