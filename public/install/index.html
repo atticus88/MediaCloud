@@ -39,16 +39,13 @@
 		<button id="open-wizard" class="btn btn-primary"> Start Install</button>
 		<div class="wizard" id="meida-cloud-setup">
 			<h1>Install Media Cloud</h1>
-
 			<div class="wizard-card" data-onValidated="setServerName" data-cardname="name">
 				<h3>Welcome to MediaCloud</h3>
-
 				<div class="wizard-input-section">
 					<p>
 						Welcome to MediaCloud this wizard will guide you through the installation and configuration.
 					</p>
 				</div>
-
 			</div>
 
 
@@ -79,12 +76,6 @@
 							<option value="sqlite">SQLite3</option>
 							<option value="sqlsrv">MSSQL Server</option>
 							<option value="pgsql">Postgres</option>
-
-
-
-
-
-
 						</select>
 						<div class="row">
 							<div class="span3">
@@ -121,12 +112,12 @@
 					<p>
 						Please choose the services you'd like to use for job queueing system.
 					</p>
-					 <div class="control-group">
-                                                <select name='queue' class="chzn-select">
-                                                        <option>Resque</option>
-                                                        <option>Beanstalkd</option>
-                                                        <option>IronIO</option>
-                                                </select>
+					<div class="control-group">
+						<select name='queue' class="chzn-select">
+							<option>Resque</option>
+							<option>Beanstalkd</option>
+							<option>IronIO</option>
+						</select>
 					</div>
 					<p>
 						Resque requires a Redis Database... (description of each/additional dependancies)
@@ -260,103 +251,97 @@
 
 <script type="text/javascript">
 
-function setServerName(card) {
-	var host = $("#new-server-fqdn").val();
-	var name = $("#new-server-name").val();
-	var displayName = host;
+	function setServerName(card) {
+		var host = $("#new-server-fqdn").val();
+		var name = $("#new-server-name").val();
+		var displayName = host;
 
-	if (name) {
-		displayName = name + " ("+host+")";
-	};
+		if (name) {
+			displayName = name + " ("+host+")";
+		};
 
-	card.wizard.setSubtitle(displayName);
-	card.wizard.el.find(".create-server-name").text(displayName);
-}
+		card.wizard.setSubtitle(displayName);
+		card.wizard.el.find(".create-server-name").text(displayName);
+	}
 
 
 
-$(function() {
+	$(function() {
 
-	$.fn.wizard.logging = false;
+		$.fn.wizard.logging = false;
 
-	var wizard = $("#meida-cloud-setup").wizard({
-		showCancel: true,
-		submitUrl: "/install/install.php"
-	});
+		var wizard = $("#meida-cloud-setup").wizard({
+			showCancel: true,
+			submitUrl: "/install/install.php"
+		});
 
-	$(".chzn-select").chosen();
+		$(".chzn-select").chosen();
 
-	wizard.el.find(".wizard-ns-select").change(function() {
-		wizard.el.find(".wizard-ns-detail").show();
-	});
+		wizard.el.find(".wizard-ns-select").change(function() {
+			wizard.el.find(".wizard-ns-detail").show();
+		});
 
-	wizard.el.find(".create-server-service-list").change(function() {
-		var noOption = $(this).find("option:selected").length == 0;
-		wizard.getCard(this).toggleAlert(null, noOption);
-	});
+		wizard.el.find(".create-server-service-list").change(function() {
+			var noOption = $(this).find("option:selected").length == 0;
+			wizard.getCard(this).toggleAlert(null, noOption);
+		});
 
-	wizard.on("submit",function(wizard){
-		$.ajax({
-			type: "POST",
-			url: wizard.args.submitUrl,
-			data: wizard.serialize(),
-			dataType: "json",
-			success: function(resp) {
-				wizard.hideButtons();
-				wizard.updateProgressBar(0);
-				$.get(location.protocol + '//' + window.location.host + '/app/install', function(data){
-					json = JSON.parse(data);
-					console.log(json);
+		wizard.on("submit",function(wizard){
+			$.ajax({
+				type: "POST",
+				url: wizard.args.submitUrl,
+				data: wizard.serialize(),
+				dataType: "json",
+				success: function(resp) {
+					wizard.hideButtons();
+					wizard.updateProgressBar(0);
+					$.get(location.protocol + '//' + window.location.host + '/app/install', function(data){
+						json = JSON.parse(data);
+					// console.log(json);
 					if (json.status == 'success') {
 						wizard.submitSuccess();
-					 } else {
+					} else {
 						wizard.submitFailure();
 					}
 				});
-				//window.location = location.protocol + '//' + window.location.host + '/app/install';
 			},
 			error: function() {
 				wizard.submitFailure();
 				wizard.hideButtons();
 			},
 		});
-	});
+		});
 
-	wizard.on("reset", function(wizard) {
-		wizard.setSubtitle("");
-		wizard.el.find("#new-server-fqdn").val("");
-		wizard.el.find("#new-server-name").val("");
-	});
+		wizard.on("reset", function(wizard) {
+			wizard.setSubtitle("");
+			wizard.el.find("#new-server-fqdn").val("");
+			wizard.el.find("#new-server-name").val("");
+		});
 
-	wizard.el.find(".im-done").click(function() {
-		wizard.reset().close();
-	});
+		wizard.el.find(".im-done").click(function() {
+			wizard.reset().close();
+		});
 
-	wizard.el.find(".wizard-success .create-another-server").click(function() {
-		wizard.reset();
-	});
+		wizard.el.find(".wizard-success .im-done").click(function() {
+			window.location = window.location.protocol +"//" + window.location.host;
 
-	$(".wizard-group-list").click(function() {
-		alert("Disabled for demo.");
-	});
+		});
 
-	$("#open-wizard").click(function() {
+
+		wizard.el.find(".wizard-success .create-another-server").click(function() {
+			wizard.reset();
+		});
+
+		$(".wizard-group-list").click(function() {
+			alert("Disabled for demo.");
+		});
+
+		$("#open-wizard").click(function() {
+			wizard.show();
+		});
+
 		wizard.show();
 	});
-
-	wizard.show();
-
-
-
-
-});
-
-
-
-
 </script>
-
-
-
 	</body>
 </html>
