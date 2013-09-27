@@ -1,0 +1,47 @@
+
+<?php /*  Page content  */ ?>
+<?php $__env->startSection('content'); ?>
+<?php foreach ($posts as $post): ?>
+<div class="row">
+	<div class="span8">
+		<!-- Post Title -->
+		<div class="row">
+			<div class="span8">
+				<h4><strong><a href="<?php echo $post->url(); ?>"><?php echo $post->title; ?></a></strong></h4>
+			</div>
+		</div>
+
+		<!-- Post Content -->
+		<div class="row">
+			<div class="span2">
+				<a href="<?php echo $post->url(); ?>" class="thumbnail"><img src="<?php echo $post->thumbnail(); ?>" alt=""></a>
+			</div>
+			<div class="span6">
+				<p>
+					<?php echo Str::limit($post->content, 200); ?>
+				</p>
+				<p><a class="btn btn-mini" href="<?php echo $post->url(); ?>">Read more...</a></p>
+			</div>
+		</div>
+
+		<!-- Post Footer -->
+		<div class="row">
+			<div class="span8">
+				<p></p>
+				<p>
+					<i class="icon-user"></i> by <span class="muted"><?php echo $post->author->first_name; ?></span>
+					| <i class="icon-calendar"></i> <?php echo $post->created_at->diffForHumans(); ?>
+					| <i class="icon-comment"></i> <a href="<?php echo $post->url(); ?>#comments"><?php echo $post->comments()->count(); ?> Comments</a>
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<hr />
+<?php endforeach; ?>
+
+<?php echo $posts->links(); ?>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('frontend/layouts/default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

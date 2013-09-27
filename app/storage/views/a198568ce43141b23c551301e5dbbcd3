@@ -1,0 +1,49 @@
+
+<?php /*  Page title  */ ?>
+<?php $__env->startSection('title'); ?>
+Blog Management ::
+@parent
+<?php $__env->stopSection(); ?>
+
+<?php /*  Page content  */ ?>
+<?php $__env->startSection('content'); ?>
+<div class="page-header">
+	<h3>
+		Blog Management
+
+		<div class="pull-right">
+			<a href="<?php echo route('create/blog'); ?>" class="btn btn-small btn-info"><i class="icon-plus-sign icon-white"></i> Create</a>
+		</div>
+	</h3>
+</div>
+
+<?php echo $posts->links(); ?>
+
+<table class="table table-bordered table-striped table-hover">
+	<thead>
+		<tr>
+			<th class="span6"><?php echo \Illuminate\Support\Facades\Lang::get('admin/blogs/table.title'); ?></th>
+			<th class="span2"><?php echo \Illuminate\Support\Facades\Lang::get('admin/blogs/table.comments'); ?></th>
+			<th class="span2"><?php echo \Illuminate\Support\Facades\Lang::get('admin/blogs/table.created_at'); ?></th>
+			<th class="span2"><?php echo \Illuminate\Support\Facades\Lang::get('table.actions'); ?></th>
+		</tr>
+	</thead>
+	<tbody>
+		<?php foreach ($posts as $post): ?>
+		<tr>
+			<td><?php echo $post->title; ?></td>
+			<td><?php echo $post->comments()->count(); ?></td>
+			<td><?php echo $post->created_at->diffForHumans(); ?></td>
+			<td>
+				<a href="<?php echo route('update/blog', $post->id); ?>" class="btn btn-mini"><?php echo \Illuminate\Support\Facades\Lang::get('button.edit'); ?></a>
+				<a href="<?php echo route('delete/blog', $post->id); ?>" class="btn btn-mini btn-danger"><?php echo \Illuminate\Support\Facades\Lang::get('button.delete'); ?></a>
+			</td>
+		</tr>
+		<?php endforeach; ?>
+	</tbody>
+</table>
+
+<?php echo $posts->links(); ?>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('backend/layouts/default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

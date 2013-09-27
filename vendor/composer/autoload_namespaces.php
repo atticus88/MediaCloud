@@ -31,6 +31,7 @@ return array(
     'Mustache' => array($vendorDir . '/mustache/mustache/src'),
     'Monolog' => array($vendorDir . '/monolog/monolog/src'),
     'Mockery' => array($vendorDir . '/mockery/mockery/library'),
+    'Krucas\\Notification' => array($vendorDir . '/edvinaskrucas/notification/src'),
     'Illuminate' => array($vendorDir . '/laravel/framework/src'),
     'Doctrine\\DBAL\\' => array($vendorDir . '/doctrine/dbal/lib'),
     'Doctrine\\Common\\Lexer\\' => array($vendorDir . '/doctrine/lexer/lib'),

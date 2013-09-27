@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- Basic Page Needs
+		================================================== -->
+		<meta charset="utf-8" />
+		<title>
+			<?php $__env->startSection('title'); ?>
+			Bootstrap
+			<?php echo $__env->yieldSection(); ?>
+		</title>
+		<meta name="keywords" content="your, awesome, keywords, here" />
+		<meta name="author" content="Jon Doe" />
+		<meta name="description" content="Lorem ipsum dolor sit amet, nihil fabulas et sea, nam posse menandri scripserit no, mei." />
+
+		<!-- Mobile Specific Metas
+		================================================== -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<!-- CSS
+		================================================== -->
+		<link href="<?php echo asset('assets/css/bootstrap.min.css'); ?>" rel="stylesheet">
+
+		<style>
+		<?php $__env->startSection('styles'); ?>
+		body {
+			padding: 10px 0;
+		}
+		<?php echo $__env->yieldSection(); ?>
+		</style>
+
+		<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+		<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+
+		<!-- Favicons
+		================================================== -->
+		<link rel="apple-touch-icon-precomposed" sizes="144x144" href="<?php echo asset('assets/ico/apple-touch-icon-144-precomposed.png'); ?>">
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?php echo asset('assets/ico/apple-touch-icon-114-precomposed.png'); ?>">
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php echo asset('assets/ico/apple-touch-icon-72-precomposed.png'); ?>">
+		<link rel="apple-touch-icon-precomposed" href="<?php echo asset('assets/ico/apple-touch-icon-57-precomposed.png'); ?>">
+		<link rel="shortcut icon" href="<?php echo asset('assets/ico/favicon.png'); ?>">
+	</head>
+
+	<body>
+		<!-- Container -->
+		<div class="container">
+			<!-- Navbar -->
+			<div class="navbar navbar-inverse">
+				<div class="navbar-inner">
+					<div class="container">
+						<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</a>
+
+						<div class="nav-collapse collapse">
+							<ul class="nav">
+								<li <?php echo (Request::is('/') ? 'class="active"' : ''); ?>><a href="<?php echo route('home'); ?>"><i class="icon-home icon-white"></i> Home</a></li>
+								<li <?php echo (Request::is('about-us') ? 'class="active"' : ''); ?>><a href="<?php echo URL::to('about-us'); ?>"><i class="icon-file icon-white"></i> About us</a></li>
+								<li <?php echo (Request::is('contact-us') ? 'class="active"' : ''); ?>><a href="<?php echo URL::to('contact-us'); ?>"><i class="icon-file icon-white"></i> Contact us</a></li>
+							</ul>
+
+							<ul class="nav pull-right">
+								<?php if (Sentry::check()): ?>
+
+								<li class="dropdown<?php echo (Request::is('account*') ? ' active' : ''); ?>">
+									<a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="<?php echo route('account'); ?>">
+										Welcome, <?php echo Sentry::getUser()->first_name; ?>
+										<b class="caret"></b>
+									</a>
+									<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+										<?php if(Sentry::getUser()->hasAccess('admin')): ?>
+										<li><a href="<?php echo route('admin'); ?>"><i class="icon-cog"></i> Administration</a></li>
+										<?php endif; ?>
+										<li<?php echo (Request::is('account/profile') ? ' class="active"' : ''); ?>><a href="<?php echo route('profile'); ?>"><i class="icon-user"></i> Your profile</a></li>
+										<li class="divider"></li>
+										<li><a href="<?php echo route('logout'); ?>"><i class="icon-off"></i> Logout</a></li>
+									</ul>
+								</li>
+								<?php else: ?>
+								<li <?php echo (Request::is('auth/signin') ? 'class="active"' : ''); ?>><a href="<?php echo route('signin'); ?>">Sign in</a></li>
+								<li <?php echo (Request::is('auth/signup') ? 'class="active"' : ''); ?>><a href="<?php echo route('signup'); ?>">Sign up</a></li>
+								<?php endif; ?>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Notifications -->
+			<?php echo $__env->make('frontend/notifications', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+			<!-- Content -->
+			<?php echo $__env->yieldContent('content'); ?>
+
+			<hr />
+
+			<!-- Footer -->
+			<footer>
+				<p>&copy; Company <?php echo date('Y'); ?></p>
+			</footer>
+		</div>
+
+		<!-- Javascripts
+		================================================== -->
+		<script src="<?php echo asset('assets/js/jquery.1.10.2.min.js'); ?>"></script>
+		<script src="<?php echo asset('assets/js/bootstrap/bootstrap.min.js'); ?>"></script>
+	</body>
+</html>

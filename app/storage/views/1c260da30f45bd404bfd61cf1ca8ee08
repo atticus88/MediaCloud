@@ -1,0 +1,19 @@
+
+<?php /*  Page content  */ ?>
+<?php $__env->startSection('content'); ?>
+<div class="row">
+	<div class="span3">
+		<ul class="nav nav-list">
+			<li class="nav-header">Main Menu</li>
+			<li<?php echo Request::is('account/profile') ? ' class="active"' : ''; ?>><a href="<?php echo URL::route('profile'); ?>">Profile</a></li>
+			<li<?php echo Request::is('account/change-password') ? ' class="active"' : ''; ?>><a href="<?php echo URL::route('change-password'); ?>">Change Password</a></li>
+			<li<?php echo Request::is('account/change-email') ? ' class="active"' : ''; ?>><a href="<?php echo URL::route('change-email'); ?>">Change Email</a></li>
+		</ul>
+	</div>
+	<div class="span9">
+		<?php echo $__env->yieldContent('account-content'); ?>
+	</div>
+</div>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('frontend/layouts/default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
