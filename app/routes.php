@@ -11,13 +11,26 @@
 |
 */
 
-Route::get('admin/logout',  array('as' => 'admin.logout',      'uses' => 'App\Controllers\Admin\AuthController@getLogout'));
-Route::get('admin/login',   array('as' => 'admin.login',       'uses' => 'App\Controllers\Admin\AuthController@getLogin'));
-Route::post('admin/login',  array('as' => 'admin.login.post',  'uses' => 'App\Controllers\Admin\AuthController@postLogin'));
 
-Route::group(array('prefix' => 'admin', 'before' => 'auth.admin'), function()
-{
-	Route::any('/',                'App\Controllers\Admin\PagesController@index');
-	Route::resource('articles',    'App\Controllers\Admin\ArticlesController');
-	Route::resource('pages',       'App\Controllers\Admin\PagesController');
+Route::get('/', function() {
+	if(file_exists(base_path() . '/app/config/database.php')) {
+		return View::make('hello');
+	} else {
+		return Redirect::route('install');
+	//echo URL::route('install');
+	}
 });
+
+Route::get('/install', array( 'as' => 'install', function() {
+	echo "Install Me!";
+}));
+
+//Run Laravel Commands after Setup
+Route::get('/app/install', array( 'as' => 'app/install', function() {
+	$result =  Artisan::call('app:install');
+	if ($result == 0 ) {
+		echo '{"status" : "success"}';
+	} else {
+		echo '{"status" : "error"}';
+	}
+}));
