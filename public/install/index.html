@@ -37,7 +37,7 @@
 	<body style="padding:30px;">
 
 		<button id="open-wizard" class="btn btn-primary"> Start Install</button>
-		<div class="wizard" id="wizard-demo">
+		<div class="wizard" id="meida-cloud-setup">
 			<h1>Install Media Cloud</h1>
 
 			<div class="wizard-card" data-onValidated="setServerName" data-cardname="name">
@@ -60,12 +60,12 @@
 						Where would you like this server to store media assets?
 					</p>
 					<div class="control-group">
-						<input id="media-path" type="text" placeholder="/var/media/" />
+						<input id="media-path" name="media-path" type="text" placeholder="/var/media/" />
 					</div>
 
 				</div>
 			</div>
-			
+
 			<div class="wizard-card" data-cardname="group">
 				<h3>Database</h3>
 
@@ -74,11 +74,17 @@
 						Which database would you like to use.
 					</p>
 					<div class="control-group">
-						<select name='database'>
-							<option>MySQL</option>
-							<option>SQLite3</option>
-							<option>MSSQL Server</option>
-							<option>Postgres</option>
+						<select name='database-type' class="chzn-select">
+							<option value="mysql">MySQL</option>
+							<option value="sqlite">SQLite3</option>
+							<option value="sqlsrv">MSSQL Server</option>
+							<option value="pgsql">Postgres</option>
+
+
+
+
+
+
 						</select>
 						<div class="row">
 							<div class="span3">
@@ -96,14 +102,14 @@
 						</div>
 						<div class="row">
 							<div class="span3">
-								<label><strong>Username</strong></label>	
+								<label><strong>Username</strong></label>
 								<input type="text" name="user" placeholder="root" />
 							</div>
 							<div class="span2">
 								<label><strong>Password</strong></label>
 								<input type="password" name="password" placeholder="password" />
 							</div>
-						</div>	
+						</div>
 					</div>
 				</div>
 			</div>
@@ -113,10 +119,10 @@
 				<h3>Queue System</h3>
 				<div class="wizard-input-section">
 					<p>
-						Please choose the services you'd like to use for job queueing system. 
+						Please choose the services you'd like to use for job queueing system.
 					</p>
 					 <div class="control-group">
-                                                <select name='queue'>
+                                                <select name='queue' class="chzn-select">
                                                         <option>Resque</option>
                                                         <option>Beanstalkd</option>
                                                         <option>IronIO</option>
@@ -139,13 +145,13 @@
 						LDAP, Local Database, CAS, Shibboleth.
 					</p>
 				 	<div class="control-group">
-                                                <select name='auth'>
-                                                        <option>CAS</option>
-                                                        <option>LDAP</option>
-                                                        <option>SAML</option>
-                                                        <option>Database</option>
-                                                </select>
-                                        </div> 
+				 		<select name='auth' class="chzn-select">
+				 			<option>CAS</option>
+				 			<option>LDAP</option>
+				 			<option>SAML</option>
+				 			<option>Database</option>
+				 		</select>
+				 	</div>
 					<div class="control-group">
 						<div class="row">
 							<div class="span3">
@@ -157,7 +163,7 @@
 								<input type="text" name="auth-logout-url" placeholder="https://cas.&lt;host&gt;.edu/logout" />
 							</div>
 						</div>
-					</div> 
+					</div>
 				</div>
 			</div>
 			<div class="wizard-card" data-onload="" data-cardname="location">
@@ -198,7 +204,7 @@
 				<div class="wizard-input-section">
 					<p>
 						The capture agent allows users to capture video of classrooms and have it automatically uploaded and transcoded as well as creating a live stream of the content. If you would like to set up some capture agents download the following... (instructions)
-						
+
 					</p>
 
 
@@ -269,9 +275,9 @@ function setServerName(card) {
 
 $(function() {
 
-	$.fn.wizard.logging = true;
+	$.fn.wizard.logging = false;
 
-	var wizard = $("#wizard-demo").wizard({
+	var wizard = $("#meida-cloud-setup").wizard({
 		showCancel: true
 	});
 
@@ -291,13 +297,37 @@ $(function() {
 			"hostname": $("#new-server-fqdn").val()
 		};
 
-		 $.post('/install/install.php', function(data) {
-                        wizard.trigger("success");
-                        wizard.hideButtons();
-                        wizard._submitting = false;
-                        wizard.showSubmitCard("success");
-                        wizard.updateProgressBar(0);
-                });
+
+		$inputs = $("input:input, select:input");
+		// console.log($inputs);
+		var data = {};
+		$.each($inputs,function(index, value){
+			// console.log(index, value, $(value).val());
+
+			data[$(value).attr('name')] = $(value).val();
+
+		});
+		console.log(data);
+
+		// $.ajax({
+		// 	type: "POST",
+		// 	url: "/install/install.php",
+		// 	data: data,
+		// 	success: function(data){
+		// 		console.log('hey', data);
+		// 	},
+		// });
+
+
+	$.post('/install/install.php', function(data) {
+
+		console.log(data);
+	                     wizard.trigger("success");
+	                     wizard.hideButtons();
+	                     wizard._submitting = false;
+	                     wizard.showSubmitCard("success");
+	                     wizard.updateProgressBar(0);
+	             });
 
 		//setTimeout(function() {
 		//	wizard.trigger("success");
@@ -309,7 +339,7 @@ $(function() {
 	});
 
 	wizard.on("reset", function(wizard) {
-		wizard.setSubtitle("");
+		wizard.setSubtitle("TEST");
 		wizard.el.find("#new-server-fqdn").val("");
 		wizard.el.find("#new-server-name").val("");
 	});
@@ -331,7 +361,14 @@ $(function() {
 	});
 
 	wizard.show();
+
+
+
+
 });
+
+
+
 
 </script>
 

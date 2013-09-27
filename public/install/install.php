@@ -1,54 +1,110 @@
 <?php
 
+// echo json_encode($_POST);
 var_dump($_POST);
-die();
+// die();
+/*
+media-path: "/public/media"
 
-$config = base_path() . 'tmp/database.php';
+host: "localhost"
+port: "1234"
+database-type: "mysql"
+database: "media"
+user: "root"
+password: "password"
+
+queue: "Beanstalkd"
+
+auth: "CAS"
+auth-login-url: "https://cas.weber.edu/login"
+auth-logout-url: "https://cas.weber.edu/logout"
+
+admin-username: "username"
+admin-email: "email"
+admin-password: "password"
+admin-c-password: "password"
+
+undefined: ""
+*/
+
+
+
+$root_path = dirname(dirname(dirname(__file__)));
+
+$config = $root_path.'/app/config/database.php';
 
 $content = <<<CONFIG
 <?php
 
 return array(
 	'fetch' => PDO::FETCH_CLASS,
-	'default' => 'mysql',
+	'default' => '{$_POST['database-type']}',
 	'connections' => array(
 
+CONFIG;
+
+
+switch ($_POST['database-type']) {
+	case 'sqlite':
+
+	$content .= <<<CONFIG
 		'sqlite' => array(
 			'driver'   => 'sqlite',
 			'database' => __DIR__.'/../database/production.sqlite',
 			'prefix'   => '',
 		),
+CONFIG;
 
+		break;
+	case 'mysql':
+	$content .= <<<CONFIG
 		'mysql' => array(
 			'driver'    => 'mysql',
-			'host'      => 'localhost',
-			'database'  => 'laravel-basic',
-			'username'  => 'root',
-			'password'  => '',
+			'host'      => '{$_POST['host']}',
+			'database'  => '{$_POST['database-type']}',
+			'username'  => '{$_POST['user']}',
+			'password'  => '{$_POST['password']}',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
 		),
-
+CONFIG;
+		break;
+	case 'pgsql':
+	$content .= <<<CONFIG
 		'pgsql' => array(
 			'driver'   => 'pgsql',
-			'host'     => 'localhost',
-			'database' => 'database',
-			'username' => 'root',
-			'password' => '',
+			'host'      => '{$_POST['host']}',
+			'database'  => '{$_POST['database']}',
+			'username'  => '{$_POST['user']}',
+			'password'  => '{$_POST['password']}',
 			'charset'  => 'utf8',
 			'prefix'   => '',
 			'schema'   => 'public',
 		),
-
+CONFIG;
+		break;
+	case 'sqlsrv':
+	$content .= <<<CONFIG
 		'sqlsrv' => array(
 			'driver'   => 'sqlsrv',
-			'host'     => 'localhost',
-			'database' => 'database',
-			'username' => 'root',
-			'password' => '',
+			'host'      => '{$_POST['host']}',
+			'database'  => '{$_POST['database']}',
+			'username'  => '{$_POST['user']}',
+			'password'  => '{$_POST['password']}',
 			'prefix'   => '',
 		),
+CONFIG;
+		break;
+}
+
+
+
+
+
+
+
+	$content .= <<<CONFIG
 
 	),
 	'migrations' => 'migrations',
