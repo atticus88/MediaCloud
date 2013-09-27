@@ -1,31 +1,9 @@
 <?php
 
 // echo json_encode($_POST);
-var_dump($_POST);
+// var_dump($_POST);
 // die();
-/*
-media-path: "/public/media"
 
-host: "localhost"
-port: "1234"
-database-type: "mysql"
-database: "media"
-user: "root"
-password: "password"
-
-queue: "Beanstalkd"
-
-auth: "CAS"
-auth-login-url: "https://cas.weber.edu/login"
-auth-logout-url: "https://cas.weber.edu/logout"
-
-admin-username: "username"
-admin-email: "email"
-admin-password: "password"
-admin-c-password: "password"
-
-undefined: ""
-*/
 
 
 
@@ -45,6 +23,8 @@ CONFIG;
 
 
 switch ($_POST['database-type']) {
+
+
 	case 'sqlite':
 
 	$content .= <<<CONFIG
@@ -54,8 +34,10 @@ switch ($_POST['database-type']) {
 			'prefix'   => '',
 		),
 CONFIG;
-
 		break;
+
+
+
 	case 'mysql':
 	$content .= <<<CONFIG
 		'mysql' => array(
@@ -70,6 +52,9 @@ CONFIG;
 		),
 CONFIG;
 		break;
+
+
+
 	case 'pgsql':
 	$content .= <<<CONFIG
 		'pgsql' => array(
@@ -84,6 +69,9 @@ CONFIG;
 		),
 CONFIG;
 		break;
+
+
+
 	case 'sqlsrv':
 	$content .= <<<CONFIG
 		'sqlsrv' => array(
@@ -97,9 +85,6 @@ CONFIG;
 CONFIG;
 		break;
 }
-
-
-
 
 
 

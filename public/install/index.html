@@ -74,7 +74,7 @@
 						Which database would you like to use.
 					</p>
 					<div class="control-group">
-						<select name='database-type' class="chzn-select">
+						<select id="database-type" name='database-type' class="chzn-select">
 							<option value="mysql">MySQL</option>
 							<option value="sqlite">SQLite3</option>
 							<option value="sqlsrv">MSSQL Server</option>
@@ -278,7 +278,8 @@ $(function() {
 	$.fn.wizard.logging = false;
 
 	var wizard = $("#meida-cloud-setup").wizard({
-		showCancel: true
+		showCancel: true,
+		submitUrl: "/install/install.php"
 	});
 
 	$(".chzn-select").chosen();
@@ -292,54 +293,26 @@ $(function() {
 		wizard.getCard(this).toggleAlert(null, noOption);
 	});
 
-	wizard.on("submit", function(wizard) {
-		var submit = {
-			"hostname": $("#new-server-fqdn").val()
-		};
-
-
-		$inputs = $("input:input, select:input");
-		// console.log($inputs);
-		var data = {};
-		$.each($inputs,function(index, value){
-			// console.log(index, value, $(value).val());
-
-			data[$(value).attr('name')] = $(value).val();
-
+	wizard.on("submit",function(wizard){
+		$.ajax({
+			type: "POST",
+			url: wizard.args.submitUrl,
+			data: wizard.serialize(),
+			dataType: "json",
+			success: function(resp) {
+				wizard.submitSuccess();
+				wizard.hideButtons();
+				wizard.updateProgressBar(0);
+			},
+			error: function() {
+				wizard.submitFailure();
+				wizard.hideButtons();
+			},
 		});
-		console.log(data);
-
-		// $.ajax({
-		// 	type: "POST",
-		// 	url: "/install/install.php",
-		// 	data: data,
-		// 	success: function(data){
-		// 		console.log('hey', data);
-		// 	},
-		// });
-
-
-	$.post('/install/install.php', function(data) {
-
-		console.log(data);
-	                     wizard.trigger("success");
-	                     wizard.hideButtons();
-	                     wizard._submitting = false;
-	                     wizard.showSubmitCard("success");
-	                     wizard.updateProgressBar(0);
-	             });
-
-		//setTimeout(function() {
-		//	wizard.trigger("success");
-		//	wizard.hideButtons();
-		//	wizard._submitting = false;
-		//	wizard.showSubmitCard("success");
-		//	wizard.updateProgressBar(0);
-		//}, 2000);
 	});
 
 	wizard.on("reset", function(wizard) {
-		wizard.setSubtitle("TEST");
+		wizard.setSubtitle("");
 		wizard.el.find("#new-server-fqdn").val("");
 		wizard.el.find("#new-server-name").val("");
 	});
