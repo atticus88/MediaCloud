@@ -13,10 +13,7 @@
 
 Route::get('/', function()
 {
-
-
-
-	if(file_exists(base_path() . '/tmp/config.json')) {
+	if(file_exists(base_path() . '/app/config/database.php')) {
 		return View::make('hello');
 	} else {
 		return Redirect::route('install');
