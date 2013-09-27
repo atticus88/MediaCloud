@@ -37,7 +37,7 @@ class AppInstallCommand extends Command {
 	 */
 	public function fire()
 	{
-		echo 'Installing...'.PHP_EOL;
+		//echo 'Installing...'.PHP_EOL;
 
 		// Install Sentry
 		$this->call('migrate', array('--package' => 'cartalyst/sentry'));
@@ -47,7 +47,7 @@ class AppInstallCommand extends Command {
 		$this->call('db:seed');
 
 
-		echo 'Done.'.PHP_EOL;
+		//echo 'Done.'.PHP_EOL;
 	}
 
 	/**

@@ -27,6 +27,10 @@ Route::get('/install', array( 'as' => 'install', function() {
 
 //Run Laravel Commands after Setup
 Route::get('/app/install', array( 'as' => 'app/install', function() {
-	echo '<pre>';
-	Artisan::call('app:install');
+	$result =  Artisan::call('app:install');
+	if ($result == 0 ) {
+		echo '{"status" : "success"}';
+	} else {
+		echo '{"status" : "error"}';
+	}
 }));
