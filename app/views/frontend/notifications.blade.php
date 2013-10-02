@@ -2,7 +2,8 @@
 <div class="alert alert-error alert-block">
 	<button type="button" class="close" data-dismiss="alert">&times;</button>
 	<h4>Error</h4>
-	Please check the form below for errors
+	Please check the form below for errors. <br>
+	<?php var_dump($errors) ?>
 </div>
 @endif
 

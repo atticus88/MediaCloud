@@ -8,7 +8,6 @@
 | Register all the admin routes.
 |
 */
-
 Route::group(array('prefix' => 'admin'), function()
 {
 

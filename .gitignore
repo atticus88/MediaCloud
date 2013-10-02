@@ -5,3 +5,8 @@ composer.lock
 /.idea
 /app/config/database.php
 /app/config/queue.php
+app/storage/sessions/*
+app/storage/views/*
+app/storage/cache/*
+app/storage/logs/*
+app/storage/meta/*

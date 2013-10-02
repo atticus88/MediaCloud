@@ -94,7 +94,7 @@
 						<div class="row">
 							<div class="span3">
 								<label><strong>Username</strong></label>
-								<input type="text"  name="user" placeholder="root" />
+								<input type="text"  name="user" placeholder="root" value="root" />
 							</div>
 							<div class="span2">
 								<label><strong>Password</strong></label>
@@ -260,21 +260,21 @@
 						<div class="row">
 							<div class="span3">
 								<label><strong>Username</strong></label>
-								<input type="text" name="admin-username" />
+								<input type="text" name="admin-username" value="admin" />
 							</div>
 							<div class="span2">
 								<label><strong>Email</strong></label>
-								<input type="text" name="admin-email" />
+								<input type="text" name="admin-email" value="admin@admin.com" />
 							</div>
 						</div>
 						<div class="row">
 							<div class="span3">
 								<label><strong>Password</strong></label>
-								<input type="password" name="admin-password" />
+								<input type="password" name="admin-password" value="admin" />
 							</div>
 							<div class="span2">
 								<label><strong>Confirm Password</strong></label>
-								<input type="password" name="admin-c-password" />
+								<input type="password" name="admin-c-password" value="admin" />
 							</div>
 						</div>
 					</div>
@@ -398,10 +398,11 @@
 				dataType: "json",
 				success: function(resp) {
 
-					console.log(wizard.serialize());
+					// console.log(resp,wizard.serialize());
 
 					wizard.hideButtons();
 					wizard.updateProgressBar(0);
+
 
 
 					$.ajax({
@@ -415,6 +416,9 @@
 							} else {
 								wizard.submitFailure();
 							}
+						},
+						error:function(data){
+							console.log(data)
 						}
 					})
 

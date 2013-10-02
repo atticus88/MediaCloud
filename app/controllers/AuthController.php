@@ -9,6 +9,8 @@ class AuthController extends BaseController {
 	 */
 	public function getSignin()
 	{
+
+		// var_dump(Sentry::check());
 		// Is the user logged in?
 		if (Sentry::check())
 		{
@@ -26,6 +28,7 @@ class AuthController extends BaseController {
 	 */
 	public function postSignin()
 	{
+
 		// Declare the rules for the form validation
 		$rules = array(
 			'email'    => 'required|email',
@@ -45,6 +48,7 @@ class AuthController extends BaseController {
 		try
 		{
 			// Try to log the user in
+			// var_dump(Input::only('email', 'password'));
 			Sentry::authenticate(Input::only('email', 'password'), Input::get('remember-me', 0));
 
 			// Get the page we were before
