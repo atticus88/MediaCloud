@@ -231,6 +231,8 @@ abstract class Model implements ArrayAccess, ArrayableInterface, JsonableInterfa
 			static::$booted[get_class($this)] = true;
 		}
 
+		$this->syncOriginal();
+
 		$this->fill($attributes);
 	}
 
@@ -291,7 +293,7 @@ abstract class Model implements ArrayAccess, ArrayableInterface, JsonableInterfa
 	 */
 	public function fill(array $attributes)
 	{
-		foreach ($attributes as $key => $value)
+		foreach ($this->fillableFromArray($attributes) as $key => $value)
 		{
 			$key = $this->removeTableFromKey($key);
 
@@ -309,6 +311,22 @@ abstract class Model implements ArrayAccess, ArrayableInterface, JsonableInterfa
 		}
 
 		return $this;
+	}
+
+	/**
+	 * Get the fillable attributes of a given array.
+	 *
+	 * @param  array  $attributes
+	 * @return array
+	 */
+	protected function fillableFromArray(array $attributes)
+	{
+		if (count($this->fillable) > 0)
+		{
+			return array_intersect_key($attributes, array_flip($this->fillable));
+		}
+
+		return $attributes;
 	}
 
 	/**
@@ -411,11 +429,6 @@ abstract class Model implements ArrayAccess, ArrayableInterface, JsonableInterfa
 	public static function find($id, $columns = array('*'))
 	{
 		$instance = new static;
-
-		if (is_array($id))
-		{
-			return $instance->newQuery()->whereIn($instance->getKeyName(), $id)->get($columns);
-		}
 
 		return $instance->newQuery()->find($id, $columns);
 	}
@@ -2519,7 +2532,8 @@ abstract class Model implements ArrayAccess, ArrayableInterface, JsonableInterfa
 	 */
 	public function __isset($key)
 	{
-		return isset($this->attributes[$key]) or isset($this->relations[$key]);
+		return ((isset($this->attributes[$key]) or isset($this->relations[$key])) or
+			    ($this->hasGetMutator($key) and ! is_null($this->getAttributeValue($key))));
 	}
 
 	/**

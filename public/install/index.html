@@ -114,14 +114,76 @@
 					</p>
 					<div class="control-group">
 						<select name='queue' class="chzn-select">
-							<option>Resque</option>
-							<option>Beanstalkd</option>
-							<option>IronIO</option>
+							<option value=""></option>
+							<option value="resque">Resque</option>
+							<option value="beanstalkd">Beanstalkd</option>
+							<option value="iron">IronIO</option>
+							<option value="sqs">SQS</option>
 						</select>
 					</div>
-					<p>
-						Resque requires a Redis Database... (description of each/additional dependancies)
-					</p>
+
+					<div id="queue-resque" class="control-group hide">
+						<p>
+							Resque requires a Redis Database... (description of each/additional dependancies)
+						</p>
+<pre>Resque Stuff</pre>
+					</div>
+					<div id="queue-beanstalkd" class="control-group hide">
+						<div class="row">
+							<div class="span3">
+								<label><strong>Host</strong></label>
+								<input type="text" name="queue-beanstalkd-host" placeholder="localhost" />
+							</div>
+							<div class="span2">
+								<label><strong>Queue</strong></label>
+								<input type="text" name="queue-beanstalkd-queue" placeholder="default" />
+							</div>
+						</div>
+					</div>
+					<div id="queue-sqs" class="control-group hide">
+						<div class="row">
+							<div class="span3">
+								<label><strong>Key</strong></label>
+								<input type="text" name="queue-sqs-key" placeholder="your-public-key" />
+							</div>
+							<div class="span2">
+								<label><strong>Secret</strong></label>
+								<input type="text" name="queue-sqs-secret" placeholder="your-secret-key" />
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="span3">
+								<label><strong>Queue</strong></label>
+								<input type="text" name="queue-sqs-queue" placeholder="your-queue-url" />
+							</div>
+							<div class="span2">
+								<label><strong>region</strong></label>
+								<input type="text" name="queue-sqs-region" placeholder="us-east-1" />
+							</div>
+						</div>
+
+
+					</div>
+					<div id="queue-iron" class="control-group hide">
+						<div class="row">
+							<div class="span3">
+								<label><strong>Project</strong></label>
+								<input type="text" name="queue-iron-project" placeholder="your-project-id"/>
+							</div>
+							<div class="span2">
+								<label><strong>Token</strong></label>
+								<input type="text" name="queue-iron-token" placeholder="your-token"/>
+							</div>
+						</div>
+						<div class="row">
+							<div class="span3">
+								<label><strong>Queue</strong></label>
+								<input type="text" name="queue-iron-queue" placeholder="your-queue-name"/>
+							</div>
+						</div>
+
+					</div>
 
 				</div>
 			</div>
@@ -133,28 +195,58 @@
 				<div class="wizard-input-section">
 					<p>
 						Please choose a service you'd like to use to authenticate users
-						LDAP, Local Database, CAS, Shibboleth.
+						CAS, LDAP, Local Database,  Shibboleth.
 					</p>
 				 	<div class="control-group">
 				 		<select name='auth' class="chzn-select">
-				 			<option>CAS</option>
-				 			<option>LDAP</option>
-				 			<option>SAML</option>
-				 			<option>Database</option>
+				 			<option></option>
+				 			<option value="cas">CAS</option>
+				 			<option value="ldap">LDAP</option>
+				 			<option value="saml">SAML</option>
+				 			<option value="database">Database</option>
 				 		</select>
 				 	</div>
-					<div class="control-group">
+
+					<div id="auth-cas" class="control-group hide">
 						<div class="row">
 							<div class="span3">
 								<label><strong>Login URL</strong></label>
-								<input type="text" name="auth-login-url" placeholder="https://cas.&lt;host&gt;.edu/login" />
+								<input type="text" name="auth-cas-login-url" placeholder="https://cas.&lt;host&gt;.edu/login" />
 							</div>
 							<div class="span2">
 								<label><strong>Logout URL</strong></label>
-								<input type="text" name="auth-logout-url" placeholder="https://cas.&lt;host&gt;.edu/logout" />
+								<input type="text" name="auth-cas-logout-url" placeholder="https://cas.&lt;host&gt;.edu/logout" />
 							</div>
 						</div>
 					</div>
+
+					<div id="auth-ldap" class="control-group hide">
+						<div class="row">
+							<div class="span3">
+								<label><strong>Login URL</strong></label>
+								<input type="text" name="auth-ldap-login-url" placeholder="https://cas.&lt;host&gt;.edu/login" />
+							</div>
+							<div class="span2">
+								<label><strong>Logout URL</strong></label>
+								<input type="text" name="auth-ldap-logout-url" placeholder="https://cas.&lt;host&gt;.edu/logout" />
+							</div>
+						</div>
+					</div>
+
+					<div id="auth-saml" class="control-group hide">
+						<div class="row">
+							<div class="span3">
+								<label><strong>Login URL</strong></label>
+								<input type="text" name="auth-saml-login-url" placeholder="https://cas.&lt;host&gt;.edu/login" />
+							</div>
+							<div class="span2">
+								<label><strong>Logout URL</strong></label>
+								<input type="text" name="auth-saml-logout-url" placeholder="https://cas.&lt;host&gt;.edu/logout" />
+							</div>
+						</div>
+					</div>
+
+
 				</div>
 			</div>
 			<div class="wizard-card" data-onload="" data-cardname="location">
@@ -275,7 +367,19 @@
 			submitUrl: "/install/install.php"
 		});
 
-		$(".chzn-select").chosen();
+		$(".chzn-select")
+		.chosen()
+		.change(function(e){
+			// console.log(e.currentTarget.value);
+			var el = e.currentTarget.value
+			// Queue
+			$('[id^=queue-]').hide();
+			$('#queue-'+el).show();
+
+			// Authentication
+			$('[id^=auth-]').hide();
+			$('#auth-'+el).show();
+		});
 
 		wizard.el.find(".wizard-ns-select").change(function() {
 			wizard.el.find(".wizard-ns-detail").show();
@@ -293,17 +397,27 @@
 				data: wizard.serialize(),
 				dataType: "json",
 				success: function(resp) {
+
+					console.log(wizard.serialize());
+
 					wizard.hideButtons();
 					wizard.updateProgressBar(0);
-					$.get(location.protocol + '//' + window.location.host + '/app/install', function(data){
-						json = JSON.parse(data);
-					// console.log(json);
-					if (json.status == 'success') {
-						wizard.submitSuccess();
-					} else {
-						wizard.submitFailure();
-					}
-				});
+
+
+					$.ajax({
+						type: "POST",
+						url: location.protocol + '//' + window.location.host + '/app/install',
+						data: wizard.serialize(),
+						dataType: 'json',
+						success: function (data) {
+							if (data.status == 'success') {
+								wizard.submitSuccess();
+							} else {
+								wizard.submitFailure();
+							}
+						}
+					})
+
 			},
 			error: function() {
 				wizard.submitFailure();

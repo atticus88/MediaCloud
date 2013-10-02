@@ -15,7 +15,7 @@ return array(
 	|
 	*/
 
-	'default' => 'sync',
+	'default' => '',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -36,25 +36,27 @@ return array(
 
 		'beanstalkd' => array(
 			'driver' => 'beanstalkd',
-			'host'   => 'localhost',
-			'queue'  => 'default',
+			'host'   => '',
+			'queue'  => '',
 		),
 
 		'sqs' => array(
 			'driver' => 'sqs',
-			'key'    => 'your-public-key',
-			'secret' => 'your-secret-key',
-			'queue'  => 'your-queue-url',
-			'region' => 'us-east-1',
+			'key'    => '',
+			'secret' => '',
+			'queue'  => '',
+			'region' => '',
 		),
 
 		'iron' => array(
 			'driver'  => 'iron',
-			'project' => 'your-project-id',
-			'token'   => 'your-token',
-			'queue'   => 'your-queue-name',
+			'project' => '',
+			'token'   => '',
+			'queue'   => '',
 		),
 
 	),
 
 );
+
+
