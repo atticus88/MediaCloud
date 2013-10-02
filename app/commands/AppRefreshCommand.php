@@ -37,8 +37,7 @@ class AppRefreshCommand extends Command {
 	 */
 	public function fire()
 	{
-		if ($this->confirm('Are you sure you want to refresh your installation? You will loose all data stored in the database! [yes|no]'))
-		{
+
 			// First reset data
 			echo 'Reseting DB...'.PHP_EOL;
 			$this->call('migrate:reset');
@@ -46,7 +45,7 @@ class AppRefreshCommand extends Command {
 
 			// Now install it again
 			$this->call('app:install');
-		}
+
 	}
 
 	/**

@@ -4,3 +4,4 @@ composer.lock
 .DS_Store
 /.idea
 /app/config/database.php
+/app/config/queue.php
