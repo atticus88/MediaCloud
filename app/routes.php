@@ -1,5 +1,13 @@
 <?php
 
+
+
+/*
+* APP Bindings
+*/
+App::bind('AssetRepository', 'Asset');
+
+
 /*
 |--------------------------------------------------------------------------
 | Admin Routes
@@ -45,6 +53,18 @@ Route::group(array('prefix' => 'admin'), function()
 		Route::post('{groupId}/edit', 'Controllers\Admin\GroupsController@postEdit');
 		Route::get('{groupId}/delete', array('as' => 'delete/group', 'uses' => 'Controllers\Admin\GroupsController@getDelete'));
 		Route::get('{groupId}/restore', array('as' => 'restore/group', 'uses' => 'Controllers\Admin\GroupsController@getRestore'));
+	});
+
+	# Assets Management
+	Route::group(array('prefix' => 'assets'), function()
+	{
+		Route::get('/', array('as' => 'assets', 'uses' => 'Controllers\Admin\AssetsController@getIndex'));
+		// Route::get('create', array('as' => 'create/blog', 'uses' => 'Controllers\Admin\BlogsController@getCreate'));
+		// Route::post('create', 'Controllers\Admin\BlogsController@postCreate');
+		// Route::get('{blogId}/edit', array('as' => 'update/blog', 'uses' => 'Controllers\Admin\BlogsController@getEdit'));
+		// Route::post('{blogId}/edit', 'Controllers\Admin\BlogsController@postEdit');
+		// Route::get('{blogId}/delete', array('as' => 'delete/blog', 'uses' => 'Controllers\Admin\BlogsController@getDelete'));
+		// Route::get('{blogId}/restore', array('as' => 'restore/blog', 'uses' => 'Controllers\Admin\BlogsController@getRestore'));
 	});
 
 	# Dashboard
