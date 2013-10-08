@@ -9,7 +9,6 @@ class AssetsSeeder extends Seeder {
 
 		$assetsseeder = array(
 			array(
-				"alpha_id" => "",
 				"title" => "Video 1",
 				"description" => "Desc 1",
 				"filepath" => "",
@@ -23,7 +22,6 @@ class AssetsSeeder extends Seeder {
 				"views" => ""
 				),
 			array(
-				"alpha_id" => "",
 				"title" => "Video 2",
 				"description" => "Desc 2",
 				"filepath" => "",
@@ -37,7 +35,6 @@ class AssetsSeeder extends Seeder {
 				"views" => ""
 				),
 			array(
-				"alpha_id" => "",
 				"title" => "Video 3",
 				"description" => "Desc 3",
 				"filepath" => "",
@@ -51,7 +48,6 @@ class AssetsSeeder extends Seeder {
 				"views" => ""
 				),
 			array(
-				"alpha_id" => "",
 				"title" => "Video 4",
 				"description" => "Desc 4",
 				"filepath" => "",
@@ -65,7 +61,6 @@ class AssetsSeeder extends Seeder {
 				"views" => ""
 				),
 			array(
-				"alpha_id" => "",
 				"title" => "Video 5",
 				"description" => "Desc 5",
 				"filepath" => "",
@@ -79,7 +74,6 @@ class AssetsSeeder extends Seeder {
 				"views" => ""
 				),
 			array(
-				"alpha_id" => "",
 				"title" => "Video 6",
 				"description" => "Desc 6",
 				"filepath" => "",
@@ -93,7 +87,6 @@ class AssetsSeeder extends Seeder {
 				"views" => ""
 				),
 			array(
-				"alpha_id" => "",
 				"title" => "Video 7",
 				"description" => "Desc 7",
 				"filepath" => "",

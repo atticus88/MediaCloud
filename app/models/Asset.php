@@ -12,6 +12,8 @@ class Asset extends Eloquent implements AssetRepository {
 		return $assets;
 	}
 
+
+
 	public function user()
 	{
 		return $this->belongsTo('User', 'user_id');

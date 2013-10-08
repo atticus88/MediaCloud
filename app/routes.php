@@ -64,12 +64,12 @@ Route::group(array('prefix' => 'admin'), function()
 	Route::group(array('prefix' => 'assets'), function()
 	{
 		Route::get('/', array('as' => 'assets', 'uses' => 'Controllers\Admin\AssetsController@getIndex'));
-		// Route::get('create', array('as' => 'create/blog', 'uses' => 'Controllers\Admin\BlogsController@getCreate'));
-		// Route::post('create', 'Controllers\Admin\BlogsController@postCreate');
-		// Route::get('{blogId}/edit', array('as' => 'update/blog', 'uses' => 'Controllers\Admin\BlogsController@getEdit'));
-		// Route::post('{blogId}/edit', 'Controllers\Admin\BlogsController@postEdit');
-		// Route::get('{blogId}/delete', array('as' => 'delete/blog', 'uses' => 'Controllers\Admin\BlogsController@getDelete'));
-		// Route::get('{blogId}/restore', array('as' => 'restore/blog', 'uses' => 'Controllers\Admin\BlogsController@getRestore'));
+		Route::get('create', array('as' => 'create/asset', 'uses' => 'Controllers\Admin\AssetsController@getCreate'));
+		Route::post('create', 'Controllers\Admin\AssetsController@postCreate');
+		Route::get('{assetId}/edit', array('as' => 'update/asset', 'uses' => 'Controllers\Admin\AssetsController@getEdit'));
+		Route::post('{assetId}/edit', 'Controllers\Admin\AssetsController@postEdit');
+		Route::get('{assetId}/delete', array('as' => 'delete/asset', 'uses' => 'Controllers\Admin\AssetsController@getDelete'));
+		Route::get('{assetId}/restore', array('as' => 'restore/asset', 'uses' => 'Controllers\Admin\AssetsController@getRestore'));
 	});
 
 	# Dashboard
