@@ -8,7 +8,6 @@ class Asset extends Eloquent implements AssetRepository {
 	{
 		// $assets = DB::select("SELECT * FROM  media_assets ORDER BY  created_at DESC LIMIT 0 , $amount");
 		$assets = Asset::paginate(3);
-		// $assets->appends(array('sort' => 'created_at'))->links();
 		return $assets;
 	}
 

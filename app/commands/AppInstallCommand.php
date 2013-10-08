@@ -145,16 +145,49 @@ class AppInstallCommand extends Command {
 		try
 		{
 			// Create the admin group
-			$group = Sentry::getGroupProvider()->create(array(
-				'name'        => 'Admin',
-				'permissions' => array(
-					'admin' => 1,
-					'users' => 1,
-					'upload' => 1,
-					'manage-media' => 1,
-					'capture' => 1
+			$group = Sentry::getGroupProvider()->create(
+				array(
+					'name'        => 'Admin',
+					'permissions' => array(
+						'admin' => 1,
+						'users' => 1,
+						'upload' => 1,
+						'manage-media' => 1,
+						'capture' => 1
+						)
+					),
+					array(
+					'name'        => 'Faculty',
+					'permissions' => array(
+						'users' => 1,
+						'upload' => 1,
+						'manage-media' => 1,
+						'capture' => 1
+						)
+					),
+					array(
+					'name'        => 'Student Assistant',
+					'permissions' => array(
+						'users' => 1,
+						'upload' => 1,
+						'manage-media' => 1,
+						'capture' => 1
+						)
+					),
+					array(
+					'name'        => 'Student',
+					'permissions' => array(
+						'users' => 1,
+						)
+					),
+					array(
+					'name'        => 'Guest',
+					'permissions' => array(
+						'users' => 1
+						)
 					)
-				));
+
+				);
 
 			// Show the success message.
 			$this->comment('');

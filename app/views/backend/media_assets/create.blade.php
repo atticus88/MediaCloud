@@ -1,10 +1,10 @@
-@extends('layouts.scaffold')
+@extends('backend/layouts/default')
 
-@section('main')
+@section('content')
 
 <h1>Create Asset</h1>
 
-{{ Form::open(array('route' => 'assets.store')) }}
+<form method="POST" action="{{action('Controllers\Admin\AssetsController@postCreate')}}" accept-charset="UTF-8">
 	<ul>
         <li>
             {{ Form::label('title', 'Title:') }}

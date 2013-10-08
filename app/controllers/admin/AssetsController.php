@@ -18,13 +18,13 @@ class AssetsController extends AdminController {
 		$this->asset = $asset;
 	}
 	/**
-	 * Show a list of all the blog posts.
+	 * Show a list of all the assets.
 	 *
 	 * @return View
 	 */
 	public function getIndex()
 	{
-		// Grab all the blog posts
+		// Grab all the assets
 		$assets = $this->asset->getLastAssets(7);
 
 		// die(var_dump($assets));
@@ -52,8 +52,21 @@ class AssetsController extends AdminController {
 	{
 		// Declare the rules for the form validation
 		$rules = array(
-			'title'   => 'required|min:3',
-			'content' => 'required|min:3',
+			// 'id' => 'required',
+			'title' => 'required',
+			'description' => 'required',
+			'filepath' => 'required',
+			// 'filename' => 'required',
+			// 'transcoded_url' => 'required',
+			// 'thumbnail_url' => 'required',
+			// 'url' => 'required',
+			// 'type' => 'required',
+			// 'status' => 'required',
+			// 'tags' => 'required',
+			// 'views' => 'required',
+			// 'last_viewed' => 'required',
+			// 'created_at' => 'required',
+			// 'updated_at' => 'required'
 		);
 
 		// Create a new validator instance from our validation rules
@@ -66,27 +79,31 @@ class AssetsController extends AdminController {
 			return Redirect::back()->withInput()->withErrors($validator);
 		}
 
-		// Create a new blog post
+		// Create a new asset
 		$asset = new Asset;
 
-		// Update the blog post data
-		$asset->title            = e(Input::get('title'));
-		$asset->slug             = e(Str::slug(Input::get('title')));
-		$asset->content          = e(Input::get('content'));
-		$asset->meta_title       = e(Input::get('meta-title'));
-		$asset->meta_description = e(Input::get('meta-description'));
-		$asset->meta_keywords    = e(Input::get('meta-keywords'));
-		$asset->user_id          = Sentry::getId();
+		// Update the asset data
+		$asset->title				= e(Input::get('title'));
+		$asset->description			= e(Input::get('description'));
+		$asset->filepath			= e(Input::get('filepath'));
+		$asset->filename			= e(Input::get('filename'));
+		$asset->transcoded_url		= e(Input::get('transcoded_url'));
+		$asset->thumbnail_url		= e(Input::get('thumbnail_url'));
+		$asset->url					= e(Input::get('url'));
+		$asset->type				= e(Input::get('type'));
+		$asset->status				= e(Input::get('status'));
+		$asset->tags				= e(Input::get('tags'));
+		$asset->views				= e(Input::get('views'));
 
-		// Was the blog post created?
+		// Was the asset created?
 		if($asset->save())
 		{
-			// Redirect to the new blog post page
-			return Redirect::to("admin/blogs/$asset->id/edit")->with('success', Lang::get('admin/blogs/message.create.success'));
+			// Redirect to the new asset page
+			return Redirect::to("admin/assets")->with('success', Lang::get('admin/assets/message.create.success'));
 		}
 
-		// Redirect to the blog post create page
-		return Redirect::to('admin/blogs/create')->with('error', Lang::get('admin/blogs/message.create.error'));
+		// Redirect to the asset create page
+		return Redirect::to('admin/assets/create')->with('error', Lang::get('admin/assets/message.create.error'));
 	}
 
 	/**
@@ -97,7 +114,7 @@ class AssetsController extends AdminController {
 	 */
 	public function getEdit($assetId = null)
 	{
-		// Check if the blog post exists
+		// Check if the asset exists
 		if (is_null($asset = Asset::find($assetId)))
 		{
 			// Redirect to the blogs management page
@@ -172,11 +189,11 @@ class AssetsController extends AdminController {
 
 
 
-		// Was the blog post updated?
+		// Was the asset updated?
 		if($asset->save())
 		{
-			// Redirect to the new blog post page
-			return Redirect::to("admin/assets/$assetId/edit")->with('success', Lang::get('admin/assets/message.update.success'));
+			// Redirect to the new asset page
+			return Redirect::to("admin/assets")->with('success', Lang::get('admin/assets/message.update.success'));
 		}
 
 		// Redirect to the assets post management page
@@ -184,25 +201,25 @@ class AssetsController extends AdminController {
 	}
 
 	/**
-	 * Delete the given blog post.
+	 * Delete the given asset.
 	 *
 	 * @param  int  $assetId
 	 * @return Redirect
 	 */
 	public function getDelete($assetId)
 	{
-		// Check if the blog post exists
-		if (is_null($asset = Post::find($assetId)))
+		// Check if the asset exists
+		if (is_null($asset = Asset::find($assetId)))
 		{
-			// Redirect to the blogs management page
-			return Redirect::to('admin/blogs')->with('error', Lang::get('admin/blogs/message.not_found'));
+			// Redirect to the assets management page
+			return Redirect::to('admin/assets')->with('error', Lang::get('admin/assets/message.not_found'));
 		}
 
-		// Delete the blog post
+		// Delete the asset
 		$asset->delete();
 
-		// Redirect to the blog posts management page
-		return Redirect::to('admin/blogs')->with('success', Lang::get('admin/blogs/message.delete.success'));
+		// Redirect to the assets management page
+		return Redirect::to('admin/assets')->with('success', Lang::get('admin/assets/message.delete.success'));
 	}
 
 }
