@@ -27,10 +27,10 @@ class AppInstallCommand extends Command {
 	 * @var array
 	 */
 	protected $userData = array(
-		'username' => null,
-		'email'      => null,
-		'password'   => null
-	);
+		'username' => '',
+		'email'      => '',
+		'password'   => ''
+		);
 
 	/**
 	 * Create a new command instance.
@@ -40,11 +40,7 @@ class AppInstallCommand extends Command {
 	public function __construct()
 	{
 		parent::__construct();
-
-		$this->userData['username'] = Input::get('admin-username');
-		$this->userData['email'] 	= Input::get('admin-email');
-		$this->userData['password'] = Input::get('admin-password');
-
+		define('ISCLI', PHP_SAPI === 'cli');
 	}
 
 	/**
@@ -54,6 +50,44 @@ class AppInstallCommand extends Command {
 	 */
 	public function fire()
 	{
+
+		if(ISCLI)
+		{
+			$this->comment('=====================================');
+			$this->comment('');
+			$this->info('  Step: 1');
+			$this->comment('');
+			$this->info('    Please follow the following');
+			$this->info('    instructions to create your');
+			$this->info('    default user.');
+			$this->comment('');
+			$this->comment('-------------------------------------');
+			$this->comment('');
+
+
+			// Let's ask the user some questions, shall we?
+			$this->askUserUsername();
+			$this->askUserEmail();
+			$this->askUserPassword();
+
+
+			$this->comment('');
+			$this->comment('');
+			$this->comment('=====================================');
+			$this->comment('');
+			$this->info('  Step: 2');
+			$this->comment('');
+			$this->info('    Preparing your Application');
+			$this->comment('');
+			$this->comment('-------------------------------------');
+			$this->comment('');
+		}
+		else{
+			$this->userData['username'] = Input::get('admin-username');
+			$this->userData['email'] 	= Input::get('admin-email');
+			$this->userData['password'] = Input::get('admin-password');
+		}
+
 
 		// Generate the Application Encryption key
 		$this->call('key:generate');
@@ -66,6 +100,11 @@ class AppInstallCommand extends Command {
 
 		// Run the Migrations
 		$this->call('migrate');
+
+		$users = User::all();
+		if(count($users)){
+			die("Reset DB");
+		}
 
 		// Create the default user and default groups.
 		$this->sentryRunner();
@@ -204,5 +243,68 @@ class AppInstallCommand extends Command {
 	{
 		return array();
 	}
+
+
+	protected function askUserUsername()
+	{
+		do
+		{
+			// Ask the user to input the first name
+			$username = $this->ask('Please enter your UserName: (admin) ');
+
+			// Check if the first name is valid
+			if ($username == '')
+			{
+				// Return an error message
+				$this->error('Your UserName is invalid. Please try again.');
+			}
+
+			// Store the user first name
+			$this->userData['username'] = $username;
+		}
+		while( ! $username);
+	}
+
+	protected function askUserEmail()
+	{
+		do
+		{
+			// Ask the user to input the email address
+			$email = $this->ask('Please enter your user email: ');
+
+			// Check if email is valid
+			if ($email == '')
+			{
+				// Return an error message
+				$this->error('Email is invalid. Please try again.');
+			}
+
+			// Store the email address
+			$this->userData['email'] = $email;
+		}
+		while ( ! $email);
+	}
+	protected function askUserPassword()
+	{
+		do
+		{
+			// Ask the user to input the user password
+			$password = $this->ask('Please enter your user password: ');
+
+			// Check if email is valid
+			if ($password == '')
+			{
+				// Return an error message
+				$this->error('Password is invalid. Please try again.');
+			}
+
+			// Store the password
+			$this->userData['password'] = $password;
+		}
+		while( ! $password);
+	}
+
+
+
 
 }

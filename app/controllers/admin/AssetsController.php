@@ -25,12 +25,10 @@ class AssetsController extends AdminController {
 	public function getIndex()
 	{
 		// Grab all the blog posts
-		$assets = $this->asset->getLastAssets(100);
-		die(var_dump($assets));
-		 // Post::orderBy('created_at', 'DESC')->paginate(10);
-
+		$assets = $this->asset->getLastAssets(6);
+		
 		// Show the page
-		return View::make('backend/blogs/index', compact('posts'));
+		return View::make('backend/media_assets/index', compact('assets'));
 	}
 
 	/**

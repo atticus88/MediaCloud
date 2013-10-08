@@ -8,6 +8,11 @@
 App::bind('AssetRepository', 'Asset');
 
 
+Route::get('/test',function(){
+	$assets = Asset::paginate(1);
+	return  $assets->appends(array('sort' => 'id'))->links();
+});
+
 /*
 |--------------------------------------------------------------------------
 | Admin Routes

@@ -62,7 +62,7 @@
 			<div class="collapse navbar-collapse navbar-ex1-collapse">
 			<ul class="nav navbar-nav">
 				<li{{ (Request::is('admin') ? ' class="active"' : '') }}><a href="{{ URL::to('admin') }}"><i class="icon-home icon-white"></i> Dashboard</a></li>
-				<li{{ (Request::is('assets') ? ' class="active"' : '') }}><a href="{{ URL::to('assets') }}"><i class="icon-home icon-white"></i> Assets</a></li>
+				<li{{ (Request::is('admin/assets') ? ' class="active"' : '') }}><a href="{{ URL::to('admin/assets') }}"><i class="icon-home icon-white"></i> Assets</a></li>
 				
 				<li class="dropdown{{ (Request::is('admin/users*|admin/groups*') ? ' active' : '') }}">
 					<a class="dropdown-toggle" data-toggle="dropdown" href="{{ URL::to('admin/users') }}">
