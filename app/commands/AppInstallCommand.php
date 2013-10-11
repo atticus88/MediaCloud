@@ -155,38 +155,7 @@ class AppInstallCommand extends Command {
 						'manage-media' => 1,
 						'capture' => 1
 						)
-					),
-					array(
-					'name'        => 'Faculty',
-					'permissions' => array(
-						'users' => 1,
-						'upload' => 1,
-						'manage-media' => 1,
-						'capture' => 1
-						)
-					),
-					array(
-					'name'        => 'Student Assistant',
-					'permissions' => array(
-						'users' => 1,
-						'upload' => 1,
-						'manage-media' => 1,
-						'capture' => 1
-						)
-					),
-					array(
-					'name'        => 'Student',
-					'permissions' => array(
-						'users' => 1,
-						)
-					),
-					array(
-					'name'        => 'Guest',
-					'permissions' => array(
-						'users' => 1
-						)
 					)
-
 				);
 
 			// Show the success message.
