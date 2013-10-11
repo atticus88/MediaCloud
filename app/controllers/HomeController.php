@@ -15,9 +15,14 @@ class HomeController extends BaseController {
 	|
 	*/
 
-	public function showWelcome()
+	public function getIndex()
 	{
-		return View::make('hello');
+		if(file_exists(base_path() . '/app/config/database.php')) {
+			
+		} else {
+			return Redirect::route('install');
+	//echo URL::route('install');
+		}
 	}
 
 }

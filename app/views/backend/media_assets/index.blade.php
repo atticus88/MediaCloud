@@ -1,4 +1,10 @@
-@extends('backend/layouts/default')
+@extends('backend/layouts/admin')
+
+{{-- Page title --}}
+@section('title')
+User Management ::
+@parent
+@stop
 
 @section('content')
 

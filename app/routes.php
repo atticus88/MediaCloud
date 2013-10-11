@@ -8,11 +8,6 @@
 App::bind('AssetRepository', 'Asset');
 
 
-Route::get('/test',function(){
-	$assets = Asset::paginate(1);
-	return  $assets->appends(array('sort' => 'id'))->links();
-});
-
 /*
 |--------------------------------------------------------------------------
 | Admin Routes
@@ -168,7 +163,7 @@ Route::post('blog/{postSlug}', 'BlogController@postView');
 
 Route::get('/', array('as' => 'home', function(){
 	if(file_exists(base_path() . '/app/config/database.php')) {
-		return View::make('hello');
+		return View::make('home');
 	} else {
 		return Redirect::route('install');
 	//echo URL::route('install');
