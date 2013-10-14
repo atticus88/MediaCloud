@@ -143,10 +143,9 @@ class AssetsController extends AdminController {
 
 		// Declare the rules for the form validation
 		$rules = array(
-			// 'id' => 'required',
-			// 'title' => 'required',
+			'title' => 'required',
 			// 'description' => 'required',
-			'filepath' => 'required',
+			// 'filepath' => 'required',
 			// 'filename' => 'required',
 			// 'transcoded_url' => 'required',
 			// 'thumbnail_url' => 'required',
@@ -185,7 +184,6 @@ class AssetsController extends AdminController {
 		// $asset->last_viewed			= e(Input::get('last_viewed'));
 		// $asset->created_at			= e(Input::get('created_at'));
 		// $asset->updated_at			= e(Input::get('updated_at'));
-
 
 
 

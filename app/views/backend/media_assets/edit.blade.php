@@ -1,10 +1,20 @@
-@extends('backend/layouts/default')
+@extends('backend/layouts/admin')
 
 @section('content')
 
-
-<h1>Edit Asset</h1>
-    <form method="POST" action="{{url('update/asset', array($asset->id))}}" class="form-horizontal" >
+<div class="page-header">    
+<h1>Edit Asset
+<div class="pull-right">
+    <a href="{{ route('assets') }}" class="btn btn-small btn-inverse"><i class="icon-circle-arrow-left icon-white"></i> Back</a>
+</div>
+</h1>
+</div>
+@if ($errors->any())
+<ul>
+  {{ implode('', $errors->all('<li class="error">:message</li>')) }}
+</ul>
+@endif
+    <form method="POST" action="{{url('admin/assets/'.$asset->id.'/edit')}}" class="form-horizontal" >
         {{Form::token()}}
 
         <div class="form-body">
@@ -24,7 +34,7 @@
               <div class="form-group">
                  <label class="control-label col-md-3">Description</label>
                  <div class="col-md-9">
-                     {{ Form::text('title', $asset->description,  array('class' => 'form-control')) }}
+                     {{ Form::text('description', $asset->description,  array('class' => 'form-control')) }}
                     <!-- <span class="help-block">Describe your Asset</span> -->
                 </div>
             </div>
@@ -35,20 +45,20 @@
      <div class="row">
                <div class="col-md-6">
                   <div class="form-group">
-                     <label class="control-label col-md-3">Filepath</label>
+                     <label class="control-label col-md-3">File path</label>
                      <div class="col-md-9">
                         <!-- <input type="text" class="form-control" placeholder="Chee Kin"> -->
-                         {{ Form::text('title', $asset->title,  array('class' => 'form-control')) }}
+                         {{ Form::text('filepath', $asset->filepath,  array('class' => 'form-control')) }}
                         <!-- <span class="help-block">This is inline help</span> -->
                     </div>
                 </div>
             </div>
             <div class="col-md-6">
                   <div class="form-group">
-                     <label class="control-label col-md-3">Filename</label>
+                     <label class="control-label col-md-3">File name</label>
                      <div class="col-md-9">
                         <!-- <input type="text" class="form-control" placeholder="Chee Kin"> -->
-                         {{ Form::text('title', $asset->title,  array('class' => 'form-control')) }}
+                         {{ Form::text('filename', $asset->filename,  array('class' => 'form-control')) }}
                         <!-- <span class="help-block">This is inline help</span> -->
                     </div>
                 </div>
@@ -60,7 +70,7 @@
                      <label class="control-label col-md-3">Transcoded URL</label>
                      <div class="col-md-9">
                         <!-- <input type="text" class="form-control" placeholder="Chee Kin"> -->
-                         {{ Form::text('title', $asset->title,  array('class' => 'form-control')) }}
+                         {{ Form::text('transcoded_url', $asset->transcoded_url,  array('class' => 'form-control')) }}
                         <!-- <span class="help-block">This is inline help</span> -->
                     </div>
                 </div>
@@ -70,7 +80,7 @@
                      <label class="control-label col-md-3">Thumbnail URL</label>
                      <div class="col-md-9">
                         <!-- <input type="text" class="form-control" placeholder="Chee Kin"> -->
-                         {{ Form::text('title', $asset->title,  array('class' => 'form-control')) }}
+                         {{ Form::text('thumbnail_url', $asset->thumbnail_url,  array('class' => 'form-control')) }}
                         <!-- <span class="help-block">This is inline help</span> -->
                     </div>
                 </div>
@@ -83,7 +93,7 @@
                      <label class="control-label col-md-3">URL</label>
                      <div class="col-md-9">
                         <!-- <input type="text" class="form-control" placeholder="Chee Kin"> -->
-                         {{ Form::text('title', $asset->title,  array('class' => 'form-control')) }}
+                         {{ Form::text('url', $asset->url,  array('class' => 'form-control')) }}
                         <!-- <span class="help-block">This is inline help</span> -->
                     </div>
                 </div>
@@ -93,7 +103,7 @@
                      <label class="control-label col-md-3">Type</label>
                      <div class="col-md-9">
                         <!-- <input type="text" class="form-control" placeholder="Chee Kin"> -->
-                         {{ Form::text('title', $asset->title,  array('class' => 'form-control')) }}
+                         {{ Form::text('type', $asset->type,  array('class' => 'form-control')) }}
                         <!-- <span class="help-block">This is inline help</span> -->
                     </div>
                 </div>
@@ -105,7 +115,7 @@
                      <label class="control-label col-md-3">Status</label>
                      <div class="col-md-9">
                         <!-- <input type="text" class="form-control" placeholder="Chee Kin"> -->
-                         {{ Form::text('title', $asset->title,  array('class' => 'form-control')) }}
+                         {{ Form::text('status', $asset->status,  array('class' => 'form-control')) }}
                         <!-- <span class="help-block">This is inline help</span> -->
                     </div>
                 </div>
@@ -115,7 +125,7 @@
                      <label class="control-label col-md-3">Tags</label>
                      <div class="col-md-9">
                         <!-- <input type="text" class="form-control" placeholder="Chee Kin"> -->
-                         {{ Form::text('title', $asset->title,  array('class' => 'form-control')) }}
+                         {{ Form::text('tags', $asset->tags,  array('class' => 'form-control')) }}
                         <!-- <span class="help-block">This is inline help</span> -->
                     </div>
                 </div>
@@ -126,7 +136,7 @@
                <div class="col-md-6">
                   <div class="form-group">
                      <label class="control-label col-md-3">Views</label>
-                     <div class="col-md-9 well">
+                     <div class="col-md-9 read-only">
                         <!-- <input type="text" class="form-control" placeholder="Chee Kin"> -->
                          {{$asset->views}}
                     </div>
@@ -135,7 +145,7 @@
             <div class="col-md-6">
                   <div class="form-group">
                      <label class="control-label col-md-3">Last Viewed</label>
-                     <div class="col-md-9 well">
+                     <div class="col-md-9 read-only">
                           {{$asset->last_viewed}}
                     </div>
                 </div>
@@ -146,7 +156,7 @@
                <div class="col-md-6">
                   <div class="form-group">
                      <label class="control-label col-md-3">Created At</label>
-                     <div class="col-md-9 well">
+                     <div class="col-md-9 read-only">
                         <!-- <input type="text" class="form-control" placeholder="Chee Kin"> -->
                         {{$asset->created_at}}
                     </div>
@@ -155,7 +165,7 @@
             <div class="col-md-6">
                   <div class="form-group">
                      <label class="control-label col-md-3">Updated At</label>
-                     <div class="col-md-9 well">
+                     <div class="col-md-9 read-only">
                         <!-- <input type="text" class="form-control" placeholder="Chee Kin"> -->
                       {{$asset->updated_at}}                       
                     </div>
@@ -167,6 +177,7 @@
 <div class="col-md-offset-5">
     
 {{ Form::submit('Update', array('class' => 'btn-lg btn-info')) }}
+
   
    <button class="btn-lg btn-info" > {{ link_to_route('assets', 'Cancel') }}</button> 
 </div>    
@@ -176,10 +187,6 @@
 </form>
 
 
-@if ($errors->any())
-<ul>
-  {{ implode('', $errors->all('<li class="error">:message</li>')) }}
-</ul>
-@endif
+
 
 @stop
