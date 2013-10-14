@@ -8,7 +8,6 @@
         {{Form::token()}}
 
         <div class="form-body">
-            <h3 class="form-section">Person Info</h3>
             <div class="row">
                <div class="col-md-6">
                   <div class="form-group">
@@ -127,7 +126,7 @@
                <div class="col-md-6">
                   <div class="form-group">
                      <label class="control-label col-md-3">Views</label>
-                     <div class="col-md-9">
+                     <div class="col-md-9 well">
                         <!-- <input type="text" class="form-control" placeholder="Chee Kin"> -->
                          {{$asset->views}}
                     </div>
@@ -136,7 +135,7 @@
             <div class="col-md-6">
                   <div class="form-group">
                      <label class="control-label col-md-3">Last Viewed</label>
-                     <div class="col-md-9">
+                     <div class="col-md-9 well">
                           {{$asset->last_viewed}}
                     </div>
                 </div>
@@ -147,7 +146,7 @@
                <div class="col-md-6">
                   <div class="form-group">
                      <label class="control-label col-md-3">Created At</label>
-                     <div class="col-md-9">
+                     <div class="col-md-9 well">
                         <!-- <input type="text" class="form-control" placeholder="Chee Kin"> -->
                         {{$asset->created_at}}
                     </div>
@@ -156,7 +155,7 @@
             <div class="col-md-6">
                   <div class="form-group">
                      <label class="control-label col-md-3">Updated At</label>
-                     <div class="col-md-9">
+                     <div class="col-md-9 well">
                         <!-- <input type="text" class="form-control" placeholder="Chee Kin"> -->
                       {{$asset->updated_at}}                       
                     </div>
@@ -164,12 +163,16 @@
             </div>
 </div>
 
-
-
-
- {{ Form::submit('Update', array('class' => 'btn-lg btn-info')) }}
+<div class="row">
+<div class="col-md-offset-5">
+    
+{{ Form::submit('Update', array('class' => 'btn-lg btn-info')) }}
   
    <button class="btn-lg btn-info" > {{ link_to_route('assets', 'Cancel') }}</button> 
+</div>    
+
+ 
+</div>
 </form>
 
 
