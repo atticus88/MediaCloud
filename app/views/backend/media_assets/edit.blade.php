@@ -176,10 +176,10 @@
 <div class="row">
 <div class="col-md-offset-5">
     
-{{ Form::submit('Update', array('class' => 'btn-lg btn-info')) }}
+{{ Form::submit('Update', array('class' => 'btn btn-success')) }}
 
   
-   <button class="btn-lg btn-info" > {{ link_to_route('assets', 'Cancel') }}</button> 
+    {{ link_to_route('assets', 'Cancel') }}
 </div>    
 
  

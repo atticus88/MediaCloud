@@ -1,93 +1,130 @@
-@extends('backend/layouts/default')
+@extends('backend/layouts/admin')
 
 @section('content')
 
-<h1>Create Asset</h1>
+<div class="page-header">    
+<h1>
 
-<form method="POST" action="{{action('Controllers\Admin\AssetsController@postCreate')}}" accept-charset="UTF-8">
-	<ul>
-        <li>
-            {{ Form::label('title', 'Title:') }}
-            {{ Form::text('title') }}
-        </li>
+Create Asset
 
-        <li>
-            {{ Form::label('description', 'Description:') }}
-            {{ Form::text('description') }}
-        </li>
+<div class="pull-right">
+    <a href="{{ route('assets') }}" class="btn btn-small btn-inverse"><i class="icon-circle-arrow-left icon-white"></i> Back</a>
+</div>
+</h1>
+</div>
 
-        <li>
-            {{ Form::label('filepath', 'Filepath:') }}
-            {{ Form::text('filepath') }}
-        </li>
+<form method="POST" action="{{action('Controllers\Admin\AssetsController@postCreate')}}" accept-charset="UTF-8" class="form-horizontal">
+	<div class="form-body">
+            <div class="row">
+               <div class="col-md-6">
+                  <div class="form-group">
+                     <label class="control-label col-md-3">Title</label>
+                     <div class="col-md-9">
+                         {{ Form::text('title', '',  array('class' => 'form-control')) }}
+                    </div>
+                </div>
+            </div>
+            <!--/span-->
+            <div class="col-md-6">
+              <div class="form-group">
+                 <label class="control-label col-md-3">Description</label>
+                 <div class="col-md-9">
+                     {{ Form::text('description', '',  array('class' => 'form-control')) }}
+                </div>
+            </div>
+        </div>
+        <!--/span-->
+    </div>
+    <!--/row-->
+     <div class="row">
+               <div class="col-md-6">
+                  <div class="form-group">
+                     <label class="control-label col-md-3">File path</label>
+                     <div class="col-md-9">
+                         {{ Form::text('filepath', '',  array('class' => 'form-control')) }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                  <div class="form-group">
+                     <label class="control-label col-md-3">File name</label>
+                     <div class="col-md-9">
+                         {{ Form::text('filename', '',  array('class' => 'form-control')) }}
+                    </div>
+                </div>
+            </div>
+</div>
+   <div class="row">
+               <div class="col-md-6">
+                  <div class="form-group">
+                     <label class="control-label col-md-3">Transcoded URL</label>
+                     <div class="col-md-9">
+                         {{ Form::text('transcoded_url', '',  array('class' => 'form-control')) }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                  <div class="form-group">
+                     <label class="control-label col-md-3">Thumbnail URL</label>
+                     <div class="col-md-9">
+                         {{ Form::text('thumbnail_url', '',  array('class' => 'form-control')) }}
+                    </div>
+                </div>
+            </div>
+</div>
 
-        <li>
-            {{ Form::label('filename', 'Filename:') }}
-            {{ Form::text('filename') }}
-        </li>
+   <div class="row">
+               <div class="col-md-6">
+                  <div class="form-group">
+                     <label class="control-label col-md-3">URL</label>
+                     <div class="col-md-9">
+                         {{ Form::text('url', '',  array('class' => 'form-control')) }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                  <div class="form-group">
+                     <label class="control-label col-md-3">Type</label>
+                     <div class="col-md-9">
+                         {{ Form::text('type', '',  array('class' => 'form-control')) }}
+                    </div>
+                </div>
+            </div>
+</div>
+   <div class="row">
+               <div class="col-md-6">
+                  <div class="form-group">
+                     <label class="control-label col-md-3">Status</label>
+                     <div class="col-md-9">
+                         {{ Form::text('status', '',  array('class' => 'form-control')) }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                  <div class="form-group">
+                     <label class="control-label col-md-3">Tags</label>
+                     <div class="col-md-9">
+                         {{ Form::text('tags', '',  array('class' => 'form-control')) }}
+                    </div>
+                </div>
+            </div>
+</div>
+</div>
 
-        <li>
-            {{ Form::label('transcoded_url', 'Transcoded_url:') }}
-            {{ Form::text('transcoded_url') }}
-        </li>
+<div class="row">
+<div class="col-md-offset-5">
+    
+{{ Form::submit('Create', array('class' => 'btn btn-success')) }}
 
-        <li>
-            {{ Form::label('thumbnail_url', 'Thumbnail_url:') }}
-            {{ Form::text('thumbnail_url') }}
-        </li>
+  
+   {{ link_to_route('assets', 'Cancel') }}
+</div>    
 
-        <li>
-            {{ Form::label('url', 'Url:') }}
-            {{ Form::text('url') }}
-        </li>
+ 
+</div>
+</form>
 
-        <li>
-            {{ Form::label('type', 'Type:') }}
-            {{ Form::text('type') }}
-        </li>
 
-        <li>
-            {{ Form::label('status', 'Status:') }}
-            {{ Form::text('status') }}
-        </li>
 
-        <li>
-            {{ Form::label('tags', 'Tags:') }}
-            {{ Form::text('tags') }}
-        </li>
-
-        <li>
-            {{ Form::label('last_viewed', 'Last_viewed:') }}
-            {{ Form::text('last_viewed') }}
-        </li>
-
-        <li>
-            {{ Form::label('views', 'Views:') }}
-            {{ Form::input('number', 'views') }}
-        </li>
-
-        <li>
-            {{ Form::label('created_at', 'Created_at:') }}
-            {{ Form::text('created_at') }}
-        </li>
-
-        <li>
-            {{ Form::label('updated_at', 'Updated_at:') }}
-            {{ Form::text('updated_at') }}
-        </li>
-
-		<li>
-			{{ Form::submit('Submit', array('class' => 'btn btn-info')) }}
-		</li>
-	</ul>
-{{ Form::close() }}
-
-@if ($errors->any())
-	<ul>
-		{{ implode('', $errors->all('<li class="error">:message</li>')) }}
-	</ul>
-@endif
 
 @stop
-
-

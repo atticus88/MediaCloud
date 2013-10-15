@@ -7,13 +7,20 @@ User Management ::
 @stop
 
 @section('content')
+<div class="page-header">
+	
+<h1>All Assets
 
-<h1>All Assets</h1>
-
-<p>{{ link_to_route('create/asset', 'Add new asset') }}</p>
+<div class="pull-right">
+			<a href="{{ route('create/asset') }}" class="btn btn-small btn-info"><i class="icon-plus-sign icon-white"></i> Create</a>
+		</div>
+</h1>
+</div>
 
 @if (count($assets) >= 1)
+<div class="pull-right">	
 {{$assets->appends(array('sort' => 'created_at'))->links(); }}
+</div>
 	<table class="table table-striped table-bordered">
 		<thead>
 			<tr>
