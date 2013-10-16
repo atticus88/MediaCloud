@@ -796,9 +796,9 @@ Slider
 .slide_subtitle {
 	font-family: 'Open Sans';
 	font-weight: 400;
-	background-color: #0088cc;
+	/*background-color: #0088cc;*/
 	padding: 5px;
-	color:#fafafa;
+	color:#000;
 	text-transform: uppercase;
 	font-size:18px;
 }
@@ -1118,13 +1118,13 @@ Content and content elements.
 }
 
 .front-steps.front-step-one {
-	background: #0da3e2 url(../img/steps/one.png) no-repeat right bottom;
+	background: #492365 url(../img/steps/one.png) no-repeat right bottom; opacity: .9;
 }
 .front-steps.front-step-two {
-	background: #7c858e url(../img/steps/two.png) no-repeat right bottom;
+	background: #492365 url(../img/steps/two.png) no-repeat right bottom; opacity: .9;
 }
 .front-steps.front-step-three {
-	background: #68727c url(../img/steps/three.png) no-repeat right bottom;
+	background: #492365 url(../img/steps/three.png) no-repeat right bottom; opacity: .9;
 }
 
 .front-steps.front-step-one,
