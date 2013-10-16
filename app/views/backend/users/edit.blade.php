@@ -122,8 +122,6 @@ User Update ::
 	<!-- Permissions tab -->
 	<div class="tab-pane" id="tab-permissions">
 		<div class="controls">
-		
-
 				@foreach ($permissions as $area => $permissions)
 				<fieldset>
 					<legend>{{ $area }}</legend>
