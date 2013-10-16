@@ -36,7 +36,7 @@
 
 <!-- BEGIN BODY -->
 <body>
-	
+
     <!-- BEGIN HEADER -->
     <div class="header navbar navbar-default navbar-static-top">
 		<div class="container">
@@ -139,25 +139,25 @@
 
     <!-- BEGIN ALERTS -->
             <div id="alerts">
+                @if(Session::has('message'))
                 <div class="alert alert-success">
                     <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    <p>{{Session::get('message')}} BLAH </p>
+                    <p>{{Session::get('message')}}</p>
                 </div>
-                @if(Session::has('message'))
                 @endif
 
+                @if(Session::has('info'))
                 <div class="alert alert-info">
                     <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    <p>{{Session::get('info')}} BLAH</p>
+                    <p>{{Session::get('info')}}</p>
                 </div>
-                @if(Session::has('info'))
                 @endif
 
+                @if(Session::has('error'))
                 <div class="alert alert-danger">
                     <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    <p>{{Session::get('error')}} BLAH</p>
+                    <p>{{Session::get('error')}}</p>
                 </div>
-                @if(Session::has('error'))
                 @endif
 
                 @if($errors->has())
@@ -207,7 +207,7 @@
                                  data-start="2500"
                                  data-easing="easeOutExpo">
                                  Weber State University's new home for media<br>
-                                 
+
                             </div>
                             <a class="caption lft btn green slide_btn slide_item_left" href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes"
                                  data-x="0"
@@ -222,7 +222,7 @@
                                  data-y="55"
                                  data-speed="700"
                                  data-start="1000"
-                                 data-easing="easeOutExpo"  >
+                                 data-easing="easeOutExpo">
                                  <img src="/assets/img/.jpg" alt="Image 1">
                             </div>
                         </li>
@@ -391,7 +391,7 @@
                                  data-y="55"
                                  data-speed="400"
                                  data-start="2000"
-                                 data-easing="easeOutBack"  >
+                                 data-easing="easeOutBack">
                                  <img src="/_frontend/assets/img/sliders/revolution/iphone_left.png" alt="Image 2">
                             </div>
 
@@ -400,7 +400,7 @@
                                  data-y="55"
                                  data-speed="400"
                                  data-start="2400"
-                                 data-easing="easeOutBack"  >
+                                 data-easing="easeOutBack">
                                  <img src="/_frontend/assets/img/sliders/revolution/iphone_right.png" alt="Image 3">
                             </div>
                         </li> -->
