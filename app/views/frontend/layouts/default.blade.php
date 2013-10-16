@@ -36,29 +36,7 @@
 
 <!-- BEGIN BODY -->
 <body>
-	<!-- BEGIN STYLE CUSTOMIZER -->
-	<div class="color-panel hidden-sm">
-		<div class="color-mode-icons icon-color"></div>
-		<div class="color-mode-icons icon-color-close"></div>
-		<div class="color-mode">
-			<p>THEME COLOR</p>
-			<ul class="inline">
-				<li class="color-blue current color-default" data-style="blue"></li>
-				<li class="color-red" data-style="red"></li>
-				<li class="color-green" data-style="green"></li>
-				<li class="color-orange" data-style="orange"></li>
-			</ul>
-			<label>
-				<span>Header</span>
-				<select class="header-option form-control input-small">
-					<option value="default" selected>Default</option>
-					<option value="fixed">Fixed</option>
-				</select>
-			</label>
-		</div>
-	</div>
-	<!-- END BEGIN STYLE CUSTOMIZER -->
-
+	
     <!-- BEGIN HEADER -->
     <div class="header navbar navbar-default navbar-static-top">
 		<div class="container">
@@ -71,8 +49,8 @@
 				</button>
 				<!-- END RESPONSIVE MENU TOGGLER -->
 				<!-- BEGIN LOGO (you can use logo image instead of text)-->
-				<a class="navbar-brand logo-v1" href="index.html">
-					<img src="/_frontend/assets/img/logo_blue.png" id="logoimg" alt="">
+				<a class="navbar-brand" href="index.html">
+					<img src="/assets/img/WSU.jpg" id="logoimg" alt="">Media Cloud
 				</a>
 				<!-- END LOGO -->
 			</div>
@@ -90,19 +68,19 @@
                         	<li><a href="page_home2.html">Home with Top Bar</a></li>
                         </ul>
 					</li>
-                    <li class="dropdown">
+                    <!-- <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false" href="#">
                             Pages
                             <i class="icon-angle-down"></i>
-                        </a>
-                        <ul class="dropdown-menu">
+                        </a> -->
+                       <!--  <ul class="dropdown-menu">
                             <li><a href="page_about.html">About Us</a></li>
                             <li><a href="page_services.html">Services</a></li>
                             <li><a href="page_prices.html">Prices</a></li>
                             <li><a href="page_contacts.html">Contact</a></li>
                         </ul>
-                    </li>
-					<li class="dropdown">
+                    </li> -->
+					<!-- <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false" href="#">
                         	Features
                         	<i class="icon-angle-down"></i>
@@ -125,8 +103,8 @@
                         	<li><a href="portfolio_2.html">Portfolio 2</a></li>
                         	<li><a href="portfolio_item.html">Portfolio Item</a></li>
                         </ul>
-					</li>
-					<li class="dropdown">
+					</li> -->
+					<!-- <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false" href="#">
                         	Blog
                         	<i class="icon-angle-down"></i>
@@ -135,9 +113,9 @@
                         	<li><a href="blog.html">Blog Page</a></li>
                         	<li><a href="blog_item.html">Blog Item</a></li>
                         </ul>
-					</li>
-					<li><a href="http://www.keenthemes.com/preview/index.php?theme=metronic_admin&page=index.html" target="_blank">Admin Theme</a></li>
-					<li class="menu-search">
+					</li> -->
+					<li><a href="http://www.keenthemes.com/preview/index.php?theme=metronic_admin&page=index.html" target="_blank">Login</a></li>
+					<!-- <li class="menu-search">
                         <span class="sep"></span>
                         <i class="icon-search search-btn"></i>
 
@@ -151,13 +129,49 @@
                                 </div>
                             </form>
                         </div>
-					</li>
+					</li> -->
 				</ul>
 			</div>
 			<!-- BEGIN TOP NAVIGATION MENU -->
 		</div>
     </div>
     <!-- END HEADER -->
+
+    <!-- BEGIN ALERTS -->
+            <div id="alerts">
+                <div class="alert alert-success">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <p>{{Session::get('message')}} BLAH </p>
+                </div>
+                @if(Session::has('message'))
+                @endif
+
+                <div class="alert alert-info">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <p>{{Session::get('info')}} BLAH</p>
+                </div>
+                @if(Session::has('info'))
+                @endif
+
+                <div class="alert alert-danger">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <p>{{Session::get('error')}} BLAH</p>
+                </div>
+                @if(Session::has('error'))
+                @endif
+
+                @if($errors->has())
+                <div class="alert alert-danger error">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <h2>Error</h2>
+                    @foreach($errors->all('<p>:message</p>') as $error)
+                    {{$error}}
+                    @endforeach
+                </div>
+                @endif
+            </div>
+                <!-- END ALERTS -->
+
 
     <!-- BEGIN PAGE CONTAINER -->
     <div class="page-container">
@@ -176,7 +190,7 @@
                                  data-speed="400"
                                  data-start="1500"
                                  data-easing="easeOutExpo">
-                                 Need a website design ?
+                                 Welcome to the Cloud
                             </div>
                             <div class="caption lft slide_subtitle slide_item_left"
                                  data-x="0"
@@ -184,7 +198,7 @@
                                  data-speed="400"
                                  data-start="2000"
                                  data-easing="easeOutExpo">
-                                 This is what you were looking for
+                                 WSU's new home for media
                             </div>
                             <div class="caption lft slide_desc slide_item_left"
                                  data-x="0"
@@ -192,8 +206,8 @@
                                  data-speed="400"
                                  data-start="2500"
                                  data-easing="easeOutExpo">
-                                 Lorem ipsum dolor sit amet, dolore eiusmod<br>
-                                 quis tempor incididunt. Sed unde omnis iste.
+                                 Weber State University's new home for media<br>
+                                 
                             </div>
                             <a class="caption lft btn green slide_btn slide_item_left" href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes"
                                  data-x="0"
@@ -201,7 +215,7 @@
                                  data-speed="400"
                                  data-start="3000"
                                  data-easing="easeOutExpo">
-                                 Purchase Now!
+                                 Upload Now!
                             </a>
                             <div class="caption lfb"
                                  data-x="640"
@@ -209,12 +223,12 @@
                                  data-speed="700"
                                  data-start="1000"
                                  data-easing="easeOutExpo"  >
-                                 <img src="/_frontend/assets/img/sliders/revolution/man-winner.png" alt="Image 1">
+                                 <img src="/assets/img/.jpg" alt="Image 1">
                             </div>
                         </li>
 
                         <!-- THE SECOND SLIDE -->
-                        <li data-transition="fade" data-slotamount="7" data-masterspeed="300" data-delay="9400" data-thumb="assets/img/sliders/revolution/thumbs/thumb2.jpg">
+                       <!--  <li data-transition="fade" data-slotamount="7" data-masterspeed="300" data-delay="9400" data-thumb="assets/img/sliders/revolution/thumbs/thumb2.jpg">
                             <img src="/_frontend/assets/img/sliders/revolution/bg2.jpg" alt="">
                             <div class="caption lfl slide_title slide_item_left"
                                  data-x="0"
@@ -289,7 +303,7 @@
                                  <img src="/_frontend/assets/img/sliders/revolution/hint2-blue.png" id="rev-hint2" alt="Image 1">
                             </div>
 
-                        </li>
+                        </li> -->
 
                         <!-- THE THIRD SLIDE -->
                         <li data-transition="fade" data-slotamount="8" data-masterspeed="700" data-delay="9400" data-thumb="assets/img/sliders/revolution/thumbs/thumb2.jpg">
@@ -337,9 +351,9 @@
                         </li>
 
                         <!-- THE FORTH SLIDE -->
-                        <li data-transition="fade" data-slotamount="8" data-masterspeed="700" data-delay="9400" data-thumb="assets/img/sliders/revolution/thumbs/thumb2.jpg">
+                       <!--  <li data-transition="fade" data-slotamount="8" data-masterspeed="700" data-delay="9400" data-thumb="assets/img/sliders/revolution/thumbs/thumb2.jpg">
                             <!-- THE MAIN IMAGE IN THE FIRST SLIDE -->
-                            <img src="/_frontend/assets/img/sliders/revolution/bg4.jpg" alt="">
+                            <!-- <img src="/_frontend/assets/img/sliders/revolution/bg4.jpg" alt="">
                              <div class="caption lft slide_title"
                                  data-x="0"
                                  data-y="105"
@@ -389,7 +403,7 @@
                                  data-easing="easeOutBack"  >
                                  <img src="/_frontend/assets/img/sliders/revolution/iphone_right.png" alt="Image 3">
                             </div>
-                        </li>
+                        </li> -->
                 </ul>
                 <div class="tp-bannertimer tp-bottom"></div>
             </div>
@@ -403,21 +417,21 @@
                 <div class="col-md-4 col-sm-4">
                     <div class="service-box-heading">
                         <em><i class="icon-location-arrow blue"></i></em>
-                        <span>Multipurpose Template</span>
+                        <span>Upload</span>
                     </div>
                     <p>Lorem ipsum dolor sit amet, dolore eiusmod quis tempor incididunt ut et dolore Ut veniam unde nostrudlaboris. Sed unde omnis iste natus error sit voluptatem.</p>
                 </div>
                 <div class="col-md-4 col-sm-4">
                     <div class="service-box-heading">
                         <em><i class="icon-ok red"></i></em>
-                        <span>Well Documented</span>
+                        <span>Manage</span>
                     </div>
                     <p>Lorem ipsum dolor sit amet, dolore eiusmod quis tempor incididunt ut et dolore Ut veniam unde nostrudlaboris. Sed unde omnis iste natus error sit voluptatem.</p>
                 </div>
                 <div class="col-md-4 col-sm-4">
                     <div class="service-box-heading">
                         <em><i class="icon-resize-small green"></i></em>
-                        <span>Responsive Design</span>
+                        <span>Share</span>
                     </div>
                     <p>Lorem ipsum dolor sit amet, dolore eiusmod quis tempor incididunt ut et dolore Ut veniam unde nostrudlaboris. Sed unde omnis iste natus error sit voluptatem.</p>
                 </div>
@@ -427,19 +441,19 @@
             <!-- BEGIN BLOCKQUOTE BLOCK -->
             <div class="row quote-v1">
                 <div class="col-md-9 quote-v1-inner">
-                    <span>Metronic - The Most Complete & Popular Admin & Frontend Theme</span>
+                    <span>Media Cloud</span>
                 </div>
-                <div class="col-md-3 quote-v1-inner text-right">
+                <!-- <div class="col-md-3 quote-v1-inner text-right">
                     <a class="btn-transparent" href="http://www.keenthemes.com/preview/index.php?theme=metronic_admin" target="_blank"><i class="icon-rocket margin-right-10"></i>Preview Admin</a>
                     <!--<a class="btn-transparent" href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469"><i class="icon-gift margin-right-10"></i>Purchase 2 in 1</a>-->
-                </div>
+                <!-- </div> -->
             </div>
             <!-- END BLOCKQUOTE BLOCK -->
 
             <div class="clearfix"></div>
 
             <!-- BEGIN RECENT WORKS -->
-            <div class="row recent-work margin-bottom-40">
+            <!-- <div class="row recent-work margin-bottom-40">
                 <div class="col-md-3">
                     <h2><a href="portfolio.html">Recent Works</a></h2>
                     <p>Lorem ipsum dolor sit amet, dolore eiusmod quis tempor incididunt ut et dolore Ut veniam unde voluptatem. Sed unde omnis iste natus error sit voluptatem.</p>
@@ -536,7 +550,7 @@
                         </li>
                     </ul>
                 </div>
-            </div>
+            </div> -->
             <!-- END RECENT WORKS -->
 
             <div class="clearfix"></div>
