@@ -99,7 +99,7 @@ Content and content elements.
 
 /*Revolution Slider*/
 .slide_subtitle {
-	background-color: #0da3e2;
+	/*background-color: #0da3e2;*/
 }
 
 .tp-leftarrow.default:hover,
@@ -165,7 +165,7 @@ a.btn-transparent:hover {
 
 /*Steps*/
 .front-steps.front-step-one {
-	background: #0da3e2 url(../../img/steps/one.png) no-repeat right bottom;
+	/*background: #0da3e2 url(../../img/steps/one.png) no-repeat right bottom;*/
 }
 
 .front-steps.front-step-one:after { 
