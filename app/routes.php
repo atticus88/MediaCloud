@@ -7,6 +7,74 @@
 */
 App::bind('AssetRepository', 'Asset');
 
+Route::get('env',function(){
+	if(App::environment() == "local"){
+		var_dump(App::environment());
+	}
+});
+
+Route::get('test', function () {
+    //Is server HTTPS?
+	if (empty($_SERVER['HTTPS'])) {
+		$secure_connection = false;
+	} else {
+		$secure_connection = !!$_SERVER['HTTPS'] !== 'off';
+	}
+
+    //If it is not secure setup debug for testing
+	if ($secure_connection || $_SERVER['SERVER_PORT'] == 443) {
+		echo $secure_connection . ' ' . $_SERVER['SERVER_PORT'];
+	} else {
+
+		Session::flash('error', "Not Secure with HTTPS!");
+
+		$user = '';
+		try {
+			$user = DB::table('users')->where('username', 'dustinwoodard')->first();
+		} catch (Exception $e) {
+
+			Session::flash('error', $e->getMessage());
+		}
+
+		if ($user && isset($user->id)) {
+			Auth::loginUsingId($user->id);
+			var_dump(Auth::check());
+			var_dump(Auth::user()->id);
+			Session::flash('info', "Logged in as dustinwoodard for testing");
+		} else {
+
+			Session::flash('info', "No Users in database");
+
+		}
+
+        // return Redirect::to('/');
+	}
+
+	$cas = Config::get('cas');
+	phpCAS::client($cas['version'], $cas['cas_host'], $cas['cas_port'], $cas['cas_context']);
+//    phpCAS::setNoCasServerValidation();
+	phpCAS::setCasServerCACert($cas['cas_server_ca_cert_path']);
+	phpCAS::forceAuthentication();
+
+	if (count(User::where('username', '=', phpCAS::getUser())->first()) == 0) {
+
+		$user = Sentry::getUserProvider()->create(
+			array(
+				'email'    => phpCAS::getUser(),
+				'password' => 'chageme',
+				'username' => phpCAS::getUser(),
+				));
+
+	}
+
+	$user = DB::table('users')->where('username', phpCAS::getUser())->first();
+	Auth::loginUsingId($user->id);
+
+	echo phpCAS::getUser();
+    // return Redirect::to('/');
+});
+
+
 
 /*
 |--------------------------------------------------------------------------
