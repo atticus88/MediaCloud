@@ -36,7 +36,7 @@
 
 <!-- BEGIN BODY -->
 <body>
-	
+
     <!-- BEGIN HEADER -->
     <div class="header navbar navbar-default navbar-static-top">
 		<div class="container">
@@ -78,25 +78,25 @@
 
     <!-- BEGIN ALERTS -->
             <div id="alerts">
+                @if(Session::has('message'))
                 <div class="alert alert-success">
                     <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    <p>{{Session::get('message')}} BLAH </p>
+                    <p>{{Session::get('message')}}</p>
                 </div>
-                @if(Session::has('message'))
                 @endif
 
+                @if(Session::has('info'))
                 <div class="alert alert-info">
                     <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    <p>{{Session::get('info')}} BLAH</p>
+                    <p>{{Session::get('info')}}</p>
                 </div>
-                @if(Session::has('info'))
                 @endif
 
+                @if(Session::has('error'))
                 <div class="alert alert-danger">
                     <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    <p>{{Session::get('error')}} BLAH</p>
+                    <p>{{Session::get('error')}}</p>
                 </div>
-                @if(Session::has('error'))
                 @endif
 
                 @if($errors->has())
@@ -123,14 +123,6 @@
                             <!-- THE MAIN IMAGE IN THE FIRST SLIDE -->
                             <img src="/_frontend/assets/img/sliders/revolution/bg1.jpg" alt="">
 
-                            <div class="caption lft slide_title slide_item_left"
-                                 data-x="0"
-                                 data-y="220"
-                                 data-speed="400"
-                                 data-start="5000"
-                                 data-easing="easeOutExpo">
-                                 I use Media Cloud
-                            </div>
                             <div class="caption lft slide_subtitle slide_item_left thought1 "
                                  data-x="0"
                                  data-y="105"
@@ -140,19 +132,27 @@
                                  I don't use Media often...
                             </div>
                             <div class="caption lft slide_desc slide_item_left"
-                                 data-x="0"
-                                 data-y="180"
+                                 data-x="200"
+                                 data-y="145"
                                  data-speed="400"
                                  data-start="4000"
                                  data-easing="easeOutExpo">
                                  But When I do...<br>
-                                 
+
                             </div>
-                            <a class="caption lfb btn green slide_btn slide_item_left" href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes"
+                            <div class="caption lfr slide_title slide_item_left"
+                                 data-x="200"
+                                 data-y="185"
+                                 data-speed="1200"
+                                 data-start="5000"
+                                 data-easing="easeInOutElastic">
+                                 I use Media Cloud
+                            </div>
+                            <a class="caption lfb btn green slide_btn slide_item_left" href="/login"
                                  data-x="0"
                                  data-y="300"
                                  data-speed="400"
-                                 data-start="6000"
+                                 data-start="7000"
                                  data-easing="easeOutExpo">
                                  Get Started Now!
                             </a>
@@ -161,12 +161,12 @@
                                  data-y="55"
                                  data-speed="700"
                                  data-start="900"
-                                 data-easing="easeOutExpo"  >
+                                 data-easing="easeOutExpo">
                                  <img src="/assets/img/old_man.png" alt="Image 1">
                             </div>
                         </li>
 
-                
+
 
                         <!-- THE THIRD SLIDE -->
                         <li data-transition="fade" data-slotamount="8" data-masterspeed="700" data-delay="9400" data-thumb="assets/img/sliders/revolution/thumbs/thumb2.jpg">
@@ -203,7 +203,7 @@
                                  data-easing="easeOutExpo">
                                  Check out this video to help you get started
                             </div>
-                            <a class="caption lfr btn green slide_btn" href=""
+                            <a class="caption lfr  btn green slide_btn" href=""
                                  data-x="470"
                                  data-y="280"
                                  data-speed="400"
@@ -246,8 +246,8 @@
                     </div>
                 </div>
             </div>
-            <!-- END STEPS --> 
-        </div>
+            <!-- END STEPS -->
+                </div>
         <!-- END CONTAINER -->
     </div>
     <!-- END PAGE CONTAINER -->
