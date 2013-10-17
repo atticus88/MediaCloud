@@ -49,7 +49,7 @@
 				</button>
 				<!-- END RESPONSIVE MENU TOGGLER -->
 				<!-- BEGIN LOGO (you can use logo image instead of text)-->
-				<a class="navbar-brand" href="index.html">
+				<a class="navbar-brand" href="/">
 					<img src="/assets/img/WSU.jpg" id="logoimg" alt="">Media Cloud
 				</a>
 				<!-- END LOGO -->
@@ -68,7 +68,7 @@
                         	<li><a href="page_home2.html">Home with Top Bar</a></li>
                         </ul>
 					</li>
-					<li><a href="http://www.keenthemes.com/preview/index.php?theme=metronic_admin&page=index.html" target="_blank">Login</a></li>
+					<li><a href="{{ route('admin') }}" target="_blank">Login</a></li>
 				</ul>
 			</div>
 			<!-- BEGIN TOP NAVIGATION MENU -->
@@ -209,8 +209,7 @@
                                  data-speed="400"
                                  data-start="3500"
                                  data-easing="easeOutExpo">
-                                 Ain't Nobody Got Time for That-- Upload!
-                            </a>
+                                 Get Started Now!                            </a>
                         </li>
 
                 </ul>
@@ -254,8 +253,8 @@
     <!-- END PAGE CONTAINER -->
 
     <!-- BEGIN COPYRIGHT -->
-    <div class="copyright">
-        <div class="container">
+    <div class="container">
+        <div class="navbar navbar-fixed-bottom copyright">
             <div class="row">
                 <div class="col-md-8 col-sm-8">
                     <p>
