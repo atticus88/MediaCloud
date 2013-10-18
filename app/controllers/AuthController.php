@@ -14,7 +14,7 @@ class AuthController extends BaseController {
 		// Is the user logged in?
 		if (Sentry::check())
 		{
-			return Redirect::route('account');
+			return Redirect::to('/');
 		}
 
 		// Show the page

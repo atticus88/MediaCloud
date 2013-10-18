@@ -1,4 +1,4 @@
-@extends('frontend/layouts/starterkit')
+@extends('backend/layouts/admin')
 
 {{-- Page title --}}
 @section('title')

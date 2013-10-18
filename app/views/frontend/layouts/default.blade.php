@@ -58,7 +58,7 @@
 			<!-- BEGIN TOP NAVIGATION MENU -->
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-					<li class="dropdown active">
+	<!-- 				<li class="dropdown active">
                             <a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false" href="#">
                         	Home
                         	<i class="icon-angle-down"></i>
@@ -67,8 +67,8 @@
                         	<li class="active"><a href="index.html">Home Default</a></li>
                         	<li><a href="page_home2.html">Home with Top Bar</a></li>
                         </ul>
-					</li>
-					<li><a href="http://www.keenthemes.com/preview/index.php?theme=metronic_admin&page=index.html" target="_blank">Login</a></li>
+					</li> -->
+					<li><a href="{{URL::to('login')}}" target="_blank">Login</a></li>
 				</ul>
 			</div>
 			<!-- BEGIN TOP NAVIGATION MENU -->
