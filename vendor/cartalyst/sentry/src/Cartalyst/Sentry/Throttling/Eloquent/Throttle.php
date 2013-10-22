@@ -94,6 +94,16 @@ class Throttle extends Model implements ThrottleInterface {
 	}
 
 	/**
+	 * Get the number of login attempts a user has left before suspension.
+	 *
+	 * @return int
+	 */
+	public function getRemainingLoginAttempts()
+	{
+		return static::getAttemptLimit() - $this->getLoginAttempts();
+	}
+
+	/**
 	 * Add a new login attempt.
 	 *
 	 * @return void
@@ -359,11 +369,11 @@ class Throttle extends Model implements ThrottleInterface {
 
 		if (isset($result['suspended']))
 		{
-			$result['suspended'] = $this->getSuspended($result['suspended']);
+			$result['suspended'] = $this->getSuspendedAttribute($result['suspended']);
 		}
 		if (isset($result['banned']))
 		{
-			$result['banned'] = $this->getBanned($result['banned']);
+			$result['banned'] = $this->getBannedAttribute($result['banned']);
 		}
 		if (isset($result['last_attempt_at']) and $result['last_attempt_at'] instanceof DateTime)
 		{
@@ -417,4 +427,29 @@ class Throttle extends Model implements ThrottleInterface {
 		return static::$suspensionTime;
 	}
 
+	/**
+	 * Get the remaining time on a suspension in minutes rounded up. Returns
+	 * 0 if user is not suspended.
+	 *
+	 * @return int
+	 */
+	public function getRemainingSuspensionTime()
+	{
+		if(!$this->isSuspended())
+			return 0;
+
+		$lastAttempt = clone $this->last_attempt_at;
+
+		$suspensionTime  = static::$suspensionTime;
+		$clearAttemptsAt = $lastAttempt->modify("+{$suspensionTime} minutes");
+		$now             = new Datetime;
+
+		$timeLeft = $clearAttemptsAt->diff($now);
+
+		$minutesLeft = ($timeLeft->s != 0 ?
+						($timeLeft->days * 24 * 60) + ($timeLeft->h * 60) + ($timeLeft->i) + 1 : 
+						($timeLeft->days * 24 * 60) + ($timeLeft->h * 60) + ($timeLeft->i));
+
+		return $minutesLeft;
+	}
 }

@@ -2,6 +2,8 @@
 
 @section('content')
 
+
+{{Breadcrumbs::render('editAsset')}}
 <div class="page-header">    
 <h1>Edit Asset
 <div class="pull-right">

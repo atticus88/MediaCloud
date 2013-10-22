@@ -41,21 +41,7 @@ Dashboard ::
                <h3 class="page-title">
                   Dashboard <small>statistics and more</small>
                </h3>
-               <ul class="page-breadcrumb breadcrumb">
-                  <li>
-                     <i class="icon-home"></i>
-                     <a href="index.html">Home</a>
-                     <i class="icon-angle-right"></i>
-                  </li>
-                  <li><a href="#">Dashboard</a></li>
-                  <li class="pull-right">
-                     <div id="dashboard-report-range" class="dashboard-date-range tooltips" data-placement="top" data-original-title="Change dashboard date range">
-                        <i class="icon-calendar"></i>
-                        <span></span>
-                        <i class="icon-angle-down"></i>
-                     </div>
-                  </li>
-               </ul>
+               {{Breadcrumbs::render('home')}}
                <!-- END PAGE TITLE & BREADCRUMB-->
             </div>
          </div>

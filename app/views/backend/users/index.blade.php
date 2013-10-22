@@ -8,6 +8,9 @@ User Management ::
 
 {{-- Page content --}}
 @section('content')
+
+{{Breadcrumbs::render('users')}}
+
 <div class="page-header">
 	<h1>
 		User Management

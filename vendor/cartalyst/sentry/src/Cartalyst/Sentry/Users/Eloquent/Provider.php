@@ -222,7 +222,7 @@ class Provider implements ProviderInterface {
 	}
 
 	/**
-	 * Returns an all users.
+	 * Returns an array containing all users.
 	 *
 	 * @return array
 	 */
@@ -238,12 +238,9 @@ class Provider implements ProviderInterface {
 	 * @param  \Cartalyst\Sentry\Groups\GroupInterface  $group
 	 * @return array
 	 */
-	public function findAllInGroup($group)
+	public function findAllInGroup(GroupInterface $group)
 	{
-		return array_filter($this->findAll(), function($user) use ($group)
-		{
-			return $user->inGroup($group);
-		});
+		return $group->users()->get();
 	}
 
 	/**

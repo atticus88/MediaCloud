@@ -29,7 +29,23 @@
                <a href="/admin/assets"> <i class="icon-film"></i> <span class="title">Assets</span> <span class="selected"></span> </a>
             </li>
             <li class="{{(Request::is('admin/users') ? ' active' : '')}}">
-               <a href="/admin/users"> <i class="icon-user"></i> <span class="title">Users</span> <span class="selected"></span> </a>
+               <a href="javascript:;">
+               <i class="icon-user"></i>
+               <span class="title">Users</span>
+               <span class="arrow"></span>
+               </a>
+               <ul class="sub-menu">
+                  <li>
+                     <a href="/admin/users">
+                     Users</a>
+                  </li>
+                   <li>
+                     <a href="/admin/groups">
+                     Groups</a>
+                  </li>
+               </ul>
+
+               <!-- <a href="/admin/users"> <i class="icon-user"></i> <span class="title">Users</span> <span class="selected"></span> </a> -->
             </li>
             <li class="">
                <a href="javascript:;">
@@ -76,6 +92,9 @@
                      <a href="layout_ajax.html">Content Loading via Ajax</a>
                   </li>
                </ul>
+            </li>
+            <li class="start {{(Request::is('admin') ? '' : '')}}">
+               <a href="admin/settings"> <i class="icon-gears"></i> <span class="title">Settings</span> <span class="selected"></span></a>
             </li>
             @section('sidebar')
 

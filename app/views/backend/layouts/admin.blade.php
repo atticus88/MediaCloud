@@ -55,7 +55,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
          <!-- BEGIN LOGO -->
          <a class="navbar-brand" href="/"> 
          <img src="/assets/img/wsu.png" alt="logo" class="img-responsive" />
-         <a class="navbar-brand" href="/"> WSU Media Cloud
+         <a class="navbar-brand" href="/"> 
          <!-- <img src="/_admin/assets/img/logo.png" alt="logo" class="img-responsive" /> -->
          </a>
          <!-- END LOGO -->

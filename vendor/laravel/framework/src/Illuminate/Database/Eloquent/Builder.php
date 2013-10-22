@@ -259,7 +259,7 @@ class Builder {
 		// Once we have the paginator we need to set the limit and offset values for
 		// the query so we can get the properly paginated items. Once we have an
 		// array of items we can create the paginator instances for the items.
-		$page = $paginator->getCurrentPage();
+		$page = $paginator->getCurrentPage($total);
 
 		$this->query->forPage($page, $perPage);
 
@@ -482,9 +482,9 @@ class Builder {
 	/**
 	 * Eagerly load the relationship on a set of models.
 	 *
-	 * @param  array    $models
-	 * @param  string   $name
-	 * @param  \Closure $constraints
+	 * @param  array     $models
+	 * @param  string    $name
+	 * @param  \Closure  $constraints
 	 * @return array
 	 */
 	protected function loadRelation(array $models, $name, Closure $constraints)

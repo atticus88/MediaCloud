@@ -2,9 +2,9 @@
 
 @section('content')
 
+{{Breadcrumbs::render('createAsset')}}
 <div class="page-header">    
 <h1>
-
 Create Asset
 
 <div class="pull-right">

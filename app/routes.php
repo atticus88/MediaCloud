@@ -6,6 +6,13 @@
 * APP Bindings
 */
 App::bind('AssetRepository', 'Asset');
+Route::get('test',function(){
+var_dump(Str::plural('dog'));
+var_dump(Str::ascii('•©'));
+var_dump(Str::random());
+var_dump(Str::quickRandom());
+var_dump(Str::singular('dogs'));
+});
 
 
 /*
@@ -69,6 +76,7 @@ Route::group(array('prefix' => 'admin'), function()
 
 	# Dashboard
 	Route::get('/', array('as' => 'admin', 'uses' => 'Controllers\Admin\DashboardController@getIndex'));
+	Route::get('settings', array('as' => 'settings', 'uses' => 'Controllers\Admin\SettingsController@getIndex'));
 
 });
 
