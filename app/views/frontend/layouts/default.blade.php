@@ -60,20 +60,28 @@
 			<!-- BEGIN TOP NAVIGATION MENU -->
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-	<!-- 				<li class="dropdown active">
+	
+					
 
 
+                    @if (Sentry::check())
+                        <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false" href="#">
-                            Home
-                            <i class="icon-angle-down"></i>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li class="active"><a href="index.html">Home Default</a></li>
-                            <li><a href="page_home2.html">Home with Top Bar</a></li>
-                        </ul>
+                            Welcome {{Sentry::getUser()->username}}! <i class="icon-angle-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li class="active"><a href="index.html">Home Default</a></li>                            
+                                <li><a href="{{URL::to('logout')}}">Logout</a></li>
+                            </ul>
+                        </li>
+                    @else
+                        <li><a href="{{URL::to('login')}}" target="_blank">Login</a></li>
+                    @endif
 
-					</li> -->
-					<li><a href="{{URL::to('login')}}" target="_blank">Login</a></li>
+
+
+                    
+
+
 				</ul>
 			</div>
 			<!-- BEGIN TOP NAVIGATION MENU -->

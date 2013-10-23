@@ -96,9 +96,33 @@ Route::filter('admin-auth', function()
 
 
 Route::filter('cas-login', function(){
-
 	if(App::environment() == "local"){
-		var_dump(App::environment());
+		Session::flash('error', "Not Secure with HTTPS!");
+
+		$user = '';
+		try {
+			$user = (array) DB::table('users')->where('username', 'admin')->first();
+		} catch (Exception $e) {
+
+			Session::flash('error', $e->getMessage());
+		}
+
+		if ($user && isset($user['id'])) {
+			$data = array(
+				'id' => $user['id'], 
+				'email' => $user['email'], 
+				'password' => 'admin', 
+				);
+			$user = Sentry::authenticate($data, false);
+			var_dump(Sentry::check());
+
+			// Auth::loginUsingId($user->id);
+			// var_dump(Auth::check());
+			// var_dump(Auth::user()->id);
+			Session::flash('info', "Logged in admin for testing");
+		} else {
+			Session::flash('info', "No Users in database");
+		}
 	}
 
 	if(App::environment() == "dev"){
@@ -110,100 +134,56 @@ Route::filter('cas-login', function(){
 	}
 
 
+	// $cas = Config::get('cas');
+	// phpCAS::client($cas['version'], $cas['cas_host'], $cas['cas_port'], $cas['cas_context']);
+	// phpCAS::setNoCasServerValidation();
+	// phpCAS::setCasServerCACert($cas['cas_server_ca_cert_path']);
+	// phpCAS::forceAuthentication();
 
-	dd("cas-login");
+	// if (count(User::where('username', '=', phpCAS::getUser())->first()) == 0) {
 
+	// 	$user = Sentry::getUserProvider()->create(
+	// 		array(
+	// 			'email'    => phpCAS::getUser(),
+	// 			'password' => 'chageme',
+	// 			'username' => phpCAS::getUser(),
+	// 			));
 
+	// }
 
+	// $user = DB::table('users')->where('username', phpCAS::getUser())->first();
+	// Auth::loginUsingId($user->id);
 
-
-
-
-
-	//Is server HTTPS?
-	if (empty($_SERVER['HTTPS'])) {
-		$secure_connection = false;
-	} else {
-		$secure_connection = !!$_SERVER['HTTPS'] !== 'off';
-	}
-
-    //If it is not secure setup debug for testing
-	if ($secure_connection || $_SERVER['SERVER_PORT'] == 443) {
-		echo $secure_connection . ' ' . $_SERVER['SERVER_PORT'];
-	} else {
-
-		Session::flash('error', "Not Secure with HTTPS!");
-
-		$user = '';
-		try {
-			$user = DB::table('users')->where('username', 'dustinwoodard')->first();
-		} catch (Exception $e) {
-
-			Session::flash('error', $e->getMessage());
-		}
-
-		if ($user && isset($user->id)) {
-			Auth::loginUsingId($user->id);
-			var_dump(Auth::check());
-			var_dump(Auth::user()->id);
-			Session::flash('info', "Logged in as dustinwoodard for testing");
-		} else {
- 			Session::flash('info', "No Users in database");
-		}
-
-        // return Redirect::to('/');
-	}
-
-	$cas = Config::get('cas');
-	phpCAS::client($cas['version'], $cas['cas_host'], $cas['cas_port'], $cas['cas_context']);
-	phpCAS::setNoCasServerValidation();
-	phpCAS::setCasServerCACert($cas['cas_server_ca_cert_path']);
-	phpCAS::forceAuthentication();
-
-	if (count(User::where('username', '=', phpCAS::getUser())->first()) == 0) {
-
-		$user = Sentry::getUserProvider()->create(
-			array(
-				'email'    => phpCAS::getUser(),
-				'password' => 'chageme',
-				'username' => phpCAS::getUser(),
-				));
-
-	}
-
-	$user = DB::table('users')->where('username', phpCAS::getUser())->first();
-	Auth::loginUsingId($user->id);
-
-	echo phpCAS::getUser();
+	// echo phpCAS::getUser();
     // return Redirect::to('/');
 });
 
 
-Route::get('cas-logout', function () {
-    echo 'logout';
+Route::filter('cas-logout', function () {
+	Sentry::logout();
+	return Redirect::to('/');
 
-    dd('cas-logout');
     //Is server HTTPS? if not: test on Dev; if is precede as normal;
-    if (empty($_SERVER['HTTPS'])) {
-        $secure_connection = false;
-    } else {
-        $secure_connection = !!$_SERVER['HTTPS'] !== 'off';
-    }
+	// if (empty($_SERVER['HTTPS'])) {
+	// 	$secure_connection = false;
+	// } else {
+	// 	$secure_connection = !!$_SERVER['HTTPS'] !== 'off';
+	// }
 
     //If it is not Show Error
-    if ($secure_connection || $_SERVER['SERVER_PORT'] == 443) {
-        echo $secure_connection . ' ' . $_SERVER['SERVER_PORT'];
-    } else {
-        Session::flash('error', "Not Secure with HTTPS!");
-        Auth::logout();
-        return Redirect::to('/');
-    }
+	// if ($secure_connection || $_SERVER['SERVER_PORT'] == 443) {
+	// 	echo $secure_connection . ' ' . $_SERVER['SERVER_PORT'];
+	// } else {
+	// 	Session::flash('error', "Not Secure with HTTPS!");
+	// 	Auth::logout();
+	// 	return Redirect::to('/');
+	// }
 
-    $cas = Config::get('cas');
-    phpCAS::client($cas['version'], $cas['cas_host'], $cas['cas_port'], $cas['cas_context']);
-    phpCAS::setCasServerCACert($cas['cas_server_ca_cert_path']);
-    phpCAS::forceAuthentication();
-    phpCAS::logout(array('service' => URL::to('/')));
+	// $cas = Config::get('cas');
+	// phpCAS::client($cas['version'], $cas['cas_host'], $cas['cas_port'], $cas['cas_context']);
+	// phpCAS::setCasServerCACert($cas['cas_server_ca_cert_path']);
+	// phpCAS::forceAuthentication();
+	// phpCAS::logout(array('service' => URL::to('/')));
 });
 
 

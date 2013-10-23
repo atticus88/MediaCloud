@@ -9,12 +9,12 @@ class AuthController extends BaseController {
 	 */
 	public function getSignin()
 	{
-
 		// var_dump(Sentry::check());
 		// Is the user logged in?
 		if (Sentry::check())
 		{
-			return Redirect::to('/');
+			// dd('login');
+			// return Redirect::to('/');
 		}
 
 		// Show the page

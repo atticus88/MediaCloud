@@ -19,14 +19,6 @@ App::bind('AssetRepository', 'Asset');
 Route::group(array('prefix' => 'admin'), function()
 {
 
-	Route::get('login', function(){
-		$this->beforeFilter('cas');
-	});
-
-	Route::get('logout', function(){
-		echo 'logout';
-	});
-
 	# Blog Management
 	Route::group(array('prefix' => 'blogs'), function()
 	{
@@ -196,10 +188,10 @@ Route::post('/app/install', array( 'as' => 'app/install', function() {
 
 Route::get('login', array('before' => 'cas-login', function()
 {
-    return 'login good';
+    return Redirect::to('/');
 }));
 
 Route::get('logout', array('before' => 'cas-logout', function()
 {
-    return 'logout good';
+    return 'route logout good';
 }));
