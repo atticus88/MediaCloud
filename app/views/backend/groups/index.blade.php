@@ -1,13 +1,15 @@
-@extends('backend/layouts/default')
+@extends('backend/layouts/admin')
 
 {{-- Web site Title --}}
 @section('title')
 Group Management ::
 @parent
 @stop
-
 {{-- Content --}}
 @section('content')
+
+{{Breadcrumbs::render('groups')}}
+
 <div class="page-header">
 	<h3>
 		Group Management
@@ -39,7 +41,7 @@ Group Management ::
 			<td>{{ $group->users()->count() }}</td>
 			<td>{{ $group->created_at->diffForHumans() }}</td>
 			<td>
-				<a href="{{ route('update/group', $group->id) }}" class="btn btn-mini">@lang('button.edit')</a>
+				<a href="{{ route('update/group', $group->id) }}" class="btn btn-info">@lang('button.edit')</a>
 				<a href="{{ route('delete/group', $group->id) }}" class="btn btn-mini btn-danger">@lang('button.delete')</a>
 			</td>
 		</tr>

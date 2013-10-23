@@ -8,6 +8,9 @@ Create a User ::
 
 {{-- Page content --}}
 @section('content')
+
+{{Breadcrumbs::render('createUsers')}}
+
 <div class="page-header">
 	<h1>
 		Create a New User

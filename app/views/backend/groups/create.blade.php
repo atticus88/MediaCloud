@@ -1,4 +1,4 @@
-@extends('backend/layouts/default')
+@extends('backend/layouts/admin')
 
 {{-- Web site Title --}}
 @section('title')
@@ -8,6 +8,10 @@ Create a Group ::
 
 {{-- Content --}}
 @section('content')
+
+{{Breadcrumbs::render('createGroups')}}
+
+
 <div class="page-header">
 	<h3>
 		Create a New Group
@@ -32,12 +36,15 @@ Create a Group ::
 	<div class="tab-content">
 		<!-- General tab -->
 		<div class="tab-pane active" id="tab-general">
-			<!-- Name -->
-			<div class="control-group {{ $errors->has('name') ? 'error' : '' }}">
-				<label class="control-label" for="name">Name</label>
-				<div class="controls">
-					<input type="text" name="name" id="name" value="{{ Input::old('name') }}" />
-					{{ $errors->first('name', '<span class="help-inline">:message</span>') }}
+			<div class="row">
+				
+				<!-- Name -->
+				<div class="col-md-6 form-group control-group {{ $errors->has('name') ? 'error' : '' }}">
+					<label class="control-label pull-left" for="name">Name</label>
+					<div class="controls col-md-9">
+						<input class="form-control" type="text" name="name" id="name" value="{{ Input::old('name') }}" />
+						{{ $errors->first('name', '<span class="help-inline">:message</span>') }}
+					</div>
 				</div>
 			</div>
 		</div>
@@ -80,13 +87,12 @@ Create a Group ::
 	</div>
 
 	<!-- Form Actions -->
-	<div class="control-group">
-		<div class="controls">
+	<div class="control-group row">
+		<div class="controls col-md-6">
+			<button type="submit" class="btn btn-success">Create Group</button>
 			<a class="btn btn-link" href="{{ route('groups') }}">Cancel</a>
-
 			<button type="reset" class="btn">Reset</button>
 
-			<button type="submit" class="btn btn-success">Create Group</button>
 		</div>
 	</div>
 </form>

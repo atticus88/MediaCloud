@@ -18,6 +18,8 @@ class HomeController extends BaseController {
 	public function getIndex()
 	{
 		if(file_exists(base_path() . '/app/config/database.php')) {
+
+			return View::make('home');
 			
 		} else {
 			return Redirect::route('install');

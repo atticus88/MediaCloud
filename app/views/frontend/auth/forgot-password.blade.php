@@ -8,28 +8,40 @@ Forgot Password ::
 
 {{-- Page content --}}
 @section('content')
-<div class="page-header">
-	<h3>Forgot Password</h3>
-</div>
-<form method="post" action="" class="form-horizontal">
-	<!-- CSRF Token -->
-	<input type="hidden" name="_token" value="{{ csrf_token() }}" />
-
-	<!-- Email -->
-	<div class="control-group{{ $errors->first('email', ' error') }}">
-		<label class="control-label" for="email">Email</label>
-		<div class="controls">
-			<input type="text" name="email" id="email" value="{{ Input::old('email') }}" />
-			{{ $errors->first('email', '<span class="help-block">:message</span>') }}
-		</div>
+<div class="container">
+	
+	<div class="page-header">
+		<h3>Forgot Password</h3>
 	</div>
+	<form method="post" action="" class="form-horizontal">
+		<!-- CSRF Token -->
+		<input type="hidden" name="_token" value="{{ csrf_token() }}" />
 
-	<!-- Form actions -->
-	<div class="control-group">
-		<div class="controls">
-			<a class="btn" href="{{ route('home') }}">Cancel</a>
+		<!-- Email -->
+		<div class="row">
+			<div class="col-md-6">
+				<div class=" control-form control-group{{ $errors->first('email', ' error') }}">
+					<label class="control-label pull-left" for="email">Email</label>
+					<div class="controls col-md-6">
+						<input class="form-control" type="text" name="email" id="email" value="{{ Input::old('email') }}" />
+						{{ $errors->first('email', '<span class="help-block">:message</span>') }}
+					</div>
+				</div>
+			</div>
+		</div>
 
-			<button type="submit" class="btn">Submit</button>
+		<hr>
+
+		<!-- Form actions -->
+		<div class="row">
+			<div class="col-md-6">
+				<div class="control-group">
+					<div class="controls">
+						<button type="submit" class="btn btn-success">Submit</button>
+						<a class="btn" href="{{ route('signin') }}">Cancel</a>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </form>

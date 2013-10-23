@@ -8,6 +8,10 @@ User Update ::
 
 {{-- Page content --}}
 @section('content')
+
+{{Breadcrumbs::render('editUsers')}}
+
+
 <div class="page-header">
 	<h1>
 		User Update
