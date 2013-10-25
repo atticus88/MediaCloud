@@ -155,7 +155,7 @@ Route::filter('cas-login', function(){
 	Auth::loginUsingId($user->id);
 
 	echo phpCAS::getUser();
-    var_dump(phpCAS::getAttributes())
+    var_dump(phpCAS::getAttributes());
     // return Redirect::to('/');
 });
 
