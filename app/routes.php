@@ -173,6 +173,7 @@ Route::get('/', array('as' => 'home', function(){
 	if(file_exists(base_path() . '/app/config/database.php')) {
 		return View::make('home');
 	} else {
+
 		return Redirect::route('install');
 	//echo URL::route('install');
 	}
