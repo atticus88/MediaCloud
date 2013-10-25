@@ -140,27 +140,25 @@ Route::filter('cas-login', function(){
 	// phpCAS::setCasServerCACert($cas['cas_server_ca_cert_path']);
 	phpCAS::forceAuthentication();
 
-	echo phpCAS::getUser();
 
 	$cas_data=phpCAS::getAttributes();
 
-    var_dump($cas_data['email']);
+	var_dump($cas_data['email']);
 
-	// if (count(User::where('username', '=', phpCAS::getUser())->first()) == 0) {
+	if (count(User::where('username', '=', phpCAS::getUser())->first()) == 0) {
 
-	// 	$user = Sentry::getUserProvider()->create(
-	// 		array(
-	// 			'email'    => phpCAS::getUser(),
-	// 			'password' => 'chageme',
-	// 			'username' => phpCAS::getUser(),
-	// 			));
+		$user = Sentry::getUserProvider()->create(
+			array(
+				'email'    => $cas_data['email'],
+				'username' => phpCAS::getUser(),
+				));
 
-	// }
+	}
 
 	// $user = DB::table('users')->where('username', phpCAS::getUser())->first();
 	// Auth::loginUsingId($user->id);
 
-    // return Redirect::to('/');
+ //    return Redirect::to('/');
 });
 
 
@@ -184,11 +182,12 @@ Route::filter('cas-logout', function () {
 	// 	return Redirect::to('/');
 	// }
 
-	// $cas = Config::get('cas');
-	// phpCAS::client($cas['version'], $cas['cas_host'], $cas['cas_port'], $cas['cas_context']);
+	$cas = Config::get('cas');
+	phpCAS::client($cas['version'], $cas['cas_host'], $cas['cas_port'], $cas['cas_context']);
+	phpCAS::setNoCasServerValidation();
 	// phpCAS::setCasServerCACert($cas['cas_server_ca_cert_path']);
-	// phpCAS::forceAuthentication();
-	// phpCAS::logout(array('service' => URL::to('/')));
+	phpCAS::forceAuthentication();
+	phpCAS::logout(array('service' => URL::to('/')));
 });
 
 
