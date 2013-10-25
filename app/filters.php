@@ -150,6 +150,7 @@ Route::filter('cas-login', function(){
 		$user = Sentry::getUserProvider()->create(
 			array(
 				'email'    => $cas_data['email'],
+				'password' => 'changeme'
 				'username' => phpCAS::getUser(),
 				));
 
