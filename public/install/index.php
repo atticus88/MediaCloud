@@ -40,7 +40,7 @@
 			}
 			li.checkmark {
 				background:url("images/checkmark-icon.png") no-repeat 0 50%;
-				
+
 			}
 			li.error {
 				background:url("images/x.png") no-repeat 0 50%;
@@ -61,7 +61,21 @@
 					</p>
 
 
+<?php
+$HTML = <<<HTML
+<pre>
+sudo chmod 777 app/config
+sudo chmod 777 app/config/app.php
+sudo chmod 777 app/storage/*
+sudo chmod 777 app/storage
+</pre>
+HTML;
 
+
+if (preg_match('/Linux/',php_uname())){
+ echo $HTML;
+}
+ ?>
 
 					<p>Make sure directorys are writable:</p>
 					<?php
@@ -76,6 +90,8 @@
 					$app_storage_views = realpath($project_root_path."/app/storage/views");
 
 					?>
+
+
 					<ul class="checklist">
 						<li class="<?php echo is_writable($app_config) ? "checkmark" : "error" ?>">app/config</li>
 						<li class="<?php echo is_writable($app_config_app) ? "checkmark" : "error" ?>">app/config/app.php</li>
