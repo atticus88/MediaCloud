@@ -141,8 +141,10 @@ Route::filter('cas-login', function(){
 	phpCAS::forceAuthentication();
 
 	echo phpCAS::getUser();
-    var_dump(phpCAS::getAttributes());
-	// die($_GET('ticket'));
+
+	$cas_data=phpCAS::getAttributes();
+
+    var_dump($cas_data['email']);
 
 	// if (count(User::where('username', '=', phpCAS::getUser())->first()) == 0) {
 
