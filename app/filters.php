@@ -165,7 +165,6 @@ Route::filter('cas-login', function(){
 
 Route::filter('cas-logout', function () {
 	
-session_start(); 
 
     //Is server HTTPS? if not: test on Dev; if is precede as normal;
 	// if (empty($_SERVER['HTTPS'])) {
