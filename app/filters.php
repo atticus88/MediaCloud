@@ -140,6 +140,10 @@ Route::filter('cas-login', function(){
 	phpCAS::setCasServerCACert($cas['cas_server_ca_cert_path']);
 	phpCAS::forceAuthentication();
 
+	dd($_GET('ticket'));
+	echo phpCAS::getUser();
+    var_dump(phpCAS::getAttributes());
+    die();
 	// if (count(User::where('username', '=', phpCAS::getUser())->first()) == 0) {
 
 	// 	$user = Sentry::getUserProvider()->create(
@@ -154,8 +158,6 @@ Route::filter('cas-login', function(){
 	$user = DB::table('users')->where('username', phpCAS::getUser())->first();
 	Auth::loginUsingId($user->id);
 
-	echo phpCAS::getUser();
-    var_dump(phpCAS::getAttributes());
     // return Redirect::to('/');
 });
 
