@@ -31,6 +31,20 @@
 			.wizard-addl-subsection {
 				margin-bottom:40px;
 			}
+
+			.checklist{}
+			.checklist li{
+				padding-left: 45px;
+				list-style-type: none;
+				margin-bottom: 20px;
+			}
+			li.checkmark {
+				background:url("images/checkmark-icon.png") no-repeat 0 50%;
+
+			}
+			li.error {
+				background:url("images/x.png") no-repeat 0 50%;
+			}
 		</style>
 	</head>
 
@@ -45,6 +59,54 @@
 					<p>
 						Welcome to MediaCloud this wizard will guide you through the installation and configuration.
 					</p>
+
+
+<?php
+$HTML = <<<HTML
+<pre>
+sudo chmod 777 app/config
+sudo chmod 777 app/config/app.php
+sudo chmod 777 app/storage/*
+sudo chmod 777 app/storage
+</pre>
+HTML;
+
+
+if (preg_match('/Linux/',php_uname())){
+ echo $HTML;
+}
+ ?>
+
+					<p>Make sure directorys are writable:</p>
+					<?php
+					$project_root_path = realpath(dirname(dirname(dirname(__file__))));
+					$app_config = realpath($project_root_path."/app/config");
+					$app_config_app = realpath($project_root_path."/app/config/app.php");
+					$app_storage = realpath($project_root_path."/app/storage");
+					$app_storage_cache = realpath($project_root_path."/app/storage/cache");
+					$app_storage_logs = realpath($project_root_path."/app/storage/logs");
+					$app_storage_meta = realpath($project_root_path."/app/storage/meta");
+					$app_storage_sessions = realpath($project_root_path."/app/storage/sessions");
+					$app_storage_views = realpath($project_root_path."/app/storage/views");
+
+					?>
+
+
+					<ul class="checklist">
+						<li class="<?php echo is_writable($app_config) ? "checkmark" : "error" ?>">app/config</li>
+						<li class="<?php echo is_writable($app_config_app) ? "checkmark" : "error" ?>">app/config/app.php</li>
+						<li class="<?php echo is_writable($app_storage) ? "checkmark" : "error" ?>">app/storage</li>
+						<li class="<?php echo is_writable($app_storage_cache) ? "checkmark" : "error" ?>">app/storage/cache</li>
+						<li class="<?php echo is_writable($app_storage_logs) ? "checkmark" : "error" ?>">app/storage/logs</li>
+						<li class="<?php echo is_writable($app_storage_meta) ? "checkmark" : "error" ?>">app/storage/meta</li>
+						<li class="<?php echo is_writable($app_storage_sessions) ? "checkmark" : "error" ?>">app/storage/sessions</li>
+						<li class="<?php echo is_writable($app_storage_views) ? "checkmark" : "error" ?>">app/storage/views</li>
+					</ul>
+
+
+
+
+
 				</div>
 			</div>
 
@@ -197,15 +259,15 @@
 						Please choose a service you'd like to use to authenticate users
 						CAS, LDAP, Local Database,  Shibboleth.
 					</p>
-				 	<div class="control-group">
-				 		<select name='auth' class="chzn-select">
-				 			<option></option>
-				 			<option value="cas">CAS</option>
-				 			<option value="ldap">LDAP</option>
-				 			<option value="saml">SAML</option>
-				 			<option value="database">Database</option>
-				 		</select>
-				 	</div>
+					<div class="control-group">
+						<select name='auth' class="chzn-select">
+							<option></option>
+							<option value="cas">CAS</option>
+							<option value="ldap">LDAP</option>
+							<option value="saml">SAML</option>
+							<option value="database">Database</option>
+						</select>
+					</div>
 
 					<div id="auth-cas" class="control-group hide">
 						<div class="row">

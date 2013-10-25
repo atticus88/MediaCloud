@@ -598,7 +598,7 @@
                 {
                     "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "http://jmsyst.com",
+                    "homepage": "https://github.com/schmittjoh",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -902,12 +902,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "1dd5eb268e2b1ad8d0a45ece8aa7b22ee99ab30d"
+                "reference": "9cf9bd917cbac060ebeb46893b5a1364c9529265"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/1dd5eb268e2b1ad8d0a45ece8aa7b22ee99ab30d",
-                "reference": "1dd5eb268e2b1ad8d0a45ece8aa7b22ee99ab30d",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/9cf9bd917cbac060ebeb46893b5a1364c9529265",
+                "reference": "9cf9bd917cbac060ebeb46893b5a1364c9529265",
                 "shasum": ""
             },
             "require": {
@@ -1007,7 +1007,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2013-10-22 01:45:48"
+            "time": "2013-10-24 16:24:18"
         },
         {
             "name": "monolog/monolog",
@@ -1015,12 +1015,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "620922356a36d8903d213c986568fe159b530747"
+                "reference": "c600461b0f1a8943696f931fc11db475193f62cd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/620922356a36d8903d213c986568fe159b530747",
-                "reference": "620922356a36d8903d213c986568fe159b530747",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/c600461b0f1a8943696f931fc11db475193f62cd",
+                "reference": "c600461b0f1a8943696f931fc11db475193f62cd",
                 "shasum": ""
             },
             "require": {
@@ -1070,7 +1070,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2013-10-16 16:27:10"
+            "time": "2013-10-24 12:32:52"
         },
         {
             "name": "nesbot/carbon",
