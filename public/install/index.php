@@ -67,6 +67,7 @@
 					<?php
 					$project_root_path = realpath(dirname(dirname(dirname(__file__))));
 					$app_config = realpath($project_root_path."/app/config");
+					$app_config_app = realpath($project_root_path."/app/config/app.php");
 					$app_storage = realpath($project_root_path."/app/storage");
 					$app_storage_cache = realpath($project_root_path."/app/storage/cache");
 					$app_storage_logs = realpath($project_root_path."/app/storage/logs");
@@ -77,6 +78,7 @@
 					?>
 					<ul class="checklist">
 						<li class="<?php echo is_writable($app_config) ? "checkmark" : "error" ?>">app/config</li>
+						<li class="<?php echo is_writable($app_config) ? "checkmark" : "error" ?>">app/config/app.php</li>
 						<li class="<?php echo is_writable($app_storage) ? "checkmark" : "error" ?>">app/storage</li>
 						<li class="<?php echo is_writable($app_storage_cache) ? "checkmark" : "error" ?>">app/storage/cache</li>
 						<li class="<?php echo is_writable($app_storage_logs) ? "checkmark" : "error" ?>">app/storage/logs</li>
