@@ -182,7 +182,7 @@ Route::filter('cas-logout', function () {
 	// 	return Redirect::to('/');
 	// }
 
-	Sentry::logout();
+	// Sentry::logout();
 	$cas = Config::get('cas');
 	phpCAS::client($cas['version'], $cas['cas_host'], $cas['cas_port'], $cas['cas_context']);
 	phpCAS::setNoCasServerValidation();
