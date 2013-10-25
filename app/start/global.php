@@ -96,3 +96,16 @@ App::down(function()
 */
 
 require app_path().'/filters.php';
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Require The Helpers
+|--------------------------------------------------------------------------
+
+|
+*/
+require app_path().'/helpers/alpha_id.php';
+require app_path().'/helpers/normalizePath.php';
+require app_path().'/helpers/recursiveChmod.php';

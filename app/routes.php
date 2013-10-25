@@ -170,11 +170,11 @@ Route::get('/', array('as' => 'home', function(){
 		// app/config
 		// app/storage/*
 		chmod(app_path() . "/config", 0777);
-		chmod(storage_path() . "/chache", 0777);
-		chmod(storage_path() . "/logs", 0777);
-		chmod(storage_path() . "/meta", 0777);
-		chmod(storage_path() . "/sessions", 0777);
-		chmod(storage_path() . "/views", 0777);
+		recursiveChmod(storage_path() . "/chache", 0644, 0777);
+		recursiveChmod(storage_path() . "/logs", 0644, 0777);
+		recursiveChmod(storage_path() . "/meta", 0644, 0777);
+		recursiveChmod(storage_path() . "/sessions", 0644, 0777);
+		recursiveChmod(storage_path() . "/views", 0644, 0777);
 
 		return Redirect::route('install');
 	//echo URL::route('install');
