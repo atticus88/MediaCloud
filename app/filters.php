@@ -142,7 +142,7 @@ Route::filter('cas-login', function(){
 
 	echo phpCAS::getUser();
     var_dump(phpCAS::getAttributes());
-	die($_GET('ticket'));
+	// die($_GET('ticket'));
 
 	// if (count(User::where('username', '=', phpCAS::getUser())->first()) == 0) {
 
@@ -155,8 +155,8 @@ Route::filter('cas-login', function(){
 
 	// }
 
-	$user = DB::table('users')->where('username', phpCAS::getUser())->first();
-	Auth::loginUsingId($user->id);
+	// $user = DB::table('users')->where('username', phpCAS::getUser())->first();
+	// Auth::loginUsingId($user->id);
 
     // return Redirect::to('/');
 });
