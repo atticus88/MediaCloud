@@ -165,6 +165,17 @@ Route::get('/', array('as' => 'home', function(){
 	if(file_exists(base_path() . '/app/config/database.php')) {
 		return View::make('home');
 	} else {
+
+		// Make sure folders are writeable
+		// app/config
+		// app/storage/*
+		chmod(app_path() . "/config", 0777);
+		chmod(storage_path() . "/chache", 0777);
+		chmod(storage_path() . "/logs", 0777);
+		chmod(storage_path() . "/meta", 0777);
+		chmod(storage_path() . "/sessions", 0777);
+		chmod(storage_path() . "/views", 0777);
+
 		return Redirect::route('install');
 	//echo URL::route('install');
 	}
