@@ -78,7 +78,7 @@
 					?>
 					<ul class="checklist">
 						<li class="<?php echo is_writable($app_config) ? "checkmark" : "error" ?>">app/config</li>
-						<li class="<?php echo is_writable($app_config) ? "checkmark" : "error" ?>">app/config/app.php</li>
+						<li class="<?php echo is_writable($app_config_app) ? "checkmark" : "error" ?>">app/config/app.php</li>
 						<li class="<?php echo is_writable($app_storage) ? "checkmark" : "error" ?>">app/storage</li>
 						<li class="<?php echo is_writable($app_storage_cache) ? "checkmark" : "error" ?>">app/storage/cache</li>
 						<li class="<?php echo is_writable($app_storage_logs) ? "checkmark" : "error" ?>">app/storage/logs</li>
