@@ -134,11 +134,11 @@ Route::filter('cas-login', function(){
 	}
 
 
-	// $cas = Config::get('cas');
-	// phpCAS::client($cas['version'], $cas['cas_host'], $cas['cas_port'], $cas['cas_context']);
-	// phpCAS::setNoCasServerValidation();
-	// phpCAS::setCasServerCACert($cas['cas_server_ca_cert_path']);
-	// phpCAS::forceAuthentication();
+	$cas = Config::get('cas');
+	phpCAS::client($cas['version'], $cas['cas_host'], $cas['cas_port'], $cas['cas_context']);
+	phpCAS::setNoCasServerValidation();
+	phpCAS::setCasServerCACert($cas['cas_server_ca_cert_path']);
+	phpCAS::forceAuthentication();
 
 	// if (count(User::where('username', '=', phpCAS::getUser())->first()) == 0) {
 
@@ -151,10 +151,11 @@ Route::filter('cas-login', function(){
 
 	// }
 
-	// $user = DB::table('users')->where('username', phpCAS::getUser())->first();
-	// Auth::loginUsingId($user->id);
+	$user = DB::table('users')->where('username', phpCAS::getUser())->first();
+	Auth::loginUsingId($user->id);
 
-	// echo phpCAS::getUser();
+	echo phpCAS::getUser();
+    var_dump(phpCAS::getAttributes())
     // return Redirect::to('/');
 });
 

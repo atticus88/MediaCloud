@@ -197,7 +197,7 @@ Route::post('/app/install', array( 'as' => 'app/install', function() {
 
 Route::get('login', array('before' => 'cas-login', function()
 {
-    return Redirect::to('/');
+    // return Redirect::to('/');
 }));
 
 Route::get('logout', array('before' => 'cas-logout', function()
