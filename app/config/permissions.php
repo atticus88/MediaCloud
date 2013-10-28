@@ -8,7 +8,7 @@ return array(
 			'label'      => 'Super User',
 		),
 	),
-
+	
 	'Admin' => array(
 		array(
 			'permission' => 'admin',

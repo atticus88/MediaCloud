@@ -118,7 +118,8 @@ class GroupsController extends AdminController {
 			// Get all the available permissions
 			$permissions = Config::get('permissions');
 			$this->encodeAllPermissions($permissions, true);
-
+			
+			 
 			// Get this group permissions
 			$groupPermissions = $group->getPermissions();
 			$this->encodePermissions($groupPermissions);
