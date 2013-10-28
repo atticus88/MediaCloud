@@ -144,6 +144,7 @@ Route::filter('cas-login', function(){
 					'email'    => $cas_data['email'],
 					'password' => 'changeme',
 					'username' => phpCAS::getUser(),
+					'activated'=> 1
 					));
 		}
 		else{
