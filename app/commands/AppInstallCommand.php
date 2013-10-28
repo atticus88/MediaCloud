@@ -158,29 +158,6 @@ class AppInstallCommand extends Command {
 					)
 				);
 			
-			Sentry::getGroupProvider()->create(
-				array(
-					'name'        => 'Faculty',
-					'permissions' => array(
-						'users' => 1,
-						'upload' => 1,
-						'manage-media' => 1,
-						'capture' => 1
-						)
-					)
-				);
-
-			Sentry::getGroupProvider()->create(
-				array(
-					'name'        => 'Student',
-					'permissions' => array(
-						'users' => 1,
-						// 'upload' => 1,
-						// 'manage-media' => 1,
-						// 'capture' => 1
-						)
-					)
-				);
 
 			// Show the success message.
 			$this->comment('');

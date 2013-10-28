@@ -21,18 +21,6 @@ class GroupTableSeeder extends Seeder {
 
 		Sentry::getGroupProvider()->create(
 			array(
-				'name'        => 'Student Assistant',
-				'permissions' => array(
-					'users' => 1,
-					'upload' => 1,
-					'manage-media' => 1,
-					'capture' => 1
-					)
-				)
-			);
-
-		Sentry::getGroupProvider()->create(
-			array(
 			'name'        => 'Student',
 			'permissions' => array(
 				'users' => 1,
