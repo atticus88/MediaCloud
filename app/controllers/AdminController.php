@@ -10,9 +10,7 @@ class AdminController extends AuthorizedController {
 	public function __construct()
 	{
 		// Apply the admin auth filter
-		$this->beforeFilter('admin-auth');
 		$this->beforeFilter('cas-login');
-
 	}
 
 

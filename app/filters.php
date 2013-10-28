@@ -157,7 +157,7 @@ Route::filter('cas-login', function(){
 		}
 
 		if(Sentry::check()){
-			Auth::loginUsingId($user->id);
+			// Auth::loginUsingId($user->id);
 		}
 		
 
@@ -197,7 +197,7 @@ Route::filter('cas-login', function(){
 
 
 Route::filter('cas-logout', function () {
-	
+	Sentry::logout();
 	if(App::environment() == "local"){
 
 	}
@@ -218,7 +218,7 @@ Route::filter('cas-logout', function () {
 	// }
 
 	if(App::environment() == "dev" || App::environment() == "production"){
-		Sentry::logout();
+		
 		$cas = Config::get('cas');
 		phpCAS::client($cas['version'], $cas['cas_host'], $cas['cas_port'], $cas['cas_context']);
 		phpCAS::setNoCasServerValidation();

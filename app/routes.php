@@ -127,11 +127,11 @@ Route::group(array('prefix' => 'account'), function()
 {
 
 	# Account Dashboard
-	Route::get('/', array('as' => 'account', 'uses' => 'Controllers\Account\DashboardController@getIndex'));
+	// Route::get('/', array('as' => 'account', 'uses' => 'Controllers\Account\DashboardController@getIndex'));
 
 	# Profile
-	Route::get('profile', array('as' => 'profile', 'uses' => 'Controllers\Account\ProfileController@getIndex'));
-	Route::post('profile', 'Controllers\Account\ProfileController@postIndex');
+	// Route::get('profile', array('as' => 'profile', 'uses' => 'Controllers\Account\ProfileController@getIndex'));
+	// Route::post('profile', 'Controllers\Account\ProfileController@postIndex');
 
 	# Change Password
 	Route::get('change-password', array('as' => 'change-password', 'uses' => 'Controllers\Account\ChangePasswordController@getIndex'));
