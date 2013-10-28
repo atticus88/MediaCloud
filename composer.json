@@ -6,7 +6,7 @@
 		"laravel/framework": "4.0.*",
 		"edvinaskrucas/notification": "1.*",
 		"cartalyst/sentry": "2.0.*@dev",
-		"jasig/phpcas": "dev-master",
+		"gorg/phpcas": "dev-master",
 		"davejamesmiller/laravel-breadcrumbs": "~2.1.0"
 	},
 	"require-dev": {
