@@ -13,7 +13,7 @@ class DashboardController extends AuthorizedController {
 	public function getIndex()
 	{
 		// Redirect to the profile page
-		return Redirect::route('admin');
+		return Redirect::route('profile');
 	}
 
 }
