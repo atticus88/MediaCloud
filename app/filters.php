@@ -209,12 +209,12 @@ Route::filter('cas-logout', function () {
 	// }
 
 	Sentry::logout();
-	// $cas = Config::get('cas');
-	// phpCAS::client($cas['version'], $cas['cas_host'], $cas['cas_port'], $cas['cas_context']);
-	// phpCAS::setNoCasServerValidation();
-	// phpCAS::setCasServerCACert($cas['cas_server_ca_cert_path']);
-	// phpCAS::forceAuthentication();
-	// phpCAS::logout(array('service' => URL::to('/')));
+	$cas = Config::get('cas');
+	phpCAS::client($cas['version'], $cas['cas_host'], $cas['cas_port'], $cas['cas_context']);
+	phpCAS::setNoCasServerValidation();
+	phpCAS::setCasServerCACert($cas['cas_server_ca_cert_path']);
+	phpCAS::forceAuthentication();
+	phpCAS::logout(array('service' => URL::to('/')));
 
 	// return Redirect::to('/');
 	return Redirect::to('https://cas.weber.edu/logout?service=https%3A%2F%2Fmediacloud-dev.weber.edu');
