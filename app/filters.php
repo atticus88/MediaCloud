@@ -113,8 +113,12 @@ Route::filter('cas-login', function(){
 				'email' => $user['email'], 
 				'password' => 'admin', 
 				);
+
 			$user = Sentry::authenticate($data, false);
-			var_dump(Sentry::check());
+			if(Sentry::check()){
+				Auth::loginUsingId($user->id);
+			}
+			
 
 			// Auth::loginUsingId($user->id);
 			// var_dump(Auth::check());
@@ -152,7 +156,10 @@ Route::filter('cas-login', function(){
 			$user = $users[0];
 		}
 
-
+		if(Sentry::check()){
+			Auth::loginUsingId($user->id);
+		}
+		
 
 		try
 		{
