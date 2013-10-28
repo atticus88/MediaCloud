@@ -200,5 +200,5 @@ Route::get('login', array('before' => 'cas-login', function()
 
 Route::get('logout', array('before' => 'cas-logout', function()
 {
-	return 'route logout good';
+	return Redirect::to('/');
 }));

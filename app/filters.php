@@ -191,7 +191,9 @@ Route::filter('cas-login', function(){
 
 Route::filter('cas-logout', function () {
 	
+	if(App::environment() == "local"){
 
+	}
 	//Is server HTTPS? if not: test on Dev; if is precede as normal;
 	// if (empty($_SERVER['HTTPS'])) {
 	// 	$secure_connection = false;
@@ -208,16 +210,18 @@ Route::filter('cas-logout', function () {
 	// 	return Redirect::to('/');
 	// }
 
-	Sentry::logout();
-	$cas = Config::get('cas');
-	phpCAS::client($cas['version'], $cas['cas_host'], $cas['cas_port'], $cas['cas_context']);
-	phpCAS::setNoCasServerValidation();
-	phpCAS::setCasServerCACert($cas['cas_server_ca_cert_path']);
-	phpCAS::forceAuthentication();
-	phpCAS::logout(array('service' => URL::to('/')));
+	if(App::environment() == "dev" || App::environment() == "production"){
+		Sentry::logout();
+		$cas = Config::get('cas');
+		phpCAS::client($cas['version'], $cas['cas_host'], $cas['cas_port'], $cas['cas_context']);
+		phpCAS::setNoCasServerValidation();
+		phpCAS::setCasServerCACert($cas['cas_server_ca_cert_path']);
+		phpCAS::forceAuthentication();
+		phpCAS::logout(array('service' => URL::to('/')));
 
 	// return Redirect::to('/');
-	return Redirect::to('https://cas.weber.edu/logout?service=https%3A%2F%2Fmediacloud-dev.weber.edu');
+		return Redirect::to('https://cas.weber.edu/logout?service=https%3A%2F%2Fmediacloud-dev.weber.edu');
+	}
 });
 
 
