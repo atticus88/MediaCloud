@@ -371,7 +371,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
                   </li>
                   <li><a href="extra_lock.html"><i class="icon-lock"></i> Lock Screen</a>
                   </li>
-                  <li><a href="{{ route('logout') }}"><i class="icon-key"></i> Log Out</a>
+                  <li><a href="{{ URL::to('logout') }}"><i class="icon-key"></i> Log Out</a>
                   </li>
                </ul>
             </li>
