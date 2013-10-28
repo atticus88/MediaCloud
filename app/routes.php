@@ -9,7 +9,10 @@ App::bind('AssetRepository', 'Asset');
 
 
 Route::get('test',function(){
-	
+	$getusername = 'admin';
+	$user = User::where('username','=', $getusername)->get()[0];
+	var_dump($user->id);
+	// return
 });
 
 
