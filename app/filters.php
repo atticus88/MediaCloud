@@ -146,6 +146,11 @@ Route::filter('cas-login', function(){
 					'username' => phpCAS::getUser(),
 					));
 		}
+		else{
+			$user = User::where('username','=', phpCAS::getUser())->get()[0];
+		}
+
+
 
 		try
 		{

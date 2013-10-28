@@ -6,12 +6,10 @@
 * APP Bindings
 */
 App::bind('AssetRepository', 'Asset');
+
+
 Route::get('test',function(){
-var_dump(Str::plural('dog'));
-var_dump(Str::ascii('•©'));
-var_dump(Str::random());
-var_dump(Str::quickRandom());
-var_dump(Str::singular('dogs'));
+	
 });
 
 
