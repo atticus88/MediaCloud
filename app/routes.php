@@ -8,12 +8,8 @@
 App::bind('AssetRepository', 'Asset');
 
 
-Route::get('test',function(){
-	$getusername = 'admin';
-	$users = User::where('username','=', $getusername)->get();
-	$user = $users[0];
-	var_dump($user->id);
-	// return
+Route::get('test', function(){
+
 });
 
 
@@ -199,10 +195,10 @@ Route::post('/app/install', array( 'as' => 'app/install', function() {
 
 Route::get('login', array('before' => 'cas-login', function()
 {
-    return Redirect::to('/');
+	return Redirect::to('/');
 }));
 
 Route::get('logout', array('before' => 'cas-logout', function()
 {
-    return 'route logout good';
+	return 'route logout good';
 }));
