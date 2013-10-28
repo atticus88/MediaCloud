@@ -115,9 +115,8 @@ Route::filter('cas-login', function(){
 				);
 
 			$user = Sentry::authenticate($data, false);
-			if(Sentry::check()){
-				Auth::loginUsingId($user->id);
-			}
+			
+			
 			
 
 			// Auth::loginUsingId($user->id);
@@ -159,7 +158,7 @@ Route::filter('cas-login', function(){
 		if(Sentry::check()){
 			// Auth::loginUsingId($user->id);
 		}
-		
+
 
 		try
 		{
