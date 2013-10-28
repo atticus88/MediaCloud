@@ -125,55 +125,74 @@ Route::filter('cas-login', function(){
 		}
 	}
 
-	if(App::environment() == "dev"){
-		var_dump(App::environment());
+	if(App::environment() == "dev" || App::environment() == "production"){
+		$cas = Config::get('cas');
+		phpCAS::client($cas['version'], $cas['cas_host'], $cas['cas_port'], $cas['cas_context']);
+		phpCAS::setNoCasServerValidation();
+		// phpCAS::setCasServerCACert($cas['cas_server_ca_cert_path']);
+		phpCAS::forceAuthentication();
+
+		$cas_data = phpCAS::getAttributes();
+
+		// var_dump($cas_data['email']);
+		
+		//Is user in the database? if not put them in
+		if (count(User::where('username', '=', phpCAS::getUser())->first()) == 0) {
+
+			$user = Sentry::getUserProvider()->create(
+				array(
+					'email'    => $cas_data['email'],
+					'password' => 'changeme',
+					'username' => phpCAS::getUser(),
+					));
+		}
+
+		try
+		{
+			// Log the user in
+			Sentry::login($user, false);
+		}
+		catch (Cartalyst\Sentry\Users\LoginRequiredException $e)
+		{
+			echo 'Login field is required.';
+		}
+		catch (Cartalyst\Sentry\Users\UserNotActivatedException $e)
+		{
+			echo 'User not activated.';
+		}
+		catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
+		{
+			echo 'User not found.';
+		}
+
+		// Following is only needed if throttle is enabled
+		catch (Cartalyst\Sentry\Throttling\UserSuspendedException $e)
+		{
+			$time = $throttle->getSuspensionTime();
+
+			echo "User is suspended for [$time] minutes.";
+		}
+		catch (Cartalyst\Sentry\Throttling\UserBannedException $e)
+		{
+			echo 'User is banned.';
+		}
+
+		//    return Redirect::to('/');
 	}
-
-	if(App::environment() == "production"){
-		var_dump(App::environment());
-	}
-
-
-	$cas = Config::get('cas');
-	phpCAS::client($cas['version'], $cas['cas_host'], $cas['cas_port'], $cas['cas_context']);
-	phpCAS::setNoCasServerValidation();
-	// phpCAS::setCasServerCACert($cas['cas_server_ca_cert_path']);
-	phpCAS::forceAuthentication();
-
-
-	$cas_data=phpCAS::getAttributes();
-
-	var_dump($cas_data['email']);
-
-	if (count(User::where('username', '=', phpCAS::getUser())->first()) == 0) {
-
-		$user = Sentry::getUserProvider()->create(
-			array(
-				'email'    => $cas_data['email'],
-				'password' => 'changeme',
-				'username' => phpCAS::getUser(),
-				));
-
-	}
-
-	// $user = DB::table('users')->where('username', phpCAS::getUser())->first();
-	// Auth::loginUsingId($user->id);
-
- //    return Redirect::to('/');
 });
 
 
 Route::filter('cas-logout', function () {
 	
 
-    //Is server HTTPS? if not: test on Dev; if is precede as normal;
+	//Is server HTTPS? if not: test on Dev; if is precede as normal;
 	// if (empty($_SERVER['HTTPS'])) {
 	// 	$secure_connection = false;
 	// } else {
 	// 	$secure_connection = !!$_SERVER['HTTPS'] !== 'off';
 	// }
 
-    //If it is not Show Error
+	//If it is not Show Error
 	// if ($secure_connection || $_SERVER['SERVER_PORT'] == 443) {
 	// 	echo $secure_connection . ' ' . $_SERVER['SERVER_PORT'];
 	// } else {
