@@ -116,7 +116,7 @@ Route::filter('cas-login', function(){
 
 			$user = Sentry::authenticate($data, false);
 			
-			
+
 			
 
 			// Auth::loginUsingId($user->id);
@@ -200,22 +200,7 @@ Route::filter('cas-logout', function () {
 	if(App::environment() == "local"){
 
 	}
-	//Is server HTTPS? if not: test on Dev; if is precede as normal;
-	// if (empty($_SERVER['HTTPS'])) {
-	// 	$secure_connection = false;
-	// } else {
-	// 	$secure_connection = !!$_SERVER['HTTPS'] !== 'off';
-	// }
-
-	//If it is not Show Error
-	// if ($secure_connection || $_SERVER['SERVER_PORT'] == 443) {
-	// 	echo $secure_connection . ' ' . $_SERVER['SERVER_PORT'];
-	// } else {
-	// 	Session::flash('error', "Not Secure with HTTPS!");
-	// 	Auth::logout();
-	// 	return Redirect::to('/');
-	// }
-
+	
 	if(App::environment() == "dev" || App::environment() == "production"){
 		
 		$cas = Config::get('cas');
@@ -225,8 +210,8 @@ Route::filter('cas-logout', function () {
 		phpCAS::forceAuthentication();
 		phpCAS::logout(array('service' => URL::to('/')));
 
-	// return Redirect::to('/');
-		return Redirect::to('https://cas.weber.edu/logout?service=https%3A%2F%2Fmediacloud-dev.weber.edu');
+		// return Redirect::to('/');
+		// return Redirect::to('https://cas.weber.edu/logout?service=https%3A%2F%2Fmediacloud-dev.weber.edu');
 	}
 });
 

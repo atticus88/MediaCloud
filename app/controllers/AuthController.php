@@ -351,7 +351,7 @@ class AuthController extends BaseController {
 	public function getLogout()
 	{
 		// Log the user out
-		Sentry::logout();
+		$this->beforeFilter('cas-logout');
 
 		// Redirect to the users page
 		return Redirect::route('home')->with('success', 'You have successfully logged out!');
