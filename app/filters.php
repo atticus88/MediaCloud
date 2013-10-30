@@ -209,7 +209,7 @@ Route::filter('cas-logout', function () {
 	phpCAS::client($cas['version'], $cas['cas_host'], $cas['cas_port'], $cas['cas_context']);
 	phpCAS::setNoCasServerValidation();
 	phpCAS::setCasServerCACert($cas['cas_server_ca_cert_path']);
-	phpCAS::forceAuthentication();
+	// phpCAS::forceAuthentication();
 	phpCAS::logout(array('service' => URL::to('/')));
 
 	if(App::environment() == "local"){
