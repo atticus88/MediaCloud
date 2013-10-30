@@ -199,6 +199,11 @@ Route::filter('cas-login', function(){
 
 
 Route::filter('cas-logout', function () {
+	if (Sentry::check()) {
+		
+	}
+
+
 	Sentry::logout();
 	if(App::environment() == "local"){
 
@@ -211,10 +216,12 @@ Route::filter('cas-logout', function () {
 		phpCAS::setNoCasServerValidation();
 		phpCAS::setCasServerCACert($cas['cas_server_ca_cert_path']);
 		phpCAS::forceAuthentication();
-		phpCAS::logout(array('service' => URL::to('/')));
 
-		// return Redirect::to('/');
-		// return Redirect::to('https://cas.weber.edu/logout?service=https%3A%2F%2Fmediacloud-dev.weber.edu');
+		if (phpCAS::getUser()) {
+			phpCAS::logout(array('service' => URL::to('/')));
+		}else{
+			return Redirect::to('/');
+		}
 	}
 });
 
