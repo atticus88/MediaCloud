@@ -90,7 +90,7 @@ Route::filter('admin-auth', function()
 	if ( ! Sentry::getUser()->hasAccess('admin'))
 	{
 		// Show the insufficient permissions page
-		Session::flash('error', 'Error: No Admin Rights'); 
+		Session::flash('error', 'Error: No Admin Rights');
 		return Redirect::route('home');
 
 	}
@@ -112,15 +112,15 @@ Route::filter('cas-login', function(){
 
 		if ($user && isset($user['id'])) {
 			$data = array(
-				'id' => $user['id'], 
-				'email' => $user['email'], 
-				'password' => 'admin', 
+				'id' => $user['id'],
+				'email' => $user['email'],
+				'password' => 'admin',
 				);
 
 			$user = Sentry::authenticate($data, false);
-			
 
-			
+
+
 
 			// Auth::loginUsingId($user->id);
 			// var_dump(Auth::check());
@@ -141,7 +141,7 @@ Route::filter('cas-login', function(){
 		$cas_data = phpCAS::getAttributes();
 
 		// var_dump($cas_data['email']);
-		
+
 		//Is user in the database? if not put them in
 		if (count(User::where('username', '=', phpCAS::getUser())->first()) == 0) {
 
@@ -199,23 +199,32 @@ Route::filter('cas-login', function(){
 
 
 Route::filter('cas-logout', function () {
-	
 
 
+	//logout of Sentry
 	Sentry::logout();
+
+	// if you are logged into CAS log out of it
+	$cas = Config::get('cas');
+	phpCAS::client($cas['version'], $cas['cas_host'], $cas['cas_port'], $cas['cas_context']);
+	phpCAS::setNoCasServerValidation();
+	phpCAS::setCasServerCACert($cas['cas_server_ca_cert_path']);
+	phpCAS::forceAuthentication();
+	phpCAS::logout(array('service' => URL::to('/')));
+
 	if(App::environment() == "local"){
 
 	}
-	
-	if(App::environment() == "dev" || App::environment() == "production"){
-		
-		$cas = Config::get('cas');
-		phpCAS::client($cas['version'], $cas['cas_host'], $cas['cas_port'], $cas['cas_context']);
-		phpCAS::setNoCasServerValidation();
-		phpCAS::setCasServerCACert($cas['cas_server_ca_cert_path']);
-		phpCAS::forceAuthentication();
-		phpCAS::logout(array('service' => URL::to('/')));
-	}
+
+	// if(App::environment() == "dev" || App::environment() == "production"){
+
+	// 	$cas = Config::get('cas');
+	// 	phpCAS::client($cas['version'], $cas['cas_host'], $cas['cas_port'], $cas['cas_context']);
+	// 	phpCAS::setNoCasServerValidation();
+	// 	phpCAS::setCasServerCACert($cas['cas_server_ca_cert_path']);
+	// 	phpCAS::forceAuthentication();
+	// 	phpCAS::logout(array('service' => URL::to('/')));
+	// }
 });
 
 
