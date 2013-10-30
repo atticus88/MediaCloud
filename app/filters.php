@@ -99,7 +99,8 @@ Route::filter('admin-auth', function()
 
 Route::filter('cas-login', function(){
 	if(App::environment() == "local"){
-		die('no-cas');
+
+		// die('no-cas');
 		Session::flash('error', "Not Secure with HTTPS!");
 
 		$user = '';
@@ -215,7 +216,7 @@ Route::filter('cas-logout', function () {
 
 	}
 
-	
+
 	if(App::environment() == "local"){
 
 	}
