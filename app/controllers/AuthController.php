@@ -11,7 +11,7 @@ class AuthController extends BaseController {
 	public function __construct()
 	{
 		// Apply the admin auth filter
-		$this->beforeFilter('cas-login');
+		// $this->beforeFilter('cas-login');
 	}
 
 	/**
