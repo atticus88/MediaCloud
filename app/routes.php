@@ -9,7 +9,13 @@ App::bind('AssetRepository', 'Asset');
 
 
 Route::get('test', function(){
+	// echo Sentry::getUser();
 
+ if (  Sentry::getUser()->hasAccess('genie'))
+        {
+                // Show the insufficient permissions page
+                echo 'genie access';
+        }
 });
 
 
@@ -21,7 +27,7 @@ Route::get('test', function(){
 | Register all the admin routes.
 |
 */
-Route::group(array('prefix' => 'admin'), function()
+Route::group(array('before' => 'admin-auth','prefix' => 'admin'), function()
 {
 
 	# Blog Management

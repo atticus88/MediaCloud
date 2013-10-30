@@ -149,6 +149,7 @@ class AppInstallCommand extends Command {
 				array(
 					'name'        => 'Admin',
 					'permissions' => array(
+						'superuser' => 1,
 						'admin' => 1,
 						'users' => 1,
 						'upload' => 1,
