@@ -83,7 +83,7 @@ Route::filter('admin-auth', function()
 		Session::put('loginRedirect', Request::url());
 
 		// Redirect to the login page
-		return Redirect::route('home');
+		return Redirect::route('admin');
 	}
 
 	// Check if the user has access to the admin page
