@@ -90,7 +90,9 @@ Route::filter('admin-auth', function()
 	if ( ! Sentry::getUser()->hasAccess('admin'))
 	{
 		// Show the insufficient permissions page
-		return App::abort(403);
+		Session::flash('error', 'Error: No Admin Rights'); 
+		return Redirect::route('/');
+
 	}
 });
 
