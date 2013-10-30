@@ -91,7 +91,7 @@ Route::filter('admin-auth', function()
 	{
 		// Show the insufficient permissions page
 		Session::flash('error', 'Error: No Admin Rights'); 
-		return Redirect::route('/');
+		return Redirect::route('home');
 
 	}
 });
