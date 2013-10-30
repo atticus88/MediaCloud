@@ -21,13 +21,13 @@ class AuthController extends BaseController {
 	 */
 	public function getSignin()
 	{
+		// dd('login');
 		// var_dump(Sentry::check());
 		// Is the user logged in?
-		if (Sentry::check())
-		{
-			// dd('login');
-			// return Redirect::to('/');
-		}
+		// if (Sentry::check())
+		// {
+		// 	// return Redirect::to('/');
+		// }
 
 		// Show the page
 		return View::make('frontend.auth.signin');
@@ -40,7 +40,6 @@ class AuthController extends BaseController {
 	 */
 	public function postSignin()
 	{
-
 		// Declare the rules for the form validation
 		$rules = array(
 			'email'    => 'required|email',
@@ -62,12 +61,12 @@ class AuthController extends BaseController {
 			// Try to log the user in
 			// var_dump(Input::only('email', 'password'));
 			Sentry::authenticate(Input::only('email', 'password'), Input::get('remember-me', 0));
-
 			// Get the page we were before
 			$redirect = Session::get('loginRedirect', 'admin');
 
 			// Unset the page we were before from the session
 			Session::forget('loginRedirect');
+
 
 			// Redirect to the users page
 			return Redirect::to($redirect)->with('success', Lang::get('auth/message.signin.success'));
