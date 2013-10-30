@@ -73,7 +73,8 @@ class AuthController extends BaseController {
 		}
 		catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
 		{
-			$this->messageBag->add('email', Lang::get('auth/message.account_not_found'));
+			// $this->messageBag->add('email', Lang::get('auth/message.account_not_found'));
+			return Redirect::back()->withInput()->with('error', Lang::get('auth/message.account_not_found'));;
 		}
 		catch (Cartalyst\Sentry\Users\UserNotActivatedException $e)
 		{
