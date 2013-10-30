@@ -199,9 +199,7 @@ Route::filter('cas-login', function(){
 
 
 Route::filter('cas-logout', function () {
-	if (Sentry::check()) {
-		
-	}
+	
 
 
 	Sentry::logout();
@@ -216,12 +214,7 @@ Route::filter('cas-logout', function () {
 		phpCAS::setNoCasServerValidation();
 		phpCAS::setCasServerCACert($cas['cas_server_ca_cert_path']);
 		phpCAS::forceAuthentication();
-
-		if (phpCAS::getUser()) {
-			phpCAS::logout(array('service' => URL::to('/')));
-		}else{
-			return Redirect::to('/');
-		}
+		phpCAS::logout(array('service' => URL::to('/')));
 	}
 });
 
