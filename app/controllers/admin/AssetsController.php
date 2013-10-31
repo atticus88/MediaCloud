@@ -26,7 +26,7 @@ class AssetsController extends AdminController {
 	public function getIndex()
 	{
 		// Grab all the assets
-		$assets = $this->asset->getLastAssets(7);
+		$assets = $this->asset->getLastAssets(15);
 
 		// die(var_dump($assets));
 		// Show the page
