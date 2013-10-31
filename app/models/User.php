@@ -36,4 +36,14 @@ class User extends SentryUserModel {
 		return "//gravatar.org/avatar/{$gravatar}";
 	}
 
+	/**
+	 * Returns the user Gravatar image url.
+	 *
+	 * @return string
+	 */
+	public function group()
+	{
+		return $this->belongsTo('Group');
+	}
+
 }

@@ -10,12 +10,8 @@ App::bind('AssetRepository', 'Asset');
 
 Route::get('test', function(){
 	// echo Sentry::getUser();
-
- if (  Sentry::getUser()->hasAccess('genie'))
-        {
-                // Show the insufficient permissions page
-                echo 'genie access';
-        }
+	// return $users = User::all();
+	return Sentry::getUserProvider()->createModel();
 });
 
 
