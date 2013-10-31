@@ -94,7 +94,7 @@
                </ul>
             </li>
             <li class="start {{(Request::is('admin') ? '' : '')}}">
-               <a href="admin/settings"> <i class="icon-gears"></i> <span class="title">Settings</span> <span class="selected"></span></a>
+               <a href="/admin/settings"> <i class="icon-gears"></i> <span class="title">Settings</span> <span class="selected"></span></a>
             </li>
             @section('sidebar')
 

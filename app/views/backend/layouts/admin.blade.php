@@ -349,7 +349,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
             <!-- BEGIN USER LOGIN DROPDOWN -->
             <li class="dropdown user">
                <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-               <img alt="" src="/_admin/assets/img/avatar1_small.jpg"/>
+               <!-- <img alt="" src="/_admin/assets/img/avatar1_small.jpg"/> -->
                <span class="username">
                @if (Sentry::check())
                   {{Sentry::getUser()->username}}
