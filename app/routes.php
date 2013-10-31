@@ -10,8 +10,8 @@ App::bind('AssetRepository', 'Asset');
 
 Route::get('test', function(){
 	// echo Sentry::getUser();
-	// return $users = User::all();
-	return Sentry::getUserProvider()->createModel();
+	return $users = User::all();
+	// return Sentry::getUserProvider()->createModel();
 });
 
 

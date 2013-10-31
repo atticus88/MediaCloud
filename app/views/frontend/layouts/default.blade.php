@@ -75,10 +75,8 @@
                             </ul>
                         </li>
                     @else
-
                         <li><a href="{{URL::to('login')}}" target="">Login</a></li>
-
-
+                    @endif
 
 
 
