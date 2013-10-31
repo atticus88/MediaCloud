@@ -32,7 +32,8 @@ User Management ::
 			<th class="span1">@lang('admin/users/table.id')</th>
 			<th class="span2">@lang('admin/users/table.first_name')</th>
 			<th class="span2">@lang('admin/users/table.last_name')</th>
-			<th class="span3">@lang('admin/users/table.email')</th>
+			<th class="span2">@lang('admin/users/table.email')</th>
+			<th class="span3">@lang('admin/users/table.group')</th>
 			<th class="span2">@lang('admin/users/table.activated')</th>
 			<th class="span2">@lang('admin/users/table.created_at')</th>
 			<th class="span2">@lang('table.actions')</th>

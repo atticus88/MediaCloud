@@ -60,8 +60,8 @@
 			<!-- BEGIN TOP NAVIGATION MENU -->
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-	
-					
+
+
 
 
                     @if (Sentry::check())
@@ -69,17 +69,17 @@
                             <a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false" href="#">
                             Welcome {{Sentry::getUser()->username}}! <i class="icon-angle-down"></i></a>
                             <ul class="dropdown-menu">
-                                <li class="active"><a href="index.html">Home Default</a></li>                            
+                                <li class="active"><a href="index.html">Home Default</a></li>
                                 <li><a href="{{URL::to('logout')}}">Logout</a></li>
                             </ul>
                         </li>
                     @else
-                        <li><a href="{{URL::to('login')}}" target="_blank">Login</a></li>
+                        <li><a href="{{URL::to('login')}}">Login</a></li>
                     @endif
 
 
 
-                    
+
 
 
 				</ul>
@@ -128,7 +128,7 @@
 
 
 
-@yield('content')                
+@yield('content')
 
     <!-- BEGIN COPYRIGHT -->
     <div class="container">
