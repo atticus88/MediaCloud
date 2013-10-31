@@ -69,12 +69,12 @@
                             <a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false" href="#">
                             Welcome {{Sentry::getUser()->username}}! <i class="icon-angle-down"></i></a>
                             <ul class="dropdown-menu">
-                                <li class="active"><a href="index.html">Home Default</a></li>                            
+                                <li class=""><a href="index.html">Home Default</a></li>                            
                                 <li><a href="{{URL::to('logout')}}">Logout</a></li>
                             </ul>
                         </li>
                     @else
-                        <li><a href="{{URL::to('login')}}" target="_blank">Login</a></li>
+                        <li><a href="{{URL::to('login')}}" target="">Login</a></li>
                     @endif
 
 
