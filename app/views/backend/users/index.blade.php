@@ -50,7 +50,7 @@ User Management ::
 			<td>{{ $user->last_name }}</td>
 			<td>{{ $user->email }}</td>
 			<td>
-				{{$user->getGroups()[0]['name']}}
+				
 			</td>
 			<td>@lang('general.' . ($user->isActivated() ? 'yes' : 'no'))</td>
 			<td>{{ $user->created_at->diffForHumans() }}</td>
