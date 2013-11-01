@@ -10,6 +10,7 @@ use Sentry;
 use Str;
 use Validator;
 use View;
+use Config;
 
 class AssetsController extends AdminController {
 
@@ -25,7 +26,7 @@ class AssetsController extends AdminController {
 	public function getIndex()
 	{
 		// Grab all the assets
-		$assets = $this->asset->getLastAssets(7);
+		$assets = $this->asset->getLastAssets(15);
 
 		// die(var_dump($assets));
 		// Show the page
@@ -67,7 +68,7 @@ class AssetsController extends AdminController {
 			// 'last_viewed' => 'required',
 			// 'created_at' => 'required',
 			// 'updated_at' => 'required'
-		);
+			);
 
 		// Create a new validator instance from our validation rules
 		$validator = Validator::make(Input::all(), $rules);
@@ -121,7 +122,28 @@ class AssetsController extends AdminController {
 			return Redirect::to('admin/media_assets')->with('error', Lang::get('admin/assets/message.does_not_exist'));
 		}
 
+		// // Get the user information
+		// $asset = Asset::find($assetId);
+
+		// // Get this user groups
+		// $userGroups = $user->groups()->lists('name', 'group_id');
+
+
+		// // Get this user permissions
+		// $userPermissions = array_merge(Input::old('permissions', array('superuser' => -1)), $user->getPermissions());
+		// $this->encodePermissions($userPermissions);
+
+
+		// // Get a list of all the available groups
+		// $groups = Sentry::getGroupProvider()->findAll();
+
+		// // Get all the available permissions
+		// $permissions = Config::get('permissions');
+		// $this->encodeAllPermissions($permissions);
+
+
 		// Show the page
+		// return View::make('backend/media_assets/edit', compact('user', 'asset','groups', 'userGroups', 'permissions', 'userPermissions'));
 		return View::make('backend/media_assets/edit', compact('asset'));
 	}
 
@@ -157,7 +179,7 @@ class AssetsController extends AdminController {
 			// 'last_viewed' => 'required',
 			// 'created_at' => 'required',
 			// 'updated_at' => 'required'
-		);
+			);
 
 		// Create a new validator instance from our validation rules
 		$validator = Validator::make(Input::all(), $rules);

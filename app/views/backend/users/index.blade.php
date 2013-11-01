@@ -8,6 +8,9 @@ User Management ::
 
 {{-- Page content --}}
 @section('content')
+
+{{Breadcrumbs::render('users')}}
+
 <div class="page-header">
 	<h1>
 		User Management
@@ -23,13 +26,16 @@ User Management ::
 
 {{ $users->links() }}
 
+
+
 <table class="table table-bordered table-striped table-hover">
 	<thead>
 		<tr>
 			<th class="span1">@lang('admin/users/table.id')</th>
 			<th class="span2">@lang('admin/users/table.first_name')</th>
 			<th class="span2">@lang('admin/users/table.last_name')</th>
-			<th class="span3">@lang('admin/users/table.email')</th>
+			<th class="span2">@lang('admin/users/table.email')</th>
+			<th class="span3">@lang('admin/users/table.group')</th>
 			<th class="span2">@lang('admin/users/table.activated')</th>
 			<th class="span2">@lang('admin/users/table.created_at')</th>
 			<th class="span2">@lang('table.actions')</th>
@@ -37,11 +43,15 @@ User Management ::
 	</thead>
 	<tbody>
 		@foreach ($users as $user)
+		
 		<tr>
 			<td>{{ $user->id }}</td>
 			<td>{{ $user->first_name }}</td>
 			<td>{{ $user->last_name }}</td>
 			<td>{{ $user->email }}</td>
+			<td>
+				{{$user->getGroups()[0]['name']}}
+			</td>
 			<td>@lang('general.' . ($user->isActivated() ? 'yes' : 'no'))</td>
 			<td>{{ $user->created_at->diffForHumans() }}</td>
 			<td>

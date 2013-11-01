@@ -8,6 +8,13 @@
 App::bind('AssetRepository', 'Asset');
 
 
+Route::get('test', function(){
+	// echo Sentry::getUser();
+	return $users = User::all();
+	// return Sentry::getUserProvider()->createModel();
+});
+
+
 /*
 |--------------------------------------------------------------------------
 | Admin Routes
@@ -16,7 +23,7 @@ App::bind('AssetRepository', 'Asset');
 | Register all the admin routes.
 |
 */
-Route::group(array('prefix' => 'admin'), function()
+Route::group(array('before' => 'admin-auth','prefix' => 'admin'), function()
 {
 
 	# Blog Management
@@ -69,6 +76,7 @@ Route::group(array('prefix' => 'admin'), function()
 
 	# Dashboard
 	Route::get('/', array('as' => 'admin', 'uses' => 'Controllers\Admin\DashboardController@getIndex'));
+	Route::get('settings', array('as' => 'settings', 'uses' => 'Controllers\Admin\SettingsController@getIndex'));
 
 });
 
@@ -121,11 +129,11 @@ Route::group(array('prefix' => 'account'), function()
 {
 
 	# Account Dashboard
-	Route::get('/', array('as' => 'account', 'uses' => 'Controllers\Account\DashboardController@getIndex'));
+	// Route::get('/', array('as' => 'account', 'uses' => 'Controllers\Account\DashboardController@getIndex'));
 
 	# Profile
-	Route::get('profile', array('as' => 'profile', 'uses' => 'Controllers\Account\ProfileController@getIndex'));
-	Route::post('profile', 'Controllers\Account\ProfileController@postIndex');
+	// Route::get('profile', array('as' => 'profile', 'uses' => 'Controllers\Account\ProfileController@getIndex'));
+	// Route::post('profile', 'Controllers\Account\ProfileController@postIndex');
 
 	# Change Password
 	Route::get('change-password', array('as' => 'change-password', 'uses' => 'Controllers\Account\ChangePasswordController@getIndex'));
@@ -147,6 +155,7 @@ Route::group(array('prefix' => 'account'), function()
 | and give it the Closure to execute when that URI is requested.
 |
 */
+
 
 Route::get('about-us', function()
 {
@@ -183,4 +192,15 @@ Route::post('/app/install', array( 'as' => 'app/install', function() {
 	} else {
 		echo '{"status" : "error"}';
 	}
+}));
+
+
+Route::get('login', array('before' => 'cas-login', function()
+{
+	return Redirect::to('/');
+}));
+
+Route::get('logout', array('before' => 'cas-logout', function()
+{
+	return Redirect::to('/');
 }));

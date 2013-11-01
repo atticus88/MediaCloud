@@ -8,6 +8,9 @@ Create a User ::
 
 {{-- Page content --}}
 @section('content')
+
+{{Breadcrumbs::render('createUsers')}}
+
 <div class="page-header">
 	<h1>
 		Create a New User
@@ -55,6 +58,17 @@ Create a User ::
 					</div>             
 				</div><!--/row-->
 				<div class="row">
+					
+					<div class="col-md-6">
+						<div class="form-group control-group {{ $errors->has('username') ? 'error' : '' }}">
+							<label class="control-label col-md-3">Username</label>
+							<div class="col-md-9">
+								<input type="text" class="form-control" name="username" id="username" value="{{ Input::old('username') }}">
+								{{ $errors->first('username', '<span class="help-inline">:message</span>') }}
+							</div>
+						</div>
+					</div>	
+					
 					<div class="col-md-6">
 						<div class="form-group control-group {{ $errors->has('email') ? 'error' : '' }}">
 							<label class="control-label col-md-3">Email</label>
@@ -64,6 +78,9 @@ Create a User ::
 							</div>
 						</div>
 					</div>
+
+
+
 				</div><!--/row-->
 				<div class="row">
 					<div class="col-md-6">
@@ -87,23 +104,23 @@ Create a User ::
 				</div><!--/row-->
 			</div><!--/form-body-->
 			<div class="row">
-			<div class="control-group col-md-6 {{ $errors->has('groups') ? 'error' : '' }}">
-				<legend>Groups</legend>
-				<div class="controls">
-					<select name="groups[]" id="groups[]">
-						@foreach ($groups as $group)
-						<option value="{{ $group->id }}"{{ (in_array($group->id, $selectedGroups) ? ' selected="selected"' : '') }}>{{ $group->name }}</option>
-						@endforeach
-					</select>
+				<div class="control-group col-md-6 {{ $errors->has('groups') ? 'error' : '' }}">
+					<legend>Groups</legend>
+					<div class="controls">
+						<select name="groups[]" id="groups[]">
+							@foreach ($groups as $group)
+							<option value="{{ $group->id }}"{{ (in_array($group->id, $selectedGroups) ? ' selected="selected"' : '') }}>{{ $group->name }}</option>
+							@endforeach
+						</select>
 
-					<span class="help-block" style="margin-bottom:100px;">
-						Select a group to assign to the user, remember that a user takes on the permissions of the group they are assigned.
-					</span>
+						<span class="help-block" style="margin-bottom:100px;">
+							Select a group to assign to the user, remember that a user takes on the permissions of the group they are assigned.
+						</span>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	
+
 
 		<!-- Permissions tab -->
 		<div class="tab-pane" id="tab-permissions">

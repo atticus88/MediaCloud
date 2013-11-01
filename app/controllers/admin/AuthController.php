@@ -30,7 +30,7 @@ class AuthController extends BaseController {
 
 			if ($user)
 			{
-				return Redirect::route('admin.pages.index');
+				return Redirect::route('admin');
 			}
 		}
 		catch(\Exception $e)

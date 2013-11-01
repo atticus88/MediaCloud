@@ -65,7 +65,7 @@ return array(
 	|
 	*/
 
-	'key' => 'ufckLohgvqoAVRKDCc5au7O0nlvkRvbb',
+	'key' => 'i9tTiyTqhX23kzVOqRDidBjeDBYVVwVH',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -115,6 +115,7 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Way\Generators\GeneratorsServiceProvider',
 		'Cartalyst\Sentry\SentryServiceProvider',
+		'DaveJamesMiller\Breadcrumbs\ServiceProvider'
 
 	),
 
@@ -181,7 +182,7 @@ return array(
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
 		'Sentry'		  => 'Cartalyst\Sentry\Facades\Laravel\Sentry',
-
+  		'Breadcrumbs'	  => 'DaveJamesMiller\Breadcrumbs\Facade'
 	),
 
 );

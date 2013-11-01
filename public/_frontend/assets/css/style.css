@@ -661,8 +661,13 @@ Header and header elements.
 }
 
 .header .nav li.dropdown.open>.dropdown-toggle {
+	border-top: 2px solid transparent !important;
+
 	color: #0da3e2;
 	background: none;
+}
+.header .nav li.dropdown>.dropdown-toggle {
+	padding-bottom: 33px;
 }
 
 .header .nav li.dropdown .dropdown-toggle i {

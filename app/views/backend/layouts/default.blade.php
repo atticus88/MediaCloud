@@ -76,7 +76,7 @@
 			</ul>
 
 			<ul class="nav navbar-nav pull-right">
-				<li><a href="{{ route('logout') }}">Logout</a></li>
+				<li><a href="{{ URL::to('logout') }}">Logout</a></li>
 			</ul>
 			</div><!-- /.navbar-collapse -->
 			</nav>

@@ -7,6 +7,8 @@ User Management ::
 @stop
 
 @section('content')
+               {{Breadcrumbs::render('assets')}}
+
 <div class="page-header">
 	
 <h1>All Assets

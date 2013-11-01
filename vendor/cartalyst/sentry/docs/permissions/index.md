@@ -1,4 +1,4 @@
-### Permissions
+## Permissions
 
 In this section we will cover how Sentry 2 permissions work and how the user
 permission inheritance behaves.
@@ -8,40 +8,37 @@ Sentry 1.
 
 That said, here are the values that your groups and users permissions can have:
 
-##### Groups Permissions
+#### Groups Permissions
 
 	0 : Deny
 	1 : Allow
 
-##### Users Permissions
+#### Users Permissions
 
 	-1 : Deny
 	 1 : Allow
 	 0 : Inherit
 
-----------
+### Permission Inheritance {#permission-inheritance}
 
-### Permission Inheritance
+---
 
 Just as permissions are defined for groups and individual users, the permission
 inheritance model depends on a user's group.
 
-An Administrator can assign different permissions to a user that is assigned to
-a group, and if that group has different access permissions, the user's access
-is always determined by the group access.
+An Administrator can assign different permissions to a user than is assigned to a group:
+
+- If a user is not assigned a permission, or if the user is assigned a permission of 0 then the user will inherit permissions from the group
+- If a user is assigned a permission of -1 or 1, then the user's permission will override the group permission
 
 > **Note:** Permission Inheritance only works for users permissions, an example
 is provided on this page to help you
  better understand how this exactly works.
 
-
-----------
-
+#### Administrator Group
 
 Let's say you want to have two groups, an Administrator group and a Moderator
 group, for each group you can define their own permissions:
-
-##### Administrator Group
 
 	{
 		"name" : "Administrator",
@@ -53,7 +50,7 @@ group, for each group you can define their own permissions:
 		}
 	}
 
-##### Moderator Group
+#### Moderator Group
 
 	{
 		"name" : "Moderator",
@@ -69,8 +66,7 @@ group, for each group you can define their own permissions:
 And you have these three users, one as an Administrator, one as a Moderator
 and the last one has the Administrator and Moderator groups assigned.
 
-
-##### User - John Rambo
+#### User - John Rambo
 
 	{
 		"id" : 1,
@@ -84,11 +80,7 @@ and the last one has the Administrator and Moderator groups assigned.
 
 This user has access to everything and can execute every action on your application.
 
-
-----------
-
-
-##### User - Rocky Balboa
+#### User - Rocky Balboa
 
 	{
 		"id" : 2,
@@ -113,11 +105,7 @@ Create or Delete users
 this user permission will inherit that permission, which means that in this
 case the user is allowed to update users.
 
-
-----------
-
-
-##### User - Bruce Wayne
+#### User - Bruce Wayne
 
 	{
 		"id" : 3,
@@ -137,8 +125,6 @@ Create, Update and View users
 ##### Actions he cannot execute
 
 Delete users
-
-<p></p>
 
 Since this is a special user, mainly because this user has two assigned groups,
 there are some things that you should know when assigning multiple groups to

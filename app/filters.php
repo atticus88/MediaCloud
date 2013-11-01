@@ -90,9 +90,146 @@ Route::filter('admin-auth', function()
 	if ( ! Sentry::getUser()->hasAccess('admin'))
 	{
 		// Show the insufficient permissions page
-		return App::abort(403);
+		Session::flash('error', 'Error: No Admin Rights');
+		return Redirect::route('home');
+
 	}
 });
+
+
+Route::filter('cas-login', function(){
+	if(App::environment() == "local"){
+		Session::flash('error', "Not Secure with HTTPS!");
+
+		$user = '';
+		try {
+			$user = (array) DB::table('users')->where('username', 'admin')->first();
+		} catch (Exception $e) {
+
+			Session::flash('error', $e->getMessage());
+		}
+
+		if ($user && isset($user['id'])) {
+			$data = array(
+				'id' => $user['id'],
+				'email' => $user['email'],
+				'password' => 'admin',
+				);
+
+			$user = Sentry::authenticate($data, false);
+
+
+
+
+			// Auth::loginUsingId($user->id);
+			// var_dump(Auth::check());
+			// var_dump(Auth::user()->id);
+			Session::flash('info', "Logged in admin for testing");
+		} else {
+			Session::flash('info', "No Users in database");
+		}
+	}
+
+	if(App::environment() == "dev" || App::environment() == "production"){
+		$cas = Config::get('cas');
+		phpCAS::client($cas['version'], $cas['cas_host'], $cas['cas_port'], $cas['cas_context']);
+		phpCAS::setNoCasServerValidation();
+		// phpCAS::setCasServerCACert($cas['cas_server_ca_cert_path']);
+		phpCAS::forceAuthentication();
+
+		$cas_data = phpCAS::getAttributes();
+
+		// var_dump($cas_data['email']);
+
+		//Is user in the database? if not put them in
+		if (count(User::where('username', '=', phpCAS::getUser())->first()) == 0) {
+
+			$user = Sentry::getUserProvider()->create(
+				array(
+					'email'    => $cas_data['email'],
+					'password' => 'changeme',
+					'username' => phpCAS::getUser(),
+					'activated'=> 1
+					));
+		}
+		else{
+			$users = User::where('username','=', phpCAS::getUser())->get();
+			$user = $users[0];
+		}
+
+		if(Sentry::check()){
+			// Auth::loginUsingId($user->id);
+		}
+
+
+		try
+		{
+			// Log the user in
+			Sentry::login($user, false);
+		}
+		catch (Cartalyst\Sentry\Users\LoginRequiredException $e)
+		{
+			echo 'Login field is required.';
+		}
+		catch (Cartalyst\Sentry\Users\UserNotActivatedException $e)
+		{
+			echo 'User not activated.';
+		}
+		catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
+		{
+			echo 'User not found.';
+		}
+
+		// Following is only needed if throttle is enabled
+		catch (Cartalyst\Sentry\Throttling\UserSuspendedException $e)
+		{
+			$time = $throttle->getSuspensionTime();
+
+			echo "User is suspended for [$time] minutes.";
+		}
+		catch (Cartalyst\Sentry\Throttling\UserBannedException $e)
+		{
+			echo 'User is banned.';
+		}
+
+		//    return Redirect::to('/');
+	}
+});
+
+
+Route::filter('cas-logout', function () {
+
+
+	//logout of Sentry
+	Sentry::logout();
+
+	// if you are logged into CAS log out of it
+	$cas = Config::get('cas');
+	phpCAS::client($cas['version'], $cas['cas_host'], $cas['cas_port'], $cas['cas_context']);
+	phpCAS::setNoCasServerValidation();
+	phpCAS::setCasServerCACert($cas['cas_server_ca_cert_path']);
+	if (phpCAS::isAuthenticated()) {
+		// phpCAS::forceAuthentication();
+		phpCAS::logout(array('service' => URL::to('/')));
+
+	}
+
+
+	if(App::environment() == "local"){
+
+	}
+
+	// if(App::environment() == "dev" || App::environment() == "production"){
+
+	// 	$cas = Config::get('cas');
+	// 	phpCAS::client($cas['version'], $cas['cas_host'], $cas['cas_port'], $cas['cas_context']);
+	// 	phpCAS::setNoCasServerValidation();
+	// 	phpCAS::setCasServerCACert($cas['cas_server_ca_cert_path']);
+	// 	phpCAS::forceAuthentication();
+	// 	phpCAS::logout(array('service' => URL::to('/')));
+	// }
+});
+
 
 /*
 |--------------------------------------------------------------------------

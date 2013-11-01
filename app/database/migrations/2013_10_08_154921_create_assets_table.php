@@ -18,6 +18,7 @@ class CreateAssetsTable extends Migration {
 			$table->string('description');
 			$table->string('filepath');
 			$table->string('filename');
+			$table->text('permissions');
 			$table->string('transcoded_url');
 			$table->string('thumbnail_url');
 			$table->string('url');

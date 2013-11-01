@@ -11,6 +11,9 @@ class AssetsController extends BaseController {
 
 	public function __construct(Asset $asset)
 	{
+		// Apply the admin auth filter
+		$this->beforeFilter('admin-auth');
+
 		$this->asset = $asset;
 	}
 
@@ -54,9 +57,9 @@ class AssetsController extends BaseController {
 		}
 
 		return Redirect::route('assets.create')
-			->withInput()
-			->withErrors($validation)
-			->with('message', 'There were validation errors.');
+		->withInput()
+		->withErrors($validation)
+		->with('message', 'There were validation errors.');
 	}
 
 	/**
@@ -110,9 +113,9 @@ class AssetsController extends BaseController {
 		}
 
 		return Redirect::route('assets.edit', $id)
-			->withInput()
-			->withErrors($validation)
-			->with('message', 'There were validation errors.');
+		->withInput()
+		->withErrors($validation)
+		->with('message', 'There were validation errors.');
 	}
 
 	/**
