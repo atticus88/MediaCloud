@@ -10,6 +10,7 @@ use Input;
 use Lang;
 use Redirect;
 use Sentry;
+use Session;
 use Validator;
 use View;
 
@@ -35,6 +36,10 @@ class UsersController extends AdminController {
 	 */
 	public function getIndex()
 	{
+		if (!Sentry::getUser()->hasAccess('user_getIndex')) {
+			Session::flash('error', Lang::get('admin/permissions/message.no_permission'));
+   			return Redirect::route('admin');
+		}
 		// Grab all the users
 		$users = Sentry::getUserProvider()->createModel();
 
@@ -66,6 +71,10 @@ class UsersController extends AdminController {
 	 */
 	public function getCreate()
 	{
+		if (!Sentry::getUser()->hasAccess('user_getCreate')) {
+			Session::flash('error', Lang::get('admin/permissions/message.no_permission'));
+   			return Redirect::route('admin');
+		}
 		// Get all the available groups
 		$groups = Sentry::getGroupProvider()->findAll();
 
@@ -91,6 +100,10 @@ class UsersController extends AdminController {
 	 */
 	public function postCreate()
 	{
+		if (!Sentry::getUser()->hasAccess('user_postCreate')) {
+			Session::flash('error', Lang::get('admin/permissions/message.no_permission'));
+   			return Redirect::route('admin');
+		}
 		// Create a new validator instance from our validation rules
 		$validator = Validator::make(Input::all(), $this->validationRules);
 
@@ -161,6 +174,12 @@ class UsersController extends AdminController {
 	 */
 	public function getEdit($id = null)
 	{
+
+		if (!Sentry::getUser()->hasAccess('user_postCreate')) {
+			Session::flash('error', Lang::get('admin/permissions/message.no_permission'));
+   			return Redirect::route('admin');
+		}
+
 		try
 		{
 			// Get the user information
@@ -201,6 +220,12 @@ class UsersController extends AdminController {
 	 */
 	public function postEdit($id = null)
 	{
+
+		if (!Sentry::getUser()->hasAccess('user_postEdit')) {
+			Session::flash('error', Lang::get('admin/permissions/message.no_permission'));
+   			return Redirect::route('admin');
+		}
+
 		// We need to reverse the UI specific logic for our
 		// permissions here before we update the user.
 		$permissions = Input::get('permissions', array());
@@ -315,6 +340,13 @@ class UsersController extends AdminController {
 	 */
 	public function getDelete($id = null)
 	{
+
+
+		if (!Sentry::getUser()->hasAccess('user_getDelete')) {
+			Session::flash('error', Lang::get('admin/permissions/message.no_permission'));
+   			return Redirect::route('admin');
+		}
+
 		try
 		{
 			// Get user information
@@ -364,6 +396,13 @@ class UsersController extends AdminController {
 	 */
 	public function getRestore($id = null)
 	{
+
+		if (!Sentry::getUser()->hasAccess('user_postEdit')) {
+			Session::flash('error', Lang::get('admin/permissions/message.no_permission'));
+   			return Redirect::route('admin');
+		}
+
+
 		try
 		{
 			// Get user information

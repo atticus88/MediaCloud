@@ -53,9 +53,9 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
       <!-- BEGIN TOP NAVIGATION BAR -->
       <div class="header-inner">
          <!-- BEGIN LOGO -->
-         <a class="navbar-brand" href="/"> 
+         <a class="navbar-brand" href="/">
          <img src="/assets/img/wsu.png" alt="logo" class="img-responsive" />
-         <a class="navbar-brand" href="/"> 
+         <a class="navbar-brand" href="/">
          <!-- <img src="/_admin/assets/img/logo.png" alt="logo" class="img-responsive" /> -->
          </a>
          <!-- END LOGO -->
@@ -388,7 +388,43 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
   @include('backend/layouts/sidebar')
       <!-- BEGIN PAGE -->
       <div class="page-content">
-      
+
+      <!-- BEGIN ALERTS -->
+      <div id="alerts">
+         @if(Session::has('message'))
+         <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <p>{{Session::get('message')}}</p>
+         </div>
+         @endif
+
+         @if(Session::has('info'))
+         <div class="alert alert-info">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <p>{{Session::get('info')}}</p>
+         </div>
+         @endif
+
+         @if(Session::has('error'))
+         <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <p>{{Session::get('error')}}</p>
+         </div>
+         @endif
+
+         @if($errors->has())
+         <div class="alert alert-danger error">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <h2>Error</h2>
+            @foreach($errors->all('<p>:message</p>') as $error)
+            {{$error}}
+            @endforeach
+         </div>
+         @endif
+      </div>
+      <!-- END ALERTS -->
+
+
          @yield('content')
       </div>
       <!-- END PAGE -->

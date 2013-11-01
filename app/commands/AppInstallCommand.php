@@ -150,15 +150,27 @@ class AppInstallCommand extends Command {
 					'name'        => 'Admin',
 					'permissions' => array(
 						'superuser' => 1,
+
 						'admin' => 1,
-						'users' => 1,
-						'upload' => 1,
-						'manage-media' => 1,
-						'capture' => 1
+
+						'user_getIndex' => 1,
+						'user_getCreate' => 1,
+						'user_postCreate' => 1,
+						'user_getEdit' => 1,
+						'user_postEdit' => 1,
+						'user_getDelete' => 1,
+						'user_getRestore' => 1,
+
+						'asset_getIndex' => 1,
+						'asset_getCreate' => 1,
+						'asset_postCreate' => 1,
+						'asset_getEdit' => 1,
+						'asset_postEdit' => 1,
+						'asset_getDelete' => 1
 						)
 					)
 				);
-			
+
 
 			// Show the success message.
 			$this->comment('');

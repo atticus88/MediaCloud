@@ -7,6 +7,7 @@ use Lang;
 use Asset;
 use Redirect;
 use Sentry;
+use Session;
 use Str;
 use Validator;
 use View;
@@ -25,6 +26,13 @@ class AssetsController extends AdminController {
 	 */
 	public function getIndex()
 	{
+
+		if (!Sentry::getUser()->hasAccess('asset_getIndex')) {
+			Session::flash('error', Lang::get('admin/permissions/message.no_permission'));
+   			return Redirect::route('admin');
+		}
+
+
 		// Grab all the assets
 		$assets = $this->asset->getLastAssets(15);
 
@@ -40,6 +48,10 @@ class AssetsController extends AdminController {
 	 */
 	public function getCreate()
 	{
+		if (!Sentry::getUser()->hasAccess('asset_getCreate')) {
+			Session::flash('error', Lang::get('admin/permissions/message.no_permission'));
+   			return Redirect::route('admin');
+		}
 		// Show the page
 		return View::make('backend/media_assets/create');
 	}
@@ -51,6 +63,10 @@ class AssetsController extends AdminController {
 	 */
 	public function postCreate()
 	{
+		if (!Sentry::getUser()->hasAccess('asset_postCreate')) {
+			Session::flash('error', Lang::get('admin/permissions/message.no_permission'));
+   			return Redirect::route('admin');
+		}
 		// Declare the rules for the form validation
 		$rules = array(
 			// 'id' => 'required',
@@ -115,6 +131,11 @@ class AssetsController extends AdminController {
 	 */
 	public function getEdit($assetId = null)
 	{
+		if (!Sentry::getUser()->hasAccess('asset_getEdit')) {
+			Session::flash('error', Lang::get('admin/permissions/message.no_permission'));
+   			return Redirect::route('admin');
+		}
+
 		// Check if the asset exists
 		if (is_null($asset = Asset::find($assetId)))
 		{
@@ -155,6 +176,13 @@ class AssetsController extends AdminController {
 	 */
 	public function postEdit($assetId = null)
 	{
+
+		if (!Sentry::getUser()->hasAccess('asset_postEdit')) {
+			Session::flash('error', Lang::get('admin/permissions/message.no_permission'));
+   			return Redirect::route('admin');
+		}
+
+
 		// Check if the assets exists
 		if (is_null($asset = Asset::find($assetId)))
 		{
@@ -228,6 +256,12 @@ class AssetsController extends AdminController {
 	 */
 	public function getDelete($assetId)
 	{
+
+		if (!Sentry::getUser()->hasAccess('asset_getDelete')) {
+			Session::flash('error', Lang::get('admin/permissions/message.no_permission'));
+   			return Redirect::route('admin');
+		}
+
 		// Check if the asset exists
 		if (is_null($asset = Asset::find($assetId)))
 		{

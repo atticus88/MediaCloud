@@ -8,7 +8,7 @@ return array(
 			'label'      => 'Super User',
 		),
 	),
-	
+
 	'Admin' => array(
 		array(
 			'permission' => 'admin',
@@ -17,62 +17,62 @@ return array(
 	),
 	'User' => array(
 		array(
-			'permission' => 'user_index',
+			'permission' => 'user_getIndex',
 			'label'      => 'User Index',
 		),
 		array(
-			'permission' => 'user_create',
+			'permission' => 'user_getCreate',
 			'label'      => 'User Create',
 		),
 		array(
-			'permission' => 'user_store',
+			'permission' => 'user_postCreate',
 			'label'      => 'User Store',
 		),
 		array(
-			'permission' => 'user_show',
+			'permission' => 'user_getEdit',
 			'label'      => 'User Show',
 		),
 		array(
-			'permission' => 'user_edit',
+			'permission' => 'user_postEdit',
 			'label'      => 'User Edit',
 		),
 		array(
-			'permission' => 'user_update',
-			'label'      => 'User Update',
+			'permission' => 'user_getDelete',
+			'label'      => 'User Delete',
 		),
 		array(
-			'permission' => 'user_destroy',
-			'label'      => 'User Destroy',
+			'permission' => 'user_getRestore',
+			'label'      => 'User Restore',
 		),
 	),
 	'Asset' => array(
 		array(
-			'permission' => 'asset_index',
+			'permission' => 'asset_getIndex',
 			'label'      => 'Asset Index',
 		),
 		array(
-			'permission' => 'asset_create',
+			'permission' => 'asset_getCreate',
 			'label'      => 'Asset Create',
 		),
 		array(
-			'permission' => 'asset_store',
+			'permission' => 'asset_postCreate',
 			'label'      => 'Asset Store',
 		),
 		array(
-			'permission' => 'asset_show',
+			'permission' => 'asset_getEdit',
 			'label'      => 'Asset Show',
 		),
 		array(
-			'permission' => 'asset_edit',
-			'label'      => 'Asset Edit',
+			'permission' => 'asset_postEdit',
+			'label'      => 'Asset Save',
 		),
 		array(
-			'permission' => 'asset_update',
-			'label'      => 'User Update',
-		),
-		array(
-			'permission' => 'asset_destroy',
-			'label'      => 'Asset Destroy',
-		),
+			'permission' => 'asset_getDelete',
+			'label'      => 'Asset Delete',
+		)
 	),
 );
+
+
+
+
