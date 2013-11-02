@@ -9,9 +9,12 @@ App::bind('AssetRepository', 'Asset');
 
 
 Route::get('test', function(){
-	// echo Sentry::getUser();
-	return $users = User::all();
-	// return Sentry::getUserProvider()->createModel();
+	$password = Hash::make('secret');
+	echo $password;
+	if (Hash::check('secret', $password))	{
+    	echo 'true';
+	}
+
 });
 
 
@@ -66,8 +69,8 @@ Route::group(array('before' => 'admin-auth','prefix' => 'admin'), function()
 	Route::group(array('prefix' => 'assets'), function()
 	{
 		Route::get('/', array('as' => 'assets', 'uses' => 'Controllers\Admin\AssetsController@getIndex'));
-		Route::get('create', array('as' => 'create/asset', 'uses' => 'Controllers\Admin\AssetsController@getCreate'));
-		Route::post('create', 'Controllers\Admin\AssetsController@postCreate');
+		Route::get('upload', array('as' => 'upload/asset', 'uses' => 'Controllers\Admin\AssetsController@getUpload'));
+		Route::post('upload', 'Controllers\Admin\AssetsController@postUpload');
 		Route::get('{assetId}/edit', array('as' => 'update/asset', 'uses' => 'Controllers\Admin\AssetsController@getEdit'));
 		Route::post('{assetId}/edit', 'Controllers\Admin\AssetsController@postEdit');
 		Route::get('{assetId}/delete', array('as' => 'delete/asset', 'uses' => 'Controllers\Admin\AssetsController@getDelete'));

@@ -51,11 +51,11 @@ return array(
 			'label'      => 'Asset Index',
 		),
 		array(
-			'permission' => 'asset_getCreate',
+			'permission' => 'asset_getUpload',
 			'label'      => 'Asset Create',
 		),
 		array(
-			'permission' => 'asset_postCreate',
+			'permission' => 'asset_postUpload',
 			'label'      => 'Asset Store',
 		),
 		array(

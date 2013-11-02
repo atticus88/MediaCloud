@@ -162,8 +162,8 @@ class AppInstallCommand extends Command {
 						'user_getRestore' => 1,
 
 						'asset_getIndex' => 1,
-						'asset_getCreate' => 1,
-						'asset_postCreate' => 1,
+						'asset_getUpload' => 1,
+						'asset_postUpload' => 1,
 						'asset_getEdit' => 1,
 						'asset_postEdit' => 1,
 						'asset_getDelete' => 1

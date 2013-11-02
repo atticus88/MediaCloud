@@ -46,9 +46,9 @@ class AssetsController extends AdminController {
 	 *
 	 * @return View
 	 */
-	public function getCreate()
+	public function getUpload()
 	{
-		if (!Sentry::getUser()->hasAccess('asset_getCreate')) {
+		if (!Sentry::getUser()->hasAccess('asset_getUpload')) {
 			Session::flash('error', Lang::get('admin/permissions/message.no_permission'));
    			return Redirect::route('admin');
 		}
@@ -61,9 +61,9 @@ class AssetsController extends AdminController {
 	 *
 	 * @return Redirect
 	 */
-	public function postCreate()
+	public function postUpload()
 	{
-		if (!Sentry::getUser()->hasAccess('asset_postCreate')) {
+		if (!Sentry::getUser()->hasAccess('asset_postUpload')) {
 			Session::flash('error', Lang::get('admin/permissions/message.no_permission'));
    			return Redirect::route('admin');
 		}

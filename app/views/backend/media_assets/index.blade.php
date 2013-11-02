@@ -10,17 +10,17 @@ User Management ::
                {{Breadcrumbs::render('assets')}}
 
 <div class="page-header">
-	
+
 <h1>All Assets
 
 <div class="pull-right">
-			<a href="{{ route('create/asset') }}" class="btn btn-small btn-info"><i class="icon-plus-sign icon-white"></i> Create</a>
+			<a href="{{ URL::route('upload/asset') }}" class="btn btn-small btn-info"><i class="icon-plus-sign icon-white"></i> Upload</a>
 		</div>
 </h1>
 </div>
 
 @if (count($assets) >= 1)
-<div class="pull-right">	
+<div class="pull-right">
 {{$assets->appends(array('sort' => 'created_at'))->links(); }}
 </div>
 	<table class="table table-striped table-bordered">
