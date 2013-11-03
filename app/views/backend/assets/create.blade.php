@@ -19,9 +19,10 @@
     <div class="row">
      <div class="col-md-6">
        <div class="form-group">
-         <label class="control-label col-md-2">User</label>
+         <label class="control-label col-md-2">Owner</label>
          <div class="col-md-6">
            {{ Form::text('user', '',  array('class' => 'form-control')) }}
+           <button>add another owner</button>
          </div>
        </div>
      </div>

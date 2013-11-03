@@ -38,7 +38,7 @@ class AssetsController extends AdminController {
 
 		// die(var_dump($assets));
 		// Show the page
-		return View::make('backend/media_assets/index', compact('assets'));
+		return View::make('backend/assets/index', compact('assets'));
 	}
 
 	/**
@@ -53,7 +53,7 @@ class AssetsController extends AdminController {
    			return Redirect::route('admin');
 		}
 		// Show the page
-		return View::make('backend/media_assets/create');
+		return View::make('backend/assets/create');
 	}
 
 	/**
@@ -140,7 +140,7 @@ class AssetsController extends AdminController {
 		if (is_null($asset = Asset::find($assetId)))
 		{
 			// Redirect to the blogs management page
-			return Redirect::to('admin/media_assets')->with('error', Lang::get('admin/assets/message.does_not_exist'));
+			return Redirect::to('admin/assets')->with('error', Lang::get('admin/assets/message.does_not_exist'));
 		}
 
 		// // Get the user information
@@ -164,8 +164,8 @@ class AssetsController extends AdminController {
 
 
 		// Show the page
-		// return View::make('backend/media_assets/edit', compact('user', 'asset','groups', 'userGroups', 'permissions', 'userPermissions'));
-		return View::make('backend/media_assets/edit', compact('asset'));
+		// return View::make('backend/assets/edit', compact('user', 'asset','groups', 'userGroups', 'permissions', 'userPermissions'));
+		return View::make('backend/assets/edit', compact('asset'));
 	}
 
 	/**

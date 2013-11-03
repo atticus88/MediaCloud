@@ -9,11 +9,52 @@ App::bind('AssetRepository', 'Asset');
 
 
 Route::get('test', function(){
-	$password = Hash::make('secret');
-	echo $password;
-	if (Hash::check('secret', $password))	{
-    	echo 'true';
+
+// 	$user = User::find(1);
+// 	// $user->assets()->detach(3);
+// 	// $user->assets()->detach(2);
+// 	// $user->assets()->attach(2);
+// 	// $user->assets()->attach(1);
+//     // $assets = $user->assets;
+//     // return $assets;
+// // return $user->assets[2];
+
+// foreach ($user->assets as $asset)
+// {
+//     $asset->collection()->attach(1);
+// }
+
+// return Collection::all();
+
+	// $playlist = Playlist::find(1);
+	// return $playlist->assets;
+
+
+	$collections = Collection::all();
+
+foreach ($collections as $collection) {
+	echo $collection->name . "<br>";
+
+	foreach ($collection->playlists as $playlist) {
+		echo $playlist->name. "<br>";
 	}
+
+	foreach ($collection->assets as $asset)
+	{
+		echo $asset->id . "<br>";;
+	}
+
+}
+	// return $collection->assets;
+
+
+
+
+
+
+
+
+
 
 });
 

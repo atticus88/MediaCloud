@@ -2,11 +2,11 @@
 
 class Asset extends Eloquent implements AssetRepository {
 
-	protected $table = 'media_assets';
+	protected $table = 'assets';
 
 	public function getLastAssets($amount)
 	{
-		// $assets = DB::select("SELECT * FROM  media_assets ORDER BY  created_at DESC LIMIT 0 , $amount");
+		// $assets = DB::select("SELECT * FROM assets ORDER BY  created_at DESC LIMIT 0 , $amount");
 		$assets = Asset::paginate($amount);
 		return $assets;
 	}
@@ -15,8 +15,20 @@ class Asset extends Eloquent implements AssetRepository {
 
 	public function user()
 	{
-		return $this->belongsTo('User', 'user_id');
+		return $this->belongsTo('User', 'id');
 	}
+
+	public function playlists()
+	{
+		return $this->belongsTo('Playlist', 'id');
+	}
+
+	public function collections()
+	{
+		return $this->belongsTo('Collection', 'id');
+	}
+
+
 }
 
 

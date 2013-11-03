@@ -12,20 +12,21 @@ class CreateAssetsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('media_assets', function(Blueprint $table) {
+		Schema::create('assets', function(Blueprint $table) {
 			$table->increments('id');
+			$table->string('alpha_id');
 			$table->string('title');
 			$table->string('description');
-			$table->string('filepath');
-			$table->string('filename');
-			$table->text('permissions');
-			$table->string('transcoded_url');
-			$table->string('thumbnail_url');
-			$table->string('url');
+			$table->string('filepath_original');
+			$table->string('filepath_transcoded');
+			$table->string('url_original');
+			$table->string('url_transcoded');
 			$table->string('type');
 			$table->string('status');
+			$table->text('permissions');
 			$table->string('tags');
 			$table->integer('views');
+			$table->integer('uploaded_by');
 			$table->datetime('last_viewed');
 			$table->timestamps();
 		});
@@ -39,7 +40,7 @@ class CreateAssetsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('media_assets');
+		Schema::drop('assets');
 	}
 
 }

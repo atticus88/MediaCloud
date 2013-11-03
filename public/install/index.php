@@ -77,7 +77,7 @@ if (preg_match('/Linux/',php_uname())){
 }
  ?>
 
-					<p>Make sure directorys are writable:</p>
+					<p>Make sure directories are writable:</p>
 					<?php
 					$project_root_path = realpath(dirname(dirname(dirname(__file__))));
 					$app_config = realpath($project_root_path."/app/config");

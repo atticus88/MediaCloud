@@ -1,5 +1,6 @@
 {
 	"name": "laravel/laravel",
+	"license":"proprietary",
 	"description": "The Laravel Framework.",
 	"keywords": ["framework", "laravel"],
 	"require": {
@@ -25,8 +26,8 @@
 		],
         "files": [
             "vendor/gorg/phpcas/CAS.php"
-        ]
-		
+        ],
+        "psr-0": {"":""}
 	},
 	"scripts": {
 		"post-install-cmd": [
