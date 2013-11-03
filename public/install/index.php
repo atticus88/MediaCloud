@@ -476,16 +476,25 @@ if (preg_match('/Linux/',php_uname())){
 						data: wizard.serialize(),
 						dataType: 'json',
 						success: function (data) {
-							if (data.status == 'success') {
+							if (data) {
+								
+								if (data.status == 'success') {
+									wizard.submitSuccess();
+								} else {
+									wizard.submitFailure();
+								}
+							};
+						},
+						error:function(data){
+							if (data.status == 'error') {
 								wizard.submitSuccess();
 							} else {
 								wizard.submitFailure();
 							}
-						},
-						error:function(data){
-							console.log(data)
 						}
-					})
+					}).done(function() {
+						wizard.submitSuccess();
+					});
 
 			},
 			error: function() {

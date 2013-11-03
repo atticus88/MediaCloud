@@ -103,7 +103,8 @@ class AppInstallCommand extends Command {
 
 		$users = User::all();
 		if(count($users)){
-			die("Reset DB");
+			Artisan::call('app:refresh');
+			die();
 		}
 
 		// Create the default user and default groups.

@@ -14,4 +14,9 @@ class Collection extends Eloquent {
 	{
 		return $this->belongsToMany('Playlist');
 	}
+
+	public function users()
+	{
+		return $this->belongsToMany('User');
+	}
 }

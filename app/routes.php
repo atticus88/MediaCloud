@@ -10,11 +10,11 @@ App::bind('AssetRepository', 'Asset');
 
 Route::get('test', function(){
 
-// 	$user = User::find(1);
+	$user = User::find(1);
 // 	// $user->assets()->detach(3);
 // 	// $user->assets()->detach(2);
 // 	// $user->assets()->attach(2);
-// 	// $user->assets()->attach(1);
+	$user->assets()->attach(1);
 //     // $assets = $user->assets;
 //     // return $assets;
 // // return $user->assets[2];
@@ -29,29 +29,62 @@ Route::get('test', function(){
 	// $playlist = Playlist::find(1);
 	// return $playlist->assets;
 
+	echo "<h1>All Collections</h1>";
 
 	$collections = Collection::all();
 
-foreach ($collections as $collection) {
-	echo $collection->name . "<br>";
+	foreach ($collections as $collection) {
+		echo $collection->name . "<br>";
 
-	foreach ($collection->playlists as $playlist) {
-		echo $playlist->name. "<br>";
+		foreach ($collection->playlists as $playlist) {
+			echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$playlist->name. "<br>";
+
+			foreach ($playlist->assets as $asset) {
+				echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$asset->title. "<br>";
+			}
+		}
+
+		foreach ($collection->assets as $asset)
+		{
+			echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$asset->title. "<br>";
+		}
+
 	}
+// echo "<br><br><br><h1>All Assets</h1>";
 
-	foreach ($collection->assets as $asset)
-	{
-		echo $asset->id . "<br>";;
+// foreach (Asset::all() as $asset) {
+// 	echo $asset->title. "<br>";
+// }
+// echo "<br><br><br><h1>All user 1 Assets</h1>";
+
+// 	$user = User::find(1);
+// 	foreach ($user->assets as $asset)
+// 	{
+// 	    echo $asset->title. "<br>";
+// 	}
+
+	echo "<br><br><br><h1>All user 2 assets</h1>";
+	$user = User::find(2);
+	echo $user->id."<br>";
+	foreach ($user->assets as $asset) {
+		$collections = $asset->collections;
+		$playlists = $asset->playlists;
+
+		if($collections){
+
+			echo "------".$collections['name']."<br>";
+		}else{
+			echo "------".'no collections'."<br>";
+		}
+		if($playlists){
+			echo "------".$playlists['name']."<br>";
+		}else{
+			echo "------".'no playlist'."<br>";
+
+		}
+		echo "---------". $asset->title."<br><br><br>";
+
 	}
-
-}
-	// return $collection->assets;
-
-
-
-
-
-
 
 
 
@@ -220,7 +253,6 @@ Route::get('/', array('as' => 'home', function(){
 	} else {
 
 		return Redirect::route('install');
-	//echo URL::route('install');
 	}
 }));
 

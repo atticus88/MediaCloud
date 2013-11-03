@@ -50,5 +50,9 @@ class User extends SentryUserModel {
 	{
 		return $this->belongsToMany('Asset');
 	}
+	public function collections()
+	{
+		return $this->belongsToMany('Collection');
+	}
 
 }
