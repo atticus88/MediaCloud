@@ -10,25 +10,6 @@ App::bind('AssetRepository', 'Asset');
 
 Route::get('test', function(){
 
-	$user = User::find(1);
-// 	// $user->assets()->detach(3);
-// 	// $user->assets()->detach(2);
-// 	// $user->assets()->attach(2);
-	$user->assets()->attach(1);
-//     // $assets = $user->assets;
-//     // return $assets;
-// // return $user->assets[2];
-
-// foreach ($user->assets as $asset)
-// {
-//     $asset->collection()->attach(1);
-// }
-
-// return Collection::all();
-
-	// $playlist = Playlist::find(1);
-	// return $playlist->assets;
-
 	echo "<h1>All Collections</h1>";
 
 	$collections = Collection::all();
@@ -40,7 +21,7 @@ Route::get('test', function(){
 			echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$playlist->name. "<br>";
 
 			foreach ($playlist->assets as $asset) {
-				echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$asset->title. "<br>";
+				echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$asset->title. " - ". $asset->description . "<br>";
 			}
 		}
 
@@ -48,41 +29,6 @@ Route::get('test', function(){
 		{
 			echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$asset->title. "<br>";
 		}
-
-	}
-// echo "<br><br><br><h1>All Assets</h1>";
-
-// foreach (Asset::all() as $asset) {
-// 	echo $asset->title. "<br>";
-// }
-// echo "<br><br><br><h1>All user 1 Assets</h1>";
-
-// 	$user = User::find(1);
-// 	foreach ($user->assets as $asset)
-// 	{
-// 	    echo $asset->title. "<br>";
-// 	}
-
-	echo "<br><br><br><h1>All user 2 assets</h1>";
-	$user = User::find(2);
-	echo $user->id."<br>";
-	foreach ($user->assets as $asset) {
-		$collections = $asset->collections;
-		$playlists = $asset->playlists;
-
-		if($collections){
-
-			echo "------".$collections['name']."<br>";
-		}else{
-			echo "------".'no collections'."<br>";
-		}
-		if($playlists){
-			echo "------".$playlists['name']."<br>";
-		}else{
-			echo "------".'no playlist'."<br>";
-
-		}
-		echo "---------". $asset->title."<br><br><br>";
 
 	}
 

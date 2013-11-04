@@ -60,7 +60,7 @@ User Update ::
 								{{ $errors->first('last_name', '<span class="help-inline">:message</span>') }}
 							</div>
 						</div>
-					</div>             
+					</div>
 				</div><!--/row-->
 				<div class="row">
 					<div class="col-md-6">
@@ -120,9 +120,7 @@ User Update ::
 						</span>
 					</div>
 				</div>
-			</div>
-			<div class="row">
-			<div class="control-group col-md-6 {{ $errors->has('activated') ? 'error' : '' }}" style="margin-bottom:80px;">
+				<div class="control-group col-md-6 {{ $errors->has('activated') ? 'error' : '' }}" style="margin-bottom:80px;">
 				<legend>User Activated</legend>
 				<div class="controls">
 					<select{{ ($user->id === Sentry::getId() ? ' disabled="disabled"' : '') }} name="activated" id="activated">
@@ -132,18 +130,23 @@ User Update ::
 					{{ $errors->first('activated', '<span class="help-inline">:message</span>') }}
 				</div>
 			</div>
+			<div class="row">
+
+
+			</div>
 		</div>
 	</div>
 	<!-- Permissions tab -->
 	<div class="tab-pane" id="tab-permissions">
 		<div class="controls">
+			<div class="row">
 				@foreach ($permissions as $area => $permissions)
-				<fieldset>
+				<fieldset class="col-md-4">
 					<legend>{{ $area }}</legend>
 
 					@foreach ($permissions as $permission)
 					<div class="control-group" >
-						<label>{{ $permission['label'] }}</label>
+						<label style="width:100px">{{ $permission['label'] }}</label>
 
 						<div class="radio inline" >
 							<label for="{{ $permission['permission'] }}_allow" onclick="">
@@ -172,10 +175,10 @@ User Update ::
 
 				</fieldset>
 				@endforeach
-			
+			</div><!-- ./row -->
 		</div>
 	</div>
-</div>	
+</div>
 
 	<!-- Form Actions -->
 	<div class="control-group">

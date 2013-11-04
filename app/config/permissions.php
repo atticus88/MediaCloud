@@ -2,19 +2,25 @@
 
 return array(
 
-	'Global' => array(
-		array(
-			'permission' => 'superuser',
-			'label'      => 'Super User',
-			),
-		),
-
 	'Admin' => array(
 		array(
 			'permission' => 'admin',
 			'label'      => 'Admin Rights',
 			),
 		),
+	'Global' => array(
+		array(
+			'permission' => 'superuser',
+			'label'      => 'Super User',
+			),
+		),
+	'Frontend Admin' => array(
+		array(
+			'permission' => 'superuser',
+			'label'      => 'Superuser Rights',
+			),
+		),
+
 	'User' => array(
 		array(
 			'permission' => 'user_getIndex',
@@ -70,12 +76,6 @@ return array(
 			'permission' => 'asset_getDelete',
 			'label'      => 'Asset Delete',
 			)
-		),
-	'Frontend Admin' => array(
-		array(
-			'permission' => 'superuser',
-			'label'      => 'Superuser Rights',
-			),
 		),
 	);
 
