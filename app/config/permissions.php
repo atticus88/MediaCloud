@@ -45,7 +45,7 @@ return array(
 			'label'      => 'User Restore',
 		),
 	),
-	'Asset' => array(
+	'Admin Asset' => array(
 		array(
 			'permission' => 'asset_getIndex',
 			'label'      => 'Asset Index',
