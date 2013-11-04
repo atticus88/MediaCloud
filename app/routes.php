@@ -31,8 +31,27 @@ Route::get('test', function(){
 		}
 
 	}
+});
 
+Route::get('test2', function(){
 
+	// $user = User::with('assets')->where("id","=", 1)->first();
+	$user = User::with('assets')->where("id","=", 2)->first();
+	// return $user;
+	
+	// var_dump($user->toArray());
+	return $users = DB::raw('select * from users');
+
+});
+
+Route::get('test3', function(){
+
+	// echo "<h1>All Collections</h1>";
+
+	$user = User::with('assets')->where("id","=", 1)->first();
+	$playlist = Playlist::with('assets')->get();
+
+	return $playlist;
 
 
 });

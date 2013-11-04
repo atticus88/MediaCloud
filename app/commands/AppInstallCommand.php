@@ -90,7 +90,7 @@ class AppInstallCommand extends Command {
 
 
 		// Generate the Application Encryption key
-		$this->call('key:generate');
+		// $this->call('key:generate');
 
 		// // Create the migrations table
 		// $this->call('migrate:install');
