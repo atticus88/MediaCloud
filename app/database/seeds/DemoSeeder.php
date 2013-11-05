@@ -180,8 +180,6 @@ class DemoSeeder extends Seeder {
 		$playlist->assets()->attach(4);
 
 //******************************************************
-
-
 		// Adding Collection - Department
 		$collection = new Collection;
 		$collection->name = 'Collection - Health Department';
@@ -202,7 +200,6 @@ class DemoSeeder extends Seeder {
 		$playlist->assets()->attach(7);
 
 //******************************************************
-
 		// Adding Collection - Department
 		$collection = new Collection;
 		$collection->name = 'Collection - Science Department';
@@ -222,13 +219,6 @@ class DemoSeeder extends Seeder {
 		$collection->playlists()->attach($playlist->id);
 		$playlist->assets()->attach(9);
 //******************************************************
-
-		// //asset to user
-		// $asset = Asset::find(1);
-		// $asset->collection->attach(1);
-
-		// Uncomment the below to run the seeder
-		// DB::table('user')->insert($userSeeder);
 	}
 
 }

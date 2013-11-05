@@ -34,13 +34,11 @@ Route::get('test', function(){
 });
 
 Route::get('test2', function(){
-
-	// $user = User::with('assets')->where("id","=", 1)->first();
-	$user = User::with('assets')->where("id","=", 2)->first();
-	// return $user;
-	
-	// var_dump($user->toArray());
-	return $users = DB::raw('select * from users');
+	return DB::select(DB::raw("SELECT * FROM  `asset_user` LIMIT 0 , 30"));
+	// return Collection::collection_playlist_asset(2);
+	// return array('user' => Collection::with('assets')->get() );
+	// // $user = User::with('assets')->where("id","=", 1)->first();
+	// return $user = User::with('assets')->get();//->where("id","=", 2)->first();
 
 });
 
@@ -48,10 +46,22 @@ Route::get('test3', function(){
 
 	// echo "<h1>All Collections</h1>";
 
-	$user = User::with('assets')->where("id","=", 1)->first();
-	$playlist = Playlist::with('assets')->get();
 
-	return $playlist;
+	$user = User::with('assets')->where("id","=", 2)->first();
+	
+	return $playlists = Playlist::with('assets')->get();
+
+	foreach ($user->assets as $asset) {
+		echo $user->id ." - ". $asset->id . "<br>";
+
+		foreach ($playlists as $playlist) {
+			// return $collections = Collection::with('playlists')->where("id","=", $playlist->id )->first();
+			
+		}
+		// echo $collections;
+	}
+
+
 
 
 });
