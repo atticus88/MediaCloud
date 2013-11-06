@@ -10,61 +10,18 @@ App::bind('AssetRepository', 'Asset');
 
 Route::get('test', function(){
 
-	echo "<h1>All Collections</h1>";
+	$users = User::with("assets")->get();
+	$cpa = new CollectionPlaylistAsset;
 
-	$collections = Collection::all();
-
-	foreach ($collections as $collection) {
-		echo $collection->name . "<br>";
-
-		foreach ($collection->playlists as $playlist) {
-			echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$playlist->name. "<br>";
-
-			foreach ($playlist->assets as $asset) {
-				echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$asset->title. " - ". $asset->description . "<br>";
-			}
-		}
-
-		foreach ($collection->assets as $asset)
-		{
-			echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$asset->title. "<br>";
-		}
+	foreach ($users as $user) {
+		echo $user->id;
+		// echo $cpa->get_cpa_by_id($user->id);
 
 	}
-});
-
-Route::get('test2', function(){
-	return DB::select(DB::raw("SELECT * FROM  `asset_user` LIMIT 0 , 30"));
-	// return Collection::collection_playlist_asset(2);
-	// return array('user' => Collection::with('assets')->get() );
-	// // $user = User::with('assets')->where("id","=", 1)->first();
-	// return $user = User::with('assets')->get();//->where("id","=", 2)->first();
 
 });
 
-Route::get('test3', function(){
 
-	// echo "<h1>All Collections</h1>";
-
-
-	$user = User::with('assets')->where("id","=", 2)->first();
-	
-	return $playlists = Playlist::with('assets')->get();
-
-	foreach ($user->assets as $asset) {
-		echo $user->id ." - ". $asset->id . "<br>";
-
-		foreach ($playlists as $playlist) {
-			// return $collections = Collection::with('playlists')->where("id","=", $playlist->id )->first();
-			
-		}
-		// echo $collections;
-	}
-
-
-
-
-});
 
 
 /*
