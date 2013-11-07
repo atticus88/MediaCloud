@@ -10,27 +10,31 @@ App::bind('AssetRepository', 'Asset');
 
 Route::get('test', function(){
 
-	echo "<h1>All Collections</h1>";
+	// echo "<h1>All Collections</h1>";
+
+	$cpa = new CollectionPlaylistAsset;
+	return $cpa::all();
 
 	$collections = Collection::all();
 
-	foreach ($collections as $collection) {
-		echo $collection->name . "<br>";
 
-		foreach ($collection->playlists as $playlist) {
-			echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$playlist->name. "<br>";
+	// foreach ($collections as $collection) {
+	// 	echo $collection->name . "<br>";
 
-			foreach ($playlist->assets as $asset) {
-				echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$asset->title. " - ". $asset->description . "<br>";
-			}
-		}
+	// 	foreach ($collection->playlists as $playlist) {
+	// 		echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$playlist->name. "<br>";
 
-		foreach ($collection->assets as $asset)
-		{
-			echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$asset->title. "<br>";
-		}
+	// 		foreach ($playlist->assets as $asset) {
+	// 			echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$asset->title. " - ". $asset->description . "<br>";
+	// 		}
+	// 	}
 
-	}
+	// 	foreach ($collection->assets as $asset)
+	// 	{
+	// 		echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$asset->title. "<br>";
+	// 	}
+
+	// }
 });
 
 Route::get('test2', function(){
