@@ -12,10 +12,15 @@ Route::get('test', function(){
 
 	// echo "<h1>All Collections</h1>";
 
+	$playlist = new Playlist;
+	return $playlist::all();
+
+	$collection = new Collection;
+	return $collection::all();
+
 	$cpa = new CollectionPlaylistAsset;
 	return $cpa::all();
 
-	$collections = Collection::all();
 
 
 	// foreach ($collections as $collection) {
@@ -37,38 +42,6 @@ Route::get('test', function(){
 	// }
 });
 
-Route::get('test2', function(){
-	return DB::select(DB::raw("SELECT * FROM  `asset_user` LIMIT 0 , 30"));
-	// return Collection::collection_playlist_asset(2);
-	// return array('user' => Collection::with('assets')->get() );
-	// // $user = User::with('assets')->where("id","=", 1)->first();
-	// return $user = User::with('assets')->get();//->where("id","=", 2)->first();
-
-});
-
-Route::get('test3', function(){
-
-	// echo "<h1>All Collections</h1>";
-
-
-	$user = User::with('assets')->where("id","=", 2)->first();
-	
-	return $playlists = Playlist::with('assets')->get();
-
-	foreach ($user->assets as $asset) {
-		echo $user->id ." - ". $asset->id . "<br>";
-
-		foreach ($playlists as $playlist) {
-			// return $collections = Collection::with('playlists')->where("id","=", $playlist->id )->first();
-			
-		}
-		// echo $collections;
-	}
-
-
-
-
-});
 
 
 /*
@@ -128,6 +101,30 @@ Route::group(array('before' => 'admin-auth','prefix' => 'admin'), function()
 		Route::post('{assetId}/edit', 'Controllers\Admin\AssetsController@postEdit');
 		Route::get('{assetId}/delete', array('as' => 'delete/asset', 'uses' => 'Controllers\Admin\AssetsController@getDelete'));
 		Route::get('{assetId}/restore', array('as' => 'restore/asset', 'uses' => 'Controllers\Admin\AssetsController@getRestore'));
+	});
+
+	# Collections Management
+	Route::group(array('prefix' => 'collections'), function()
+	{
+		Route::get('/', array('as' => 'collections', 'uses' => 'Controllers\Admin\CollectionsController@getIndex'));
+		// Route::get('upload', array('as' => 'upload/asset', 'uses' => 'Controllers\Admin\AssetsController@getUpload'));
+		// Route::post('upload', 'Controllers\Admin\AssetsController@postUpload');
+		// Route::get('{assetId}/edit', array('as' => 'update/asset', 'uses' => 'Controllers\Admin\AssetsController@getEdit'));
+		// Route::post('{assetId}/edit', 'Controllers\Admin\AssetsController@postEdit');
+		// Route::get('{assetId}/delete', array('as' => 'delete/asset', 'uses' => 'Controllers\Admin\AssetsController@getDelete'));
+		// Route::get('{assetId}/restore', array('as' => 'restore/asset', 'uses' => 'Controllers\Admin\AssetsController@getRestore'));
+	});
+
+	# Playlists Management
+	Route::group(array('prefix' => 'playlists'), function()
+	{
+		Route::get('/', array('as' => 'playlists', 'uses' => 'Controllers\Admin\PlaylistsController@getIndex'));
+		// Route::get('upload', array('as' => 'upload/asset', 'uses' => 'Controllers\Admin\AssetsController@getUpload'));
+		// Route::post('upload', 'Controllers\Admin\AssetsController@postUpload');
+		// Route::get('{assetId}/edit', array('as' => 'update/asset', 'uses' => 'Controllers\Admin\AssetsController@getEdit'));
+		// Route::post('{assetId}/edit', 'Controllers\Admin\AssetsController@postEdit');
+		// Route::get('{assetId}/delete', array('as' => 'delete/asset', 'uses' => 'Controllers\Admin\AssetsController@getDelete'));
+		// Route::get('{assetId}/restore', array('as' => 'restore/asset', 'uses' => 'Controllers\Admin\AssetsController@getRestore'));
 	});
 
 	# Dashboard

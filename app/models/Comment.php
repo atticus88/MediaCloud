@@ -1,5 +1,18 @@
 <?php
 
+/**
+ * An Eloquent Model: 'Comment'
+ *
+ * @property integer $id
+ * @property integer $parent_id
+ * @property integer $post_id
+ * @property integer $user_id
+ * @property string $content
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property-read \User $author
+ * @property-read \Post $post
+ */
 class Comment extends Eloquent {
 
 	/**

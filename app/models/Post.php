@@ -1,5 +1,21 @@
 <?php
 
+/**
+ * An Eloquent Model: 'Post'
+ *
+ * @property integer $id
+ * @property integer $user_id
+ * @property string $title
+ * @property string $slug
+ * @property string $content
+ * @property string $meta_title
+ * @property string $meta_description
+ * @property string $meta_keywords
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property-read \User $author
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Comment[] $comments
+ */
 class Post extends Eloquent {
 
 	/**

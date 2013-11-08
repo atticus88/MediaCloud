@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * An Eloquent Model: 'CollectionPlaylistAsset'
+ *
+ * @property integer $id
+ * @property integer $collection_id
+ * @property integer $playlist_id
+ * @property integer $asset_id
+ */
 class CollectionPlaylistAsset extends Eloquent {
 	protected $guarded = array();
 	protected $table = 'collection_playlist_asset';

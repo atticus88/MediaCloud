@@ -13,7 +13,8 @@
 	"require-dev": {
 		"mockery/mockery": "dev-master",
 		"phpunit/phpunit": "3.7.*@dev",
-		"way/generators": "dev-master"
+		"way/generators": "dev-master",
+		"barryvdh/laravel-ide-helper": "1.*"
 	},
 	"autoload": {
 		"classmap": [
@@ -36,9 +37,10 @@
 		"pre-update-cmd": [
 			"php artisan clear-compiled"
 		],
-		"post-update-cmd": [
-			"php artisan optimize"
-		],
+		"post-update-cmd":[
+	        "php artisan ide-helper:generate",
+	        "php artisan optimize"
+    	],
 		"post-create-project-cmd": [
 			"php artisan key:generate"
 		]

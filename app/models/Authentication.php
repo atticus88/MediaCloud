@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * An Eloquent Model: 'Authentication'
+ *
+ * @property-read \User $user
+ */
 class Authentication extends Eloquent {
 
 	/**
