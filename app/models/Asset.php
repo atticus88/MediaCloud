@@ -52,6 +52,11 @@ class Asset extends Eloquent implements AssetRepository {
 		return $this->belongsTo('Collection', 'id');
 	}
 
+	public function cpa()
+	{
+		return $this->belongsTo('CollectionPlaylistAsset', 'id');
+	}
+
 
 }
 

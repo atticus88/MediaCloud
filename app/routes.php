@@ -12,14 +12,30 @@ Route::get('test', function(){
 
 	// echo "<h1>All Collections</h1>";
 
-	$playlist = new Playlist;
-	return $playlist::all();
-
-	$collection = new Collection;
-	return $collection::all();
 
 	$cpa = new CollectionPlaylistAsset;
-	return $cpa::all();
+	return $cpa->get_cpa_by_user_id(2);
+	// $assets = Asset::all();
+	// return $assets->cpa;
+
+
+	// $users = User::all();
+	// return $users->;
+
+
+	// $user = User::find(2);
+	// return $users->cpa;
+	// return $user->load('collections', 'playlists');
+
+
+	// $playlist = new Playlist;
+	// return $playlist::all();
+
+	// $collection = new Collection;
+	// return $collection::all();
+
+	// $cpa = new CollectionPlaylistAsset;
+	// return $cpa::all();
 
 
 

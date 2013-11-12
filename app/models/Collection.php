@@ -43,7 +43,7 @@ class Collection extends Eloquent {
 
 			}
 
-			
+
 			// $collection[] = $playlist->collections();
 		}
 
@@ -52,4 +52,5 @@ class Collection extends Eloquent {
 
 		return $playlists;
 	}
+
 }
