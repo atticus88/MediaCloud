@@ -44,33 +44,8 @@ class CollectionPlaylistAsset extends Eloquent {
 			ON collection_playlist_asset.asset_id = asset_user.asset_id
 			WHERE asset_user.user_id = $id" ));
 
-		// return $data;
-
-		// $data = CollectionPlaylistAsset::all();
-
-		// var_dump($data);
-
-		// $collections = array();
-		// $playlists = array();
-		// $assets = array();
-
-		// foreach ($data as $item) {
-		//   $collections[] = $item->collection_id;
-		//   $playlists[] = $item->playlist_id;
-		//   $assets[] = $item->asset_id;
-		// }
-
-		// var_dump($collections);
-		// // var_dump($playlists);
-		// // var_dump($assets);
-
-		// var_dump(array_unique($collections));
-		// // var_dump(array_unique($playlists));
-		// // var_dump(array_unique($assets));
-		// die();
-
 		$cpa = (Object) array();
-		$cpa->user_id = $id;
+		// $cpa->user_id = $id;
 
 		foreach ($data as $v) {
 			// var_dump($v->collection_id);
@@ -87,12 +62,6 @@ class CollectionPlaylistAsset extends Eloquent {
 				$cpa->collections[$v->collection_id]->playlists[$v->playlist_id]->id = $v->playlist_id;
 				$cpa->collections[$v->collection_id]->playlists[$v->playlist_id]->name = Playlist::find($v->playlist_id)['name'];
 				$cpa->collections[$v->collection_id]->playlists[$v->playlist_id]->description = Playlist::find($v->playlist_id)['description'];
-				// if ($v->playlist_id == 0) {
-				// 	$cpa->collections[$v->collection_id]->playlists[$v->playlist_id]->assets = array();
-				// 	$cpa->collections[$v->collection_id]->playlists[$v->playlist_id]->assets[$v->asset_id] = new stdClass;
-				// 	$cpa->collections[$v->collection_id]->playlists[$v->playlist_id]->assets[$v->asset_id]->id = $v->asset_id;
-				// 	$cpa->collections[$v->collection_id]->playlists[$v->playlist_id]->assets[$v->asset_id]->name = Asset::find($v->asset_id)['title'];
-				// }
 				// end if playlist
 			}
 			else{
@@ -117,15 +86,6 @@ class CollectionPlaylistAsset extends Eloquent {
 
 		}
 
-		// $data = json_encode($data);
-		// var_dump($data);
-		// echo "<pre>";
-		// print_r($cpa);
-		return json_encode($cpa);
-		// $demo = json_decode('{"user_id":2,"collections":[{"name":"Collection - Math Department","playlists":[{"name":"playlist1","assets":[{"id":1,"name":"Video 1"},{"id":2,"name":"Video 2"}]},{"name":"playlist2","assets":[{"id":3,"name":"Video 3"},{"id":4,"name":"Video 4"}]}],"assets":["video10"]}]}');
-		// echo "===================================================================================================<br>";
-		// print_r($demo);
-		// print_r($cpa->collections[0]->playlists[0]->assets[0]->id);//->assets[0]);
-		// print_r($demo->collections[0]->playlists[0]->assets[0]->id);//->assets[0]);
+		return $cpa;
 	}
 }

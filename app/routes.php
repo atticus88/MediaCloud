@@ -14,47 +14,21 @@ Route::get('test', function(){
 
 
 	$cpa = new CollectionPlaylistAsset;
-	return $cpa->get_cpa_by_user_id(2);
-	// $assets = Asset::all();
-	// return $assets->cpa;
+	// foreach ($cpa->get_cpa_by_user_id(2) as $key => $value) {
+	// 	# code...
+	// }
+	return json_encode(array($cpa->get_cpa_by_user_id(1),$cpa->get_cpa_by_user_id(2),$cpa->get_cpa_by_user_id(3),$cpa->get_cpa_by_user_id(4) )) ;
+});
 
-
-	// $users = User::all();
-	// return $users->;
-
-
-	// $user = User::find(2);
-	// return $users->cpa;
-	// return $user->load('collections', 'playlists');
-
-
-	// $playlist = new Playlist;
-	// return $playlist::all();
-
-	// $collection = new Collection;
-	// return $collection::all();
-
-	// $cpa = new CollectionPlaylistAsset;
-	// return $cpa::all();
-
-
-
-	// foreach ($collections as $collection) {
-	// 	echo $collection->name . "<br>";
-
-	// 	foreach ($collection->playlists as $playlist) {
-	// 		echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$playlist->name. "<br>";
-
-	// 		foreach ($playlist->assets as $asset) {
-	// 			echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$asset->title. " - ". $asset->description . "<br>";
-	// 		}
+Route::get('test1', function(){
+	$cpa = new CollectionPlaylistAsset;
+	// echo "<pre>";
+	$collections = $cpa->get_cpa_by_user_id(2);
+	var_dump(current($collections));
+	// foreach ($collections as $values) {
+	// 	foreach ($values as $key => $value) {
+	// 		var_dump($value);
 	// 	}
-
-	// 	foreach ($collection->assets as $asset)
-	// 	{
-	// 		echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$asset->title. "<br>";
-	// 	}
-
 	// }
 });
 
