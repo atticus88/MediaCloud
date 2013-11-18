@@ -8,16 +8,16 @@
 App::bind('AssetRepository', 'Asset');
 
 
-Route::get('test', function(){
+Route::get('cpa/{id}', function($id){
 
 	// echo "<h1>All Collections</h1>";
 
 
 	$cpa = new CollectionPlaylistAsset;
 	// foreach ($cpa->get_cpa_by_user_id(2) as $key => $value) {
-	// 	# code...
+
 	// }
-	return json_encode(array($cpa->get_cpa_by_user_id(1),$cpa->get_cpa_by_user_id(2),$cpa->get_cpa_by_user_id(3),$cpa->get_cpa_by_user_id(4) )) ;
+	return json_encode($cpa->get_cpa_by_user_id($id));
 });
 
 Route::get('test1', function(){
@@ -30,6 +30,16 @@ Route::get('test1', function(){
 	// 		var_dump($value);
 	// 	}
 	// }
+});
+
+
+Route::get('users', function(){
+	$users = User::all();
+	$names = array();
+	foreach ($users as $user) {
+		$names[] = $user->username . ':' . $user->id;
+	}
+	return $names;
 });
 
 
