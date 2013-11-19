@@ -34,6 +34,16 @@ Route::get('test', function(){
 });
 
 
+Route::get('users', function(){
+	$users = User::all();
+	$names = array();
+	foreach ($users as $user) {
+		$names[] = $user->username . ':' . $user->id;
+	}
+	return $names;
+});
+
+
 
 /*
 |--------------------------------------------------------------------------
