@@ -34,13 +34,14 @@ Route::get('test', function(){
 });
 
 
-Route::get('users', function(){
+Route::get('allusers', function(){
 	$users = User::all();
-	$names = array();
-	foreach ($users as $user) {
-		$names[] = $user->username . ':' . $user->id;
-	}
-	return $names;
+	// $names = array();
+	// foreach ($users as $user) {
+	// 	$names[] = $user->username . ':' . $user->id;
+	// }
+	// return ["test"];
+	return $users;
 });
 
 

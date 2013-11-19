@@ -461,7 +461,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
    <script src="/_admin/assets/plugins/respond.min.js"></script>
    <script src="/_admin/assets/plugins/excanvas.min.js"></script>
    <![endif]-->
-   <!-- 
+   <!--
    <script src="/_admin/assets/plugins/jquery-1.10.2.min.js" type="text/javascript"></script>
     -->
    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -499,15 +499,15 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
    <script src="/_admin/assets/scripts/app.js" type="text/javascript"></script>
    <script src="/_admin/assets/scripts/index.js" type="text/javascript"></script>
    <script src="/_admin/assets/scripts/tasks.js" type="text/javascript"></script>
-   
+
    @yield('scripts')
-   
+
    <!-- END PAGE LEVEL SCRIPTS -->
    <script>
       jQuery(document).ready(function() {
          App.init(); // initlayout and core plugins
          Index.init();
-         Index.initJQVMAP(); // init index page's custom scripts
+         //Index.initJQVMAP(); // init index page's custom scripts
          Index.initCalendar(); // init index page's custom scripts
          Index.initCharts(); // init index page's custom scripts
          Index.initChat();

@@ -3,13 +3,41 @@
 @section('scripts')
 <script src="//cdn.jsdelivr.net/typeahead.js/0.9.3/typeahead.min.js" type="text/javascript"></script>
 <script src="/assets/js/nestedSortable/jquery-sortable.js" type="text/javascript"></script>
-
 <script>
 	$( document ).ready(function( $ ) {
+		var MyEngine = {
+			compile: function(template) {
+				return {
+					render: function(context) {
+						return template.replace(/\{\{(\w+)\}\}/g, function (match,p1) { return context[p1]; });
+					}
+				};
+			}
+		};
+
+
 		$('.typeahead').typeahead({
-			name: 'username',
-			prefetch: '/users'
-		});
+				name: 'username',
+				prefetch: '/allusers',
+				template: [
+					'<div>',
+						'<span>@{{value}}</span>',
+					'<div>'
+				].join(''),
+				engine: MyEngine
+			});
+
+		$('#owner').keypress(function(e){
+			var code = e.keyCode || e.which;
+			if(code == 13) { //Enter keycode
+				e.preventDefault();
+
+			}
+
+
+
+		})
+
 		$('.collection-add').click(function(e){
 			$(e.target).closest('.organization-container').find('#organization')
 			.prepend($('<li class="collection collection-new"><input class="input" type="text" placeholder="Collection Name" /><ol></ol></li>'));
@@ -26,7 +54,6 @@
 
 		$('.playlist-remove').click(function(e){
 			$(e.target).closest('.collection').find('.playlist-new:last').remove();
-			
 		});
 
 		// CPA list
@@ -37,8 +64,6 @@
 	});
 
 </script>
-
-
 @stop
 
 @section('css')
@@ -62,24 +87,32 @@
 <form method="POST" action="{{action('Controllers\Admin\AssetsController@postUpload')}}" accept-charset="UTF-8" class="form-horizontal">
 
 
-	 
-		<div class="row">  
-			<div class="col-md-4"> 
+
+		<div class="row">
+			<div class="col-md-4">
 			 <div class="form-group">
 				 <label class="control-label col-md-3">Owner</label>
-				 <div>
-						<input type="text" class="typeahead">
-				 </div>
+					<div>
+						<input id="owner" type="text" class="typeahead">
+					</div>
 			 </div>
 		 </div>
-	 <div class="col-md-6">
-		<div class="asset-orgainizer">
+	 <div id="#asset-orgainizer-container" class="col-md-8">
+
+			asset-orgainizer-container
+	</div>
+</div>
+
+
+
+
+	<!-- <div class="asset-orgainizer">
 			<div class="asset-container">
-			<!-- 	<div class="toolbar">
+				<div class="toolbar">
 					<input type="checkbox">
 					<input type="text" placeholder="filter">
-				</div> -->
-				<!-- <div class="asset-list">
+				</div>
+				<div class="asset-list">
 					<ol id="assets">
 						<li class="asset" data-asset-id="1">Video 1</li>
 						<li class="asset" data-asset-id="2">Video 2</li>
@@ -102,7 +135,7 @@
 						<li class="asset" data-asset-id="19">Video 19</li>
 						<li class="asset" data-asset-id="20">Video 20</li>
 					</ol>
-				</div> -->
+				</div>
 			</div>
 			<div class="organization-container">
 				<div class="toolbar">
@@ -113,8 +146,8 @@
 
 				<div class="organization-list" >
 					<ol id="organization"  class="">
-						<li class="collection" data-collection-id="1">Collection - Math Department 
-						 <span><i class="fa fa-plus playlist-add"></i></span> 
+						<li class="collection" data-collection-id="1">Collection - Math Department
+						 <span><i class="fa fa-plus playlist-add"></i></span>
 						 <span><i class="fa fa-minus playlist-remove"></i></span>
 						 <hr>
 							<ol>
@@ -124,7 +157,7 @@
 							</ol>
 						</li>
 						<li class="collection" data-collection-id="2">Collection - Health Department
-							 <span><i class="fa fa-plus playlist-add"></i></span> 
+							 <span><i class="fa fa-plus playlist-add"></i></span>
 							 <span><i class="fa fa-minus playlist-remove"></i></span>
 							 <hr>
 							<ol>
@@ -133,7 +166,7 @@
 							</ol>
 						</li>
 						<li class="collection" data-collection-id="3">Collection - Science Department
-							<span><i class="fa fa-plus playlist-add"></i></span> 
+							<span><i class="fa fa-plus playlist-add"></i></span>
 							 <span><i class="fa fa-minus playlist-remove"></i></span>
 							 <hr>
 							<ol>
@@ -144,18 +177,7 @@
 					</ol>
 				</div>
 			</div>
-		</div>
-
-
-
-
-
-	</div>
-</div>
- 
-
-
-
+		</div> -->
 
 
 
@@ -247,11 +269,11 @@
 	<div class="row">
 		<div class="col-md-offset-5">
 
-			{{ Form::submit('Create', array('class' => 'btn btn-success')) }}
+<!-- 			{{ Form::submit('Create', array('class' => 'btn btn-success')) }}
 			{{ link_to_route('assets', 'Cancel') }}
-		</div>
+ -->		</div>
 	</div>
-	
+
 
 
 </form>
@@ -263,110 +285,6 @@
 
 
 
-
-<!-- 
-<form method="POST" action="{{action('Controllers\Admin\AssetsController@postUpload')}}" accept-charset="UTF-8" class="form-horizontal">
-	<div class="form-body">
-		<div class="row">
-		 <div class="col-md-6">
-			<div class="form-group">
-			 <label class="control-label col-md-3">Title</label>
-			 <div class="col-md-9">
-				 {{ Form::text('title', '',  array('class' => 'form-control')) }}
-			 </div>
-		 </div>
-	 </div>
-	 <div class="col-md-6">
-		<div class="form-group">
-		 <label class="control-label col-md-3">Description</label>
-		 <div class="col-md-9">
-			 {{ Form::text('description', '',  array('class' => 'form-control')) }}
-		 </div>
-	 </div>
- </div>
-</div>
-<div class="row">
- <div class="col-md-6">
-	<div class="form-group">
-	 <label class="control-label col-md-3">File path</label>
-	 <div class="col-md-9">
-		 {{ Form::text('filepath', '',  array('class' => 'form-control')) }}
-	 </div>
- </div>
-</div>
-<div class="col-md-6">
-	<div class="form-group">
-	 <label class="control-label col-md-3">File name</label>
-	 <div class="col-md-9">
-		 {{ Form::text('filename', '',  array('class' => 'form-control')) }}
-	 </div>
- </div>
-</div>
-</div>
-<div class="row">
- <div class="col-md-6">
-	<div class="form-group">
-	 <label class="control-label col-md-3">Transcoded URL</label>
-	 <div class="col-md-9">
-		 {{ Form::text('transcoded_url', '',  array('class' => 'form-control')) }}
-	 </div>
- </div>
-</div>
-<div class="col-md-6">
-	<div class="form-group">
-	 <label class="control-label col-md-3">Thumbnail URL</label>
-	 <div class="col-md-9">
-		 {{ Form::text('thumbnail_url', '',  array('class' => 'form-control')) }}
-	 </div>
- </div>
-</div>
-</div>
-<div class="row">
- <div class="col-md-6">
-	<div class="form-group">
-	 <label class="control-label col-md-3">URL</label>
-	 <div class="col-md-9">
-		 {{ Form::text('url', '',  array('class' => 'form-control')) }}
-	 </div>
- </div>
-</div>
-<div class="col-md-6">
-	<div class="form-group">
-	 <label class="control-label col-md-3">Type</label>
-	 <div class="col-md-9">
-		 {{ Form::text('type', '',  array('class' => 'form-control')) }}
-	 </div>
- </div>
-</div>
-</div>
-<div class="row">
- <div class="col-md-6">
-	<div class="form-group">
-	 <label class="control-label col-md-3">Status</label>
-	 <div class="col-md-9">
-		 {{ Form::text('status', '',  array('class' => 'form-control')) }}
-	 </div>
- </div>
-</div>
-<div class="col-md-6">
-	<div class="form-group">
-	 <label class="control-label col-md-3">Tags</label>
-	 <div class="col-md-9">
-		 {{ Form::text('tags', '',  array('class' => 'form-control')) }}
-	 </div>
- </div>
-</div>
-</div>
-</div>
-<div class="row">
-	<div class="col-md-offset-5">
-
-		{{ Form::submit('Create', array('class' => 'btn btn-success')) }}
-		{{ link_to_route('assets', 'Cancel') }}
-	</div>
-</div>
-</form>
--->
 
 
 
