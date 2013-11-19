@@ -44,6 +44,10 @@ class CollectionPlaylistAsset extends Eloquent {
 			ON collection_playlist_asset.asset_id = asset_user.asset_id
 			WHERE asset_user.user_id = $id" ));
 
+		if (count($data) == 0){
+			return ["results" => 0, "description"=>"No Results returned", "user" =>User::find($id) ? User::find($id)->id:null];
+		}
+
 		$cpa = (Object) array();
 		// $cpa->user_id = $id;
 
@@ -86,6 +90,12 @@ class CollectionPlaylistAsset extends Eloquent {
 
 		}
 
-		return $cpa;
+
+		$collections = current($cpa);
+		if (count($collections) && is_array($collections)) {
+			return array_values($collections);
+		}
+
 	}
 }
+

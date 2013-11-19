@@ -8,28 +8,29 @@
 App::bind('AssetRepository', 'Asset');
 
 
-Route::get('test', function(){
-
-	// echo "<h1>All Collections</h1>";
-
-
+Route::get('cpa/{id}', function($id){
 	$cpa = new CollectionPlaylistAsset;
-	// foreach ($cpa->get_cpa_by_user_id(2) as $key => $value) {
-	// 	# code...
-	// }
-	return json_encode(array($cpa->get_cpa_by_user_id(1),$cpa->get_cpa_by_user_id(2),$cpa->get_cpa_by_user_id(3),$cpa->get_cpa_by_user_id(4) )) ;
+	return $cpa->get_cpa_by_user_id($id);
 });
 
-Route::get('test1', function(){
+
+Route::get('asset/{id}', function($id){
+	$user = User::find($id);
+	$assets = array();
+	foreach ($user->assets as $asset)
+	{
+		$assets[] = $asset["attributes"];
+	}
+	return $assets;
+	//$role->pivot->created_at;
+});
+
+Route::get('test', function(){
 	$cpa = new CollectionPlaylistAsset;
-	// echo "<pre>";
 	$collections = $cpa->get_cpa_by_user_id(2);
-	var_dump(current($collections));
-	// foreach ($collections as $values) {
-	// 	foreach ($values as $key => $value) {
-	// 		var_dump($value);
-	// 	}
-	// }
+	var_dump($collections[0]->playlists[1]);
+	// var_dump($collections[0]);
+	// var_dump($collections[0]->playlists[0]->assets[1]->name);
 });
 
 
