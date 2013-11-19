@@ -62,7 +62,7 @@ box-shadow: 10px 0px 63px -10px rgba(0,0,0,0.75);*/
 .asset-orgainizer .toolbar .fa:hover{
 	color: #fff;
 }
-.active{
+.asset-organizer .active{
 	outline: 3px solid rgba(0, 0, 0, 0.3);
 	background:rgba(0,0,0,.15);
 }

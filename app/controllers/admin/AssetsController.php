@@ -70,9 +70,9 @@ class AssetsController extends AdminController {
 		// Declare the rules for the form validation
 		$rules = array(
 			// 'id' => 'required',
-			'title' => 'required',
-			'description' => 'required',
-			'filepath' => 'required',
+			// 'title' => 'required',
+			// 'description' => 'required',
+			// 'filepath' => 'required',
 			// 'filename' => 'required',
 			// 'transcoded_url' => 'required',
 			// 'thumbnail_url' => 'required',

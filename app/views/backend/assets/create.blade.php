@@ -10,166 +10,32 @@
 			name: 'username',
 			prefetch: '/users'
 		});
+		$('.collection-add').click(function(e){
+			$(e.target).closest('.organization-container').find('#organization')
+			.prepend($('<li class="collection collection-new"><input class="input" type="text" placeholder="Collection Name" /><ol></ol></li>'));
+		});
+		$('.collection-remove').click(function(e){
+			$(e.target).closest('.organization-container').find('.collection-new:last')
+			.remove();
+		});
 
+		$('.playlist-add').click(function(e){
+			$(e.target).closest('.collection').find("ol:first")
+			.prepend($('<li class="playlist playlist-new "><input class="input" type="text" placeholder="Playlist Name"/><ol></ol></li>'));
+		});
 
+		$('.playlist-remove').click(function(e){
+			$(e.target).closest('.collection').find('.playlist-new:last').remove();
+			
+		});
 
-
-
-
-
-
-		// $("#assets").sortable({
-		// 	group: 'asset-orgainizer',
-		// 	drop: false,
-		// 	onDragStart: function (item, container, _super) {
-		// 	// Duplicate items of the no drop area
-		// 	if (!container.options.drop){
-
-		// 		item.clone().insertAfter(item)
-		// 	}
-		// 	_super(item)
-		// },
-		// afterMove: function (placeholder, container) {
-		// 	if (oldContainer != container) {
-		// 		if (oldContainer)
-		// 			oldContainer.el.removeClass("active")
-		// 		container.el.addClass("active")
-		// 		oldContainer = container
-		// 	}
-		// },
-		// cancel: function (item, container, _super, event) {
-
-		// 	var droppedItem = item[0];
-		// 	var droppedContainer = event.toElement;
-
-
-		// 	if($(droppedItem).hasClass("asset") || $(droppedItem).hasClass("playlist") ){
-		// 		droppedItem = droppedItem.className.match(/asset|playlist/)[0]
-		// 	}
-
-		// 	if($(droppedContainer).hasClass("collection") || $(droppedContainer).hasClass("playlist") ){
-		// 		droppedContainer = droppedContainer.className.match(/collection|playlist/)[0]
-		// 	}
-
-		// 	//If drop on organization
-		// 	if($(droppedContainer).is('#organization')){
-
-
-		// 		droppedContainer = $(droppedContainer).is('#organization') ?'organization':droppedContainer;
-
-		// 		if ($(droppedItem).is('.collection')) {
-		// 			droppedItem = $(droppedItem).is('.collection') ?'collection':'';
-		// 		};
-
-		// 		if ($(droppedItem).is('.playlist')) {
-		// 			droppedItem = $(droppedItem).is('.playlist') ?'playlist':'';
-		// 		};
-
-		// 		if ($(droppedItem).is('.asset')) {
-		// 			droppedItem = $(droppedItem).is('.asset') ?'asset':'';
-		// 		};
-
-		// 	}
-
-		// 	//If droppedContainer is placeholder
-		// 	if($(droppedContainer).is('.placeholder')){
-		// 		droppedContainer = $(droppedContainer).is('#organization') ?'organization':'';
-		// 		console.log('placeholder');
-		// 	}
-
-		// 	//If droppedContainer is Active
-		// 	if ($(droppedContainer).hasClass('asset')){
-		// 		//possible in the video check for asset
-		// 		if ($(droppedContainer).hasClass('asset')){
-		// 			droppedContainer = $(droppedContainer).parent()//.hasClass('asset') ?'asset':'';
-		// 		};
-		// 	};
-
-		// 	//If droppedItem is collection
-		// 	if ($(droppedItem).hasClass('collection')){
-		// 		//possible in the video check for asset
-		// 		if ($(droppedItem).hasClass('collection')){
-		// 			droppedItem = $(droppedItem).is('.collection') ?'collection':droppedContainer;
-		// 		};
-		// 	};
-
-
-		// 	//If droppedContainer is Active
-		// 	if($(droppedContainer).hasClass('active')){
-		// 		//Where did it drop?
-		// 		//possible in the <ol> container check parent
-
-		// 		//is playlist ol?
-		// 		if ($(droppedContainer).parent().hasClass('playlist')){
-		// 			droppedContainer = $(droppedContainer).parent().hasClass('playlist') ?'playlist':'';
-		// 		};
-
-		// 		//is collection ol?
-		// 		if ($(droppedContainer).parent().hasClass('collection')){
-		// 			droppedContainer = $(droppedContainer).parent().hasClass('collection') ?'collection':'';
-		// 		};
-
-
-		// 	}
-
-
-
-
-
-		// 	console.log(droppedItem,droppedContainer);
-
-		// 	if (droppedItem == "playlist" && droppedContainer == "playlist") {
-		// 		return false;
-		// 	};
-
-		// 	if (droppedItem == "collection" && droppedContainer == "playlist") {
-		// 		console.log(droppedItem,droppedContainer);
-		// 		return false;
-		// 	};
-
-		// 	if (droppedItem == "collection" && droppedContainer == "collection") {
-		// 		console.log(droppedItem,droppedContainer);
-		// 		return false;
-		// 	};
-
-		// 	if (droppedItem == "playlist" && droppedContainer == "organization") {
-		// 		console.log(droppedItem,droppedContainer);
-		// 		return false;
-		// 	};
-		// 	if (droppedItem == "asset" && droppedContainer == "organization") {
-		// 		console.log(droppedItem,droppedContainer);
-		// 		return false;
-		// 	};
-
-
-
-		// 	return true;
-
-		// },
-		// onDrop: function (item, container, _super) {
-		// 		// console.log(item, container, _super);
-		// 		container.el.removeClass("active")
-		// 		_super(item)
-		// 	}
-		// });
-
-	// CPA list
-	$("#organization").sortable({
+		// CPA list
+		$("#organization").sortable({
 		// group: 'asset-orgainizer'
 
-	})
-
+		})
 	});
 
-
-
-		$('.playlist-name').click(function(){
-			$(this).parent().prepend($('<li class="collection "><input class="input" type="text" placeholder="Playlist Name" />    <span><i class=" playlist-remove"></i></span><ol></ol></li>'));
-		});
-
-		$('.fa-minus').click(function(){
-			$(".playlist-name").parent().remove();
-		});
 </script>
 
 
@@ -240,26 +106,36 @@
 			</div>
 			<div class="organization-container">
 				<div class="toolbar">
-					<span><i class="fa fa-plus collection-name"></i></span>
-					<span><i class="fa fa-minus"></i></span>
+					<span><i class="fa fa-plus collection-add"></i></span>
+					<span><i class="fa fa-minus collection-remove"></i></span>
 					<span><i class="fa fa-arrows-v"></i></span>
 				</div>
 
 				<div class="organization-list" >
 					<ol id="organization"  class="">
-						<li class="collection" data-collection-id="1">Collection - Math Department  <span><i class="fa fa-plus playlist-name"></i></span> <span><i class="fa fa-minus playlist-remove"></i></span>
+						<li class="collection" data-collection-id="1">Collection - Math Department 
+						 <span><i class="fa fa-plus playlist-add"></i></span> 
+						 <span><i class="fa fa-minus playlist-remove"></i></span>
+						 <hr>
 							<ol>
-								<li class="playlist" data-playlist-id="1">Playlist - Math Department 1 <ol></ol></li>
+								<li class="playlist" data-playlist-id="1">Playlist - Math Department 1
+								 <ol></ol></li>
 								<li class="playlist" data-playlist-id="2">Playlist - Math Department 2 <ol></ol></li>
 							</ol>
 						</li>
 						<li class="collection" data-collection-id="2">Collection - Health Department
+							 <span><i class="fa fa-plus playlist-add"></i></span> 
+							 <span><i class="fa fa-minus playlist-remove"></i></span>
+							 <hr>
 							<ol>
 								<li class="playlist" data-playlist-id="3">Playlist - Health Department 1<ol></ol></li>
 								<li class="playlist" data-playlist-id="4">Playlist - Health Department 2<ol></ol></li>
 							</ol>
 						</li>
 						<li class="collection" data-collection-id="3">Collection - Science Department
+							<span><i class="fa fa-plus playlist-add"></i></span> 
+							 <span><i class="fa fa-minus playlist-remove"></i></span>
+							 <hr>
 							<ol>
 								<li class="playlist" data-playlist-id="5">Playlist - Science Department 1<ol></ol></li>
 								<li class="playlist" data-playlist-id="6">Playlist - Science Department 2<ol></ol></li>
