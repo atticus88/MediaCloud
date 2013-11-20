@@ -5,6 +5,9 @@
 <script src="/assets/js/nestedSortable/jquery-sortable.js" type="text/javascript"></script>
 <script src="http://twitter.github.com/hogan.js/builds/2.0.0/hogan-2.0.0.js"></script>
 <script>
+
+
+
 	$( document ).ready(function( $ ) {
 		// var MyEngine = {
 		// 	compile: function(template) {
@@ -17,12 +20,12 @@
 		// 	}
 		// };
 
-
 		$('.typeahead').typeahead({
 				prefetch: '/allusers'
 			});
 
-		$('#owner').keypress(function(e){
+		$('#owner').focus()
+		.keypress(function(e){
 			var code = e.keyCode || e.which;
 			if(code == 13) { //Enter keycode
 				e.preventDefault();
@@ -42,7 +45,7 @@
 			// console.log($id);
 			var cpaData;
 			var assetData;
-			var assetOrgainizerHtml = $("<div class='asset-orgainizer'>");
+			var assetOrgainizerHtml = $('<div class="asset-orgainizer"><div class="organization-container"> <div class="toolbar"> <span><i class="fa fa-plus collection-add"></i></span> <span><i class="fa fa-minus collection-remove"></i></span> <span><i class="fa fa-arrows-v"></i></span> </div> <div class="organization-list"> <ol id="organization"></ol> </div> </div></div>');
 
 			$.ajax({
 				url: "/cpa/"+$id,
@@ -50,56 +53,80 @@
 				success:function(data){
 					cpaData = data;
 				}
-			})
+			}).promise().done(function () {
+				console.log($.type(cpaData));
 
-			$.ajax({
-				url: "/asset/"+$id,
-				dataType: "json",
-				success:function(data){
-					assetData = data;
-				}
-			})
-
-
-
-
-			if (cpaData || assetData) {
-				cpaDataFlag = cpaData.length > 0 ? true : false
-				assetDataFlag = assetData.length > 0 ? true : false
-
-				if (assetDataFlag) {
-					// do html 
-				};
+				cpaDataFlag = $.type(cpaData) === "array";
 				if (cpaDataFlag) {
-					assetOrgainizerHtml.append("<div class='organization-container'>it worked</div>")
+					// assetOrgainizerHtml.append("<div class='organization-container'><div class='toolbar'><span><i class='fa fa-plus collection-add'></i></span><span><i class='fa fa-minus collection-remove'></i></span><span><i class='fa fa-arrows-v'></i></span></div><div class='organization-list'><ol id='organization'  class=''></ol></div></div>")
 
+					$.each(cpaData, function(index, collection){
+						assetOrgainizerHtml.find('#organization')
+						.append('<li class="collection" data-collection-id="'+collection.id+'">'+collection.name+'<span><i class="fa fa-plus playlist-add"></i></span> <span><i class="fa fa-minus playlist-remove"></i></span> <hr> <ol> </ol> </li>')
+
+						
+						$.each(collection.playlists, function(index, playlist){
+							console.log(playlist)
+
+							assetOrgainizerHtml.find("[data-collection-id="+collection.id+"] ol").append("<li class='playlist' data-playlist-id='"+playlist.id+"'>"+playlist.name+" <ol></ol></li>")
+
+
+
+
+
+							if (playlist.assets) {
+								$.each(playlist.assets, function(index, asset){
+									console.log(asset)
+
+									assetOrgainizerHtml.find("[data-playlist-id="+playlist.id+"]")
+									.append('<li class="asset" data-asset-id="'+asset.id+'">'+asset.name+'</li>')
+
+								});
+							};
+						});
+						
+						if (collection.assets) {	
+							$.each(collection.assets, function(index, asset){
+								console.log(asset)
+
+
+								
+							});
+						}
+					});
 				};
-			};
+				
 
 
-			
-			$(".asset-orgainizer").replaceWith(assetOrgainizerHtml);
+				
+				$(".asset-orgainizer").replaceWith(assetOrgainizerHtml);
+			});
+
+
+
+
 
 
 		}
 
 
 
-		$('.collection-add').click(function(e){
+
+		$('.collection-add').live("click",function(e){
 			$(e.target).closest('.organization-container').find('#organization')
 			.prepend($('<li class="collection collection-new"><input class="input" type="text" placeholder="Collection Name" /><ol></ol></li>'));
 		});
-		$('.collection-remove').click(function(e){
+		$('.collection-remove').live( "click",function(e){
 			$(e.target).closest('.organization-container').find('.collection-new:last')
 			.remove();
 		});
 
-		$('.playlist-add').click(function(e){
+		$('.playlist-add').live( "click",function(e){
 			$(e.target).closest('.collection').find("ol:first")
 			.prepend($('<li class="playlist playlist-new "><input class="input" type="text" placeholder="Playlist Name"/><ol></ol></li>'));
 		});
 
-		$('.playlist-remove').click(function(e){
+		$('.playlist-remove').live( "click",function(e){
 			$(e.target).closest('.collection').find('.playlist-new:last').remove();
 		});
 
@@ -109,7 +136,6 @@
 
 		})
 	});
-
 </script>
 @stop
 
@@ -150,7 +176,6 @@
 			<div class="asset-orgainizer">should replace this</div>
 	</div>
 </div>
-
 
 
 
