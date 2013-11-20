@@ -3,40 +3,87 @@
 @section('scripts')
 <script src="//cdn.jsdelivr.net/typeahead.js/0.9.3/typeahead.min.js" type="text/javascript"></script>
 <script src="/assets/js/nestedSortable/jquery-sortable.js" type="text/javascript"></script>
+<script src="http://twitter.github.com/hogan.js/builds/2.0.0/hogan-2.0.0.js"></script>
 <script>
 	$( document ).ready(function( $ ) {
-		var MyEngine = {
-			compile: function(template) {
-				return {
-					render: function(context) {
-						return template.replace(/\{\{(\w+)\}\}/g, function (match,p1) { return context[p1]; });
-					}
-				};
-			}
-		};
+		// var MyEngine = {
+		// 	compile: function(template) {
+		// 		console.log(template);
+		// 		return {
+		// 			render: function(context) {
+		// 				return template.replace(/\{\{(\w+)\}\}/g, function (match,p1) { return context[p1]; });
+		// 			}
+		// 		};
+		// 	}
+		// };
 
 
 		$('.typeahead').typeahead({
-				name: 'username',
-				prefetch: '/allusers',
-				template: [
-					'<div>',
-						'<span>@{{value}}</span>',
-					'<div>'
-				].join(''),
-				engine: MyEngine
+				prefetch: '/allusers'
 			});
 
 		$('#owner').keypress(function(e){
 			var code = e.keyCode || e.which;
 			if(code == 13) { //Enter keycode
 				e.preventDefault();
+				getUserInfo()
 
 			}
-
-
-
 		})
+
+		$(".btn-getUserInfo").click(function(e){
+			e.preventDefault();
+			getUserInfo();
+		})
+		
+		
+		function getUserInfo(){
+			$id = /\w+:(\d+)/gi.exec($("#owner").val())[1]
+			// console.log($id);
+			var cpaData;
+			var assetData;
+			var assetOrgainizerHtml = $("<div class='asset-orgainizer'>");
+
+			$.ajax({
+				url: "/cpa/"+$id,
+				dataType: "json",
+				success:function(data){
+					cpaData = data;
+				}
+			})
+
+			$.ajax({
+				url: "/asset/"+$id,
+				dataType: "json",
+				success:function(data){
+					assetData = data;
+				}
+			})
+
+
+
+
+			if (cpaData || assetData) {
+				cpaDataFlag = cpaData.length > 0 ? true : false
+				assetDataFlag = assetData.length > 0 ? true : false
+
+				if (assetDataFlag) {
+					// do html 
+				};
+				if (cpaDataFlag) {
+					assetOrgainizerHtml.append("<div class='organization-container'>it worked</div>")
+
+				};
+			};
+
+
+			
+			$(".asset-orgainizer").replaceWith(assetOrgainizerHtml);
+
+
+		}
+
+
 
 		$('.collection-add').click(function(e){
 			$(e.target).closest('.organization-container').find('#organization')
@@ -93,13 +140,14 @@
 			 <div class="form-group">
 				 <label class="control-label col-md-3">Owner</label>
 					<div>
-						<input id="owner" type="text" class="typeahead">
+						<input id="owner" type="text" class="typeahead"> 
+						<button  class="btn-getUserInfo btn btn-success">GO</button>
 					</div>
 			 </div>
 		 </div>
 	 <div id="#asset-orgainizer-container" class="col-md-8">
 
-			asset-orgainizer-container
+			<div class="asset-orgainizer">should replace this</div>
 	</div>
 </div>
 

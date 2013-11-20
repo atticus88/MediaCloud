@@ -36,12 +36,14 @@ Route::get('test', function(){
 
 Route::get('allusers', function(){
 	$users = User::all();
-	// $names = array();
-	// foreach ($users as $user) {
-	// 	$names[] = $user->username . ':' . $user->id;
-	// }
-	// return ["test"];
-	return $users;
+	$data = array();
+	foreach ($users as $key => $user) {
+		$data[$key] = $user->username .":".$user->id;
+		// $data[$key]['tokens'] = array();
+		// $data[$key]['tokens'][0] = $user->username;
+		// $data[$key]['tokens'][1] = "$user->id";
+	}
+	return $data;
 });
 
 
