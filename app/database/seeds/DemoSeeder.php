@@ -125,13 +125,15 @@ class DemoSeeder extends Seeder {
 			);
 		DB::table('assets')->insert($assetsseeder);
 
+
+		//ownership
 		$user = User::find(2);
 		$user->assets()->attach(1);
 		$user->assets()->attach(2);
 		$user->assets()->attach(10);
-		$user = User::find(3);
 		$user->assets()->attach(3);
 		$user->assets()->attach(4);
+		// $user = User::find(3);
 		$user = User::find(4);
 		$user->assets()->attach(5);
 		$user->assets()->attach(6);
@@ -158,7 +160,7 @@ class DemoSeeder extends Seeder {
         $collection = new Collection;
         $collection->name = 'Collection - Math Department';
         $collection->save();
-        
+
         // Adding Playlists
         $playlist = new Playlist;
         $playlist->name = 'Playlist - Math Department 1';
@@ -172,11 +174,16 @@ class DemoSeeder extends Seeder {
         $playlist = new Playlist;
         $playlist->name = 'Playlist - Math Department 2';
         $playlist->save();
+        $cpa->add($collection->id,$playlist->id,3);
+
+
+		$playlist = new Playlist;
+		$playlist->name = 'Playlist - Math Department 3';
+		$playlist->save();
+        $cpa->add($collection->id,$playlist->id,4);
 
 
         // Connect up pivot
-        $cpa->add($collection->id,$playlist->id,3);
-        $cpa->add($collection->id,$playlist->id,4);
         $cpa->add($collection->id,0,10);
 
         $collection = new Collection;
@@ -209,7 +216,7 @@ class DemoSeeder extends Seeder {
         $collection = new Collection;
         $collection->name = 'Collection - Health Department';
         $collection->save();
-        
+
         // Adding Playlists
         $playlist = new Playlist;
         $playlist->name = 'Playlist - Health Department 1';
@@ -245,12 +252,12 @@ class DemoSeeder extends Seeder {
 		$playlist = new Playlist;
 		$playlist->name = 'Playlist - Science Department 2';
 		$playlist->save();
-		
+
 
 		$playlist = new Playlist;
 		$playlist->name = 'Playlist - WSU 3';
 		$playlist->save();
-        
+
         $cpa->add($collection->id,$playlist->id,18);
         $cpa->add($collection->id,$playlist->id,19);
         $cpa->add($collection->id,$playlist->id,20);

@@ -52,21 +52,32 @@ class CollectionPlaylistAsset extends Eloquent {
 		$cpa = (Object) array();
 		// $cpa->user_id = $id;
 		foreach ($data as $key => $v) {
+			// var_dump($v->collection_id. " ".$v->playlist_id ." ".$v->asset_id .  " " . Playlist::find($v->playlist_id)['name']);
+			// collection
 			// var_dump($v->collection_id);
-			$cpa->collections[$v->collection_id] = new stdClass;
-			$cpa->collections[$v->collection_id]->name = Collection::find($v->collection_id)['name'];
-			$cpa->collections[$v->collection_id]->id = Collection::find($v->collection_id)['id'];
-		}
+			if (!property_exists($cpa, "collections") ) {
+					$cpa->collections = array();
+				}
+			if (!array_key_exists($v->collection_id, $cpa->collections)) {
+				$cpa->collections[$v->collection_id] = new stdClass();
+				$cpa->collections[$v->collection_id]->name = Collection::find($v->collection_id)['name'];
+				$cpa->collections[$v->collection_id]->id = Collection::find($v->collection_id)['id'];
+			}
 
-		foreach ($data as $key => $v) {
+
+			//Playlist
 			if ($v->playlist_id) {
 				// if playlist
-				$cpa->collections[$v->collection_id]->playlists = array();
-				$cpa->collections[$v->collection_id]->playlists[$v->playlist_id] = new stdClass;
-				// if ($v->playlist_id == 7 ||$v->playlist_id == 8 ) {
-					// var_dump("i'm a jerk", $v->playlist_id, Playlist::find($v->playlist_id)['name'],$cpa->collections[$v->collection_id]->playlists[$v->playlist_id]);
-					// var_dump($cpa->collections[$v->collection_id]->playlists[$v->playlist_id]);
-				// }
+				if (!property_exists($cpa->collections[$v->collection_id], "playlists") ) {
+					$cpa->collections[$v->collection_id]->playlists = array();
+				}
+				if (!array_key_exists($v->playlist_id, $cpa->collections[$v->collection_id]->playlists)) {
+					$cpa->collections[$v->collection_id]->playlists[$v->playlist_id] = new stdClass();
+				}
+				// echo"<pre>";
+				// print_r($cpa);
+				// var_dump(json_encode($cpa->collections[$v->collection_id]->playlists[$v->playlist_id])  ." ". Playlist::find($v->playlist_id)['name']  ." ". $v->playlist_id);
+
 				$cpa->collections[$v->collection_id]->playlists[$v->playlist_id]->id = $v->playlist_id;
 				$cpa->collections[$v->collection_id]->playlists[$v->playlist_id]->name = Playlist::find($v->playlist_id)['name'];
 				$cpa->collections[$v->collection_id]->playlists[$v->playlist_id]->description = Playlist::find($v->playlist_id)['description'];
@@ -81,19 +92,25 @@ class CollectionPlaylistAsset extends Eloquent {
 				$cpa->collections[$v->collection_id]->assets[$v->asset_id]->description = Asset::find($v->asset_id)['description'];
 				// end if asset not playlist
 			}
-		}
 
-		foreach ($data as $key => $v) {
-			
+
+
+			// Playlist Assets
 			// var_dump($v->playlist_id);
 			if ($v->playlist_id) {
 				$cpa->collections[$v->collection_id]->playlists[$v->playlist_id]->assets[$v->asset_id] = new stdClass;
 				$cpa->collections[$v->collection_id]->playlists[$v->playlist_id]->assets[$v->asset_id]->id = $v->asset_id;
 				$cpa->collections[$v->collection_id]->playlists[$v->playlist_id]->assets[$v->asset_id]->name = Asset::find($v->asset_id)['title'];
 				$cpa->collections[$v->collection_id]->playlists[$v->playlist_id]->assets[$v->asset_id]->description = Asset::find($v->asset_id)['description'];
+			}else{
+				// var_dump("oops");
 			}
 
+
+
 		}
+
+
 
 		// die();
 		$collections = current($cpa);
