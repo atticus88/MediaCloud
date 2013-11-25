@@ -42,8 +42,11 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
    <link href="/_admin/assets/css/pages/tasks.css" rel="stylesheet" type="text/css"/>
    <link href="/_admin/assets/css/themes/default.css" rel="stylesheet" type="text/css" id="style_color"/>
    <link href="/_admin/assets/css/custom.css" rel="stylesheet" type="text/css"/>
+   <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
    <!-- END THEME STYLES -->
    <link rel="shortcut icon" href="favicon.ico" />
+   @yield('css')
+
 </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
@@ -165,7 +168,9 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
                      <ul class="dropdown-menu-list scroller" style="height: 250px;">
                         <li>
                            <a href="inbox.html?a=view">
-                           <span class="photo"><img src="./assets/img/avatar2.jpg" alt=""/></span>
+                           <span class="photo">
+                           <!-- <img src="./assets/img/avatar2.jpg" alt=""/> -->
+                           </span>
                            <span class="subject">
                            <span class="from">Lisa Wong</span>
                            <span class="time">Just Now</span>
@@ -178,7 +183,9 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
                         </li>
                         <li>
                            <a href="inbox.html?a=view">
-                           <span class="photo"><img src="./assets/img/avatar3.jpg" alt=""/></span>
+                           <span class="photo">
+                           <!-- <img src="./assets/img/avatar3.jpg" alt=""/> -->
+                           </span>
                            <span class="subject">
                            <span class="from">Richard Doe</span>
                            <span class="time">16 mins</span>
@@ -191,7 +198,9 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
                         </li>
                         <li>
                            <a href="inbox.html?a=view">
-                           <span class="photo"><img src="./assets/img/avatar1.jpg" alt=""/></span>
+                           <span class="photo">
+                           <!-- <img src="./assets/img/avatar1.jpg" alt=""/> -->
+                           </span>
                            <span class="subject">
                            <span class="from">Bob Nilson</span>
                            <span class="time">2 hrs</span>
@@ -204,7 +213,9 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
                         </li>
                         <li>
                            <a href="inbox.html?a=view">
-                           <span class="photo"><img src="./assets/img/avatar2.jpg" alt=""/></span>
+                           <span class="photo">
+                           <!-- <img src="./assets/img/avatar2.jpg" alt=""/> -->
+                           </span>
                            <span class="subject">
                            <span class="from">Lisa Wong</span>
                            <span class="time">40 mins</span>
@@ -216,7 +227,9 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
                         </li>
                         <li>
                            <a href="inbox.html?a=view">
-                           <span class="photo"><img src="./assets/img/avatar3.jpg" alt=""/></span>
+                           <span class="photo">
+                           <!-- <img src="./assets/img/avatar3.jpg" alt=""/> -->
+                           </span>
                            <span class="subject">
                            <span class="from">Richard Doe</span>
                            <span class="time">46 mins</span>
@@ -448,7 +461,11 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
    <script src="/_admin/assets/plugins/respond.min.js"></script>
    <script src="/_admin/assets/plugins/excanvas.min.js"></script>
    <![endif]-->
+   <!--
    <script src="/_admin/assets/plugins/jquery-1.10.2.min.js" type="text/javascript"></script>
+    -->
+   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
    <script src="/_admin/assets/plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
    <!-- IMPORTANT! Load jquery-ui-1.10.3.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
    <script src="/_admin/assets/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
@@ -482,12 +499,15 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
    <script src="/_admin/assets/scripts/app.js" type="text/javascript"></script>
    <script src="/_admin/assets/scripts/index.js" type="text/javascript"></script>
    <script src="/_admin/assets/scripts/tasks.js" type="text/javascript"></script>
+
+   @yield('scripts')
+
    <!-- END PAGE LEVEL SCRIPTS -->
    <script>
       jQuery(document).ready(function() {
          App.init(); // initlayout and core plugins
          Index.init();
-         Index.initJQVMAP(); // init index page's custom scripts
+         //Index.initJQVMAP(); // init index page's custom scripts
          Index.initCalendar(); // init index page's custom scripts
          Index.initCharts(); // init index page's custom scripts
          Index.initChat();

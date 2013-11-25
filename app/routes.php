@@ -8,11 +8,44 @@
 App::bind('AssetRepository', 'Asset');
 
 
-Route::get('test', function(){
-	// echo Sentry::getUser();
-	return $users = User::all();
-	// return Sentry::getUserProvider()->createModel();
+Route::get('cpa/{id}', function($id){
+	$cpa = new CollectionPlaylistAsset;
+	return $cpa->get_cpa_by_user_id($id);
 });
+
+
+Route::get('asset/{id}', function($id){
+	$user = User::find($id);
+	$assets = array();
+	foreach ($user->assets as $asset)
+	{
+		$assets[] = $asset["attributes"];
+	}
+	return $assets;
+	//$role->pivot->created_at;
+});
+
+Route::get('test', function(){
+	$cpa = new CollectionPlaylistAsset;
+	$collections = $cpa->get_cpa_by_user_id(2);
+	var_dump($collections[0]->playlists[1]);
+	// var_dump($collections[0]);
+	// var_dump($collections[0]->playlists[0]->assets[1]->name);
+});
+
+
+Route::get('allusers', function(){
+	$users = User::all();
+	$data = array();
+	foreach ($users as $key => $user) {
+		$data[$key] = $user->username .":".$user->id;
+		// $data[$key]['tokens'] = array();
+		// $data[$key]['tokens'][0] = $user->username;
+		// $data[$key]['tokens'][1] = "$user->id";
+	}
+	return $data;
+});
+
 
 
 /*
@@ -66,12 +99,36 @@ Route::group(array('before' => 'admin-auth','prefix' => 'admin'), function()
 	Route::group(array('prefix' => 'assets'), function()
 	{
 		Route::get('/', array('as' => 'assets', 'uses' => 'Controllers\Admin\AssetsController@getIndex'));
-		Route::get('create', array('as' => 'create/asset', 'uses' => 'Controllers\Admin\AssetsController@getCreate'));
-		Route::post('create', 'Controllers\Admin\AssetsController@postCreate');
+		Route::get('upload', array('as' => 'upload/asset', 'uses' => 'Controllers\Admin\AssetsController@getUpload'));
+		Route::post('upload', 'Controllers\Admin\AssetsController@postUpload');
 		Route::get('{assetId}/edit', array('as' => 'update/asset', 'uses' => 'Controllers\Admin\AssetsController@getEdit'));
 		Route::post('{assetId}/edit', 'Controllers\Admin\AssetsController@postEdit');
 		Route::get('{assetId}/delete', array('as' => 'delete/asset', 'uses' => 'Controllers\Admin\AssetsController@getDelete'));
 		Route::get('{assetId}/restore', array('as' => 'restore/asset', 'uses' => 'Controllers\Admin\AssetsController@getRestore'));
+	});
+
+	# Collections Management
+	Route::group(array('prefix' => 'collections'), function()
+	{
+		Route::get('/', array('as' => 'collections', 'uses' => 'Controllers\Admin\CollectionsController@getIndex'));
+		// Route::get('upload', array('as' => 'upload/asset', 'uses' => 'Controllers\Admin\AssetsController@getUpload'));
+		// Route::post('upload', 'Controllers\Admin\AssetsController@postUpload');
+		// Route::get('{assetId}/edit', array('as' => 'update/asset', 'uses' => 'Controllers\Admin\AssetsController@getEdit'));
+		// Route::post('{assetId}/edit', 'Controllers\Admin\AssetsController@postEdit');
+		// Route::get('{assetId}/delete', array('as' => 'delete/asset', 'uses' => 'Controllers\Admin\AssetsController@getDelete'));
+		// Route::get('{assetId}/restore', array('as' => 'restore/asset', 'uses' => 'Controllers\Admin\AssetsController@getRestore'));
+	});
+
+	# Playlists Management
+	Route::group(array('prefix' => 'playlists'), function()
+	{
+		Route::get('/', array('as' => 'playlists', 'uses' => 'Controllers\Admin\PlaylistsController@getIndex'));
+		// Route::get('upload', array('as' => 'upload/asset', 'uses' => 'Controllers\Admin\AssetsController@getUpload'));
+		// Route::post('upload', 'Controllers\Admin\AssetsController@postUpload');
+		// Route::get('{assetId}/edit', array('as' => 'update/asset', 'uses' => 'Controllers\Admin\AssetsController@getEdit'));
+		// Route::post('{assetId}/edit', 'Controllers\Admin\AssetsController@postEdit');
+		// Route::get('{assetId}/delete', array('as' => 'delete/asset', 'uses' => 'Controllers\Admin\AssetsController@getDelete'));
+		// Route::get('{assetId}/restore', array('as' => 'restore/asset', 'uses' => 'Controllers\Admin\AssetsController@getRestore'));
 	});
 
 	# Dashboard
@@ -176,7 +233,6 @@ Route::get('/', array('as' => 'home', function(){
 	} else {
 
 		return Redirect::route('install');
-	//echo URL::route('install');
 	}
 }));
 

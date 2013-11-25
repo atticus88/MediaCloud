@@ -90,7 +90,7 @@ class AppInstallCommand extends Command {
 
 
 		// Generate the Application Encryption key
-		$this->call('key:generate');
+		// $this->call('key:generate');
 
 		// // Create the migrations table
 		// $this->call('migrate:install');
@@ -103,7 +103,8 @@ class AppInstallCommand extends Command {
 
 		$users = User::all();
 		if(count($users)){
-			die("Reset DB");
+			Artisan::call('app:refresh');
+			die();
 		}
 
 		// Create the default user and default groups.
@@ -162,8 +163,8 @@ class AppInstallCommand extends Command {
 						'user_getRestore' => 1,
 
 						'asset_getIndex' => 1,
-						'asset_getCreate' => 1,
-						'asset_postCreate' => 1,
+						'asset_getUpload' => 1,
+						'asset_postUpload' => 1,
 						'asset_getEdit' => 1,
 						'asset_postEdit' => 1,
 						'asset_getDelete' => 1

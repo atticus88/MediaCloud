@@ -38,13 +38,13 @@ class AppRefreshCommand extends Command {
 	public function fire()
 	{
 
-			// First reset data
-			echo 'Reseting DB...'.PHP_EOL;
-			$this->call('migrate:reset');
-			echo 'Done.'.PHP_EOL.PHP_EOL;
+		// First reset data
+		// echo 'Reseting DB...'.PHP_EOL;
+		$this->call('migrate:reset');
+		// echo 'Done.'.PHP_EOL.PHP_EOL;
 
-			// Now install it again
-			$this->call('app:install');
+		// Now install it again
+		Artisan::call('app:install');
 
 	}
 

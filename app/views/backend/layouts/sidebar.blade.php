@@ -26,7 +26,21 @@
                <a href="/admin"> <i class="icon-home"></i> <span class="title">Dashboard</span> <span class="selected"></span> </a>
             </li>
             <li class="{{(Request::is('admin/assets') ? ' active' : '')}}">
-               <a href="/admin/assets"> <i class="icon-film"></i> <span class="title">Assets</span> <span class="selected"></span> </a>
+               <a href="javascript:;"> <i class="icon-film"></i> <span class="title">Assets</span> <span class="selected"></span> </a>
+               <ul class="sub-menu">
+                  <li>
+                     <a href="/admin/assets">
+                     Assets</a>
+                  </li>
+                   <li>
+                     <a href="#">
+                     Collections</a>
+                  </li>
+                   <li>
+                     <a href="#">
+                     Playlists</a>
+                  </li>
+               </ul>
             </li>
             <li class="{{(Request::is('admin/users') ? ' active' : '')}}">
                <a href="javascript:;">
