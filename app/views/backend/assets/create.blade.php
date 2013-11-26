@@ -38,14 +38,26 @@
 			e.preventDefault();
 			getUserInfo();
 		})
-		
-		
+
+
 		function getUserInfo(){
 			$id = /\w+:(\d+)/gi.exec($("#owner").val())[1]
 			// console.log($id);
 			var cpaData;
-			var assetData;
-			var assetOrgainizerHtml = $('<div class="asset-orgainizer"><div class="organization-container"> <div class="toolbar"> <span><i class="fa fa-plus collection-add"></i></span> <span><i class="fa fa-minus collection-remove"></i></span> <span><i class="fa fa-arrows-v"></i></span> </div> <div class="organization-list"> <ol id="organization"></ol> </div> </div></div>');
+			var assetOrgainizerHtml =
+			$('<div class="asset-orgainizer">\
+				<div class="organization-container">\
+					<div class="toolbar">\
+						<span><i class="fa fa-plus collection-add"></i></span>\
+						<span><i class="fa fa-minus collection-remove"></i></span>\
+						<span><i class="fa fa-arrows-v collection-toggle"></i></span> \
+					</div>\
+					<div class="organization-list">\
+						<ol id="organization"></ol>\
+					</div>\
+				</div>\
+			</div>');
+
 
 			$.ajax({
 				url: "/cpa/"+$id,
@@ -54,6 +66,7 @@
 					cpaData = data;
 				}
 			}).promise().done(function () {
+				console.log(cpaData);
 				console.log($.type(cpaData));
 
 				cpaDataFlag = $.type(cpaData) === "array";
@@ -62,15 +75,14 @@
 
 					$.each(cpaData, function(index, collection){
 						assetOrgainizerHtml.find('#organization')
-						.append('<li class="collection" data-collection-id="'+collection.id+'">'+collection.name+'<span><i class="fa fa-plus playlist-add"></i></span> <span><i class="fa fa-minus playlist-remove"></i></span> <hr> <ol> </ol> </li>')
+						.append('<li class="collection" data-collection-id="'+collection.id+'">'+collection.name+'<span> <i class="fa fa-plus playlist-add"></i></span> <span><i class="fa fa-minus playlist-remove"></i></span> <hr> <ol> </ol> </li>')
 
-						
+
 						$.each(collection.playlists, function(index, playlist){
 							console.log(playlist)
 
-							assetOrgainizerHtml.find("[data-collection-id="+collection.id+"] ol").append("<li class='playlist' data-playlist-id='"+playlist.id+"'>"+playlist.name+" <ol></ol></li>")
 
-
+							assetOrgainizerHtml.find("[data-collection-id="+collection.id+"] ol:first").append("<li class='playlist' data-playlist-id='"+playlist.id+"'>"+playlist.name+" <ol></ol></li>")
 
 
 
@@ -82,24 +94,31 @@
 									.append('<li class="asset" data-asset-id="'+asset.id+'">'+asset.name+'</li>')
 
 								});
+
 							};
 						});
-						
-						if (collection.assets) {	
-							$.each(collection.assets, function(index, asset){
-								console.log(asset)
 
-
-								
-							});
+						if (collection.assets) {
+						$.each(collection.assets, function(index, asset){
+							console.log(asset)
+							assetOrgainizerHtml.find("[data-collection-id="+collection.id+"] ol:first").append('<li class="asset" data-asset-id="'+asset.id+'">'+asset.name+'</li>')
+						});
 						}
 					});
 				};
-				
 
 
-				
+
+
+
 				$(".asset-orgainizer").replaceWith(assetOrgainizerHtml);
+
+				// CPA list
+				$("#organization").sortable({
+					// group: 'asset-orgainizer'
+				})
+
+
 			});
 
 
@@ -111,7 +130,6 @@
 
 
 
-
 		$('.collection-add').live("click",function(e){
 			$(e.target).closest('.organization-container').find('#organization')
 			.prepend($('<li class="collection collection-new"><input class="input" type="text" placeholder="Collection Name" /><ol></ol></li>'));
@@ -120,6 +138,9 @@
 			$(e.target).closest('.organization-container').find('.collection-new:last')
 			.remove();
 		});
+		$(".collection-toggle").live("click", function(e){
+			$("#organization").find('.collection .playlist').toggle();
+		})
 
 		$('.playlist-add').live( "click",function(e){
 			$(e.target).closest('.collection').find("ol:first")
@@ -130,11 +151,7 @@
 			$(e.target).closest('.collection').find('.playlist-new:last').remove();
 		});
 
-		// CPA list
-		$("#organization").sortable({
-		// group: 'asset-orgainizer'
 
-		})
 	});
 </script>
 @stop
@@ -162,16 +179,16 @@
 
 
 		<div class="row">
-			<div class="col-md-4">
+			<div class="col-md-6">
 			 <div class="form-group">
 				 <label class="control-label col-md-3">Owner</label>
 					<div>
-						<input id="owner" type="text" class="typeahead"> 
+						<input id="owner" type="text" class="typeahead">
 						<button  class="btn-getUserInfo btn btn-success">GO</button>
 					</div>
 			 </div>
 		 </div>
-	 <div id="#asset-orgainizer-container" class="col-md-8">
+	 <div id="#asset-orgainizer-container" class="col-md-6">
 
 			<div class="asset-orgainizer">should replace this</div>
 	</div>
