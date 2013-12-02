@@ -10,3 +10,4 @@ app/storage/views/*
 app/storage/cache/*
 app/storage/logs/*
 app/storage/meta/*
+/vendor
