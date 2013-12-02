@@ -1,6 +1,6 @@
-<?php namespace Controllers\Admin;
+<?php namespace Controllers;
 
-use AdminController;
+use PermissionsController;
 use Cartalyst\Sentry\Users\LoginRequiredException;
 use Cartalyst\Sentry\Users\PasswordRequiredException;
 use Cartalyst\Sentry\Users\UserExistsException;
@@ -14,7 +14,7 @@ use Session;
 use Validator;
 use View;
 
-class UsersController extends AdminController {
+class UsersController extends PermissionsController {
 
 	/**
 	 * Declare the rules for the form validation

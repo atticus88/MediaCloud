@@ -157,7 +157,7 @@
 </div>
 
 
-<form method="POST" action="{{action('Controllers\Admin\AssetsController@postUpload')}}" accept-charset="UTF-8" class="form-horizontal">
+<form method="POST" action="{{action('AssetsController@store')}}" accept-charset="UTF-8" class="form-horizontal">
 
 
 

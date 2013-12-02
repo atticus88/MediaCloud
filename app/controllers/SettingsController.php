@@ -1,6 +1,6 @@
-<?php namespace Controllers\Admin;
+<?php namespace Controllers;
 
-use AdminController;
+use PermissionsController;
 use Input;
 use Lang;
 use Asset;
@@ -11,7 +11,7 @@ use Validator;
 use View;
 
 
-class SettingsController extends AdminController {
+class SettingsController extends PermissionsController {
 
 	/**
 	 * Show the administration dashboard page.

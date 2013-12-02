@@ -5,13 +5,12 @@
 /*
 * APP Bindings
 */
-use MC\Services\myCoolService;
+
 
 App::bind('AssetRepository', 'Asset');
 
 
 Route::get('cpa/{id}', function($id){
-    (new myCoolService())->something();
 	$cpa = new CollectionPlaylistAsset;
 	return $cpa->get_cpa_by_user_id($id);
 });
@@ -62,81 +61,73 @@ Route::get('allusers', function(){
 Route::group(array('before' => 'admin-auth','prefix' => 'admin'), function()
 {
 
-	# Blog Management
-	Route::group(array('prefix' => 'blogs'), function()
-	{
-		Route::get('/', array('as' => 'blogs', 'uses' => 'Controllers\Admin\BlogsController@getIndex'));
-		Route::get('create', array('as' => 'create/blog', 'uses' => 'Controllers\Admin\BlogsController@getCreate'));
-		Route::post('create', 'Controllers\Admin\BlogsController@postCreate');
-		Route::get('{blogId}/edit', array('as' => 'update/blog', 'uses' => 'Controllers\Admin\BlogsController@getEdit'));
-		Route::post('{blogId}/edit', 'Controllers\Admin\BlogsController@postEdit');
-		Route::get('{blogId}/delete', array('as' => 'delete/blog', 'uses' => 'Controllers\Admin\BlogsController@getDelete'));
-		Route::get('{blogId}/restore', array('as' => 'restore/blog', 'uses' => 'Controllers\Admin\BlogsController@getRestore'));
-	});
-
 	# User Management
 	Route::group(array('prefix' => 'users'), function()
 	{
-		Route::get('/', array('as' => 'users', 'uses' => 'Controllers\Admin\UsersController@getIndex'));
-		Route::get('create', array('as' => 'create/user', 'uses' => 'Controllers\Admin\UsersController@getCreate'));
-		Route::post('create', 'Controllers\Admin\UsersController@postCreate');
-		Route::get('{userId}/edit', array('as' => 'update/user', 'uses' => 'Controllers\Admin\UsersController@getEdit'));
-		Route::post('{userId}/edit', 'Controllers\Admin\UsersController@postEdit');
-		Route::get('{userId}/delete', array('as' => 'delete/user', 'uses' => 'Controllers\Admin\UsersController@getDelete'));
-		Route::get('{userId}/restore', array('as' => 'restore/user', 'uses' => 'Controllers\Admin\UsersController@getRestore'));
+		Route::get('/', array('as' => 'users', 'uses' => 'Controllers\UsersController@getIndex'));
+		Route::get('create', array('as' => 'create/user', 'uses' => 'Controllers\UsersController@getCreate'));
+		Route::post('create', 'Controllers\UsersController@postCreate');
+		Route::get('{userId}/edit', array('as' => 'update/user', 'uses' => 'Controllers\UsersController@getEdit'));
+		Route::post('{userId}/edit', 'Controllers\UsersController@postEdit');
+		Route::get('{userId}/delete', array('as' => 'delete/user', 'uses' => 'Controllers\UsersController@getDelete'));
+		Route::get('{userId}/restore', array('as' => 'restore/user', 'uses' => 'Controllers\UsersController@getRestore'));
 	});
 
 	# Group Management
 	Route::group(array('prefix' => 'groups'), function()
 	{
-		Route::get('/', array('as' => 'groups', 'uses' => 'Controllers\Admin\GroupsController@getIndex'));
-		Route::get('create', array('as' => 'create/group', 'uses' => 'Controllers\Admin\GroupsController@getCreate'));
-		Route::post('create', 'Controllers\Admin\GroupsController@postCreate');
-		Route::get('{groupId}/edit', array('as' => 'update/group', 'uses' => 'Controllers\Admin\GroupsController@getEdit'));
-		Route::post('{groupId}/edit', 'Controllers\Admin\GroupsController@postEdit');
-		Route::get('{groupId}/delete', array('as' => 'delete/group', 'uses' => 'Controllers\Admin\GroupsController@getDelete'));
-		Route::get('{groupId}/restore', array('as' => 'restore/group', 'uses' => 'Controllers\Admin\GroupsController@getRestore'));
+		Route::get('/', array('as' => 'groups', 'uses' => 'Controllers\GroupsController@getIndex'));
+		Route::get('create', array('as' => 'create/group', 'uses' => 'Controllers\GroupsController@getCreate'));
+		Route::post('create', 'Controllers\GroupsController@postCreate');
+		Route::get('{groupId}/edit', array('as' => 'update/group', 'uses' => 'Controllers\GroupsController@getEdit'));
+		Route::post('{groupId}/edit', 'Controllers\GroupsController@postEdit');
+		Route::get('{groupId}/delete', array('as' => 'delete/group', 'uses' => 'Controllers\GroupsController@getDelete'));
+		Route::get('{groupId}/restore', array('as' => 'restore/group', 'uses' => 'Controllers\GroupsController@getRestore'));
 	});
 
 	# Assets Management
 	Route::group(array('prefix' => 'assets'), function()
 	{
-		Route::get('/', array('as' => 'assets', 'uses' => 'Controllers\Admin\AssetsController@getIndex'));
-		Route::get('upload', array('as' => 'upload/asset', 'uses' => 'Controllers\Admin\AssetsController@getUpload'));
-		Route::post('upload', 'Controllers\Admin\AssetsController@postUpload');
-		Route::get('{assetId}/edit', array('as' => 'update/asset', 'uses' => 'Controllers\Admin\AssetsController@getEdit'));
-		Route::post('{assetId}/edit', 'Controllers\Admin\AssetsController@postEdit');
-		Route::get('{assetId}/delete', array('as' => 'delete/asset', 'uses' => 'Controllers\Admin\AssetsController@getDelete'));
-		Route::get('{assetId}/restore', array('as' => 'restore/asset', 'uses' => 'Controllers\Admin\AssetsController@getRestore'));
+
+		Route::resource('asset', 'AssetsController' );
+		Route::get('/', array('as' => 'assets', 'uses' => 'AssetsController@index'));
+
+
+//		Route::get('upload', array('as' => 'upload/asset', 'uses' => 'Controllers\AssetsController@getUpload'));
+//		Route::post('upload', 'AssetsController@postUpload');
+//		Route::get('{assetId}/edit', array('as' => 'update/asset', 'uses' => 'Controllers\AssetsController@getEdit'));
+//		Route::post('{assetId}/edit', 'Controllers\AssetsController@postEdit');
+//		Route::get('{assetId}/delete', array('as' => 'delete/asset', 'uses' => 'Controllers\AssetsController@getDelete'));
+//		Route::get('{assetId}/restore', array('as' => 'restore/asset', 'uses' => 'Controllers\AssetsController@getRestore'));
 	});
 
-	# Collections Management
-	Route::group(array('prefix' => 'collections'), function()
-	{
-		Route::get('/', array('as' => 'collections', 'uses' => 'Controllers\Admin\CollectionsController@getIndex'));
-		// Route::get('upload', array('as' => 'upload/asset', 'uses' => 'Controllers\Admin\AssetsController@getUpload'));
-		// Route::post('upload', 'Controllers\Admin\AssetsController@postUpload');
-		// Route::get('{assetId}/edit', array('as' => 'update/asset', 'uses' => 'Controllers\Admin\AssetsController@getEdit'));
-		// Route::post('{assetId}/edit', 'Controllers\Admin\AssetsController@postEdit');
-		// Route::get('{assetId}/delete', array('as' => 'delete/asset', 'uses' => 'Controllers\Admin\AssetsController@getDelete'));
-		// Route::get('{assetId}/restore', array('as' => 'restore/asset', 'uses' => 'Controllers\Admin\AssetsController@getRestore'));
-	});
+	// # Collections Management
+	// Route::group(array('prefix' => 'collections'), function()
+	// {
+	// 	Route::get('/', array('as' => 'collections', 'uses' => 'Controllers\CollectionsController@getIndex'));
+	// 	// Route::get('upload', array('as' => 'upload/asset', 'uses' => 'Controllers\AssetsController@getUpload'));
+	// 	// Route::post('upload', 'Controllers\AssetsController@postUpload');
+	// 	// Route::get('{assetId}/edit', array('as' => 'update/asset', 'uses' => 'Controllers\AssetsController@getEdit'));
+	// 	// Route::post('{assetId}/edit', 'Controllers\AssetsController@postEdit');
+	// 	// Route::get('{assetId}/delete', array('as' => 'delete/asset', 'uses' => 'Controllers\AssetsController@getDelete'));
+	// 	// Route::get('{assetId}/restore', array('as' => 'restore/asset', 'uses' => 'Controllers\AssetsController@getRestore'));
+	// });
 
-	# Playlists Management
-	Route::group(array('prefix' => 'playlists'), function()
-	{
-		Route::get('/', array('as' => 'playlists', 'uses' => 'Controllers\Admin\PlaylistsController@getIndex'));
-		// Route::get('upload', array('as' => 'upload/asset', 'uses' => 'Controllers\Admin\AssetsController@getUpload'));
-		// Route::post('upload', 'Controllers\Admin\AssetsController@postUpload');
-		// Route::get('{assetId}/edit', array('as' => 'update/asset', 'uses' => 'Controllers\Admin\AssetsController@getEdit'));
-		// Route::post('{assetId}/edit', 'Controllers\Admin\AssetsController@postEdit');
-		// Route::get('{assetId}/delete', array('as' => 'delete/asset', 'uses' => 'Controllers\Admin\AssetsController@getDelete'));
-		// Route::get('{assetId}/restore', array('as' => 'restore/asset', 'uses' => 'Controllers\Admin\AssetsController@getRestore'));
-	});
+	// # Playlists Management
+	// Route::group(array('prefix' => 'playlists'), function()
+	// {
+	// 	Route::get('/', array('as' => 'playlists', 'uses' => 'Controllers\PlaylistsController@getIndex'));
+	// 	// Route::get('upload', array('as' => 'upload/asset', 'uses' => 'Controllers\AssetsController@getUpload'));
+	// 	// Route::post('upload', 'Controllers\AssetsController@postUpload');
+	// 	// Route::get('{assetId}/edit', array('as' => 'update/asset', 'uses' => 'Controllers\AssetsController@getEdit'));
+	// 	// Route::post('{assetId}/edit', 'Controllers\AssetsController@postEdit');
+	// 	// Route::get('{assetId}/delete', array('as' => 'delete/asset', 'uses' => 'Controllers\AssetsController@getDelete'));
+	// 	// Route::get('{assetId}/restore', array('as' => 'restore/asset', 'uses' => 'Controllers\AssetsController@getRestore'));
+	// });
 
 	# Dashboard
-	Route::get('/', array('as' => 'admin', 'uses' => 'Controllers\Admin\DashboardController@getIndex'));
-	Route::get('settings', array('as' => 'settings', 'uses' => 'Controllers\Admin\SettingsController@getIndex'));
+	Route::get('/', array('as' => 'admin', 'uses' => 'Controllers\DashboardController@getIndex'));
+	Route::get('settings', array('as' => 'settings', 'uses' => 'Controllers\SettingsController@getIndex'));
 
 });
 

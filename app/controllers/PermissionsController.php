@@ -1,6 +1,6 @@
 <?php
 
-class AdminController extends AuthorizedController {
+class PermissionsController extends BaseController {
 
 	/**
 	 * Initializer.
