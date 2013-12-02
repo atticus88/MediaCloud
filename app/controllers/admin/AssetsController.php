@@ -38,7 +38,7 @@ class AssetsController extends AdminController {
 
 		// die(var_dump($assets));
 		// Show the page
-		return View::make('backend/media_assets/index', compact('assets'));
+		return View::make('backend/assets/index', compact('assets'));
 	}
 
 	/**
@@ -46,14 +46,14 @@ class AssetsController extends AdminController {
 	 *
 	 * @return View
 	 */
-	public function getCreate()
+	public function getUpload()
 	{
-		if (!Sentry::getUser()->hasAccess('asset_getCreate')) {
+		if (!Sentry::getUser()->hasAccess('asset_getUpload')) {
 			Session::flash('error', Lang::get('admin/permissions/message.no_permission'));
    			return Redirect::route('admin');
 		}
 		// Show the page
-		return View::make('backend/media_assets/create');
+		return View::make('backend/assets/create');
 	}
 
 	/**
@@ -61,18 +61,18 @@ class AssetsController extends AdminController {
 	 *
 	 * @return Redirect
 	 */
-	public function postCreate()
+	public function postUpload()
 	{
-		if (!Sentry::getUser()->hasAccess('asset_postCreate')) {
+		if (!Sentry::getUser()->hasAccess('asset_postUpload')) {
 			Session::flash('error', Lang::get('admin/permissions/message.no_permission'));
    			return Redirect::route('admin');
 		}
 		// Declare the rules for the form validation
 		$rules = array(
 			// 'id' => 'required',
-			'title' => 'required',
-			'description' => 'required',
-			'filepath' => 'required',
+			// 'title' => 'required',
+			// 'description' => 'required',
+			// 'filepath' => 'required',
 			// 'filename' => 'required',
 			// 'transcoded_url' => 'required',
 			// 'thumbnail_url' => 'required',
@@ -140,7 +140,7 @@ class AssetsController extends AdminController {
 		if (is_null($asset = Asset::find($assetId)))
 		{
 			// Redirect to the blogs management page
-			return Redirect::to('admin/media_assets')->with('error', Lang::get('admin/assets/message.does_not_exist'));
+			return Redirect::to('admin/assets')->with('error', Lang::get('admin/assets/message.does_not_exist'));
 		}
 
 		// // Get the user information
@@ -164,8 +164,8 @@ class AssetsController extends AdminController {
 
 
 		// Show the page
-		// return View::make('backend/media_assets/edit', compact('user', 'asset','groups', 'userGroups', 'permissions', 'userPermissions'));
-		return View::make('backend/media_assets/edit', compact('asset'));
+		// return View::make('backend/assets/edit', compact('user', 'asset','groups', 'userGroups', 'permissions', 'userPermissions'));
+		return View::make('backend/assets/edit', compact('asset'));
 	}
 
 	/**

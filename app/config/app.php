@@ -65,7 +65,7 @@ return array(
 	|
 	*/
 
-	'key' => 'DR92hU3MAOL1b2jgjICBKGpZevsQ4Mrs',
+	'key' => '5UCUdnk5LYw1qDix0ycgVI0bVDOoqVE4',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -115,7 +115,8 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Way\Generators\GeneratorsServiceProvider',
 		'Cartalyst\Sentry\SentryServiceProvider',
-		'DaveJamesMiller\Breadcrumbs\ServiceProvider'
+		'DaveJamesMiller\Breadcrumbs\ServiceProvider',
+		'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
 
 	),
 

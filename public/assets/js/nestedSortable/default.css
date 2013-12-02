@@ -1,0 +1,155 @@
+.asset-orgainizer{
+	/*border: 1px solid #292929;*/
+	padding:0;
+	height: 400px;
+/*-webkit-box-shadow: 10px 0px 63px -10px rgba(0,0,0,0.75);
+-moz-box-shadow: 10px 0px 63px -10px rgba(0,0,0,0.75);
+box-shadow: 10px 0px 63px -10px rgba(0,0,0,0.75);*/
+
+}
+
+.asset-orgainizer{}
+
+.asset-orgainizer .asset-container,
+.asset-orgainizer .organization-container{
+	width: 50%;
+	float: left;
+	height: 100%;
+	padding-bottom: 30px; /*toolbar height*/
+
+}
+
+
+
+
+.asset-orgainizer .asset-list,
+.asset-orgainizer .organization-list{
+	height: 100%;
+	overflow-x: hidden;
+}
+
+.asset-orgainizer #assets,
+.asset-orgainizer #organization{
+	padding: 0;
+}
+.asset-orgainizer .asset-container .asset-list #assets,
+.asset-orgainizer .organization-container .organization-list #organization{
+	height: 100%;
+	/*overflow-x: hidden;*/
+}
+
+.asset-orgainizer .toolbar{
+	background: #999;
+	color: #333;
+	height: 30px; /*toolbar height*/
+	padding:2px  5px;
+}
+
+.asset-orgainizer .asset-container .toolbar{
+	background: #27A9E3;
+}
+.asset-orgainizer .organization-container .toolbar{
+	background: #2195C9;
+}
+.asset-orgainizer .toolbar .fa{
+	display: block;
+	width: 26px;
+	height: 26px;
+	line-height: 26px;
+	text-align: center;
+	float: left;
+}
+.asset-orgainizer .toolbar .fa:hover{
+	color: #fff;
+}
+.asset-organizer .active{
+	outline: 3px solid rgba(0, 0, 0, 0.3);
+	background:rgba(0,0,0,.15);
+}
+
+.organization-list ol  {
+	/*min-height: 20px*/
+}
+
+.organization-list{
+	background: #807B72;
+	color: #555555;
+}
+
+.organization-list .active{
+	/*outline: 1px solid red*/
+}
+
+.organization-list .collection  {
+	background:#DADBCD;
+	/*color: #555555;*/
+}
+.organization-list .playlist  {
+	background:#EFEFE3;
+}
+.organization-list .playlist span {
+	border-bottom: 1px solid #BEBEBE;
+	display: block;
+}
+.organization-list .asset  {
+	background:#FEFEFD;
+}
+
+.organization-list .dragged  {
+	/*background: #333;*/
+	/*outline: 1px solid blue*/
+}
+
+
+/*asset-list*/
+.asset-list{}
+.asset-list ol{}
+.asset-list ol li{
+	display: block;
+	margin: 1px;
+	padding: 2px 5px;
+	border: 1px solid #cccccc;
+	color: #0088cc;
+	background: #eeeeee;
+}
+
+
+
+
+
+/*organization-list*/
+.organization-list ol {
+	margin: 0 0 9px 0;
+}
+.organization-list ol li {
+	display: block;
+	margin: 5px;
+	padding: 5px;
+	border: 1px solid #e1e1e1;
+	color: #0088cc;
+	background: #eeeeee;
+}
+
+.organization-list ol li.placeholder {
+	position: relative;
+	margin: 0;
+	padding: 0;
+	border: none;
+}
+.organization-list ol li.placeholder:before {
+	position: absolute;
+	content: "";
+	width: 0;
+	height: 0;
+	margin-top: -5px;
+	left: -5px;
+	top: -4px;
+	border: 5px solid transparent;
+	border-left-color: red;
+	border-right: none;
+}
+
+
+.collection-name .input{
+	z-index: 1;
+}

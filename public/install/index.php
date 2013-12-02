@@ -77,7 +77,7 @@ if (preg_match('/Linux/',php_uname())){
 }
  ?>
 
-					<p>Make sure directorys are writable:</p>
+					<p>Make sure directories are writable:</p>
 					<?php
 					$project_root_path = realpath(dirname(dirname(dirname(__file__))));
 					$app_config = realpath($project_root_path."/app/config");
@@ -118,8 +118,11 @@ if (preg_match('/Linux/',php_uname())){
 					<p>
 						Where would you like this server to store media assets?
 					</p>
+					<p>
+						Relative from public folder: <code>&lt;ProjectRoot&gt;/public/media</code>
+					</p>
 					<div class="control-group">
-						<input id="media-path" name="media-path" type="text" placeholder="/var/media/" />
+						<input id="media-path" name="media-path" type="text" placeholder="media" value="media" />
 					</div>
 
 				</div>
@@ -473,16 +476,25 @@ if (preg_match('/Linux/',php_uname())){
 						data: wizard.serialize(),
 						dataType: 'json',
 						success: function (data) {
-							if (data.status == 'success') {
+							if (data) {
+								
+								if (data.status == 'success') {
+									wizard.submitSuccess();
+								} else {
+									wizard.submitFailure();
+								}
+							};
+						},
+						error:function(data){
+							if (data.status == 'error') {
 								wizard.submitSuccess();
 							} else {
 								wizard.submitFailure();
 							}
-						},
-						error:function(data){
-							console.log(data)
 						}
-					})
+					}).done(function() {
+						wizard.submitSuccess();
+					});
 
 			},
 			error: function() {

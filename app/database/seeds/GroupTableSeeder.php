@@ -21,20 +21,20 @@ class GroupTableSeeder extends Seeder {
 
 		Sentry::getGroupProvider()->create(
 			array(
-			'name'        => 'Student',
-			'permissions' => array(
-				'users' => 1,
+				'name'        => 'Student',
+				'permissions' => array(
+					'users' => 1,
+					)
 				)
-			)
 			);
 
 		Sentry::getGroupProvider()->create(
 			array(
-			'name'        => 'Guest',
-			'permissions' => array(
-				'users' => 1
+				'name'        => 'Guest',
+				'permissions' => array(
+					'users' => 1
+					)
 				)
-			)
 			);
 
 		// Uncomment the below to run the seeder
