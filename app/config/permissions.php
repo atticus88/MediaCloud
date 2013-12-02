@@ -51,6 +51,7 @@ return array(
 			'label'      => 'User Restore',
 			),
 		),
+
 	),
 	'Admin Asset' => array(
 		array(
