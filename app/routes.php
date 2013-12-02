@@ -5,10 +5,13 @@
 /*
 * APP Bindings
 */
+use MC\Services\myCoolService;
+
 App::bind('AssetRepository', 'Asset');
 
 
 Route::get('cpa/{id}', function($id){
+    (new myCoolService())->something();
 	$cpa = new CollectionPlaylistAsset;
 	return $cpa->get_cpa_by_user_id($id);
 });
