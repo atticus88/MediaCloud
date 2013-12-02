@@ -38,8 +38,8 @@
 			e.preventDefault();
 			getUserInfo();
 		})
-		
-		
+
+
 		function getUserInfo(){
 			$id = /\w+:(\d+)/gi.exec($("#owner").val())[1]
 			// console.log($id);
@@ -64,11 +64,11 @@
 						assetOrgainizerHtml.find('#organization')
 						.append('<li class="collection" data-collection-id="'+collection.id+'">'+collection.name+'<span><i class="fa fa-plus playlist-add"></i></span> <span><i class="fa fa-minus playlist-remove"></i></span> <hr> <ol> </ol> </li>')
 
-						
+
 						$.each(collection.playlists, function(index, playlist){
 							console.log(playlist)
 
-							assetOrgainizerHtml.find("[data-collection-id="+collection.id+"] ol").append("<li class='playlist' data-playlist-id='"+playlist.id+"'>"+playlist.name+" <ol></ol></li>")
+							assetOrgainizerHtml.find("[data-collection-id="+collection.id+"] ol:first").append("<li class='playlist' data-playlist-id='"+playlist.id+"'>"+playlist.name+" <ol></ol></li>")
 
 
 
@@ -84,21 +84,21 @@
 								});
 							};
 						});
-						
-						if (collection.assets) {	
+
+						if (collection.assets) {
 							$.each(collection.assets, function(index, asset){
 								console.log(asset)
 
 
-								
+
 							});
 						}
 					});
 				};
-				
 
 
-				
+
+
 				$(".asset-orgainizer").replaceWith(assetOrgainizerHtml);
 			});
 
@@ -166,7 +166,7 @@
 			 <div class="form-group">
 				 <label class="control-label col-md-3">Owner</label>
 					<div>
-						<input id="owner" type="text" class="typeahead"> 
+						<input id="owner" type="text" class="typeahead">
 						<button  class="btn-getUserInfo btn btn-success">GO</button>
 					</div>
 			 </div>
