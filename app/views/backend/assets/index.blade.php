@@ -14,7 +14,7 @@ User Management ::
 <h1>All Assets
 
 <div class="pull-right">
-			<a href="{{ URL::route('admin.assets.asset.create') }}" class="btn btn-small btn-info"><i class="icon-plus-sign icon-white"></i> Upload</a>
+			<a href="{{ URL::route('asset.upload') }}" class="btn btn-small btn-info"><i class="icon-plus-sign icon-white"></i> Upload</a>
 		</div>
 </h1>
 </div>
@@ -60,11 +60,11 @@ User Management ::
 					<td>{{{ $asset->last_viewed }}}</td>
 					<td>{{{ $asset->created_at }}}</td>
 					<td>{{{ $asset->updated_at }}}</td>
-                    <td>{{ link_to_route('admin.assets.asset.edit', 'Edit', array($asset->id), array('class' => 'btn btn-info')) }}</td>
+                    <td>{{ link_to_route('asset.edit', 'Edit', array($asset->id), array('class' => 'btn btn-info')) }}</td>
                     <td>
 
-                    <form method="DELETE" action="{{action('AssetsController@destroy',$asset->id )}}" accept-charset="UTF-8">
-                    	<input type="hidden" name="_method" value="delete" />
+                    <form method="POST" action="{{action('AssetsController@destroy',$asset->id )}}" accept-charset="UTF-8">
+                    	<input type="hidden" name="_method" value="DELETE" />
                     	<input type="hidden" name="_token" value="{{ csrf_token() }}" />
                         {{ Form::submit('Delete', array('class' => 'btn btn-danger')) }}
                     </form>

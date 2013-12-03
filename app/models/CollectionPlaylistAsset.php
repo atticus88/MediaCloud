@@ -29,6 +29,21 @@ class CollectionPlaylistAsset extends Eloquent {
 			);
 	}
 
+    public function deleteByAsset($assetId){
+        //Find the all cpa with asset id
+
+        //delete all found
+
+
+//        DB::table('collection_playlist_asset')->delete(
+//            array(
+//                'collection_id' => $collection_id,
+//                'playlist_id' => $playlist_id,
+//                'asset_id' => $asset_id,
+//            )
+//        );
+    }
+
 
 	public function get_cpa_by_user_id($id)
 	{
