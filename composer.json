@@ -28,7 +28,7 @@
         "files": [
             "vendor/gorg/phpcas/CAS.php"
         ],
-        "psr-0": {"":""}
+        "psr-0": {"MC":"app/"}
 	},
 	"scripts": {
 		"post-install-cmd": [
