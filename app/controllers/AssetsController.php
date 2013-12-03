@@ -264,8 +264,8 @@ class AssetsController extends PermissionsController {
      * @param  int  $id
      * @return Response
      */
-    public function destroy($assetId)
-    {
+    public function destroy($assetId){
+
         if (!Sentry::getUser()->hasAccess('asset_getDelete')) {
             Session::flash('error', Lang::get('admin/permissions/message.no_permission'));
             return Redirect::route('admin');
