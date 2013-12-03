@@ -89,16 +89,19 @@ Route::group(array('before' => 'admin-auth','prefix' => 'admin'), function()
 	Route::group(array('prefix' => 'assets'), function()
 	{
 
-		Route::resource('asset', 'AssetsController' );
-		Route::get('/', array('as' => 'assets', 'uses' => 'AssetsController@index'));
 
 
-//		Route::get('upload', array('as' => 'upload/asset', 'uses' => 'Controllers\AssetsController@getUpload'));
-//		Route::post('upload', 'AssetsController@postUpload');
-//		Route::get('{assetId}/edit', array('as' => 'update/asset', 'uses' => 'Controllers\AssetsController@getEdit'));
-//		Route::post('{assetId}/edit', 'Controllers\AssetsController@postEdit');
-//		Route::get('{assetId}/delete', array('as' => 'delete/asset', 'uses' => 'Controllers\AssetsController@getDelete'));
-//		Route::get('{assetId}/restore', array('as' => 'restore/asset', 'uses' => 'Controllers\AssetsController@getRestore'));
+
+        Route::get('/', array('as' => 'assets', 'uses' => 'AssetsController@index'));
+        Route::get('upload', array('as' => 'asset.upload', 'uses' => 'AssetsController@create'));
+		Route::post('upload', array('as' => 'asset.store', 'uses' => 'AssetsController@store'));
+        //show
+		Route::get('{assetId}/edit', array('as' => 'asset.edit', 'uses' => 'AssetsController@edit'));
+		Route::post('{assetId}/edit', array('as' => 'asset.update', 'uses' => 'AssetsController@update')); //POST /admin/assets/{assetId}/edit
+		Route::delete('{assetId}/delete', array('as' => 'asset.delete', 'uses' => 'AssetsController@destroy'));
+
+
+//		Route::get('{assetId}/restore', array('as' => 'asset.restore', 'uses' => 'AssetsController@getRestore'));
 	});
 
 	// # Collections Management

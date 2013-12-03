@@ -265,7 +265,6 @@ class AssetsController extends PermissionsController {
      * @return Response
      */
     public function destroy($assetId){
-
         if (!Sentry::getUser()->hasAccess('asset_getDelete')) {
             Session::flash('error', Lang::get('admin/permissions/message.no_permission'));
             return Redirect::route('admin');
@@ -277,6 +276,9 @@ class AssetsController extends PermissionsController {
             // Redirect to the assets management page
             return Redirect::to('admin/assets')->with('error', Lang::get('admin/assets/message.not_found'));
         }
+
+        //Check CPA if asset exsists
+        //Remove pivot asset
 
         // Delete the asset
         $asset->delete();

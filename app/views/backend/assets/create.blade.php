@@ -2,146 +2,42 @@
 
 @section('scripts')
 <script src="//cdn.jsdelivr.net/typeahead.js/0.9.3/typeahead.min.js" type="text/javascript"></script>
-<script src="/assets/js/nestedSortable/jquery-sortable.js" type="text/javascript"></script>
-<script src="http://twitter.github.com/hogan.js/builds/2.0.0/hogan-2.0.0.js"></script>
-<script>
 
+<script src="/assets/js/dropzone.js"></script>
+
+<script>
+// $(document).ready(function($){
+// 	$(".lookUpUser").lookUpUser('/allusers', getUserInfo);
+// 	$('#owner').focus()
+// });
 
 
 	$( document ).ready(function( $ ) {
-		// var MyEngine = {
-		// 	compile: function(template) {
-		// 		console.log(template);
-		// 		return {
-		// 			render: function(context) {
-		// 				return template.replace(/\{\{(\w+)\}\}/g, function (match,p1) { return context[p1]; });
-		// 			}
-		// 		};
-		// 	}
-		// };
-
 		$('.typeahead').typeahead({
-				prefetch: '/allusers'
-			});
+			prefetch: '/allusers'
+		});
 
 		$('#owner').focus()
 		.keypress(function(e){
 			var code = e.keyCode || e.which;
 			if(code == 13) { //Enter keycode
 				e.preventDefault();
-				getUserInfo()
-
 			}
 		})
 
 		$(".btn-getUserInfo").click(function(e){
 			e.preventDefault();
-			getUserInfo();
 		})
 
-
-		function getUserInfo(){
-			$id = /\w+:(\d+)/gi.exec($("#owner").val())[1]
-			// console.log($id);
-			var cpaData;
-			var assetData;
-			var assetOrgainizerHtml = $('<div class="asset-orgainizer"><div class="organization-container"> <div class="toolbar"> <span><i class="fa fa-plus collection-add"></i></span> <span><i class="fa fa-minus collection-remove"></i></span> <span><i class="fa fa-arrows-v"></i></span> </div> <div class="organization-list"> <ol id="organization"></ol> </div> </div></div>');
-
-			$.ajax({
-				url: "/cpa/"+$id,
-				dataType: "json",
-				success:function(data){
-					cpaData = data;
-				}
-			}).promise().done(function () {
-				console.log($.type(cpaData));
-
-				cpaDataFlag = $.type(cpaData) === "array";
-				if (cpaDataFlag) {
-					// assetOrgainizerHtml.append("<div class='organization-container'><div class='toolbar'><span><i class='fa fa-plus collection-add'></i></span><span><i class='fa fa-minus collection-remove'></i></span><span><i class='fa fa-arrows-v'></i></span></div><div class='organization-list'><ol id='organization'  class=''></ol></div></div>")
-
-					$.each(cpaData, function(index, collection){
-						assetOrgainizerHtml.find('#organization')
-						.append('<li class="collection" data-collection-id="'+collection.id+'">'+collection.name+'<span><i class="fa fa-plus playlist-add"></i></span> <span><i class="fa fa-minus playlist-remove"></i></span> <hr> <ol> </ol> </li>')
-
-
-						$.each(collection.playlists, function(index, playlist){
-							console.log(playlist)
-
-							assetOrgainizerHtml.find("[data-collection-id="+collection.id+"] ol:first").append("<li class='playlist' data-playlist-id='"+playlist.id+"'>"+playlist.name+" <ol></ol></li>")
-
-
-
-
-
-							if (playlist.assets) {
-								$.each(playlist.assets, function(index, asset){
-									console.log(asset)
-
-									assetOrgainizerHtml.find("[data-playlist-id="+playlist.id+"]")
-									.append('<li class="asset" data-asset-id="'+asset.id+'">'+asset.name+'</li>')
-
-								});
-							};
-						});
-
-						if (collection.assets) {
-							$.each(collection.assets, function(index, asset){
-								console.log(asset)
-
-
-
-							});
-						}
-					});
-				};
-
-
-
-
-				$(".asset-orgainizer").replaceWith(assetOrgainizerHtml);
-			});
-
-
-
-
-
-
-		}
-
-
-
-
-		$('.collection-add').live("click",function(e){
-			$(e.target).closest('.organization-container').find('#organization')
-			.prepend($('<li class="collection collection-new"><input class="input" type="text" placeholder="Collection Name" /><ol></ol></li>'));
-		});
-		$('.collection-remove').live( "click",function(e){
-			$(e.target).closest('.organization-container').find('.collection-new:last')
-			.remove();
-		});
-
-		$('.playlist-add').live( "click",function(e){
-			$(e.target).closest('.collection').find("ol:first")
-			.prepend($('<li class="playlist playlist-new "><input class="input" type="text" placeholder="Playlist Name"/><ol></ol></li>'));
-		});
-
-		$('.playlist-remove').live( "click",function(e){
-			$(e.target).closest('.collection').find('.playlist-new:last').remove();
-		});
-
-		// CPA list
-		$("#organization").sortable({
-		// group: 'asset-orgainizer'
-
-		})
+		$("#my-dropzone").dropzone({ url: "/admin/assets/upload" });
+		
 	});
-</script>
+ </script>
 @stop
 
 @section('css')
-   <link href="/assets/js/nestedSortable/default.css" rel="stylesheet" type="text/css"/>
    <link href="/assets/css/typeahead.css" rel="stylesheet" type="text/css"/>
+   <link href="//cdnjs.cloudflare.com/ajax/libs/dropzone/3.7.1/css/basic.css" rel="stylesheet" type="text/css"/>
 @stop
 
 @section('content')
@@ -158,25 +54,20 @@
 
 
 <form method="POST" action="{{action('AssetsController@store')}}" accept-charset="UTF-8" class="form-horizontal">
-
-
-
-		<div class="row">
-			<div class="col-md-4">
-			 <div class="form-group">
-				 <label class="control-label col-md-3">Owner</label>
-					<div>
-						<input id="owner" type="text" class="typeahead">
-						<button  class="btn-getUserInfo btn btn-success">GO</button>
-					</div>
-			 </div>
-		 </div>
-	 <div id="#asset-orgainizer-container" class="col-md-8">
-
-			<div class="asset-orgainizer">should replace this</div>
+	<div class="row">
+		<div class="col-md-4">
+			<div class="form-group">
+				<div class="lookUpUser">
+					<label class="control-label col-md-3">Owner</label>
+					<input id="owner" type="text" class="typeahead">
+					<button  class="btn-getUserInfo btn btn-success">GO</button>
+				</div>
+			</div>
+		</div>
+		<div id="#asset-orgainizer-container" class="col-md-8">
+		</div>
 	</div>
-</div>
-
+</form>
 
 
 	<!-- <div class="asset-orgainizer">
@@ -259,97 +150,17 @@
 
 <div class="row">
 	<div class="col-md-12">
-
-
-
 		<div id="uploads-area">
 			<!-- The file upload form used as target for the file upload widget -->
-			<form id="fileupload" class="form-horizontal" action="/media/uploads/fileupload" method="POST" enctype="multipart/form-data">
-				<div class="row">
-					<!-- The global progress information -->
-					<div class="span5 fileupload-progress fade">
-						<!-- The global progress bar -->
-						<div class="progress progress-success progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-							<div class="bar" style="width: 0%;"></div>
-						</div>
-						<!-- The extended global progress information -->
-						<div class="progress-extended">&nbsp;</div>
-					</div>
-					<!-- End The global progress information -->
-				</div>
-				<!-- Batch Actions -->
-				<div class="well fileupload-buttonbar">
-
-
-					<!-- The fileinput-button span is used to style the file input field as button -->
-					<span class="btn btn-success fileinput-button">
-						<i class="icon-plus icon-white"></i>
-						<span>Add files...</span>
-						<input type="file" name="files" multiple="">
-					</span>
-					<button type="submit" class="btn btn-primary start">
-						<i class="icon-upload icon-white"></i> <span>Start uploads</span>
-					</button>
-					<button type="reset" class="btn cancel">
-						<i class="icon-ban-circle icon"></i> <span>Cancel uploads</span>
-					</button>
-
-
-					<div id="bulkActions">
-						<hr>
-
-						<input id="toggleCheckAll" type="checkbox" class="toggle">
-
-						<div class="btn-group">
-							<a class="btn dropdown-toggle" data-toggle="dropdown" data-target="dropdown-menu"> <i class="icon icon-plus"></i> Bulk Action <span
-								class="caret"></span> </a>
-								<ul class="dropdown-menu" role="menu">
-									<li><a id='btn-bulk-title'><i class="icon icon-font"></i> Title</a></li>
-									<li><a id='btn-bulk-tags'><i class="icon icon-tags"></i> Tags</a></li>
-									<li><a id='btn-bulk-description'><i class="icon icon-pencil"></i> Description</a></li>
-								</ul>
-								<a id="saveAll" class="btn btn-success">Save all</a>
-							</div>
-
-						</div>
-
-						<div id="action-items" class="form-horizontal">
-							<!--                            <div id="bulk-title" class="action-item"></div>-->
-							<!--                            <div id="bulk-tags" class="action-item"></div>-->
-							<!--                            <div id="bulk-description" class="action-item"></div>-->
-						</div>
-					</div>
-
-					<!-- End Batch Actions -->
-
-
-					<!-- The loading indicator is shown during file processing -->
-					<div class="fileupload-loading"></div>
-					<br>
-					<!-- The table listing the files available for upload/download -->
-					<table id="uploads-items" role="presentation" class="table">
-						<tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody>
-					</table>
-				</form>
+			<form method="POST" action="/admin/assets/upload" class="dropzone" id="my-dropzone">
+				
+			</form>
 			</div>
-
-
-
-
 		</div>
 	</div>
 
-	<div class="row">
-		<div class="col-md-offset-5">
-
-<!-- 			{{ Form::submit('Create', array('class' => 'btn btn-success')) }}
-			{{ link_to_route('assets', 'Cancel') }}
- -->		</div>
-	</div>
 
 
-
-</form>
 
 
 
