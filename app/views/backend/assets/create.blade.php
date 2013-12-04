@@ -13,9 +13,17 @@
 
 
 	$( document ).ready(function( $ ) {
-		$('.typeahead').typeahead({
-			prefetch: '/allusers'
-		});
+//		$('.typeahead').typeahead({
+//			prefetch: '/allusers'
+//		});
+
+        $('.typeahead').autocomplete({
+            source: function(request, response){
+                $.ajax({
+                    url: "/api/v1/url"
+                })
+            }
+        })
 
 		$('#owner').focus()
 		.keypress(function(e){

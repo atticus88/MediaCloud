@@ -10,43 +10,11 @@
 App::bind('AssetRepository', 'Asset');
 
 
-Route::get('cpa/{id}', function($id){
-	$cpa = new CollectionPlaylistAsset;
-	return $cpa->get_cpa_by_user_id($id);
-});
 
 
-Route::get('asset/{id}', function($id){
-	$user = User::find($id);
-	$assets = array();
-	foreach ($user->assets as $asset)
-	{
-		$assets[] = $asset["attributes"];
-	}
-	return $assets;
-	//$role->pivot->created_at;
-});
-
-Route::get('test', function(){
-	$cpa = new CollectionPlaylistAsset;
-	$collections = $cpa->get_cpa_by_user_id(2);
-	var_dump($collections[0]->playlists[1]);
-	// var_dump($collections[0]);
-	// var_dump($collections[0]->playlists[0]->assets[1]->name);
-});
 
 
-Route::get('allusers', function(){
-	$users = User::all();
-	$data = array();
-	foreach ($users as $key => $user) {
-		$data[$key] = $user->username .":".$user->id;
-		// $data[$key]['tokens'] = array();
-		// $data[$key]['tokens'][0] = $user->username;
-		// $data[$key]['tokens'][1] = "$user->id";
-	}
-	return $data;
-});
+
 
 
 
@@ -257,3 +225,29 @@ Route::get('logout', array('before' => 'cas-logout', function()
 {
 	return Redirect::to('/');
 }));
+
+
+
+Route::group(array('prefix' => 'v1'), function()
+{
+    //cas-auth
+    //admin-auth
+
+    /*
+     * Admin Apis
+     */
+    Route::get('users/{id?}', array('before' => 'admin-auth', 'uses' => 'Controllers\Api\V1\ApiController@users'));
+    Route::get('assets/{id?}', array('before' => 'cas-auth', 'uses' => 'Controllers\Api\V1\ApiController@assets'));
+
+    /*
+     * cas-auth Apis
+     */
+    Route::get('cpa/{id}', array('before' => 'cas-auth', 'uses' => 'Controllers\Api\V1\ApiController@cpa'));
+
+
+
+    /*
+     *
+     */
+    Route::get('test', array('uses' => 'Controllers\Api\V1\ApiController@test'));
+});

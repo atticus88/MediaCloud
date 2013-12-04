@@ -1,6 +1,6 @@
 <?php
 
-class PermissionsController extends BaseController {
+abstract class PermissionsController extends BaseController {
 
 	/**
 	 * Initializer.
@@ -10,7 +10,7 @@ class PermissionsController extends BaseController {
 	public function __construct()
 	{
 		// Apply the admin auth filter
-		
+
 	}
 
 

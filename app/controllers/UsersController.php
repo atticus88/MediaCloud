@@ -14,7 +14,7 @@ use Session;
 use Validator;
 use View;
 
-class UsersController extends PermissionsController {
+class UsersController extends PermissionsController implements IUserController {
 
 	/**
 	 * Declare the rules for the form validation
