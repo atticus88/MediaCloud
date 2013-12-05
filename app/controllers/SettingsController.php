@@ -1,15 +1,4 @@
-<?php namespace Controllers;
-
-use PermissionsController;
-use Input;
-use Lang;
-use Asset;
-use Redirect;
-use Sentry;
-use Str;
-use Validator;
-use View;
-
+<?php
 
 class SettingsController extends PermissionsController {
 

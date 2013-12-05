@@ -51,29 +51,34 @@ return [
 			'label'      => 'User Restore',
 			],
 		],
+
+
+
+
+
 	'Admin Asset' => [
 		[
-			'permission' => 'asset_getIndex',
+			'permission' => 'AssetsController@index',
 			'label'      => 'Asset Index',
 			],
 		[
-			'permission' => 'asset_getUpload',
+			'permission' => 'AssetsController@create',
 			'label'      => 'Asset Create',
 			],
 		[
-			'permission' => 'asset_postUpload',
+			'permission' => 'AssetsController@store',
 			'label'      => 'Asset Store',
 			],
 		[
-			'permission' => 'asset_getEdit',
+			'permission' => 'AssetsController@edit',
 			'label'      => 'Asset Show',
 			],
 		[
-			'permission' => 'asset_postEdit',
+			'permission' => 'AssetsController@update',
 			'label'      => 'Asset Save',
 			],
 		[
-			'permission' => 'asset_getDelete',
+			'permission' => 'AssetsController@destroy',
 			'label'      => 'Asset Delete',
 			]
 		],

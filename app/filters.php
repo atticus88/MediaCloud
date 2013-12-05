@@ -99,6 +99,17 @@ Route::filter('admin-auth', function()
 });
 
 
+Route::filter('permissions', function(Illuminate\Routing\Route $route){
+    $permmisionName = str_replace('@', '_', $route->getOption('_user'));
+    echo $route->getOption('_user') . " - test: " . $permmisionName;
+    die();
+    if (!Sentry::getUser()->hasAccess($route->getOption("_uses"))) {
+        Session::flash('error', Lang::get('admin/permissions/message.no_permission'));
+        return Redirect::route('admin');
+    }
+
+});
+
 Route::filter('cas-login', function(){
 	if(App::environment() == "local"){
 		Session::flash('error', "Not Secure with HTTPS!");

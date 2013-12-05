@@ -1,20 +1,6 @@
-<?php namespace Controllers;
+<?php
 
-use PermissionsController;
-use Cartalyst\Sentry\Users\LoginRequiredException;
-use Cartalyst\Sentry\Users\PasswordRequiredException;
-use Cartalyst\Sentry\Users\UserExistsException;
-use Cartalyst\Sentry\Users\UserNotFoundException;
-use Config;
-use Input;
-use Lang;
-use Redirect;
-use Sentry;
-use Session;
-use Validator;
-use View;
-
-class UsersController extends PermissionsController implements IUserController {
+class UsersController extends PermissionsController{
 
 	/**
 	 * Declare the rules for the form validation
@@ -41,7 +27,7 @@ class UsersController extends PermissionsController implements IUserController {
    			return Redirect::route('admin');
 		}
 		// Grab all the users
-		$users = Sentry::getUserProvider()->createModel();
+        $users = Sentry::getUserProvider()->createModel();
 
 		// Do we want to include the deleted users?
 		if (Input::get('withTrashed'))

@@ -1,36 +1,43 @@
 <?php
 
-//use AssetRepository;
-//use PermissionsController;
-//use Input;
-//use Lang;
-//use Redirect;
-//use Sentry;
-//use Session;
-//use Validator;
-//use View;
+class AssetsController extends PermissionsController{
 
-class AssetsController extends PermissionsController {
+    public $asset;
 
-
-	public function __construct(AssetRepository $asset) {
+    public function __construct(AssetRepository $asset) {
 		$this->asset = $asset;
 	}
+	public function __call($method, $args){
+
+        //assetsController_index
 
 
+//        $this->checkPermissions();
 
+        //do other stuff
+        //possibly do method_exists check
+
+        var_dump($method);
+        var_dump($args);
+        var_dump(get_class($this));
+        die();
+
+        return call_user_func_array(array($this, $method), $args);
+    }
 
     /**
      * Display a listing of the resource.
      *
      * @return Response
      */
-    public function index()
+    protected function index()
     {
-        if (!Sentry::getUser()->hasAccess('asset_getIndex')) {
-            Session::flash('error', Lang::get('admin/permissions/message.no_permission'));
-            return Redirect::route('admin');
-        }
+
+
+//        if (!Sentry::getUser()->hasAccess('asset_getIndex')) {
+//            Session::flash('error', Lang::get('admin/permissions/message.no_permission'));
+//            return Redirect::route('admin');
+//        }
 
 
         // Grab all the assets

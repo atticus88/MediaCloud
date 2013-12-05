@@ -1,16 +1,4 @@
-<?php namespace Controllers;
-
-use PermissionsController;
-use Cartalyst\Sentry\Groups\GroupExistsException;
-use Cartalyst\Sentry\Groups\GroupNotFoundException;
-use Cartalyst\Sentry\Groups\NameRequiredException;
-use Config;
-use Input;
-use Lang;
-use Redirect;
-use Sentry;
-use Validator;
-use View;
+<?php
 
 class GroupsController extends PermissionsController {
 

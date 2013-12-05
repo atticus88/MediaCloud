@@ -1,7 +1,4 @@
-<?php namespace Controllers;
-
-use PermissionsController;
-use View;
+<?php
 
 class DashboardController extends PermissionsController {
 

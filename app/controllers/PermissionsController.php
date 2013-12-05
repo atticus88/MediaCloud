@@ -1,17 +1,53 @@
 <?php
 
-abstract class PermissionsController extends BaseController {
+class PermissionsController extends BaseController {
 
-	/**
-	 * Initializer.
-	 *
-	 * @return void
-	 */
-	public function __construct()
-	{
-		// Apply the admin auth filter
+//	public function __call($method, $args){
+//
+//        //assetsController_index
+//
+//
+////        $this->checkPermissions();
+//
+//        //do other stuff
+//        //possibly do method_exists check
+//
+//        var_dump($method);
+//        var_dump($args);
+//        var_dump(get_class($this));
+//        die();
+//
+//        return call_user_func_array(array($this, $method), $args);
+//    }
+
+//    public function __callStatic($method, $args){
+//
+//        //assetsController_index
+//
+//
+////        $this->checkPermissions();
+//
+//        //do other stuff
+//        //possibly do method_exists check
+//
+//        var_dump($method);
+//        var_dump($args);
+//        var_dump(get_class($this));
+//        die();
+//
+//        return call_user_func_array(array($this, $method), $args);
+//    }
+
+	public function checkPermissions($permissionKey){
+
+		if (!Sentry::getUser()->hasAccess('$permissionKey')) {
+            Session::flash('error', Lang::get('admin/permissions/message.no_permission'));
+            return Redirect::route('admin');
+        }
 
 	}
+
+
 
 
 

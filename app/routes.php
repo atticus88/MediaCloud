@@ -11,13 +11,6 @@ App::bind('AssetRepository', 'Asset');
 
 
 
-
-
-
-
-
-
-
 /*
 |--------------------------------------------------------------------------
 | Admin Routes
@@ -32,35 +25,31 @@ Route::group(array('before' => 'admin-auth','prefix' => 'admin'), function()
 	# User Management
 	Route::group(array('prefix' => 'users'), function()
 	{
-		Route::get('/', array('as' => 'users', 'uses' => 'Controllers\UsersController@getIndex'));
-		Route::get('create', array('as' => 'create/user', 'uses' => 'Controllers\UsersController@getCreate'));
-		Route::post('create', 'Controllers\UsersController@postCreate');
-		Route::get('{userId}/edit', array('as' => 'update/user', 'uses' => 'Controllers\UsersController@getEdit'));
-		Route::post('{userId}/edit', 'Controllers\UsersController@postEdit');
-		Route::get('{userId}/delete', array('as' => 'delete/user', 'uses' => 'Controllers\UsersController@getDelete'));
-		Route::get('{userId}/restore', array('as' => 'restore/user', 'uses' => 'Controllers\UsersController@getRestore'));
+		Route::get('/', array('as' => 'users', 'uses' => 'UsersController@getIndex'));
+		Route::get('create', array('as' => 'create/user', 'uses' => 'UsersController@getCreate'));
+		Route::post('create', 'UsersController@postCreate');
+		Route::get('{userId}/edit', array('as' => 'update/user', 'uses' => 'UsersController@getEdit'));
+		Route::post('{userId}/edit', 'UsersController@postEdit');
+		Route::get('{userId}/delete', array('as' => 'delete/user', 'uses' => 'UsersController@getDelete'));
+		Route::get('{userId}/restore', array('as' => 'restore/user', 'uses' => 'UsersController@getRestore'));
 	});
 
 	# Group Management
 	Route::group(array('prefix' => 'groups'), function()
 	{
-		Route::get('/', array('as' => 'groups', 'uses' => 'Controllers\GroupsController@getIndex'));
-		Route::get('create', array('as' => 'create/group', 'uses' => 'Controllers\GroupsController@getCreate'));
-		Route::post('create', 'Controllers\GroupsController@postCreate');
-		Route::get('{groupId}/edit', array('as' => 'update/group', 'uses' => 'Controllers\GroupsController@getEdit'));
-		Route::post('{groupId}/edit', 'Controllers\GroupsController@postEdit');
-		Route::get('{groupId}/delete', array('as' => 'delete/group', 'uses' => 'Controllers\GroupsController@getDelete'));
-		Route::get('{groupId}/restore', array('as' => 'restore/group', 'uses' => 'Controllers\GroupsController@getRestore'));
+		Route::get('/', array('as' => 'groups', 'uses' => 'GroupsController@getIndex'));
+		Route::get('create', array('as' => 'create/group', 'uses' => 'GroupsController@getCreate'));
+		Route::post('create', 'GroupsController@postCreate');
+		Route::get('{groupId}/edit', array('as' => 'update/group', 'uses' => 'GroupsController@getEdit'));
+		Route::post('{groupId}/edit', 'GroupsController@postEdit');
+		Route::get('{groupId}/delete', array('as' => 'delete/group', 'uses' => 'GroupsController@getDelete'));
+		Route::get('{groupId}/restore', array('as' => 'restore/group', 'uses' => 'GroupsController@getRestore'));
 	});
 
 	# Assets Management
-	Route::group(array('prefix' => 'assets'), function()
+	Route::group(array('prefix' => 'assets', 'before' => 'permissions'), function()
 	{
-
-
-
-
-        Route::get('/', array('as' => 'assets', 'uses' => 'AssetsController@index'));
+        Route::get('/', array('as' => 'assets','uses' => 'AssetsController@index'));
         Route::get('upload', array('as' => 'asset.upload', 'uses' => 'AssetsController@create'));
 		Route::post('upload', array('as' => 'asset.store', 'uses' => 'AssetsController@store'));
         //show
@@ -75,30 +64,30 @@ Route::group(array('before' => 'admin-auth','prefix' => 'admin'), function()
 	// # Collections Management
 	// Route::group(array('prefix' => 'collections'), function()
 	// {
-	// 	Route::get('/', array('as' => 'collections', 'uses' => 'Controllers\CollectionsController@getIndex'));
-	// 	// Route::get('upload', array('as' => 'upload/asset', 'uses' => 'Controllers\AssetsController@getUpload'));
-	// 	// Route::post('upload', 'Controllers\AssetsController@postUpload');
-	// 	// Route::get('{assetId}/edit', array('as' => 'update/asset', 'uses' => 'Controllers\AssetsController@getEdit'));
-	// 	// Route::post('{assetId}/edit', 'Controllers\AssetsController@postEdit');
-	// 	// Route::get('{assetId}/delete', array('as' => 'delete/asset', 'uses' => 'Controllers\AssetsController@getDelete'));
-	// 	// Route::get('{assetId}/restore', array('as' => 'restore/asset', 'uses' => 'Controllers\AssetsController@getRestore'));
+	// 	Route::get('/', array('as' => 'collections', 'uses' => 'CollectionsController@getIndex'));
+	// 	// Route::get('upload', array('as' => 'upload/asset', 'uses' => 'AssetsController@getUpload'));
+	// 	// Route::post('upload', 'AssetsController@postUpload');
+	// 	// Route::get('{assetId}/edit', array('as' => 'update/asset', 'uses' => 'AssetsController@getEdit'));
+	// 	// Route::post('{assetId}/edit', 'AssetsController@postEdit');
+	// 	// Route::get('{assetId}/delete', array('as' => 'delete/asset', 'uses' => 'AssetsController@getDelete'));
+	// 	// Route::get('{assetId}/restore', array('as' => 'restore/asset', 'uses' => 'AssetsController@getRestore'));
 	// });
 
 	// # Playlists Management
 	// Route::group(array('prefix' => 'playlists'), function()
 	// {
-	// 	Route::get('/', array('as' => 'playlists', 'uses' => 'Controllers\PlaylistsController@getIndex'));
-	// 	// Route::get('upload', array('as' => 'upload/asset', 'uses' => 'Controllers\AssetsController@getUpload'));
-	// 	// Route::post('upload', 'Controllers\AssetsController@postUpload');
-	// 	// Route::get('{assetId}/edit', array('as' => 'update/asset', 'uses' => 'Controllers\AssetsController@getEdit'));
-	// 	// Route::post('{assetId}/edit', 'Controllers\AssetsController@postEdit');
-	// 	// Route::get('{assetId}/delete', array('as' => 'delete/asset', 'uses' => 'Controllers\AssetsController@getDelete'));
-	// 	// Route::get('{assetId}/restore', array('as' => 'restore/asset', 'uses' => 'Controllers\AssetsController@getRestore'));
+	// 	Route::get('/', array('as' => 'playlists', 'uses' => 'PlaylistsController@getIndex'));
+	// 	// Route::get('upload', array('as' => 'upload/asset', 'uses' => 'AssetsController@getUpload'));
+	// 	// Route::post('upload', 'AssetsController@postUpload');
+	// 	// Route::get('{assetId}/edit', array('as' => 'update/asset', 'uses' => 'AssetsController@getEdit'));
+	// 	// Route::post('{assetId}/edit', 'AssetsController@postEdit');
+	// 	// Route::get('{assetId}/delete', array('as' => 'delete/asset', 'uses' => 'AssetsController@getDelete'));
+	// 	// Route::get('{assetId}/restore', array('as' => 'restore/asset', 'uses' => 'AssetsController@getRestore'));
 	// });
 
 	# Dashboard
-	Route::get('/', array('as' => 'admin', 'uses' => 'Controllers\DashboardController@getIndex'));
-	Route::get('settings', array('as' => 'settings', 'uses' => 'Controllers\SettingsController@getIndex'));
+	Route::get('/', array('as' => 'admin', 'uses' => 'DashboardController@getIndex'));
+	Route::get('settings', array('as' => 'settings', 'uses' => 'SettingsController@getIndex'));
 
 });
 
@@ -138,34 +127,7 @@ Route::group(array('prefix' => 'auth'), function()
 
 });
 
-/*
-|--------------------------------------------------------------------------
-| Account Routes
-|--------------------------------------------------------------------------
-|
-|
-|
-*/
 
-Route::group(array('prefix' => 'account'), function()
-{
-
-	# Account Dashboard
-	// Route::get('/', array('as' => 'account', 'uses' => 'Controllers\Account\DashboardController@getIndex'));
-
-	# Profile
-	// Route::get('profile', array('as' => 'profile', 'uses' => 'Controllers\Account\ProfileController@getIndex'));
-	// Route::post('profile', 'Controllers\Account\ProfileController@postIndex');
-
-	# Change Password
-	Route::get('change-password', array('as' => 'change-password', 'uses' => 'Controllers\Account\ChangePasswordController@getIndex'));
-	Route::post('change-password', 'Controllers\Account\ChangePasswordController@postIndex');
-
-	# Change Email
-	Route::get('change-email', array('as' => 'change-email', 'uses' => 'Controllers\Account\ChangeEmailController@getIndex'));
-	Route::post('change-email', 'Controllers\Account\ChangeEmailController@postIndex');
-
-});
 
 /*
 |--------------------------------------------------------------------------
