@@ -1,6 +1,4 @@
-<?php
-
-namespace MC\Exceptions;
+<?php namespace MC\Exceptions;
 
 
 use Exception;

@@ -2,7 +2,7 @@
 
 class ContactUsValidator extends Validator {
 
-    protected static $rules = [
+     static $rules = [
         'name'        => 'required',
         'email'       => 'required|email',
         'description' => 'required',

@@ -1,6 +1,9 @@
 <?php
 
+use MC\Validators\ContactUsValidator;
+
 class ContactUsController extends BaseController {
+
 
 	/**
 	 * Contact us page.
@@ -20,11 +23,13 @@ class ContactUsController extends BaseController {
 	public function postIndex()
 	{
 		// Declare the rules for the form validation
-		$rules = array(
-			'name'        => 'required',
-			'email'       => 'required|email',
-			'description' => 'required',
-		);
+
+
+		// $rules = array(
+		// 	'name'        => 'required',
+		// 	'email'       => 'required|email',
+		// 	'description' => 'required',
+		// );
 
 		// Create a new validator instance from our validation rules
 		$validator = Validator::make(Input::all(), $rules);
