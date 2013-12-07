@@ -19,8 +19,20 @@ App::bind('AssetRepository', 'Asset');
 | Register all the admin routes.
 |
 */
-Route::group(array('before' => 'admin-auth','prefix' => 'admin'), function()
+Route::group(array('before' => 'admin-auth|permissions','prefix' => 'admin'), function()
 {
+
+	# Assets Management
+	Route::group(array('prefix' => 'assets'), function()
+	{
+        Route::get('/', array('as' => 'assets','uses' => 'AssetsController@index'));
+        Route::get('upload', array('as' => 'asset.upload', 'uses' => 'AssetsController@create'));
+		Route::post('upload', array('as' => 'asset.store', 'uses' => 'AssetsController@store'));
+        //show
+		Route::get('{assetId}/edit', array('as' => 'asset.edit', 'uses' => 'AssetsController@edit'));
+		Route::post('{assetId}/edit', array('as' => 'asset.update', 'uses' => 'AssetsController@update')); //POST /admin/assets/{assetId}/edit
+		Route::delete('{assetId}/delete', array('as' => 'asset.delete', 'uses' => 'AssetsController@destroy'));
+	});
 
 	# User Management
 	Route::group(array('prefix' => 'users'), function()
@@ -46,44 +58,8 @@ Route::group(array('before' => 'admin-auth','prefix' => 'admin'), function()
 		Route::get('{groupId}/restore', array('as' => 'restore/group', 'uses' => 'GroupsController@getRestore'));
 	});
 
-	# Assets Management
-	Route::group(array('prefix' => 'assets', 'before' => 'permissions'), function()
-	{
-        Route::get('/', array('as' => 'assets','uses' => 'AssetsController@index'));
-        Route::get('upload', array('as' => 'asset.upload', 'uses' => 'AssetsController@create'));
-		Route::post('upload', array('as' => 'asset.store', 'uses' => 'AssetsController@store'));
-        //show
-		Route::get('{assetId}/edit', array('as' => 'asset.edit', 'uses' => 'AssetsController@edit'));
-		Route::post('{assetId}/edit', array('as' => 'asset.update', 'uses' => 'AssetsController@update')); //POST /admin/assets/{assetId}/edit
-		Route::delete('{assetId}/delete', array('as' => 'asset.delete', 'uses' => 'AssetsController@destroy'));
 
 
-//		Route::get('{assetId}/restore', array('as' => 'asset.restore', 'uses' => 'AssetsController@getRestore'));
-	});
-
-	// # Collections Management
-	// Route::group(array('prefix' => 'collections'), function()
-	// {
-	// 	Route::get('/', array('as' => 'collections', 'uses' => 'CollectionsController@getIndex'));
-	// 	// Route::get('upload', array('as' => 'upload/asset', 'uses' => 'AssetsController@getUpload'));
-	// 	// Route::post('upload', 'AssetsController@postUpload');
-	// 	// Route::get('{assetId}/edit', array('as' => 'update/asset', 'uses' => 'AssetsController@getEdit'));
-	// 	// Route::post('{assetId}/edit', 'AssetsController@postEdit');
-	// 	// Route::get('{assetId}/delete', array('as' => 'delete/asset', 'uses' => 'AssetsController@getDelete'));
-	// 	// Route::get('{assetId}/restore', array('as' => 'restore/asset', 'uses' => 'AssetsController@getRestore'));
-	// });
-
-	// # Playlists Management
-	// Route::group(array('prefix' => 'playlists'), function()
-	// {
-	// 	Route::get('/', array('as' => 'playlists', 'uses' => 'PlaylistsController@getIndex'));
-	// 	// Route::get('upload', array('as' => 'upload/asset', 'uses' => 'AssetsController@getUpload'));
-	// 	// Route::post('upload', 'AssetsController@postUpload');
-	// 	// Route::get('{assetId}/edit', array('as' => 'update/asset', 'uses' => 'AssetsController@getEdit'));
-	// 	// Route::post('{assetId}/edit', 'AssetsController@postEdit');
-	// 	// Route::get('{assetId}/delete', array('as' => 'delete/asset', 'uses' => 'AssetsController@getDelete'));
-	// 	// Route::get('{assetId}/restore', array('as' => 'restore/asset', 'uses' => 'AssetsController@getRestore'));
-	// });
 
 	# Dashboard
 	Route::get('/', array('as' => 'admin', 'uses' => 'DashboardController@getIndex'));
@@ -129,29 +105,16 @@ Route::group(array('prefix' => 'auth'), function()
 
 
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the Closure to execute when that URI is requested.
-|
-*/
-
-
 Route::get('about-us', function()
 {
-	//
 	return View::make('frontend/about-us');
 });
 
 Route::get('contact-us', array('as' => 'contact-us', 'uses' => 'ContactUsController@getIndex'));
 Route::post('contact-us', 'ContactUsController@postIndex');
 
-Route::get('blog/{postSlug}', array('as' => 'view-post', 'uses' => 'BlogController@getView'));
-Route::post('blog/{postSlug}', 'BlogController@postView');
+// Route::get('blog/{postSlug}', array('as' => 'view-post', 'uses' => 'BlogController@getView'));
+// Route::post('blog/{postSlug}', 'BlogController@postView');
 
 
 Route::get('/', array('as' => 'home', function(){

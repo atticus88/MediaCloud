@@ -1,5 +1,9 @@
 <?php
 
+use Cartalyst\Sentry\Users\LoginRequiredException;
+use Cartalyst\Sentry\Users\UserExistsException;
+use MC\Exceptions\PasswordRequiredException;
+
 class UsersController extends PermissionsController{
 
 	/**
@@ -8,8 +12,8 @@ class UsersController extends PermissionsController{
 	 * @var array
 	 */
 	protected $validationRules = array(
-		'first_name'       => 'required|min:3',
-		'last_name'        => 'required|min:3',
+		'first_name'       => '',
+		'last_name'        => '',
 		'email'            => 'required|email|unique:users,email',
 		'password'         => 'required|between:3,32',
 		'password_confirm' => 'required|between:3,32|same:password',
@@ -22,10 +26,6 @@ class UsersController extends PermissionsController{
 	 */
 	public function getIndex()
 	{
-		if (!Sentry::getUser()->hasAccess('user_getIndex')) {
-			Session::flash('error', Lang::get('admin/permissions/message.no_permission'));
-   			return Redirect::route('admin');
-		}
 		// Grab all the users
         $users = Sentry::getUserProvider()->createModel();
 
@@ -57,10 +57,6 @@ class UsersController extends PermissionsController{
 	 */
 	public function getCreate()
 	{
-		if (!Sentry::getUser()->hasAccess('user_getCreate')) {
-			Session::flash('error', Lang::get('admin/permissions/message.no_permission'));
-   			return Redirect::route('admin');
-		}
 		// Get all the available groups
 		$groups = Sentry::getGroupProvider()->findAll();
 
@@ -86,10 +82,6 @@ class UsersController extends PermissionsController{
 	 */
 	public function postCreate()
 	{
-		if (!Sentry::getUser()->hasAccess('user_postCreate')) {
-			Session::flash('error', Lang::get('admin/permissions/message.no_permission'));
-   			return Redirect::route('admin');
-		}
 		// Create a new validator instance from our validation rules
 		$validator = Validator::make(Input::all(), $this->validationRules);
 
@@ -161,11 +153,6 @@ class UsersController extends PermissionsController{
 	public function getEdit($id = null)
 	{
 
-		if (!Sentry::getUser()->hasAccess('user_postCreate')) {
-			Session::flash('error', Lang::get('admin/permissions/message.no_permission'));
-   			return Redirect::route('admin');
-		}
-
 		try
 		{
 			// Get the user information
@@ -206,11 +193,6 @@ class UsersController extends PermissionsController{
 	 */
 	public function postEdit($id = null)
 	{
-
-		if (!Sentry::getUser()->hasAccess('user_postEdit')) {
-			Session::flash('error', Lang::get('admin/permissions/message.no_permission'));
-   			return Redirect::route('admin');
-		}
 
 		// We need to reverse the UI specific logic for our
 		// permissions here before we update the user.
@@ -327,12 +309,6 @@ class UsersController extends PermissionsController{
 	public function getDelete($id = null)
 	{
 
-
-		if (!Sentry::getUser()->hasAccess('user_getDelete')) {
-			Session::flash('error', Lang::get('admin/permissions/message.no_permission'));
-   			return Redirect::route('admin');
-		}
-
 		try
 		{
 			// Get user information
@@ -382,12 +358,6 @@ class UsersController extends PermissionsController{
 	 */
 	public function getRestore($id = null)
 	{
-
-		if (!Sentry::getUser()->hasAccess('user_postEdit')) {
-			Session::flash('error', Lang::get('admin/permissions/message.no_permission'));
-   			return Redirect::route('admin');
-		}
-
 
 		try
 		{

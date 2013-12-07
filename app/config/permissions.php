@@ -23,31 +23,31 @@ return [
 
 	'User' => [
 		[
-			'permission' => 'user_getIndex',
+			'permission' => 'UsersController@getIndex',
 			'label'      => 'User Index',
 			],
 		[
-			'permission' => 'user_getCreate',
+			'permission' => 'UsersController@getCreate',
 			'label'      => 'User Create',
 			],
 		[
-			'permission' => 'user_postCreate',
+			'permission' => 'UsersController@postCreate',
 			'label'      => 'User Store',
 			],
 		[
-			'permission' => 'user_getEdit',
+			'permission' => 'UsersController@getEdit',
 			'label'      => 'User Show',
 			],
 		[
-			'permission' => 'user_postEdit',
+			'permission' => 'UsersController@postEdit',
 			'label'      => 'User Edit',
 			],
 		[
-			'permission' => 'user_getDelete',
+			'permission' => 'UsersController@getDelete',
 			'label'      => 'User Delete',
 			],
 		[
-			'permission' => 'user_getRestore',
+			'permission' => 'UsersController@getRestore',
 			'label'      => 'User Restore',
 			],
 		],

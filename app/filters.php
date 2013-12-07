@@ -100,12 +100,15 @@ Route::filter('admin-auth', function()
 
 
 Route::filter('permissions', function(Illuminate\Routing\Route $route){
-    $permmisionName = str_replace('@', '_', $route->getOption('_user'));
-    echo $route->getOption('_user') . " - test: " . $permmisionName;
-    die();
-    if (!Sentry::getUser()->hasAccess($route->getOption("_uses"))) {
-        Session::flash('error', Lang::get('admin/permissions/message.no_permission'));
+    $permissionName = $route->getOption('_uses');
+
+
+    if (!Sentry::getUser()->hasAccess($permissionName)) {
+        Session::flash('error', Lang::get('admin/permissions/message.no_permission') . " - " . $permissionName);
         return Redirect::route('admin');
+    }
+    else{
+        Session::flash('message', "yes permission - " . $permissionName );
     }
 
 });

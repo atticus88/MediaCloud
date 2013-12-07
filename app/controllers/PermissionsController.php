@@ -38,17 +38,6 @@ class PermissionsController extends BaseController {
 //        return call_user_func_array(array($this, $method), $args);
 //    }
 
-	public function checkPermissions($permissionKey){
-
-		if (!Sentry::getUser()->hasAccess('$permissionKey')) {
-            Session::flash('error', Lang::get('admin/permissions/message.no_permission'));
-            return Redirect::route('admin');
-        }
-
-	}
-
-
-
 
 
 	/**

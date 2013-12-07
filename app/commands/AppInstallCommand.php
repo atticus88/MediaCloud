@@ -154,20 +154,31 @@ class AppInstallCommand extends Command {
 
 						'admin' => 1,
 
-						'user_getIndex' => 1,
-						'user_getCreate' => 1,
-						'user_postCreate' => 1,
-						'user_getEdit' => 1,
-						'user_postEdit' => 1,
-						'user_getDelete' => 1,
-						'user_getRestore' => 1,
+                        'DashboardController@getIndex' => 1,
 
-						'asset_getIndex' => 1,
-						'asset_getUpload' => 1,
-						'asset_postUpload' => 1,
-						'asset_getEdit' => 1,
-						'asset_postEdit' => 1,
-						'asset_getDelete' => 1
+                        'UsersController@getIndex' => 1,
+                        'UsersController@getCreate' => 1,
+                        'UsersController@postCreate' => 1,
+                        'UsersController@getEdit' => 1,
+                        'UsersController@postEdit' => 1,
+                        'UsersController@getDelete' => 1,
+                        'UsersController@getRestore' => 1,
+
+                        'AssetsController@index' => 1,
+                        'AssetsController@create' => 1,
+                        'AssetsController@store' => 1,
+                        'AssetsController@edit' => 1,
+                        'AssetsController@update' => 1,
+                        'AssetsController@destroy' => 1,
+
+                        'GroupsController@getIndex' => 1,
+                        'GroupsController@getCreate' => 1,
+                        'GroupsController@postCreate' => 1,
+                        'GroupsController@getEdit' => 1,
+                        'GroupsController@postEdit' => 1,
+                        'GroupsController@getDelete' => 1,
+                        'GroupsController@getRestore' => 1
+
 						)
 					)
 				);
@@ -196,7 +207,7 @@ class AppInstallCommand extends Command {
 			'activated'   => 1,
 			'permissions' => array(
 				'admin' => 1,
-				'user'  => 1,
+				'user'  => 1
 				),
 			));
 
