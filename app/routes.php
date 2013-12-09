@@ -11,6 +11,10 @@ App::bind('AssetRepository', 'Asset');
 
 
 
+Route::get('/test', function(){
+	return '';
+});
+
 /*
 |--------------------------------------------------------------------------
 | Admin Routes

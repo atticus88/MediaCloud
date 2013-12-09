@@ -9,11 +9,29 @@ use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Request;
 use User;
+use DB;
 
 
 class ApiController extends BaseController {
 
     public function users($id = null){
+        
+        $fields = explode(",", Request::query('fields'));
+        $fieldsStr = ""; 
+        foreach ($fields as $key => $value) {
+         $fieldsStr .= '`' . $value.'`,';
+        }
+        // `username,id`
+        // `username`,`id`
+        $fieldsStr = ltrim($fieldsStr, "`");
+        $fieldsStr = rtrim($fieldsStr, "`,");
+
+        // return $fields;
+        if (count($fields) !== 0) {
+            return DB::table('users')->lists($fieldsStr);
+        }
+        
+
         if($id==null){
             return $users = User::all();
         }
