@@ -19,37 +19,51 @@
 
         $('.typeahead').autocomplete({
             source: function(request, response){
+
                 $.ajax({
-                    url: "/v1/users?fields=name,id"
-                })
+                    url: "/v1/users",
+                    data: {search: request.term, fields:'username,id,email'},
+                    dataType: "json",
+                    success: function( data ) {
+                        console.log(data);
+
+                        response( $.map( data, function( item ) {
+                            return {
+                                label: item.username,
+                                value: item.id
+                            }
+                        }));
+                    }
+                });
             }
-        })
+        });
 
-		$('#owner').focus()
-		.keypress(function(e){
-			var code = e.keyCode || e.which;
-			if(code == 13) { //Enter keycode
-				e.preventDefault();
-			}
-		})
+//		$('#owner').focus()
+//		.keypress(function(e){
+//			var code = e.keyCode || e.which;
+//			if(code == 13) { //Enter keycode
+//				e.preventDefault();
+//			}
+//		})
+//
+//		$(".btn-getUserInfo").click(function(e){
+//			e.preventDefault();
+//		})
 
-		$(".btn-getUserInfo").click(function(e){
-			e.preventDefault();
-		})
-
-		$myDropZone = $("#myDropZone").dropzone({url: "/admin/assets/upload"});
-		$myDropZone.on('sending',function(file){
-			console.log(file, $("#owner").val());
-		})
+//		$myDropZone = $("#myDropZone").dropzone({url: "/admin/assets/upload"});
+//		$myDropZone.on('sending',function(file){
+//			console.log(file, $("#owner").val());
+//		})
 		
 	});
  </script>
 @stop
 
 @section('css')
-   <link href="/assets/css/typeahead.css" rel="stylesheet" type="text/css"/>
-   <link href="//cdnjs.cloudflare.com/ajax/libs/dropzone/3.7.1/css/dropzone.css" rel="stylesheet" type="text/css"/>
-   <link href="//cdnjs.cloudflare.com/ajax/libs/dropzone/3.7.1/css/basic.css" rel="stylesheet" type="text/css"/>
+<!--   <link href="/assets/css/typeahead.css" rel="stylesheet" type="text/css"/>-->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"/>
+    <link href="//cdnjs.cloudflare.com/ajax/libs/dropzone/3.7.1/css/dropzone.css" rel="stylesheet" type="text/css"/>
+    <link href="//cdnjs.cloudflare.com/ajax/libs/dropzone/3.7.1/css/basic.css" rel="stylesheet" type="text/css"/>
 @stop
 
 @section('content')

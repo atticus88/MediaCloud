@@ -15,38 +15,51 @@ use DB;
 class ApiController extends BaseController {
 
     public function users($id = null){
-        
-        $fields = explode(",", Request::query('fields'));
-        $fieldsStr = ""; 
-        foreach ($fields as $key => $value) {
-         $fieldsStr .= '`' . $value.'`,';
-        }
-        // `username,id`
-        // `username`,`id`
-        $fieldsStr = ltrim($fieldsStr, "`");
-        $fieldsStr = rtrim($fieldsStr, "`,");
 
-        // return $fields;
-        if (count($fields) !== 0) {
-            return DB::table('users')->lists($fieldsStr);
-        }
-        
 
-        if($id==null){
-            return $users = User::all();
+        $isAdvanced = count(array_keys(Request::query()));
+        if($isAdvanced){
+            //Is Advanced
+
+            //search
+            $search = strlen(Request::query('search')) ? Request::query('search') : '.*';
+
+            //fields
+            $fields = explode(",", Request::query('fields'));
+            $columns = strlen(Request::query('fields')) ? "" : "*";
+
+            if(strlen(Request::query('fields'))){
+                foreach ($fields as $value) {
+                    $columns .=  $value . ',';
+                }
+                $columns = rtrim($columns, ',');
+            }
+
+            return $query = DB::select(DB::raw("SELECT $columns from users WHERE username REGEXP '$search';"));
         }
         else{
-            try{
-                return User::findOrFail($id);
+            //normal
+            if($id==null){
+                return $users = User::all();
             }
-            catch(ModelNotFoundException $e){
+            else{
+                try{
+                    return User::findOrFail($id);
+                }
+                catch(ModelNotFoundException $e){
 
-            }
-            catch(Exception $e){
-                return array('error' => $e->getMessage());
+                }
             }
 
         }
+
+
+
+
+
+
+
+
     }
 
     public function cpa($id){
