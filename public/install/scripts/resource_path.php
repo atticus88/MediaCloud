@@ -17,9 +17,8 @@ if (!$_POST || !$project_root_path) {
 
 
 
-$resource_path = $project_root_path.'/public/'. $_POST['media-path'];
+$resource_path = $project_root_path.'/'. $_POST['media-path'];
 
-$resource_path;
 $original = $resource_path . '/original';
 
 

@@ -1,31 +1,17 @@
 <?php
 
-use MC\Services\mimes;
+use MC\Services\UploadCreatorService;
 
 class AssetsController extends PermissionsController{
 
-	public $asset;
+	protected $asset;
+	protected $uploadCreator;
 
-	public function __construct(AssetRepository $asset) {
+	public function __construct(AssetRepository $asset, UploadCreatorService $uploadCreator) {
 		$this->asset = $asset;
+        $this->uploadCreator = $uploadCreator;
 	}
-	public function __call($method, $args){
 
-		//assetsController_index
-
-
-//        $this->checkPermissions();
-
-		//do other stuff
-		//possibly do method_exists check
-
-		var_dump($method);
-		var_dump($args);
-		var_dump(get_class($this));
-		die();
-
-		return call_user_func_array(array($this, $method), $args);
-	}
 
 	/**
 	 * Display a listing of the resource.
@@ -61,52 +47,26 @@ class AssetsController extends PermissionsController{
 	 */
 	public function store()
 	{
-		$file = Input::file('file');
-		var_dump($file);
-		die();
+        try{
+            $this->uploadCreator->make(Input::all());
+        }
+        catch(\MC\Exceptions\ValidationException $e){
+            return $e;
+            return Redirect::back()->withInput()->withErrors($e->getErrors());
 
-		$destinationPath = Config::get('settings.media-path');
-		$filename = $file->getClientOriginalName();
-		$extension =$file->getClientOriginalExtension(); 
-		$upload_success = Input::file('file')->move($destinationPath, $filename);
-		 
-		if( $upload_success ) {
-			return Response::json('success', 200);
-		} 
-		else {
-			return Response::json('error', 400);
-		}
-
-
-
-		// Declare the rules for the form validation
-		$rules = array(
-			// 'id' => 'required',
-			// 'title' => 'required',
-			// 'description' => 'required',
-			// 'filepath' => 'required',
-			// 'filename' => 'required',
-			// 'transcoded_url' => 'required',
-			// 'thumbnail_url' => 'required',
-			// 'url' => 'required',
-			// 'type' => 'required',
-			// 'status' => 'required',
-			// 'tags' => 'required',
-			// 'views' => 'required',
-			// 'last_viewed' => 'required',
-			// 'created_at' => 'required',
-			// 'updated_at' => 'required'
-		);
+        }
+//            return Redirect::home();
+        /***********************************************/
 
 		// Create a new validator instance from our validation rules
-		$validator = Validator::make(Input::all(), $rules);
+//		$validator = Validator::make(Input::all(), $rules);
 
 		// If validation fails, we'll exit the operation now.
-		if ($validator->fails())
-		{
-			// Ooops.. something went wrong
-			return Redirect::back()->withInput()->withErrors($validator);
-		}
+//		if ($validator->fails())
+//		{
+//			// Ooops.. something went wrong
+//			return Redirect::back()->withInput()->withErrors($validator);
+//		}
 
 		// Create a new asset
 		$asset = new Asset;
@@ -124,15 +84,17 @@ class AssetsController extends PermissionsController{
 		$asset->tags				= e(Input::get('tags'));
 		$asset->views				= e(Input::get('views'));
 
-		// Was the asset created?
-		if($asset->save())
-		{
-			// Redirect to the new asset page
-			return Redirect::to("admin/assets")->with('success', Lang::get('admin/assets/message.create.success'));
-		}
+       $asset->save();
 
-		// Redirect to the asset create page
-		return Redirect::to('admin/assets/create')->with('error', Lang::get('admin/assets/message.create.error'));
+            $asset->id;
+
+        if( $upload_success_flag ) {
+            return Response::json('success', 200);
+        }
+        else {
+            return Response::json('error', 400);
+        }
+
 	}
 
 	/**

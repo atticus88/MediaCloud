@@ -4,7 +4,7 @@
 
 class UserCreatorService{
 	
-	function __construct(argument)
+	function __construct()
 	{
 		
 	}

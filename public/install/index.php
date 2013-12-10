@@ -119,7 +119,7 @@ if (preg_match('/Linux/',php_uname())){
 						Where would you like this server to store media assets?
 					</p>
 					<p>
-						Relative from public folder: <code>&lt;ProjectRoot&gt;/public/media</code>
+						Relative from root folder: <code>&lt;ProjectRoot&gt;/media</code>
 					</p>
 					<div class="control-group">
 						<input id="media-path" name="media-path" type="text" placeholder="media" value="media" />

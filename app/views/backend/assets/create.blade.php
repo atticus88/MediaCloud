@@ -13,16 +13,12 @@
 
 
 	$( document ).ready(function( $ ) {
-//		$('.typeahead').typeahead({
-//			prefetch: '/allusers'
-//		});
-
         $('.typeahead').autocomplete({
             source: function(request, response){
 
                 $.ajax({
                     url: "/v1/users",
-                    data: {search: request.term, fields:'username,id,email'},
+                    data: {search: request.term, fields:'username,id'},
                     dataType: "json",
                     success: function( data ) {
                         console.log(data);
@@ -33,28 +29,46 @@
                                 value: item.id
                             }
                         }));
+
+
                     }
                 });
             }
         });
 
-//		$('#owner').focus()
-//		.keypress(function(e){
-//			var code = e.keyCode || e.which;
-//			if(code == 13) { //Enter keycode
-//				e.preventDefault();
-//			}
-//		})
-//
-//		$(".btn-getUserInfo").click(function(e){
-//			e.preventDefault();
-//		})
+        function showDropzone(){
+            $("#uploads-area").removeClass('hide');
+        }
 
-//		$myDropZone = $("#myDropZone").dropzone({url: "/admin/assets/upload"});
-//		$myDropZone.on('sending',function(file){
-//			console.log(file, $("#owner").val());
-//		})
-		
+		$('#owner').focus()
+		.keypress(function(e){
+			var code = e.keyCode || e.which;
+			if(code == 13) { //Enter keycode
+				e.preventDefault();
+                showDropzone()
+			}
+		})
+
+		$(".btn-getUserInfo").click(function(e){
+			e.preventDefault();
+            showDropzone()
+		})
+
+
+
+
+		$myDropzone = $("#uploads-area").dropzone({
+            url: "/admin/assets/upload",
+//            autoProcessQueue:false
+        });
+
+        $myDropzone.on("sending", function(file, xhr, formData) {
+            console.log("sending",file, xhr, formData, $("#owner").val());
+
+            formData.append("filesize", file.size); // Will send the filesize along with the file as POST data.
+        });
+
+
 	});
  </script>
 @stop
@@ -79,45 +93,30 @@
 </div>
 
 
-<form method="POST" action="{{action('AssetsController@store')}}" accept-charset="UTF-8" class="form-horizontal">
-	<div class="row">
-		<div class="col-md-4">
-			<div class="form-group">
-				<div class="lookUpUser">
-					<label class="control-label col-md-3">Owner</label>
-					<input id="owner" type="text" class="typeahead">
-					<button  class="btn-getUserInfo btn btn-success">GO</button>
-				</div>
-			</div>
-		</div>
-		<div id="#asset-orgainizer-container" class="col-md-8">
-		</div>
-	</div>
-</form>
+<div class="row">
+    <div class="col-md-4">
+        <div class="form-group">
+            <div class="lookUpUser">
+                <label class="control-label col-md-3">Owner</label>
+                <input id="owner" type="text" class="typeahead">
+                <button  class="btn-getUserInfo btn btn-success">GO</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
 
+    </div>
+</div>
 
 <div class="row">
 	<div class="col-md-12">
-		<div id="uploads-area">
-			<!-- The file upload form used as target for the file upload widget -->
-			<form method="POST" action="/admin/assets/upload" class="dropzone" id="myDropZone">
-				
-			</form>
-			</div>
+		<div id="uploads-area" class="hide">
+            <form action="/admin/assets/upload" class="dropzone">
+                <div class="fallback">
+                    <input name="file" type="file" multiple />
+                </div>
+            </form>
 		</div>
-	</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    </div>
+</div>
 @stop
