@@ -8,7 +8,8 @@
 		"edvinaskrucas/notification": "1.*",
 		"cartalyst/sentry": "2.0.*@dev",
 		"gorg/phpcas": "dev-master",
-		"davejamesmiller/laravel-breadcrumbs": "~2.1.0"
+		"davejamesmiller/laravel-breadcrumbs": "~2.1.0",
+		"iron-io/iron_mq": "1.4.8"
 	},
 	"require-dev": {
 		"mockery/mockery": "dev-master",

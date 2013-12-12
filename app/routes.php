@@ -12,15 +12,9 @@ App::bind('AssetRepository', 'Asset');
 
 
 Route::get('/test', function(){
-	// echo alphaID($in, $to_num = false, $pad_up = false, $passKey = null);
 
-	// Input //
- $number_in = 1;
- $alpha_in  = "cbbbbbbc";
-  // Execute //
- $alpha_out  = alphaID($number_in, false);
- $number_out = alphaID($alpha_out, true);
-var_dump($alpha_out, $number_out);
+
+	Queue::push('DoSomethingIntensive', array('asset_id' => 29));
 
 });
 
