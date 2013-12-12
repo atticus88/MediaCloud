@@ -64,10 +64,10 @@
 <?php
 $HTML = <<<HTML
 <pre>
-sudo chmod 777 app/config
-sudo chmod 777 app/config/app.php
-sudo chmod 777 app/storage/*
-sudo chmod 777 app/storage
+sudo chmod 644 app/config
+sudo chmod 644 app/config/app.php
+sudo chmod 644 app/storage/*
+sudo chmod 644 app/storage
 </pre>
 HTML;
 
