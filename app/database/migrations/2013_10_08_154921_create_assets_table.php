@@ -16,9 +16,9 @@ class CreateAssetsTable extends Migration {
 			$table->increments('id');
 			$table->string('title');
 			$table->string('description');
-			$table->string('type');
-			$table->string('status');
-			$table->text('permissions');
+            $table->string('type');
+            $table->string('status');
+            $table->text('permissions');
 			$table->datetime('last_viewed');
 			$table->timestamps();
 		});
