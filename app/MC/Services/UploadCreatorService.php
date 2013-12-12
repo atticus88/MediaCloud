@@ -16,13 +16,18 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use User;
 
 
+
 class UploadCreatorService {
+
 
     protected $validator;
 
     public function __construct(UploadValidator $validator){
         $this->validator = $validator;
+
     }
+    
+
 
 
     public function make($userId, UploadedFile $file){
@@ -38,22 +43,32 @@ class UploadCreatorService {
             "type" => preg_replace('/(\w+)\/(.*)/','${1}',$filetype)
         );
 
-        $file->move($destinationPath, $filename);
 
         // Save Asset if valid
 
         if($this->validator->isValid($attributes)){
             // Create a new asset
             $asset = new Asset;
-            $asset->title 				= $attributes['title'];
-            $asset->type 				=   $attributes['type'];
-            $asset->status 				= "uploaded";
+            $asset->title               = $attributes['title'];
+            $asset->type                =   $attributes['type'];
+            $asset->status              = "uploaded";
             $asset->save();
             $assetId = $asset->id;
 
         }else{
             throw new ValidationException('Upload validation failed', $this->validator->getErrors());
         }
+
+        // get assetId, call alphaId
+        $alpha_out  = alphaID($assetId, false);
+        $number_out = alphaID($alpha_out, true);
+
+            
+        // save filename as alphaId
+    
+
+        }
+        $file->move($destinationPath, $filename);
 
 
 

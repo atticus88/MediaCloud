@@ -14,7 +14,7 @@
  * fragmer[at]mail[dot]ru
  * see: http://nl3.php.net/manual/en/function.base-convert.php#52450
  *
- * If you want the alphaID to be at least 3 letter long, use the
+ * If you want the alphaID to be at least 3 letters long, use the
  * $pad_up = 3 argument
  *
  * In most cases this is better than totally random ID generators
@@ -87,9 +87,9 @@
  *
  * @return mixed string or long
  */
-function alphaID($in, $to_num = false, $pad_up = false, $passKey = null)
+function alphaID($in, $to_num = false, $pad_up = 5, $passKey = null)
 {
-    $index = "bcdfghjklmnpqrstvwxyz0123456789BCDFGHJKLMNPQRSTVWXYZ";
+    $index = "bcdfghjklmnpqrstvwxyz0123456789";
     if ($passKey !== null) {
         // Although this function's purpose is to just make the
         // ID short - and not so much secure,
