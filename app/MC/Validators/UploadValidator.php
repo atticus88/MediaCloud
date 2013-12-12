@@ -7,8 +7,7 @@ use MC\Validators\Validator;
 
 class UploadValidator extends Validator{
     protected static $rules = array(
-         'id' => 'required',
-         'alphaid' => 'required',
+//         'id' => '',
          'title' => 'required',
 //         'description' => 'required',
 //         'filepath' => 'required',

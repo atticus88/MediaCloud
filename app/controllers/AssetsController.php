@@ -48,53 +48,13 @@ class AssetsController extends PermissionsController{
 	public function store()
 	{
         try{
-            $this->uploadCreator->make(Input::all());
+            $this->uploadCreator->make(Input::get("userId"), Input::file('file'));
         }
         catch(\MC\Exceptions\ValidationException $e){
             return $e;
-            return Redirect::back()->withInput()->withErrors($e->getErrors());
+//            return Redirect::back()->withInput()->withErrors($e->getErrors());
 
         }
-//            return Redirect::home();
-        /***********************************************/
-
-		// Create a new validator instance from our validation rules
-//		$validator = Validator::make(Input::all(), $rules);
-
-		// If validation fails, we'll exit the operation now.
-//		if ($validator->fails())
-//		{
-//			// Ooops.. something went wrong
-//			return Redirect::back()->withInput()->withErrors($validator);
-//		}
-
-		// Create a new asset
-		$asset = new Asset;
-
-		// Update the asset data
-		$asset->title				= e(Input::get('title'));
-		$asset->description			= e(Input::get('description'));
-		$asset->filepath			= e(Input::get('filepath'));
-		$asset->filename			= e(Input::get('filename'));
-		$asset->transcoded_url		= e(Input::get('transcoded_url'));
-		$asset->thumbnail_url		= e(Input::get('thumbnail_url'));
-		$asset->url					= e(Input::get('url'));
-		$asset->type				= e(Input::get('type'));
-		$asset->status				= e(Input::get('status'));
-		$asset->tags				= e(Input::get('tags'));
-		$asset->views				= e(Input::get('views'));
-
-       $asset->save();
-
-            $asset->id;
-
-        if( $upload_success_flag ) {
-            return Response::json('success', 200);
-        }
-        else {
-            return Response::json('error', 400);
-        }
-
 	}
 
 	/**

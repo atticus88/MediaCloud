@@ -77,14 +77,17 @@ class User extends SentryUserModel {
 	{
 		return $this->belongsToMany('Asset');
 	}
+
 	public function collections()
 	{
 		return $this->belongsToMany('Collection');
 	}
+
 	public function playlists()
 	{
 		return $this->belongsToMany('Playlist');
 	}
+
 	public function cpa()
 	{
 		return $this->belongsToMany('CollectionPlaylistAsset');

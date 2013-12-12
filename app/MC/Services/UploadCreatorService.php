@@ -3,9 +3,18 @@
 namespace MC\Services;
 
 
+
+
 use Asset;
+
+use Config;
 use MC\Exceptions\ValidationException;
 use MC\Validators\UploadValidator;
+use Mimes;
+use Symfony\Component\Console\Input\Input;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use User;
+
 
 class UploadCreatorService {
 
@@ -16,51 +25,43 @@ class UploadCreatorService {
     }
 
 
-    public function make(array $attributes){
+    public function make($userId, UploadedFile $file){
 
+        // Upload file
+        $destinationPath =  base_path(). "/" . Config::get('settings.media-path-original');
+        $filename = $file->getClientOriginalName();
+        $extension =$file->getClientOriginalExtension();
+        $filetype = Mimes::getMimes($extension);
+        $assetId = "";
+        $attributes = array(
+            "title" => $filename,
+            "type" => preg_replace('/(\w+)\/(.*)/','${1}',$filetype)
+        );
 
+        $file->move($destinationPath, $filename);
+
+        // Save Asset if valid
 
         if($this->validator->isValid($attributes)){
             // Create a new asset
             $asset = new Asset;
-
-            // Update the asset data
-            $asset->alphaid 			= $attributes['alphaid'];
             $asset->title 				= $attributes['title'];
-            $asset->description 		= $attributes['description'];
-            $asset->transcoded_url 		= $attributes['transcoded_url'];
-            $asset->thumbnail_url 		= $attributes['thumbnail_url'];
-            $asset->type 				= $attributes['type'];
-            $asset->status 				= $attributes['status'];
+            $asset->type 				=   $attributes['type'];
+            $asset->status 				= "uploaded";
             $asset->save();
-            return true;
+            $assetId = $asset->id;
 
         }else{
             throw new ValidationException('Upload validation failed', $this->validator->getErrors());
         }
 
 
-        // Upload file
 
-
-
-        // Save Asset if valid
-
-        //do i have user_id and asset_id
-
-        // save user_asset table
+        // save asset_user table
+        $user = User::find($userId);
+        $user->assets()->attach($assetId);
 
     }
 
-    public function upload(){
-        $file = Input::file('file');
-        $destinationPath =  base_path(). "/" . Config::get('settings.media-path-original');
-        $filename = $file->getClientOriginalName();
-        $extension =$file->getClientOriginalExtension();
-        return Input::file('file')->move($destinationPath, $filename);
-    }
 
-    public function saveAsAsset(){
-
-    }
 } 

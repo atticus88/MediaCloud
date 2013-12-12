@@ -12,3 +12,4 @@ app/storage/logs/*
 app/storage/meta/*
 /vendor
 /uploads
+/media
