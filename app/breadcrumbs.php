@@ -83,6 +83,36 @@ Breadcrumbs::register('settings', function($breadcrumbs) {
     $breadcrumbs->push('Settings', route('settings'));
 });
 
+// DASHBOARD > COLLECTIONS
+
+Breadcrumbs::register('collections', function($breadcrumbs) {
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Collections', route('collections'));
+});
+
+
+// DASHBOARD > PLAYLISTS
+
+Breadcrumbs::register('playlists', function($breadcrumbs) {
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Playlists', route('playlists'));
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Breadcrumbs::register('category', function($breadcrumbs, $category) {
     $breadcrumbs->parent('blog');

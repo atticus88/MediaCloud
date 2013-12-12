@@ -28,14 +28,15 @@ User Management ::
 			<tr>
 				<th>Title</th>
 				<th>Description</th>
-				<th>Filepath</th>
+				<th>Alpha Id</th>
+				<th>Permissions</th>
 				<th>Filename</th>
-				<th>Transcoded_url</th>
-				<th>Thumbnail_url</th>
-				<th>Url</th>
+				<th>Filepath</th>
 				<th>Type</th>
 				<th>Status</th>
-				<th>Tags</th>
+				<th>Size</th>
+				<th>Thumbnail_url</th>
+				<th>Transcoded_url</th>
 				<th>Views</th>
 				<th>Last_viewed</th>
 				<th>Created_at</th>
@@ -48,6 +49,7 @@ User Management ::
 				<tr>
 					<td>{{{ $asset->title }}}</td>
 					<td>{{{ $asset->description }}}</td>
+					<td>{{{ $asset->alphaID }}}</td>
 					<td>{{{ $asset->filepath }}}</td>
 					<td>{{{ $asset->filename }}}</td>
 					<td>{{{ $asset->transcoded_url }}}</td>

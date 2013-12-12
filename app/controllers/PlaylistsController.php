@@ -1,6 +1,6 @@
 <?php
 
-class SettingsController extends PermissionsController {
+class PlaylistsController extends PermissionsController {
 
 	/**
 	 * Show the administration dashboard page.
@@ -11,7 +11,7 @@ class SettingsController extends PermissionsController {
 	{
 		// echo "hey";
 		// Show the page
-		return View::make('backend/settings/index');
+		return View::make('backend/playlists/index');
 	}
 
 	public function postIndex()

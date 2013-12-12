@@ -33,11 +33,11 @@
                      Assets</a>
                   </li>
                    <li>
-                     <a href="#">
+                     <a href="/admin/collections">
                      Collections</a>
                   </li>
                    <li>
-                     <a href="#">
+                     <a href="/admin/playlists">
                      Playlists</a>
                   </li>
                </ul>
