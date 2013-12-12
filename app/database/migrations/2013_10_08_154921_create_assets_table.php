@@ -22,7 +22,10 @@ class CreateAssetsTable extends Migration {
 			$table->string('type');
 			$table->string('status');
 			$table->integer('size');
-			$table->text('permissions');
+            $table->string('type');
+            $table->string('filepath');
+            $table->string('status');
+            $table->text('permissions')
 			$table->datetime('last_viewed');
 			$table->timestamps();
 		});

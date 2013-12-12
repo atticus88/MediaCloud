@@ -2,9 +2,6 @@
 
 namespace MC\Services;
 
-
-
-
 use Asset;
 
 use Config;
@@ -40,7 +37,8 @@ class UploadCreatorService {
         $assetId = "";
         $attributes = array(
             "title" => $filename,
-            "type" => preg_replace('/(\w+)\/(.*)/','${1}',$filetype)
+            "type" => preg_replace('/(\w+)\/(.*)/','${1}',$filetype),
+            "status" => "uploaded"
         );
 
 
