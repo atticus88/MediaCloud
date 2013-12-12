@@ -3,7 +3,7 @@
 return  array(
 'media-path' => 'media',
 'media-path-original' => 'media/original',
-'auth-type' =>  '',
+'auth-type' =>  'cas',
 'auth-login' => '',
 'auth-logout' => '',
 );

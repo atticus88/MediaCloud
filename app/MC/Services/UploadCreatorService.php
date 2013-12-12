@@ -30,10 +30,19 @@ class UploadCreatorService {
     public function make($userId, UploadedFile $file){
 
         // Upload file
-        $destinationPath =  base_path(). "/" . Config::get('settings.media-path-original');
+
         $filename = $file->getClientOriginalName();
         $extension =$file->getClientOriginalExtension();
         $filetype = Mimes::getMimes($extension);
+
+        if($filetype == "video" || $filetype == "audio"){
+            $destinationPath =  base_path(). "/" . Config::get('settings.media-path-original');
+        }else{
+            $destinationPath =  base_path(). "/" . Config::get('settings.media-path');
+        }
+
+
+
         $assetId = "";
         $attributes = array(
             "title" => $filename,
@@ -63,12 +72,12 @@ class UploadCreatorService {
 
             
         // save filename as alphaId
-    
 
-        }
+
         $file->move($destinationPath, $filename);
 
 
+        Queue::push('Transcode', array('asset_id' => $asset_id, 'filepath' => $filepath, 'type'=>$type));
 
         // save asset_user table
         $user = User::find($userId);
