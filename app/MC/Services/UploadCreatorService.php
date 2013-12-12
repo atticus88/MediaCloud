@@ -5,9 +5,11 @@ namespace MC\Services;
 use Asset;
 
 use Config;
+use Illuminate\Queue\Queue;
 use MC\Exceptions\ValidationException;
 use MC\Validators\UploadValidator;
 use Mimes;
+
 use Symfony\Component\Console\Input\Input;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use User;
@@ -35,21 +37,25 @@ class UploadCreatorService {
         $extension =$file->getClientOriginalExtension();
         $filetype = Mimes::getMimes($extension);
 
-        if($filetype == "video" || $filetype == "audio"){
-            $destinationPath =  base_path(). "/" . Config::get('settings.media-path-original');
-        }else{
-            $destinationPath =  base_path(). "/" . Config::get('settings.media-path');
-        }
+
+
 
 
 
         $assetId = "";
         $attributes = array(
             "title" => $filename,
+            "filename_original" => $filename,
+            "filename" => $filename,
             "type" => preg_replace('/(\w+)\/(.*)/','${1}',$filetype),
             "status" => "uploaded"
         );
-
+        // If not a video or audio no need to transcode or save original out again.
+        if($attributes['type'] == "video" || $attributes['type'] == "audio"){
+            $destinationPath =  base_path(). "/" . Config::get('settings.media-path-original');
+        }else{
+            $destinationPath =  base_path(). "/" . Config::get('settings.media-path');
+        }
 
         // Save Asset if valid
 
@@ -68,16 +74,17 @@ class UploadCreatorService {
 
         // get assetId, call alphaId
         $alpha_out  = alphaID($assetId, false);
-        $number_out = alphaID($alpha_out, true);
+        // $number_out = alphaID($alpha_out, true);
 
             
         // save filename as alphaId
+        $asset->alphaID = $alpha_out;
+        $asset->save();
+
+        $file->move($destinationPath, $asset->alphaID . "." . $extension);
 
 
-        $file->move($destinationPath, $filename);
-
-
-        Queue::push('Transcode', array('asset_id' => $asset_id, 'filepath' => $filepath, 'type'=>$type));
+//        Queue::push('Transcode', array('asset_id' => $asset_id, 'filepath' => $filepath, 'type'=>$type));
 
         // save asset_user table
         $user = User::find($userId);
