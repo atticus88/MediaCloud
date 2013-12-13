@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "eba5ff5a8340c74a18bb708283e7f09a",
+    "hash": "fa093edbec7e7c5b55253c6d642c8de5",
     "packages": [
         {
             "name": "cartalyst/sentry",
@@ -678,6 +678,42 @@
             "time": "2013-11-19 06:15:26"
         },
         {
+            "name": "dwoodard/phpcas",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dwoodard/phpCAS.git",
+                "reference": "d1449e272b0fc585bd28fbb18efa359bc803ff4e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dwoodard/phpCAS/zipball/d1449e272b0fc585bd28fbb18efa359bc803ff4e",
+                "reference": "d1449e272b0fc585bd28fbb18efa359bc803ff4e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2"
+            },
+            "type": "php-lib",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL"
+            ],
+            "authors": [
+                {
+                    "name": "Mathieu GOULIN",
+                    "email": "mathieu.goulin@gadz.org"
+                }
+            ],
+            "description": "An library for use CAS Authentication",
+            "keywords": [
+                "cas",
+                "dwoodard",
+                "jasig"
+            ],
+            "time": "2013-12-13 20:56:32"
+        },
+        {
             "name": "edvinaskrucas/notification",
             "version": "1.2.3",
             "source": {
@@ -776,42 +812,6 @@
                 "zf2"
             ],
             "time": "2013-06-10 12:22:13"
-        },
-        {
-            "name": "gorg/phpcas",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/matgou/phpCAS.git",
-                "reference": "940c4afffbc36bc55c89495fcca05455d419835a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/matgou/phpCAS/zipball/940c4afffbc36bc55c89495fcca05455d419835a",
-                "reference": "940c4afffbc36bc55c89495fcca05455d419835a",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.2"
-            },
-            "type": "php-lib",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL"
-            ],
-            "authors": [
-                {
-                    "name": "Mathieu GOULIN",
-                    "email": "mathieu.goulin@gadz.org"
-                }
-            ],
-            "description": "An library for use CAS Authentication",
-            "keywords": [
-                "cas",
-                "gorg",
-                "jasig"
-            ],
-            "time": "2012-09-17 21:46:20"
         },
         {
             "name": "ircmaxell/password-compat",
@@ -2658,12 +2658,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "6b77c60ed70c4af6cd17a87b054c86d69a67d740"
+                "reference": "a3e85d8c8421cf47509383b557cb8292b60ee87d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/6b77c60ed70c4af6cd17a87b054c86d69a67d740",
-                "reference": "6b77c60ed70c4af6cd17a87b054c86d69a67d740",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/a3e85d8c8421cf47509383b557cb8292b60ee87d",
+                "reference": "a3e85d8c8421cf47509383b557cb8292b60ee87d",
                 "shasum": ""
             },
             "require": {
@@ -2724,7 +2724,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2013-12-08 12:01:47"
+            "time": "2013-12-13 20:47:39"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -2983,7 +2983,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "cartalyst/sentry": 20,
-        "gorg/phpcas": 20,
+        "dwoodard/phpcas": 20,
         "mockery/mockery": 20,
         "phpunit/phpunit": 20,
         "way/generators": 20
