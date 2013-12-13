@@ -497,7 +497,7 @@ if (preg_match('/Linux/',php_uname())){
 					});
 
 			},
-			error: function() {
+			error: function(data) {
 				wizard.submitFailure();
 				wizard.hideButtons();
 			},
