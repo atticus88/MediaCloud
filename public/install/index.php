@@ -163,7 +163,7 @@ if (preg_match('/Linux/',php_uname())){
 							</div>
 							<div class="span2">
 								<label><strong>Password</strong></label>
-								<input type="password"  name="password" placeholder="password" />
+								<input type="password"  name="password" placeholder="password" value="root" />
 							</div>
 						</div>
 					</div>

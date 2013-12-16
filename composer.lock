@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "9becacf8bbec040e4dd89acc83a9dfec",
+    "hash": "e2e32cc002a7812dacdea32756dc4158",
     "packages": [
         {
             "name": "cartalyst/sentry",
@@ -153,6 +153,50 @@
             "time": "2013-06-24 22:58:34"
         },
         {
+            "name": "codescale/ffmpeg-php",
+            "version": "2.7.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/CodeScaleInc/ffmpeg-php.git",
+                "reference": "c4e3e71ac24116e9a8e29b423f0d5e13de980c02"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/CodeScaleInc/ffmpeg-php/zipball/c4e3e71ac24116e9a8e29b423f0d5e13de980c02",
+                "reference": "c4e3e71ac24116e9a8e29b423f0d5e13de980c02",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "."
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "New BSD"
+            ],
+            "authors": [
+                {
+                    "name": "char0n (Vladimír Gorej, CodeScale s.r.o.)",
+                    "email": "gorej@codescale.net",
+                    "homepage": "http://www.codescale.net/",
+                    "role": "Development lead"
+                }
+            ],
+            "description": "PHP wrapper for FFmpeg application",
+            "homepage": "http://freecode.com/projects/ffmpegphp",
+            "keywords": [
+                "audio",
+                "ffmpeg",
+                "video"
+            ],
+            "time": "2013-05-05 09:10:04"
+        },
+        {
             "name": "davejamesmiller/laravel-breadcrumbs",
             "version": "2.1.0",
             "source": {
@@ -201,16 +245,16 @@
         },
         {
             "name": "doctrine/annotations",
-            "version": "v1.1.2",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/annotations.git",
-                "reference": "40db0c96985aab2822edbc4848b3bd2429e02670"
+                "reference": "97b4a00c5a40c42d8c0b789dabc04b3332c788ab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/annotations/zipball/40db0c96985aab2822edbc4848b3bd2429e02670",
-                "reference": "40db0c96985aab2822edbc4848b3bd2429e02670",
+                "url": "https://api.github.com/repos/doctrine/annotations/zipball/97b4a00c5a40c42d8c0b789dabc04b3332c788ab",
+                "reference": "97b4a00c5a40c42d8c0b789dabc04b3332c788ab",
                 "shasum": ""
             },
             "require": {
@@ -223,7 +267,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0.x-dev"
+                    "dev-master": "1.2.x-dev"
                 }
             },
             "autoload": {
@@ -239,7 +283,8 @@
                 {
                     "name": "Jonathan Wage",
                     "email": "jonwage@gmail.com",
-                    "homepage": "http://www.jwage.com/"
+                    "homepage": "http://www.jwage.com/",
+                    "role": "Creator"
                 },
                 {
                     "name": "Guilherme Blanco",
@@ -268,7 +313,7 @@
                 "docblock",
                 "parser"
             ],
-            "time": "2013-06-16 21:33:03"
+            "time": "2013-12-13 21:02:36"
         },
         {
             "name": "doctrine/cache",
@@ -492,12 +537,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "c3448dc0a163becd5acb50199049996c53cade78"
+                "reference": "ad8608ba8386a50c17a3b0f49738f9c942393499"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/c3448dc0a163becd5acb50199049996c53cade78",
-                "reference": "c3448dc0a163becd5acb50199049996c53cade78",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/ad8608ba8386a50c17a3b0f49738f9c942393499",
+                "reference": "ad8608ba8386a50c17a3b0f49738f9c942393499",
                 "shasum": ""
             },
             "require": {
@@ -550,7 +595,7 @@
                 "persistence",
                 "queryobject"
             ],
-            "time": "2013-11-12 12:38:29"
+            "time": "2013-12-13 21:39:23"
         },
         {
             "name": "doctrine/inflector",
@@ -2658,12 +2703,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "a3e85d8c8421cf47509383b557cb8292b60ee87d"
+                "reference": "aa4789d63dc5fd8f2036e5867b94e481b201c807"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/a3e85d8c8421cf47509383b557cb8292b60ee87d",
-                "reference": "a3e85d8c8421cf47509383b557cb8292b60ee87d",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/aa4789d63dc5fd8f2036e5867b94e481b201c807",
+                "reference": "aa4789d63dc5fd8f2036e5867b94e481b201c807",
                 "shasum": ""
             },
             "require": {
@@ -2724,7 +2769,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2013-12-13 20:47:39"
+            "time": "2013-12-13 21:26:49"
         },
         {
             "name": "phpunit/phpunit-mock-objects",

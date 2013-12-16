@@ -14,7 +14,7 @@ App::bind('AssetRepository', 'Asset');
 Route::get('/test', function(){
 
 
-	Queue::push('DoSomethingIntensive', array('asset_id' => 29));
+	Queue::push('DoSomethingIntensive', array('asset_id' => 1));
 
 });
 

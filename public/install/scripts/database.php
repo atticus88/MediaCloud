@@ -17,14 +17,15 @@ if (!$_POST || !$project_root_path) {
 
 
 // Does Database EXIST if not make it?
-$link = mysql_connect($_POST['host'], $_POST['user'], $_POST['password']);
-if (!$link) {
+$mysqli = new mysqli($_POST['host'], $_POST['user'], $_POST['password']);
+if (!$mysqli) {
     die('Could not connect: ' . mysql_error());
 }
 
 $sql = 'CREATE DATABASE IF NOT EXISTS ' . $_POST['database'];
-if (mysql_query($sql, $link)) {
-    // echo "Database my_db created successfully\n";
+if ($mysqli->connect_error) {
+    die('Connect Error (' . $mysqli->connect_errno . ') '
+            . $mysqli->connect_error);
 } else {
     echo 'Error creating database: ' . mysql_error() . "\n";
 }

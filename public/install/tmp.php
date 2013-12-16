@@ -1,12 +1,12 @@
-<?php 
-// post call 
+<?php
+// post call
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 	if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
 		/* special ajax here */
 		echo "ajax ";
 	}else{
-		
+
 		echo "not ajax ";
 	}
 
@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 		</div>
 	</div>
 	<div class="container" style="margin-top:70px;">
-		
+
 		<form role="form" action="" method="POST">
 			<div class="panel-group" id="accordion">
 				<!-- Clone -->
@@ -99,9 +99,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 					<div class="panel-heading">
 						<h4 class="panel-title">
 							<div class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse-composer">
-								<?php 
+								<?php
 									$installed = false;
-									if(strtolower(php_uname("s")) == 'linux') {		
+									if(strtolower(php_uname("s")) == 'linux') {
 										exec('which composer', $output, $result);
 										if ($result == 0) {
 											$installed = true;
@@ -113,9 +113,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 									}
 									if($installed) {
 										echo '<i class="btn btn-success btn-lrg"><span class="glyphicon glyphicon-ok"></span></i> <strong>Composer install</strong>';
-									} else {	
+									} else {
 										echo '<i class="btn btn-danger btn-lrg"><span class="glyphicon glyphicon-remove"></span></i> <strong>Composer install</strong>';
-									}	
+									}
 								?>
 							</div>
 						</h4>
@@ -130,7 +130,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 							<h3>Mac/Linux Install</h3>
 							<p>To Install composer open the terminal, type:</p>
 
-<pre>curl -sS https://getcomposer.org/installer | php 
+<pre>curl -sS https://getcomposer.org/installer | php
 mv composer.phar /usr/local/bin/composer</pre>
 
 
@@ -150,15 +150,15 @@ mv composer.phar /usr/local/bin/composer</pre>
 					</div>
 					<div id="collapse-queue" class="panel-collapse collapse">
 						<div class="panel-body">
-							
-							<?php 
+
+							<?php
 							$installed = false;
-							if(strtolower(php_uname("s")) == 'linux') {		
+							if(strtolower(php_uname("s")) == 'linux') {
 								exec('which beanstalkd', $output, $result);
 								if ($result == 0) {
 									$installed = true;
 								}
-							} 
+							}
 							// else {
 							// 	if (preg_match('/beanstalkd/i',$_SERVER["PATH"])) {
 							// 		$installed = true;
@@ -166,9 +166,9 @@ mv composer.phar /usr/local/bin/composer</pre>
 							// }
 							if($installed) {
 								echo '<strong>Install beanstalkd</strong>';
-							} else {	
+							} else {
 								echo '<strong>Not Install beanstalkd</strong>';
-							}	
+							}
 							?>
 
 						</div>
@@ -196,10 +196,10 @@ mv composer.phar /usr/local/bin/composer</pre>
 
 							<h3>What is Supervisord?</h3>
 							<a href="http://supervisord.org/">supervisord.org/</a>
-							
+
 							<?php
 							$installed = false;
-							if(strtolower(php_uname("s")) == 'linux') {		
+							if(strtolower(php_uname("s")) == 'linux') {
 								exec('which supervisord', $output, $result);
 								if ($result == 0) {
 									$installed = true;
@@ -207,9 +207,9 @@ mv composer.phar /usr/local/bin/composer</pre>
 							}
 							if($installed) {
 								echo '<strong>Supervisord install</strong>';
-							} else {	
+							} else {
 								echo '<strong>Supervisord is not install</strong>';
-							}	
+							}
 							?>
 
 						</div>
@@ -228,8 +228,8 @@ mv composer.phar /usr/local/bin/composer</pre>
 					</div>
 					<div id="collapse-database" class="panel-collapse collapse">
 						<div class="panel-body">
-							
-							
+
+
 							<label class="control-label">Select Database Type</label>
 
 							<div class="form-inline">
@@ -249,18 +249,18 @@ mv composer.phar /usr/local/bin/composer</pre>
 									<input type="radio" id="dbType" name="dbType" value="sqlsrv"> sqlsrv
 								</label>
 							</div>
-							
-							
 
 
 
-							
+
+
+
 							<div class="row">
 							<h3>Database Info</h3>
 								<i class="btn btn-default"><span class="glyphicon glyphicon-check"></span></i> <strong>Test Settings</strong>
 							</div>
 
-							
+
 
 							<div class="col-lg-2 form-group">
 								<label for="dbName">Name</label>
@@ -285,7 +285,7 @@ mv composer.phar /usr/local/bin/composer</pre>
 								<input type="text" class="form-control" id="dbPrefix" name="dbPrefix" placeholder="Prefix: mc_">
 							</div>
 
-							
+
 
 						</div>
 					</div>
@@ -348,7 +348,7 @@ mv composer.phar /usr/local/bin/composer</pre>
 								<label for="authCASLogoutUrl">CAS Logout URL</label>
 								<input class="form-control" type="text" id="authCASLogoutUrl" name="authCASLogoutUrl"  placeholder="https://cas.domain.edu/logout" />
 							</div>
-							
+
 
 							<div id="ldap-auth-conf" class="col-md-5 hide">
 								<label for="authLDAPHost">LDAP Host</label>
@@ -366,17 +366,17 @@ mv composer.phar /usr/local/bin/composer</pre>
 				<button type="submit" class="btn btn-default">Submit</button>
 			</form>
 
-			
-			
-			
+
+
+
 
 		</div>
 	</div>
 </body>
 <script src="/assets/js/bootstrap.min.js"></script>
 <script>
-	$(document).ready(function(){ 
-		
+	$(document).ready(function(){
+
 
 		// Authentication Service
 		$("input[name$='authType']").click(function() {
@@ -384,7 +384,7 @@ mv composer.phar /usr/local/bin/composer</pre>
 			var elm = $("#"+val + "-auth-conf")[0]
 			$("[id*='-auth-conf']").addClass("hide");
 			$(elm).removeClass("hide");
-		}); 
+		});
 	});
 </script>
 </html>
