@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "6720cf49057a9ac961b784838364fba6",
+    "hash": "9becacf8bbec040e4dd89acc83a9dfec",
     "packages": [
         {
             "name": "cartalyst/sentry",
@@ -678,6 +678,42 @@
             "time": "2013-11-19 06:15:26"
         },
         {
+            "name": "dwoodard/phpcas",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dwoodard/phpCAS.git",
+                "reference": "d1449e272b0fc585bd28fbb18efa359bc803ff4e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dwoodard/phpCAS/zipball/d1449e272b0fc585bd28fbb18efa359bc803ff4e",
+                "reference": "d1449e272b0fc585bd28fbb18efa359bc803ff4e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2"
+            },
+            "type": "php-lib",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL"
+            ],
+            "authors": [
+                {
+                    "name": "Mathieu GOULIN",
+                    "email": "mathieu.goulin@gadz.org"
+                }
+            ],
+            "description": "An library for use CAS Authentication",
+            "keywords": [
+                "cas",
+                "dwoodard",
+                "jasig"
+            ],
+            "time": "2013-12-13 20:56:32"
+        },
+        {
             "name": "edvinaskrucas/notification",
             "version": "1.2.3",
             "source": {
@@ -778,42 +814,6 @@
             "time": "2013-06-10 12:22:13"
         },
         {
-            "name": "gorg/phpcas",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/matgou/phpCAS.git",
-                "reference": "940c4afffbc36bc55c89495fcca05455d419835a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/matgou/phpCAS/zipball/940c4afffbc36bc55c89495fcca05455d419835a",
-                "reference": "940c4afffbc36bc55c89495fcca05455d419835a",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.2"
-            },
-            "type": "php-lib",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL"
-            ],
-            "authors": [
-                {
-                    "name": "Mathieu GOULIN",
-                    "email": "mathieu.goulin@gadz.org"
-                }
-            ],
-            "description": "An library for use CAS Authentication",
-            "keywords": [
-                "cas",
-                "gorg",
-                "jasig"
-            ],
-            "time": "2012-09-17 21:46:20"
-        },
-        {
             "name": "ircmaxell/password-compat",
             "version": "1.0.x-dev",
             "source": {
@@ -851,6 +851,100 @@
                 "password"
             ],
             "time": "2013-04-30 19:58:08"
+        },
+        {
+            "name": "iron-io/iron_core",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/iron-io/iron_core_php.git",
+                "reference": "0d0f3cbef78ff3515ee2ae381181c5d04d38a3e3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/iron-io/iron_core_php/zipball/0d0f3cbef78ff3515ee2ae381181c5d04d38a3e3",
+                "reference": "0d0f3cbef78ff3515ee2ae381181c5d04d38a3e3",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "IronCore.class.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander S",
+                    "email": "alexander@iron.io",
+                    "homepage": "http://iron.io",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Iron.io",
+                    "email": "support@iron.io",
+                    "homepage": "http://iron.io",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Collection of common functions for all iron.io client libraries",
+            "homepage": "http://github.com/iron-io/iron_core_php",
+            "keywords": [
+                "iron",
+                "iron_core"
+            ],
+            "time": "2013-10-04 22:21:54"
+        },
+        {
+            "name": "iron-io/iron_mq",
+            "version": "1.4.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/iron-io/iron_mq_php.git",
+                "reference": "05a4b53cb0579822495325d5bcf05556fce9f8b0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/iron-io/iron_mq_php/zipball/05a4b53cb0579822495325d5bcf05556fce9f8b0",
+                "reference": "05a4b53cb0579822495325d5bcf05556fce9f8b0",
+                "shasum": ""
+            },
+            "require": {
+                "iron-io/iron_core": "*",
+                "php": ">=5.2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "IronMQ.class.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander S",
+                    "email": "alexander@iron.io",
+                    "homepage": "http://iron.io",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Client binding for IronMQ (hosted message queue)",
+            "homepage": "http://github.com/iron-io/iron_mq_php",
+            "keywords": [
+                "MQ",
+                "iron",
+                "iron_mq"
+            ],
+            "time": "2013-09-07 15:06:30"
         },
         {
             "name": "jeremeamia/SuperClosure",
@@ -1423,12 +1517,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Console.git",
-                "reference": "6027e11bf64235b1d8b9b4a58640256c0c73fdc4"
+                "reference": "f77c13a6b542941075b3faacc5199c9ba9070d75"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Console/zipball/6027e11bf64235b1d8b9b4a58640256c0c73fdc4",
-                "reference": "6027e11bf64235b1d8b9b4a58640256c0c73fdc4",
+                "url": "https://api.github.com/repos/symfony/Console/zipball/f77c13a6b542941075b3faacc5199c9ba9070d75",
+                "reference": "f77c13a6b542941075b3faacc5199c9ba9070d75",
                 "shasum": ""
             },
             "require": {
@@ -1467,7 +1561,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "http://symfony.com",
-            "time": "2013-11-25 14:49:41"
+            "time": "2013-12-12 16:08:59"
         },
         {
             "name": "symfony/css-selector",
@@ -1527,12 +1621,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Debug.git",
-                "reference": "b4ea949b41f7d01d70a54c9aaae6e17d9f1546ee"
+                "reference": "93f26330c7750628772e074c90dacf27ddf48b6b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Debug/zipball/b4ea949b41f7d01d70a54c9aaae6e17d9f1546ee",
-                "reference": "b4ea949b41f7d01d70a54c9aaae6e17d9f1546ee",
+                "url": "https://api.github.com/repos/symfony/Debug/zipball/93f26330c7750628772e074c90dacf27ddf48b6b",
+                "reference": "93f26330c7750628772e074c90dacf27ddf48b6b",
                 "shasum": ""
             },
             "require": {
@@ -1574,7 +1668,7 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "http://symfony.com",
-            "time": "2013-11-28 16:41:31"
+            "time": "2013-12-12 16:08:59"
         },
         {
             "name": "symfony/dom-crawler",
@@ -1834,12 +1928,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/HttpKernel.git",
-                "reference": "36578f3ad3dac980c841bf7921b2a1df6b156f8e"
+                "reference": "e6f1920ee06a89fee7810fcd112211599f5f7445"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/HttpKernel/zipball/36578f3ad3dac980c841bf7921b2a1df6b156f8e",
-                "reference": "36578f3ad3dac980c841bf7921b2a1df6b156f8e",
+                "url": "https://api.github.com/repos/symfony/HttpKernel/zipball/e6f1920ee06a89fee7810fcd112211599f5f7445",
+                "reference": "e6f1920ee06a89fee7810fcd112211599f5f7445",
                 "shasum": ""
             },
             "require": {
@@ -1896,7 +1990,7 @@
             ],
             "description": "Symfony HttpKernel Component",
             "homepage": "http://symfony.com",
-            "time": "2013-12-05 07:46:04"
+            "time": "2013-12-12 16:08:12"
         },
         {
             "name": "symfony/process",
@@ -2564,12 +2658,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "6b77c60ed70c4af6cd17a87b054c86d69a67d740"
+                "reference": "a3e85d8c8421cf47509383b557cb8292b60ee87d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/6b77c60ed70c4af6cd17a87b054c86d69a67d740",
-                "reference": "6b77c60ed70c4af6cd17a87b054c86d69a67d740",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/a3e85d8c8421cf47509383b557cb8292b60ee87d",
+                "reference": "a3e85d8c8421cf47509383b557cb8292b60ee87d",
                 "shasum": ""
             },
             "require": {
@@ -2630,7 +2724,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2013-12-08 12:01:47"
+            "time": "2013-12-13 20:47:39"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -2889,7 +2983,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "cartalyst/sentry": 20,
-        "gorg/phpcas": 20,
+        "dwoodard/phpcas": 20,
         "mockery/mockery": 20,
         "phpunit/phpunit": 20,
         "way/generators": 20

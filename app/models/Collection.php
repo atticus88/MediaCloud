@@ -34,8 +34,8 @@ class Collection extends Eloquent {
 	public static function collection_playlist_asset($id)
 	{
 
-		$collection = [];
-		$playlists = [];
+		$collection = array();
+		$playlists = array();
 		$assets = User::find($id)->assets()->get();
 		foreach ($assets as $asset) {
 			foreach ($asset->playlists()->get() as $playlist) {

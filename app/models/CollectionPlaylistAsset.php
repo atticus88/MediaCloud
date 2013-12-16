@@ -61,7 +61,7 @@ class CollectionPlaylistAsset extends Eloquent {
 
 		// return $data;
 		if (count($data) == 0){
-			return ["results" => 0, "description"=>"No Results returned", "user" =>User::find($id) ? User::find($id)->id:null];
+			return array("results" => 0, "description"=>"No Results returned", "user" =>User::find($id) ? User::find($id)->id:null);
 		}
 
 		$cpa = (Object) array();
@@ -75,7 +75,11 @@ class CollectionPlaylistAsset extends Eloquent {
 				}
 			if (!array_key_exists($v->collection_id, $cpa->collections)) {
 				$cpa->collections[$v->collection_id] = new stdClass();
-				$cpa->collections[$v->collection_id]->name = Collection::find($v->collection_id)['name'];
+				//$cpa->collections[$v->collection_id]->name = Collection::find($v->collection_id)['name'];
+
+				$tmp = Collection::find($v->collection_id);
+				$cpa->collections[$v->collection_id]->name = $tmp['name'];
+				
 				$cpa->collections[$v->collection_id]->id = Collection::find($v->collection_id)['id'];
 			}
 
