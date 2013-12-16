@@ -7,9 +7,10 @@
 		"laravel/framework": "4.0.*",
 		"edvinaskrucas/notification": "1.*",
 		"cartalyst/sentry": "2.0.*@dev",
-		"gorg/phpcas": "dev-master",
+		"dwoodard/phpcas": "dev-master",
 		"davejamesmiller/laravel-breadcrumbs": "~2.1.0",
-		"iron-io/iron_mq": "1.4.8"
+		"iron-io/iron_mq": "1.4.8",
+		"codescale/ffmpeg-php": "2.7.0"
 	},
 	"require-dev": {
 		"mockery/mockery": "dev-master",
@@ -23,12 +24,13 @@
 			"app/controllers",
 			"app/models",
 			"app/helpers",
+			"app/queue",
 			"app/database/migrations",
 			"app/database/seeds",
 			"app/tests/TestCase.php"
 		],
         "files": [
-            "vendor/gorg/phpcas/CAS.php"
+            "vendor/dwoodard/phpcas/CAS.php"
         ],
         "psr-0": {"MC":"app/"}
 	},

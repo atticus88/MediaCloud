@@ -9,7 +9,6 @@
 *                                             | |         | |
 *                                             |_|         |_|
 */
-
 if (!$_POST || !$project_root_path) {
 	die("missing Data");
 }
