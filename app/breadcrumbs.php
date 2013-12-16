@@ -99,6 +99,36 @@ Breadcrumbs::register('playlists', function($breadcrumbs) {
 });
 
 
+// DASHBOARD > QUEUES
+
+Breadcrumbs::register('queues', function($breadcrumbs) {
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Queues', route('queues'));
+});
+
+// DASHBOARD > HISTORY
+
+Breadcrumbs::register('queues', function($breadcrumbs) {
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Queues', route('queues'));
+});
+
+
+// DASHBOARD > CAPTURE
+
+Breadcrumbs::register('queues', function($breadcrumbs) {
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Queues', route('queues'));
+});
+
+
+// DASHBOARD > QUEUES
+
+Breadcrumbs::register('queues', function($breadcrumbs) {
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Queues', route('queues'));
+});
+
 
 
 

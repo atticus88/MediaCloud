@@ -79,6 +79,7 @@ Route::group(array('before' => 'admin-auth|permissions','prefix' => 'admin'), fu
 	Route::get('settings', array('as' => 'settings', 'uses' => 'SettingsController@getIndex'));
 	Route::get('collections', array('as' => 'collections', 'uses' => 'CollectionsController@getIndex'));
 	Route::get('playlists', array('as' => 'playlists', 'uses' => 'PlaylistsController@getIndex'));
+	Route::get('queues', array('as' => 'queues', 'uses' => 'QueuesController@index'));
 
 });
 
