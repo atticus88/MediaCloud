@@ -38,7 +38,8 @@ Route::filter('auth.admin', function()
 	// Check if the user is logged in
 	if ( ! Sentry::check())
 	{
-		return Redirect::route('admin.login');
+
+		return Redirect::route('admin.login'); 
 	}
 });
 

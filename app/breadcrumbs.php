@@ -29,8 +29,6 @@ Breadcrumbs::register('editAsset', function($breadcrumbs) {
 
 
 
-
-
 // DASHBOARD > USERS
 
 Breadcrumbs::register('users', function($breadcrumbs) {
@@ -108,26 +106,48 @@ Breadcrumbs::register('queues', function($breadcrumbs) {
 
 // DASHBOARD > HISTORY
 
-Breadcrumbs::register('queues', function($breadcrumbs) {
+Breadcrumbs::register('history', function($breadcrumbs) {
     $breadcrumbs->parent('home');
-    $breadcrumbs->push('Queues', route('queues'));
+    $breadcrumbs->push('History', route('history'));
 });
 
 
 // DASHBOARD > CAPTURE
 
-Breadcrumbs::register('queues', function($breadcrumbs) {
+Breadcrumbs::register('capture', function($breadcrumbs) {
     $breadcrumbs->parent('home');
-    $breadcrumbs->push('Queues', route('queues'));
+    $breadcrumbs->push('Capture', route('capture'));
 });
 
 
-// DASHBOARD > QUEUES
+// DASHBOARD > REPORTS
 
-Breadcrumbs::register('queues', function($breadcrumbs) {
+Breadcrumbs::register('reports', function($breadcrumbs) {
     $breadcrumbs->parent('home');
-    $breadcrumbs->push('Queues', route('queues'));
+    $breadcrumbs->push('Reports', route('reports'));
 });
+
+// DASHBOARD > HELP
+
+Breadcrumbs::register('help', function($breadcrumbs) {
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Help', route('help'));
+});
+
+// DASHBOARD > TERMS OF SERVICE
+
+Breadcrumbs::register('terms', function($breadcrumbs) {
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Terms of Service', route('terms'));
+});
+
+// DASHBOARD > FAQ
+
+Breadcrumbs::register('faq', function($breadcrumbs) {
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('FAQ', route('faq'));
+});
+
 
 
 

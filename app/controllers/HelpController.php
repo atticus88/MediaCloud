@@ -1,6 +1,6 @@
 <?php
 
-class HistoryController extends BaseController {
+class HelpController extends BaseController {
 
 	/**
 	 * Display a listing of the resource.
@@ -9,7 +9,7 @@ class HistoryController extends BaseController {
 	 */
 	public function index()
 	{
-        return View::make('backend.history.index');
+        return View::make('help.index');
 	}
 
 	/**
@@ -19,7 +19,7 @@ class HistoryController extends BaseController {
 	 */
 	public function create()
 	{
-        return View::make('history.create');
+        return View::make('help.create');
 	}
 
 	/**
@@ -40,7 +40,7 @@ class HistoryController extends BaseController {
 	 */
 	public function show($id)
 	{
-        return View::make('history.show');
+        return View::make('help.show');
 	}
 
 	/**
@@ -51,7 +51,7 @@ class HistoryController extends BaseController {
 	 */
 	public function edit($id)
 	{
-        return View::make('history.edit');
+        return View::make('help.edit');
 	}
 
 	/**

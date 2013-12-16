@@ -24,10 +24,11 @@ class AuthController extends BaseController {
 		// dd('login');
 		// var_dump(Sentry::check());
 		// Is the user logged in?
-		// if (Sentry::check())
-		// {
-		// 	// return Redirect::to('/');
-		// }
+		if (Sentry::check())
+		{
+			// return Redirect::to('/');
+			$('.hide-steps').show();
+		}
 
 		// Show the page
 		return View::make('frontend.auth.signin');

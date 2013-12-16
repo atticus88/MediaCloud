@@ -108,9 +108,6 @@
                </ul>
             </li>
             <li class="start {{(Request::is('admin') ? '' : '')}}">
-               <a href="/admin/settings"> <i class="icon-gears"></i> <span class="title">Settings</span> <span class="selected"></span></a>
-            </li>
-            <li class="start {{(Request::is('admin') ? '' : '')}}">
                <a href="/admin/queues"> <i class="fa fa-tasks"></i> <span class="title">Queues</span> <span class="selected"></span></a>
             </li>
             <li class="start {{(Request::is('admin') ? '' : '')}}">
@@ -119,6 +116,15 @@
             <li class="start {{(Request::is('admin') ? '' : '')}}">
                <a href="/admin/capture"> <i class="fa fa-video-camera"></i> <span class="title">Capture</span> <span class="selected"></span></a>
             </li>
+            <li class="start {{(Request::is('admin') ? '' : '')}}">
+               <a href="/admin/reports"> <i class="fa fa-bar-chart-o"></i> <span class="title">Reports</span> <span class="selected"></span></a>
+            </li>
+            <li class="start {{(Request::is('admin') ? '' : '')}}">
+               <a href="/admin/settings"> <i class="icon-gears"></i> <span class="title">Settings</span> <span class="selected"></span></a>
+            </li>
+<!--             <li class="start {{(Request::is('admin') ? '' : '')}}">
+               <a href="/admin/capture"> <i class="fa fa-video-camera"></i> <span class="title">Capture</span> <span class="selected"></span></a>
+            </li> -->
             @section('sidebar')
 
             @show

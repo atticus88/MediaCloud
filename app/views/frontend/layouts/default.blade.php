@@ -34,7 +34,7 @@
    <link href="/assets/css/frontend-style.css" rel="stylesheet" type="text/css"/>
    <!-- END CUSTOM STYLES -->
 
-   <link rel="shortcut icon" href="favicon.ico" />
+   <link rel="shortcut icon" href="favicon.ico"/>
 </head>
 <!-- END HEAD -->
 
@@ -191,7 +191,6 @@
 			Index.initRevolutionSlider();
 		});
 	</script>
-
 
 
 

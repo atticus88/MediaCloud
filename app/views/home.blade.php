@@ -109,14 +109,14 @@
         <!-- END REVOLUTION SLIDER -->
 
         <!-- BEGIN CONTAINER -->
-        <div class="container">
+        <div class="container home">
 
             <div class="clearfix"></div>
 
             <div class="clearfix"></div>
 
             <!-- BEGIN STEPS -->
-            <div class="row no-space-steps margin-bottom-40">
+            <div class="row no-space-steps margin-bottom-40 steps-hide">
                 <div class="col-md-4 col-sm-4">
                     <div class="front-steps front-step-one">
                         <h2>Upload</h2>
@@ -141,5 +141,12 @@
         <!-- END CONTAINER -->
     </div>
     <!-- END PAGE CONTAINER -->
+
+<script>
+    (document).ready(function() {
+        $('.hide-steps').show(); 
+        });      
+</script>
+
 
 @stop

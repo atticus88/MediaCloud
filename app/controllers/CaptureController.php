@@ -9,7 +9,7 @@ class CaptureController extends BaseController {
 	 */
 	public function index()
 	{
-        return View::make('captures.index');
+        return View::make('backend.capture.index');
 	}
 
 	/**
@@ -19,7 +19,7 @@ class CaptureController extends BaseController {
 	 */
 	public function create()
 	{
-        return View::make('captures.create');
+        return View::make('capture.create');
 	}
 
 	/**
@@ -40,7 +40,7 @@ class CaptureController extends BaseController {
 	 */
 	public function show($id)
 	{
-        return View::make('captures.show');
+        return View::make('capture.show');
 	}
 
 	/**
@@ -51,7 +51,7 @@ class CaptureController extends BaseController {
 	 */
 	public function edit($id)
 	{
-        return View::make('captures.edit');
+        return View::make('capture.edit');
 	}
 
 	/**
