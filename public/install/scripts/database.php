@@ -14,22 +14,27 @@ if (!$_POST || !$project_root_path) {
 }
 
 
+$sql = 'CREATE DATABASE IF NOT EXISTS ' . $_POST['database'];
 
 
 // Does Database EXIST if not make it?
 $mysqli = new mysqli($_POST['host'], $_POST['user'], $_POST['password']);
-if (!$mysqli) {
-    die('Could not connect: ' . mysql_error());
+
+/* check connection */
+if ($mysqli->connect_errno) {
+    printf("Connect failed: %s\n", $mysqli->connect_error);
+    exit();
 }
 
-$sql = 'CREATE DATABASE IF NOT EXISTS ' . $_POST['database'];
-if ($mysqli->connect_error) {
-    die('Connect Error (' . $mysqli->connect_errno . ') '
-            . $mysqli->connect_error);
-} else {
-    echo 'Error creating database: ' . mysql_error() . "\n";
+/* Create table doesn't return a resultset */
+if ($mysqli->query($sql) === TRUE) {
+    echo json_encode(array('status' => "Database Created successfully.") );
+}
+else{
+	echo json_encode(array('status' => "Error Creating Database."));
 }
 
+$mysqli->close();
 
 
 
