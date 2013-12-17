@@ -25,7 +25,7 @@ class UploadCreatorService {
         $this->validator = $validator;
 
     }
-    
+
 
 
 
@@ -76,7 +76,7 @@ class UploadCreatorService {
         $alpha_out  = alphaID($assetId, false);
         // $number_out = alphaID($alpha_out, true);
 
-            
+
         // save filename as alphaId
         $asset->alphaID = $alpha_out;
         $asset->save();
@@ -93,4 +93,4 @@ class UploadCreatorService {
     }
 
 
-} 
+}
