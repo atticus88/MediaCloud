@@ -27,7 +27,7 @@ class AuthController extends BaseController {
 		if (Sentry::check())
 		{
 			// return Redirect::to('/');
-			$('.hide-steps').show();
+		
 		}
 
 		// Show the page
