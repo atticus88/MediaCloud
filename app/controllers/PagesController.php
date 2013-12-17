@@ -1,15 +1,15 @@
 <?php
 
-class HelpController extends BaseController {
+class PagesController extends BaseController {
 
 	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function help()
 	{
-        return View::make('help.index');
+        return View::make('backend.pages.help');
 	}
 
 	/**
@@ -17,9 +17,9 @@ class HelpController extends BaseController {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function faq()
 	{
-        return View::make('help.create');
+        return View::make('backend.pages.faq');
 	}
 
 	/**
@@ -27,10 +27,21 @@ class HelpController extends BaseController {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function terms()
 	{
-		//
+		return View::make('backend.pages.terms-of-service');	
 	}
+
+	public function privacy()
+	{
+		return View::make('backend.pages.privacy-policy');	
+	}
+
+
+
+
+
+
 
 	/**
 	 * Display the specified resource.

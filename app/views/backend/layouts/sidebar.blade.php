@@ -122,6 +122,19 @@
             <li class="start {{(Request::is('admin') ? '' : '')}}">
                <a href="/admin/settings"> <i class="icon-gears"></i> <span class="title">Settings</span> <span class="selected"></span></a>
             </li>
+            <li class="start {{(Request::is('admin') ? '' : '')}}">
+               <a href="/admin/faq"> <i class="icon-gears"></i> <span class="title">FAQ</span> <span class="selected"></span></a>
+            </li>
+             <li class="start {{(Request::is('admin') ? '' : '')}}">
+               <a href="/admin/privacy"> <i class="icon-gears"></i> <span class="title">Privacy Policy</span> <span class="selected"></span></a>
+            </li>
+             <li class="start {{(Request::is('admin') ? '' : '')}}">
+               <a href="/admin/terms"> <i class="icon-gears"></i> <span class="title">Terms of Service</span> <span class="selected"></span></a>
+            </li>
+             <li class="start {{(Request::is('admin') ? '' : '')}}">
+               <a href="/admin/help"> <i class="icon-gears"></i> <span class="title">Help</span> <span class="selected"></span></a>
+            </li>
+
 <!--             <li class="start {{(Request::is('admin') ? '' : '')}}">
                <a href="/admin/capture"> <i class="fa fa-video-camera"></i> <span class="title">Capture</span> <span class="selected"></span></a>
             </li> -->

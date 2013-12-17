@@ -2,7 +2,6 @@
 
 class AuthController extends BaseController {
 
-
 	/**
 	 * Initializer.
 	 *
