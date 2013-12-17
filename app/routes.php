@@ -70,6 +70,10 @@ Route::group(array('before' => 'admin-auth|permissions','prefix' => 'admin'), fu
 
 	# Dashboard
 	Route::get('/', array('as' => 'admin', 'uses' => 'DashboardController@getIndex'));
+
+
+	#Static Pages
+
 	Route::get('settings', array('as' => 'settings', 'uses' => 'SettingsController@getIndex'));
 	Route::get('collections', array('as' => 'collections', 'uses' => 'CollectionsController@getIndex'));
 	Route::get('playlists', array('as' => 'playlists', 'uses' => 'PlaylistsController@getIndex'));
@@ -77,10 +81,13 @@ Route::group(array('before' => 'admin-auth|permissions','prefix' => 'admin'), fu
 	Route::get('history', array('as' => 'history', 'uses' => 'HistoryController@index'));
 	Route::get('capture', array('as' => 'capture', 'uses' => 'CaptureController@index'));
 	Route::get('reports', array('as' => 'reports', 'uses' => 'ReportsController@index'));
+	
+	#Frontend
+
 	Route::get('help', array('as' => 'help', 'uses' => 'PagesController@help'));
 	Route::get('faq', array('as' => 'reports', 'uses' => 'PagesController@faq'));
 	Route::get('privacy', array('as' => 'reports', 'uses' => 'PagesController@privacy'));
-	Route::get('terms', array('as' => 'reports', 'uses' => 'PagesController@terms'));
+	Route::get('terms', function(){ return View::make('backend.pages.terms-of')});
 
 });
 
