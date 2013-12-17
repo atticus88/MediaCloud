@@ -3,6 +3,7 @@ composer.phar
 composer.lock
 .DS_Store
 /.idea
+/.vagrant
 /app/config/database.php
 /app/config/queue.php
 app/storage/sessions/*
