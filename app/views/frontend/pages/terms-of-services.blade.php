@@ -2,13 +2,13 @@
 
 {{-- Page title --}}
 @section('title')
-Help ::
+Terms of Services ::
 @parent
 @stop
 
 {{-- Page content --}}
 @section('content')
 
-Help page.
+Terms of Services page.
 
 @stop

@@ -2,13 +2,13 @@
 
 {{-- Page title --}}
 @section('title')
-Help ::
+FAQ ::
 @parent
 @stop
 
 {{-- Page content --}}
 @section('content')
 
-Help page.
+FAQ page.
 
 @stop

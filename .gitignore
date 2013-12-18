@@ -5,6 +5,7 @@ composer.lock
 /.idea
 /.vagrant
 /app/config/database.php
+/app/config/settings.php
 /app/config/queue.php
 app/storage/sessions/*
 app/storage/views/*

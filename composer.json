@@ -4,13 +4,14 @@
 	"description": "The Laravel Framework.",
 	"keywords": ["framework", "laravel"],
 	"require": {
-		"laravel/framework": "4.0.*",
+		"laravel/framework": "4.1.*",
 		"edvinaskrucas/notification": "1.*",
 		"cartalyst/sentry": "2.0.*@dev",
 		"dwoodard/phpcas": "dev-master",
 		"davejamesmiller/laravel-breadcrumbs": "~2.1.0",
 		"iron-io/iron_mq": "1.4.8",
-		"codescale/ffmpeg-php": "2.7.0"
+		"codescale/ffmpeg-php": "2.7.0",
+		"pda/pheanstalk": "dev-master"
 	},
 	"require-dev": {
 		"mockery/mockery": "dev-master",

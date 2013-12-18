@@ -87,7 +87,7 @@
 
 
 			<!-- Notifications -->
-			@include('frontend/notifications')
+			@include('frontend/_partials/notifications')
 
 			<!-- Content -->
 			@yield('content')
