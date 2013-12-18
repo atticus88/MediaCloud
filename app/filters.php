@@ -101,7 +101,7 @@ Route::filter('admin-auth', function()
 
 
 Route::filter('permissions', function(Illuminate\Routing\Route $route){
-    $permissionName = $route->getOption('_uses');
+    $permissionName =$route->getActionName();
 
 
     if (!Sentry::getUser()->hasAccess($permissionName)) {
