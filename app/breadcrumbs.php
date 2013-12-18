@@ -127,40 +127,6 @@ Breadcrumbs::register('reports', function($breadcrumbs) {
     $breadcrumbs->push('Reports', route('reports'));
 });
 
-// DASHBOARD > HELP
-
-Breadcrumbs::register('help', function($breadcrumbs) {
-    $breadcrumbs->parent('home');
-    $breadcrumbs->push('Help', route('help'));
-});
-
-// DASHBOARD > TERMS OF SERVICE
-
-Breadcrumbs::register('terms', function($breadcrumbs) {
-    $breadcrumbs->parent('home');
-    $breadcrumbs->push('Terms of Service', route('terms'));
-});
-
-// DASHBOARD > FAQ
-
-Breadcrumbs::register('faq', function($breadcrumbs) {
-    $breadcrumbs->parent('home');
-    $breadcrumbs->push('FAQ', route('faq'));
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

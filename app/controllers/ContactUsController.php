@@ -12,7 +12,7 @@ class ContactUsController extends BaseController {
 	 */
 	public function getIndex()
 	{
-		return View::make('frontend/contact-us');
+		return View::make('frontend.pages.contact-us');
 	}
 
 	/**

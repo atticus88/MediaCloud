@@ -82,12 +82,6 @@ Route::group(array('before' => 'admin-auth|permissions','prefix' => 'admin'), fu
 	Route::get('capture', array('as' => 'capture', 'uses' => 'CaptureController@index'));
 	Route::get('reports', array('as' => 'reports', 'uses' => 'ReportsController@index'));
 	
-	#Frontend
-
-	Route::get('help', array('as' => 'help', 'uses' => 'PagesController@help'));
-	Route::get('faq', array('as' => 'reports', 'uses' => 'PagesController@faq'));
-	Route::get('privacy', array('as' => 'reports', 'uses' => 'PagesController@privacy'));
-	Route::get('terms', function(){ return View::make('backend.pages.terms-of')});
 
 });
 
@@ -129,16 +123,21 @@ Route::group(array('prefix' => 'auth'), function()
 
 
 
-Route::get('about-us', function()
-{
-	return View::make('frontend/about-us');
-});
 
-Route::get('contact-us', array('as' => 'contact-us', 'uses' => 'ContactUsController@getIndex'));
-Route::post('contact-us', 'ContactUsController@postIndex');
+	# Frontend Static Pages
+
+	Route::get('help', function(){ return View::make('frontend.pages.help');});
+	Route::get('faq', function(){ return View::make('frontend.pages.faq');});
+	Route::get('privacy', function(){ return View::make('frontend.pages.privacy-policy');});
+	Route::get('terms', function(){ return View::make('frontend.pages.terms-of-service');});
+	Route::get('about-us', function(){return View::make('frontend.pages.about-us');});
+	
+	Route::get('contact-us', array('as' => 'contact-us', 'uses' => 'ContactUsController@getIndex'));
+	Route::post('contact-us', 'ContactUsController@postIndex');
 
 // Route::get('blog/{postSlug}', array('as' => 'view-post', 'uses' => 'BlogController@getView'));
 // Route::post('blog/{postSlug}', 'BlogController@postView');
+
 
 
 Route::get('/', array('as' => 'home', function(){

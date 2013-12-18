@@ -144,7 +144,7 @@
 				<div class="col-md-8 col-sm-8">
 					<p>
 						<span class="margin-right-10">2013 © Media Cloud. ALL Rights Reserved.</span>
-						<a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+						<a href="privacy">Privacy Policy</a> | <a href="terms">Terms of Service</a>
 					</p>
 				</div>
 				<div class="col-md-4 col-sm-4">
