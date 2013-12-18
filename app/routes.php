@@ -137,6 +137,9 @@ Route::group(array('prefix' => 'auth'), function()
 
 // Route::get('blog/{postSlug}', array('as' => 'view-post', 'uses' => 'BlogController@getView'));
 // Route::post('blog/{postSlug}', 'BlogController@postView');
+	
+	# Media Manager
+	Route::get('manage', array('as' => 'manage', 'uses' => 'ManageController@index'));
 
 
 
