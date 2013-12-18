@@ -59,6 +59,17 @@ echo "--- Composer is the future. But you knew that, did you master? Nice job. -
 curl -sS https://getcomposer.org/installer | php
 sudo mv composer.phar /usr/local/bin/composer
 
+
+
+
+echo "--- INSTALL BEANSTALKD  ---"
+sudo apt-get install beanstalkd
+
+
+# /etc/default/beanstalkd
+
+
+
 # Laravel stuff here, if you want
 
 echo "--- All set to go! Would you like to play a game? ---"

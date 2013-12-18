@@ -5,7 +5,7 @@ namespace MC\Services;
 use Asset;
 
 use Config;
-use Illuminate\Queue\Queue;
+use Illuminate\Queue\BeanstalkdQueue;
 use MC\Exceptions\ValidationException;
 use MC\Validators\UploadValidator;
 use Mimes;
@@ -83,8 +83,8 @@ class UploadCreatorService {
 
         $file->move($destinationPath, $asset->alphaID . "." . $extension);
 
-
-        Queue::push('Transcode', array('asset_id' => $asset_id, 'filepath' => $filepath, 'type'=>$type));
+        BeanstalkdQueue::push($job);
+//        Queue::push('Transcode', array('asset_id' => $asset_id, 'filepath' => $filepath, 'type'=>$type));
 
         // save asset_user table
         $user = User::find($userId);
