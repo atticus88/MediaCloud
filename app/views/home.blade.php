@@ -1,5 +1,15 @@
 @extends('frontend/layouts/default')
 
+@section('scripts')
+<script>
+    // $(document).ready(function() {
+    // $('.hide-steps').show(); 
+    // });      
+</script>
+
+@stop
+
+
 @section('content')
 
     <!-- BEGIN PAGE CONTAINER -->
@@ -141,12 +151,6 @@
         <!-- END CONTAINER -->
     </div>
     <!-- END PAGE CONTAINER -->
-
-<script>
-    (document).ready(function() {
-        $('.hide-steps').show(); 
-        });      
-</script>
 
 
 @stop

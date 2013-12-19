@@ -83,7 +83,7 @@
 							</ul>
 						</li>
 					@else
-						<li><a href="{{URL::to('login')}}" target="">Login</a></li>
+						<li><a id="login" href="{{URL::to('login')}}" target="">Login</a></li>
 					@endif
 
 
@@ -184,6 +184,7 @@
 	<script type="text/javascript" src="/_frontend/assets/plugins/bxslider/jquery.bxslider.min.js"></script>
 	<script src="/_frontend/assets/scripts/app.js"></script>
 	<script src="/_frontend/assets/scripts/index.js"></script>
+	<script src="/assets/js/main.js"></script>
 	<script type="text/javascript">
 		jQuery(document).ready(function() {
 			App.init();
@@ -192,7 +193,7 @@
 		});
 	</script>
 
-
+	 @yield('scripts')
 
 
 </body>
