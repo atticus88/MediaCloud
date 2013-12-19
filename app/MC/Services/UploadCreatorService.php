@@ -35,7 +35,7 @@ class UploadCreatorService {
 
         $filename = $file->getClientOriginalName();
         $extension =$file->getClientOriginalExtension();
-        $filetype = Mimes::getMimes($extension);
+        $filetype = Mimes::getMimes(strtolower($extension));
 
 
 
@@ -83,7 +83,7 @@ class UploadCreatorService {
 
         $file->move($destinationPath, $asset->alphaID . "." . $extension);
 
-        BeanstalkdQueue::push($job);
+//        BeanstalkdQueue->push($job);
 //        Queue::push('Transcode', array('asset_id' => $asset_id, 'filepath' => $filepath, 'type'=>$type));
 
         // save asset_user table

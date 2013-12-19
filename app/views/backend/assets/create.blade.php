@@ -156,9 +156,9 @@
 <div class="row">
 	<div class="col-md-12">
 		<div id="uploads-area" class="hide">
-            <form id="filedrop" action="/admin/assets/upload" class="dropzone">
+            <form id="filedrop" method="post" action="/admin/assets/upload" class="dropzone" enctype="multipart/form-data">
                 <div class="fallback">
-                    <input name="file" type="file" multiple />
+                    <input name="files[]" type="file" multiple=""/>
                 </div>
             </form>
 		</div>

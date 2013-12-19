@@ -1,5 +1,6 @@
 <?php
 
+use MC\Exceptions\UploadException;
 use MC\Services\UploadCreatorService;
 
 class AssetsController extends PermissionsController{
