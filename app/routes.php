@@ -13,8 +13,8 @@ App::bind('AssetRepository', 'Asset');
 
 Route::get('/test', function(){
 
-
-	Queue::push('DoSomethingIntensive', array('asset_id' => 1));
+	return Asset::orderBy('id', 'desc')->paginate(2);
+	// Queue::push('DoSomethingIntensive', array('asset_id' => 1));
 
 });
 

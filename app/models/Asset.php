@@ -35,6 +35,14 @@ class Asset extends Eloquent implements AssetRepository {
 		return $assets;
 	}
 
+	public function getAll($page_count = 15)
+	{
+		// $assets = DB::select("SELECT * FROM assets ORDER BY  created_at DESC LIMIT 0 , $amount");
+		
+		return Asset::orderBy('id', 'desc')->paginate($page_count);
+		
+	}
+
 
 
 	public function user()

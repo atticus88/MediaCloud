@@ -22,7 +22,7 @@ class AssetsController extends PermissionsController{
 	protected function index()
 	{
 		// Grab all the assets
-		$assets = $this->asset->getLastAssets(15);
+		$assets = $this->asset->getAll();
 
 		// die(var_dump($assets));
 		// Show the page
