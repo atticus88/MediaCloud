@@ -108,7 +108,7 @@
                </ul>
             </li>
             <li class="start {{(Request::is('admin') ? '' : '')}}">
-               <a href="/admin/queues"> <i class="fa fa-tasks"></i> <span class="title">Queues</span> <span class="selected"></span></a>
+               <a href="/beanstalkd/public/index.php"> <i class="fa fa-tasks"></i> <span class="title">Queue</span> <span class="selected"></span></a>
             </li>
             <li class="start {{(Request::is('admin') ? '' : '')}}">
                <a href="/admin/history"> <i class="fa fa-undo"></i> <span class="title">History</span> <span class="selected"></span></a>

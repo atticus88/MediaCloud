@@ -6,6 +6,7 @@
 * APP Bindings
 */
 
+use Illuminate\Queue\BeanstalkdQueue;
 
 App::bind('AssetRepository', 'Asset');
 
@@ -13,8 +14,9 @@ App::bind('AssetRepository', 'Asset');
 
 Route::get('/test', function(){
 
-	return Asset::orderBy('id', 'desc')->paginate(2);
-	// Queue::push('DoSomethingIntensive', array('asset_id' => 1));
+	// return Asset::orderBy('id', 'desc')->paginate(2);
+	Queue::push('DoSomethingIntensive', array('asset_id' => 1));
+	// BeanstalkdQueue::push('DoSomethingIntensive', array('asset_id' => 1));
 
 });
 

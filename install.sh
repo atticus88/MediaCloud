@@ -2,6 +2,16 @@
 
 echo "--- Good morning, master. Let's get to work. Installing now. ---"
 
+
+
+echo "--- SET RESOLV ---"
+sudo tee -a /etc/resolvconf/resolv.conf.d/tail <<RESOLV
+nameserver 8.8.8.8
+nameserver 8.8.4.4
+RESOLV
+
+sudo /etc/init.d/resolvconf restart
+
 echo "--- Updating packages list ---"
 sudo apt-get update
 
@@ -95,16 +105,11 @@ echo "America/Denver" | sudo tee /etc/timezone
 sudo dpkg-reconfigure --frontend noninteractive tzdata
 
 echo "--- INSTALL BEANSTALKD  ---"
-sudo apt-get install beanstalkd
-
-
-echo "--- INSTALL Supervisord  ---"
-sudo apt-get install python-setuptools
-sudo easy_install supervisor
-sudo su root
-echo_supervisord_conf > /etc/supervisord.conf
-
-
+echo "--- INSTALL SUPERVISORD  ---"
+sudo apt-get update
+sudo apt-get install -y beanstalkd supervisor
+sudo sed -i "s/.*#START.*/START yes/" /etc/default/beanstalkd
+sudo service beanstalkd start
 
 sudo tee -a /etc/supervisord.conf <<SUPERVISORD
 [supervisord]
@@ -127,10 +132,6 @@ autorestart=true
 exitcodes=2
 user=root
 SUPERVISORD
-
-
-
-
 
 sudo tee -a /etc/init.d/supervisord <<SUPERVISORDCONF
 #! /bin/bash -e
@@ -180,31 +181,9 @@ sudo update-rc.d supervisord defaults
 sudo service supervisord start
 
 
-echo "--- INSTALL BEANSTALK_CONSOLE  ---"
+# echo "--- INSTALL BEANSTALK_CONSOLE  ---"
+# wget -P /var/www https://github.com/ptrofimov/beanstalk_console/archive/master.zip
+# sudo unzip -o -d /var/www  /var/www/master.zip
+# sudo rm /var/www/master.zip
+# sudo mv /var/www/beanstalk_console-master /var/www/beanstalkd
 
-wget -P /var/www https://github.com/ptrofimov/beanstalk_console/archive/master.zip
-sudo unzip -o -d /var/www  /var/www/master.zip
-sudo rm /var/www/master.zip
-sudo mv /var/www/beanstalk_console-master /var/www/beanstalkd
-
-
-# sudo sed -i "s/.*</VirtualHost>.*/ Alias /beanstalkd '/var/www/beanstalkd/public/'<Directory 'Nebapps/beanstalk_console/public/'> Options Indexes MultiViews FollowSymLinks AllowOverride all Order deny, allow Deny from all Allow from 137.190.250.178/24 Allow from 137.190.52.0/24 Allow from 137.190.80.0/24 Allow from 10.0.2.15/24 </Directory> </VirtualHost>/" /etc/apache2/sites-enabled/000-default.conf
-
-
-# sudo sed -i "s/.*</VirtualHost>.*/
-# Alias /beanstalkd '/var/www/beanstalkd/public/'
-# <Directory 'Nebapps/beanstalk_console/public/'>
-# 	Options Indexes MultiViews FollowSymLinks
-# 	AllowOverride all
-# 	Order deny, allow
-# 	Deny from all
-# 	Allow from 137.190.250.178/24
-# 	Allow from 137.190.52.0/24
-# 	Allow from 137.190.80.0/24
-# 	Allow from 10.0.2.15/24
-# </Directory>
-# </VirtualHost>/" /etc/apache2/sites-enabled/000-default.conf
-
-
-
-echo "--- All set to go! Would you like to play a game? ---"
