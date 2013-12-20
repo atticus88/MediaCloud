@@ -16,23 +16,28 @@
         $('.typeahead').autocomplete({
             source: function(request, response){
 
+
                 $.ajax({
                     url: "/v1/users",
                     data: {search: request.term, fields:'username,id'},
                     dataType: "json",
                     success: function( data ) {
-
-
                         response( $.map( data, function( item ) {
                             return {
-                                label: item.username,
-                                value: item.id
+                                id:item.id,
+                                username:item.username,
+                                label: item.id+":"+item.username ,
+                                value: item.username,
+
                             }
                         }));
+                    },
 
-
-                    }
                 });
+            },
+            select: function(event,ui){
+                console.log(event,ui);
+                $("#userId").val(ui.item.id);
             }
         });
 
@@ -81,7 +86,7 @@
                     completeFiles = 0;
 
                 this.on("sending", function (file, xhr, formData) {
-                    formData.append("userId", $("#owner").val());
+                    formData.append("userId", $("#userId").val());
                     console.log('sending', xhr)
                 });
                 this.on("addedfile", function (file, xhr, formData) {
@@ -144,6 +149,7 @@
             <div class="lookUpUser">
                 <label class="control-label col-md-3">Owner</label>
                 <input id="owner" type="text" class="typeahead">
+                <input id="userId" type="hidden">
                 <button  class="btn-getUserInfo btn btn-success">Get Owner ID</button>
             </div>
         </div>
