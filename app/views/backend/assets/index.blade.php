@@ -26,50 +26,45 @@ User Management ::
 	<table class="table table-striped table-bordered">
 		<thead>
 			<tr>
-				<th>Title</th>
-				<th>Description</th>
-				<th>Alpha Id</th>
-				<th>Permissions</th>
-				<th>Filename</th>
-				<th>Filepath</th>
-				<th>Type</th>
-				<th>Status</th>
-				<th>Size</th>
-				<th>Thumbnail_url</th>
-				<th>Transcoded_url</th>
-				<th>Views</th>
-				<th>Last_viewed</th>
-				<th>Created_at</th>
-				<th>Updated_at</th>
+				<th>title</th>
+				<th>id</th>
+				<th>description</th>
+				<th>alphaID</th>
+				<th>filename_original</th>
+				<th>filename</th>
+				<th>type</th>
+				<th>status</th>
+				<th>size</th>
+				<th>filepath</th>
+				<th>permissions</th>
+				<th>last_viewed</th>
+				<th>Edit</th>
+				<th>Delete</th>
 			</tr>
 		</thead>
 
 		<tbody>
 			@foreach ($assets as $asset)
 				<tr>
-					<td>{{{ $asset->title }}}</td>
-					<td>{{{ $asset->description }}}</td>
-					<td>{{{ $asset->alphaID }}}</td>
-					<td>{{{ $asset->filepath }}}</td>
-					<td>{{{ $asset->filename }}}</td>
-					<td>{{{ $asset->transcoded_url }}}</td>
-					<td>{{{ $asset->thumbnail_url }}}</td>
-					<td>{{{ $asset->url }}}</td>
-					<td>{{{ $asset->type }}}</td>
-					<td>{{{ $asset->status }}}</td>
-					<td>{{{ $asset->tags }}}</td>
-					<td>{{{ $asset->views }}}</td>
-					<td>{{{ $asset->last_viewed }}}</td>
-					<td>{{{ $asset->created_at }}}</td>
-					<td>{{{ $asset->updated_at }}}</td>
+					<td>{{{ $asset->title}}}</td>
+					<td>{{{ $asset->id}}}</td>
+					<td>{{{ $asset->description}}}</td>
+					<td>{{{ $asset->alphaID}}}</td>
+					<td>{{{ $asset->filename_original}}}</td>
+					<td>{{{ $asset->filename}}}</td>
+					<td>{{{ $asset->type}}}</td>
+					<td>{{{ $asset->status}}}</td>
+					<td>{{{ $asset->size}}}</td>
+					<td>{{{ $asset->filepatd}}}</td>
+					<td>{{{ $asset->permissions}}}</td>
+					<td>{{{ $asset->last_viewed}}}</td>
                     <td>{{ link_to_route('asset.edit', 'Edit', array($asset->id), array('class' => 'btn btn-info')) }}</td>
                     <td>
-
-                    <form method="POST" action="{{action('AssetsController@destroy',$asset->id )}}" accept-charset="UTF-8">
-                    	<input type="hidden" name="_method" value="DELETE" />
-                    	<input type="hidden" name="_token" value="{{ csrf_token() }}" />
-                        {{ Form::submit('Delete', array('class' => 'btn btn-danger')) }}
-                    </form>
+                   		 <form method="POST" action="{{action('AssetsController@destroy',$asset->id )}}" accept-charset="UTF-8">
+                    		<input type="hidden" name="_method" value="DELETE" />
+                    		<input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                        	{{ Form::submit('Delete', array('class' => 'btn btn-danger')) }}
+                    	</form>
                     </td>
 				</tr>
 			@endforeach

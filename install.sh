@@ -4,13 +4,13 @@ echo "--- Good morning, master. Let's get to work. Installing now. ---"
 
 
 
-echo "--- SET RESOLV ---"
-sudo tee -a /etc/resolvconf/resolv.conf.d/tail <<RESOLV
-nameserver 8.8.8.8
-nameserver 8.8.4.4
-RESOLV
+# echo "--- SET RESOLV ---"
+# sudo tee -a /etc/resolvconf/resolv.conf.d/tail <<RESOLV
+# nameserver 8.8.8.8
+# nameserver 8.8.4.4
+# RESOLV
+# sudo /etc/init.d/resolvconf restart
 
-sudo /etc/init.d/resolvconf restart
 
 echo "--- Updating packages list ---"
 sudo apt-get update
