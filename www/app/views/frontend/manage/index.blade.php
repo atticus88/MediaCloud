@@ -1,0 +1,2 @@
+@extends('frontend/layouts/default')
+

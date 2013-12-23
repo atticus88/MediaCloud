@@ -1,0 +1,28 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="1049" measuredH="771" mockupW="1024" mockupH="768">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="25" y="3" w="1024" h="768" measuredW="450" measuredH="400" zOrder="0" locked="true" isInGroup="-1"/>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::Canvas" x="25" y="73" w="1024" h="51" measuredW="100" measuredH="70" zOrder="1" locked="false" isInGroup="-1"/>
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::Label" x="40" y="82" w="-1" h="-1" measuredW="135" measuredH="32" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>24</size>
+        <text>Media%20Cloud</text>
+      </controlProperties>
+    </control>
+    <control controlID="5" controlTypeID="com.balsamiq.mockups::List" x="33" y="166" w="248" h="569" measuredW="100" measuredH="138" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <borderStyle>none</borderStyle>
+        <rowHeight>33</rowHeight>
+        <selectedIndex>0</selectedIndex>
+        <size>18</size>
+        <text>Dashboard%0AUsers%0AAnalytics%0ASettings</text>
+      </controlProperties>
+    </control>
+    <control controlID="6" controlTypeID="com.balsamiq.mockups::Canvas" x="25" y="124" w="262" h="619" measuredW="100" measuredH="70" zOrder="3" locked="false" isInGroup="-1"/>
+    <control controlID="7" controlTypeID="com.balsamiq.mockups::SearchBox" x="33" y="126" w="233" h="-1" measuredW="120" measuredH="25" zOrder="5" locked="false" isInGroup="-1"/>
+    <control controlID="8" controlTypeID="com.balsamiq.mockups::Label" x="993" y="88" w="-1" h="-1" measuredW="41" measuredH="21" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Logout</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>

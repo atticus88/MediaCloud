@@ -1,0 +1,77 @@
+/* here you can put your own css to customize and override the theme */
+.error{
+color: #ff3333;
+}
+
+
+@media (min-width: 992px){
+
+.form-group .read-only{
+	line-height: 35px;
+}
+
+}
+
+
+@media (max-width: 768px){}
+
+@media (min-width: 768px){}
+
+
+.pagination{}
+
+.pagination ul{
+padding: 0;
+}
+
+.pagination ul li{
+float: left;
+list-style-type: none;
+width: 20px;
+height: 20px;
+display: block;
+}
+
+.pagination ul li.active{
+background: #e02222;
+color: white;
+text-align: center;
+}
+
+.pagination ul li.disabled{
+
+}
+
+.pagination ul li a{
+width: 20px;
+height: 20px;
+display: block;
+text-align: center;
+}
+
+.pagination ul li span{
+display: block;
+text-align: center;
+
+}
+
+
+.inline{
+display: inline !important;
+}
+
+
+.radio span{
+position: relative;
+top:-7px;
+left:6px;
+}
+
+
+.controls fieldset{
+margin-bottom: 50px;
+}
+
+.page-sidebar-menu > li.active > a .selected{
+right:-1px;
+}
