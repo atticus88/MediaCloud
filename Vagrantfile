@@ -30,5 +30,6 @@ Vagrant.configure("2") do |config|
         end
 
         lv4_config.vm.provision :shell, :path => "puppet/scripts/enable_remote_mysql_access.sh"
+#        lv4_config.vm.provision :shell, :path => "install.sh"
     end
 end
