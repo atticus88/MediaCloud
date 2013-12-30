@@ -1,19 +1,3 @@
-# == Class: supervisord
-#
-# Manage supervisord
-#
-# === Examples
-#
-#  class { supervisord: }
-#
-# === Authors
-#
-# Alexandre De Dommelin <adedommelin@tuxz.net>
-#
-# === Copyright
-#
-# Copyright 2013 Alexandre De Dommelin
-#
 class supervisord {
   package { 'supervisor':
     ensure => present

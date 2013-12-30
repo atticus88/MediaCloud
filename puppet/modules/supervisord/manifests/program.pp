@@ -1,26 +1,8 @@
-# == Definition: supervisord::program
-#
-# === Examples
-#
-# supervisord::program { 'node_app':
-#   command   => '/usr/bin/node server.js',
-#   user      => 'node-user',
-#   directory => '/var/www/node.foo.bar/'
-# }
-#
-# === Authors
-#
-# Alexandre De Dommelin <adedommelin@tuxz.net>
-#
-# === Copyright
-#
-# Copyright 2013 Alexandre De Dommelin
-#
 define supervisord::program (
-  $command,
-  $process_name             = '%(program_name)s',
-  $numprocs                 = '1',
-  $directory                = '',
+  $command                  = 'php artisan queue:listen --timeout=14400',
+  $process_name             = '%(program_name)s%(process_num)s',
+  $numprocs                 = '8',
+  $directory                = '/var/www/',
   $umask                    = '022',
   $priority                 = '999',
   $autostart                = true,

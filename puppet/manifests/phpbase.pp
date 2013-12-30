@@ -22,6 +22,7 @@ include apache
 include mysql
 include phpmyadmin
 include beanstalkd
+include supervisord
 include redis
 include memcached
 
