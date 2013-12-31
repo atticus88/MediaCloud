@@ -76,40 +76,9 @@
     </div>
 </div>
 </div>
-<div class="row">
-   <div class="col-md-6">
-      <div class="form-group">
-         <label class="control-label col-md-3">Transcoded URL</label>
-         <div class="col-md-9">
-            <!-- <input type="text" class="form-control" placeholder="Chee Kin"> -->
-            {{ Form::text('transcoded_url', $asset->transcoded_url,  array('class' => 'form-control')) }}
-            <!-- <span class="help-block">This is inline help</span> -->
-        </div>
-    </div>
-</div>
-<div class="col-md-6">
-  <div class="form-group">
-     <label class="control-label col-md-3">Thumbnail URL</label>
-     <div class="col-md-9">
-        <!-- <input type="text" class="form-control" placeholder="Chee Kin"> -->
-        {{ Form::text('thumbnail_url', $asset->thumbnail_url,  array('class' => 'form-control')) }}
-        <!-- <span class="help-block">This is inline help</span> -->
-    </div>
-</div>
-</div>
-</div>
 
 <div class="row">
-   <div class="col-md-6">
-      <div class="form-group">
-         <label class="control-label col-md-3">URL</label>
-         <div class="col-md-9">
-            <!-- <input type="text" class="form-control" placeholder="Chee Kin"> -->
-            {{ Form::text('url', $asset->url,  array('class' => 'form-control')) }}
-            <!-- <span class="help-block">This is inline help</span> -->
-        </div>
-    </div>
-</div>
+  
 <div class="col-md-6">
   <div class="form-group">
      <label class="control-label col-md-3">Type</label>
@@ -120,8 +89,6 @@
     </div>
 </div>
 </div>
-</div>
-<div class="row">
    <div class="col-md-6">
       <div class="form-group">
          <label class="control-label col-md-3">Status</label>
@@ -131,16 +98,6 @@
             <!-- <span class="help-block">This is inline help</span> -->
         </div>
     </div>
-</div>
-<div class="col-md-6">
-  <div class="form-group">
-     <label class="control-label col-md-3">Tags</label>
-     <div class="col-md-9">
-        <!-- <input type="text" class="form-control" placeholder="Chee Kin"> -->
-        {{ Form::text('tags', $asset->tags,  array('class' => 'form-control')) }}
-        <!-- <span class="help-block">This is inline help</span> -->
-    </div>
-</div>
 </div>
 </div>
 

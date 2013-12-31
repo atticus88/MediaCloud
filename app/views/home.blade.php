@@ -126,6 +126,7 @@
             <div class="clearfix"></div>
 
             <!-- BEGIN STEPS -->
+    @if (Sentry::check())
             <div class="row no-space-steps margin-bottom-40 steps-hide">
                 <div class="col-md-4 col-sm-4">
                     <div class="front-steps front-step-one">
@@ -146,6 +147,7 @@
                     </div>
                 </div>
             </div>
+    @endif
             <!-- END STEPS -->
                 </div>
         <!-- END CONTAINER -->

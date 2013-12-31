@@ -87,12 +87,6 @@ Route::group(array('before' => 'admin-auth|permissions','prefix' => 'admin'), fu
 
 
 
-#Frontend Static Pages
-Route::get('faq', array('as' => 'faq', function() {return View::make("frontend.faq"); }));
-Route::get('privacy-policy', array('as' => 'privacy-policy', function() {return View::make("frontend.pages.privacy-policy"); }));
-Route::get('terms-of-services', array('as' => 'terms-of-services', function() {return View::make("frontend.pages.terms-of-services"); }));
-
-
 
 
 /*
